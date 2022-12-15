@@ -20,13 +20,13 @@ extension Tiia {
         /// 需要裁剪区域的宽度，与Height共同组成所需裁剪的图片宽高比例。
         /// 输入数字请大于0、小于图片宽度的像素值。
         public let width: Int64
-        
+
         /// 需要裁剪区域的高度，与Width共同组成所需裁剪的图片宽高比例。
         /// 输入数字请大于0、小于图片高度的像素值。
         /// 宽高比例（Width : Height）会简化为最简分数，即如果Width输入10、Height输入20，会简化为1：2。
         /// Width : Height建议取值在[1, 2.5]之间，超过这个范围可能会影响效果。
         public let height: Int64
-        
+
         /// 图片URL地址。 
         /// 图片限制： 
         /// • 图片格式：PNG、JPG、JPEG。 
@@ -36,18 +36,18 @@ extension Tiia {
         /// • 长宽比：长边：短边<5。 
         /// 接口响应时间会受到图片下载时间的影响，建议使用更可靠的存储服务，推荐将图片存储在腾讯云COS。
         public let imageUrl: String?
-        
+
         /// 图片经过Base64编码的内容。最大不超过4M。与ImageUrl同时存在时优先使用ImageUrl字段。
         /// 注意：图片需要Base64编码，并且要去掉编码头部。
         public let imageBase64: String?
-        
-        public init (width: Int64, height: Int64, imageUrl: String? = nil, imageBase64: String? = nil) {
+
+        public init(width: Int64, height: Int64, imageUrl: String? = nil, imageBase64: String? = nil) {
             self.width = width
             self.height = height
             self.imageUrl = imageUrl
             self.imageBase64 = imageBase64
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case width = "Width"
             case height = "Height"
@@ -55,27 +55,27 @@ extension Tiia {
             case imageBase64 = "ImageBase64"
         }
     }
-    
+
     /// CropImage返回参数结构体
     public struct CropImageResponse: TCResponseModel {
         /// 裁剪区域左上角X坐标值
         public let x: Int64
-        
+
         /// 裁剪区域左上角Y坐标值
         public let y: Int64
-        
+
         /// 裁剪区域的宽度，单位为像素
         public let width: Int64
-        
+
         /// 裁剪区域的高度，单位为像素
         public let height: Int64
-        
+
         /// 原图宽度，单位为像素
         public let originalWidth: Int64
-        
+
         /// 原图高度，单位为像素
         public let originalHeight: Int64
-        
+
         /// 0：抠图正常；
         /// 1：原图过长，指原图的高度是宽度的1.8倍以上；
         /// 2：原图过宽，指原图的宽度是高度的1.8倍以上；
@@ -85,10 +85,10 @@ extension Tiia {
         /// 6：宽高比异常，指Width : Height取值超出[1, 2.5]的范围；
         /// 以上是辅助决策的参考建议，可以根据业务需求选择采纳或忽视。
         public let cropResult: Int64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case x = "X"
             case y = "Y"
@@ -100,7 +100,7 @@ extension Tiia {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 图片智能裁剪
     ///
     /// 根据输入的裁剪比例，智能判断一张图片的最佳裁剪区域，确保原图的主体区域不受影响，以适应不同平台、设备的展示要求，避免简单拉伸带来的变形。
@@ -111,7 +111,7 @@ extension Tiia {
     public func cropImage(_ input: CropImageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CropImageResponse > {
         self.client.execute(action: "CropImage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 图片智能裁剪
     ///
     /// 根据输入的裁剪比例，智能判断一张图片的最佳裁剪区域，确保原图的主体区域不受影响，以适应不同平台、设备的展示要求，避免简单拉伸带来的变形。
@@ -122,7 +122,7 @@ extension Tiia {
     public func cropImage(_ input: CropImageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CropImageResponse {
         try await self.client.execute(action: "CropImage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 图片智能裁剪
     ///
     /// 根据输入的裁剪比例，智能判断一张图片的最佳裁剪区域，确保原图的主体区域不受影响，以适应不同平台、设备的展示要求，避免简单拉伸带来的变形。
@@ -133,7 +133,7 @@ extension Tiia {
     public func cropImage(width: Int64, height: Int64, imageUrl: String? = nil, imageBase64: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CropImageResponse > {
         self.cropImage(CropImageRequest(width: width, height: height, imageUrl: imageUrl, imageBase64: imageBase64), logger: logger, on: eventLoop)
     }
-    
+
     /// 图片智能裁剪
     ///
     /// 根据输入的裁剪比例，智能判断一张图片的最佳裁剪区域，确保原图的主体区域不受影响，以适应不同平台、设备的展示要求，避免简单拉伸带来的变形。

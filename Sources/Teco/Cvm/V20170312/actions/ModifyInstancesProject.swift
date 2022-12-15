@@ -19,31 +19,31 @@ extension Cvm {
     public struct ModifyInstancesProjectRequest: TCRequestModel {
         /// 一个或多个待操作的实例ID。可通过[`DescribeInstances`](https://cloud.tencent.com/document/api/213/15728) API返回值中的`InstanceId`获取。每次请求允许操作的实例数量上限是100。
         public let instanceIds: [String]
-        
+
         /// 项目ID。项目可以使用[AddProject](https://cloud.tencent.com/doc/api/403/4398)接口创建。可通过[`DescribeProject`](https://cloud.tencent.com/document/product/378/4400) API返回值中的`projectId`获取。后续使用[DescribeInstances](https://cloud.tencent.com/document/api/213/15728)接口查询实例时，项目ID可用于过滤结果。
         public let projectId: Int64
-        
-        public init (instanceIds: [String], projectId: Int64) {
+
+        public init(instanceIds: [String], projectId: Int64) {
             self.instanceIds = instanceIds
             self.projectId = projectId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceIds = "InstanceIds"
             case projectId = "ProjectId"
         }
     }
-    
+
     /// ModifyInstancesProject返回参数结构体
     public struct ModifyInstancesProjectResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 修改实例所属项目
     ///
     /// 本接口 (ModifyInstancesProject) 用于修改实例所属项目。
@@ -55,7 +55,7 @@ extension Cvm {
     public func modifyInstancesProject(_ input: ModifyInstancesProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyInstancesProjectResponse > {
         self.client.execute(action: "ModifyInstancesProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 修改实例所属项目
     ///
     /// 本接口 (ModifyInstancesProject) 用于修改实例所属项目。
@@ -67,7 +67,7 @@ extension Cvm {
     public func modifyInstancesProject(_ input: ModifyInstancesProjectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyInstancesProjectResponse {
         try await self.client.execute(action: "ModifyInstancesProject", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 修改实例所属项目
     ///
     /// 本接口 (ModifyInstancesProject) 用于修改实例所属项目。
@@ -79,7 +79,7 @@ extension Cvm {
     public func modifyInstancesProject(instanceIds: [String], projectId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyInstancesProjectResponse > {
         self.modifyInstancesProject(ModifyInstancesProjectRequest(instanceIds: instanceIds, projectId: projectId), logger: logger, on: eventLoop)
     }
-    
+
     /// 修改实例所属项目
     ///
     /// 本接口 (ModifyInstancesProject) 用于修改实例所属项目。

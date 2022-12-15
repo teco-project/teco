@@ -22,53 +22,53 @@ extension TCTioneError {
             case validateError = "InvalidParameter.ValidateError"
             case other = "InvalidParameter"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 无效的接口。
         public static var tgwInvalidInterface: InvalidParameter {
             InvalidParameter(.tgwInvalidInterface)
         }
-        
+
         /// 无效的请求包体。
         ///
         /// 检查必填字段是否填写
         public static var tgwInvalidRequestBody: InvalidParameter {
             InvalidParameter(.tgwInvalidRequestBody)
         }
-        
+
         /// 请求参数校验失败。
         ///
         /// 请确认请求参数
         public static var validateError: InvalidParameter {
             InvalidParameter(.validateError)
         }
-        
+
         /// 参数错误。
         public static var other: InvalidParameter {
             InvalidParameter(.other)
         }
-        
+
         public func asTioneError() -> TCTioneError {
             let code: TCTioneError.Code
             switch self.error {

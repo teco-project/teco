@@ -19,32 +19,32 @@ extension Tdmq {
     public struct SendBatchMessagesRequest: TCRequestModel {
         /// 消息要发送的topic的名字, 这里尽量需要使用topic的全路径，即：tenant/namespace/topic。如果不指定，默认使用的是：public/default
         public let topic: String
-        
+
         /// 需要发送消息的内容
         public let payload: String
-        
+
         /// String 类型的 token，可以不填，系统会自动获取
         public let stringToken: String?
-        
+
         /// producer 的名字，要求全局是唯一的，如果不设置，系统会自动生成
         public let producerName: String?
-        
+
         /// 单位：s。消息发送的超时时间。默认值为：30s
         public let sendTimeout: Int64?
-        
+
         /// 内存中允许缓存的生产消息的最大数量，默认值：1000条
         public let maxPendingMessages: Int64?
-        
+
         /// 每一个batch中消息的最大数量，默认值：1000条/batch
         public let batchingMaxMessages: Int64?
-        
+
         /// 每一个batch最大等待的时间，超过这个时间，不管是否达到指定的batch中消息的数量和大小，都会将该batch发送出去，默认：10ms
         public let batchingMaxPublishDelay: Int64?
-        
+
         /// 每一个batch中最大允许的消息的大小，默认：128KB
         public let batchingMaxBytes: Int64?
-        
-        public init (topic: String, payload: String, stringToken: String? = nil, producerName: String? = nil, sendTimeout: Int64? = nil, maxPendingMessages: Int64? = nil, batchingMaxMessages: Int64? = nil, batchingMaxPublishDelay: Int64? = nil, batchingMaxBytes: Int64? = nil) {
+
+        public init(topic: String, payload: String, stringToken: String? = nil, producerName: String? = nil, sendTimeout: Int64? = nil, maxPendingMessages: Int64? = nil, batchingMaxMessages: Int64? = nil, batchingMaxPublishDelay: Int64? = nil, batchingMaxBytes: Int64? = nil) {
             self.topic = topic
             self.payload = payload
             self.stringToken = stringToken
@@ -55,7 +55,7 @@ extension Tdmq {
             self.batchingMaxPublishDelay = batchingMaxPublishDelay
             self.batchingMaxBytes = batchingMaxBytes
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case topic = "Topic"
             case payload = "Payload"
@@ -68,27 +68,27 @@ extension Tdmq {
             case batchingMaxBytes = "BatchingMaxBytes"
         }
     }
-    
+
     /// SendBatchMessages返回参数结构体
     public struct SendBatchMessagesResponse: TCResponseModel {
         /// 消息的唯一标识
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let messageId: String?
-        
+
         /// 错误消息，返回为 ""，代表没有错误
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let errorMsg: String?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case messageId = "MessageId"
             case errorMsg = "ErrorMsg"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 批量发送消息
     ///
     /// 批量发送消息
@@ -97,7 +97,7 @@ extension Tdmq {
     public func sendBatchMessages(_ input: SendBatchMessagesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SendBatchMessagesResponse > {
         self.client.execute(action: "SendBatchMessages", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 批量发送消息
     ///
     /// 批量发送消息
@@ -106,7 +106,7 @@ extension Tdmq {
     public func sendBatchMessages(_ input: SendBatchMessagesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SendBatchMessagesResponse {
         try await self.client.execute(action: "SendBatchMessages", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 批量发送消息
     ///
     /// 批量发送消息
@@ -115,7 +115,7 @@ extension Tdmq {
     public func sendBatchMessages(topic: String, payload: String, stringToken: String? = nil, producerName: String? = nil, sendTimeout: Int64? = nil, maxPendingMessages: Int64? = nil, batchingMaxMessages: Int64? = nil, batchingMaxPublishDelay: Int64? = nil, batchingMaxBytes: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SendBatchMessagesResponse > {
         self.sendBatchMessages(SendBatchMessagesRequest(topic: topic, payload: payload, stringToken: stringToken, producerName: producerName, sendTimeout: sendTimeout, maxPendingMessages: maxPendingMessages, batchingMaxMessages: batchingMaxMessages, batchingMaxPublishDelay: batchingMaxPublishDelay, batchingMaxBytes: batchingMaxBytes), logger: logger, on: eventLoop)
     }
-    
+
     /// 批量发送消息
     ///
     /// 批量发送消息

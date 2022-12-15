@@ -19,31 +19,31 @@ extension Chdfs {
     public struct CreateLifeCycleRulesRequest: TCRequestModel {
         /// 文件系统ID
         public let fileSystemId: String
-        
+
         /// 多个生命周期规则，上限为10
         public let lifeCycleRules: [LifeCycleRule]
-        
-        public init (fileSystemId: String, lifeCycleRules: [LifeCycleRule]) {
+
+        public init(fileSystemId: String, lifeCycleRules: [LifeCycleRule]) {
             self.fileSystemId = fileSystemId
             self.lifeCycleRules = lifeCycleRules
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case fileSystemId = "FileSystemId"
             case lifeCycleRules = "LifeCycleRules"
         }
     }
-    
+
     /// CreateLifeCycleRules返回参数结构体
     public struct CreateLifeCycleRulesResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 批量创建生命周期规则
     ///
     /// 批量创建生命周期规则，生命周期规则ID和创建时间无需填写。
@@ -51,7 +51,7 @@ extension Chdfs {
     public func createLifeCycleRules(_ input: CreateLifeCycleRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateLifeCycleRulesResponse > {
         self.client.execute(action: "CreateLifeCycleRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 批量创建生命周期规则
     ///
     /// 批量创建生命周期规则，生命周期规则ID和创建时间无需填写。
@@ -59,7 +59,7 @@ extension Chdfs {
     public func createLifeCycleRules(_ input: CreateLifeCycleRulesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateLifeCycleRulesResponse {
         try await self.client.execute(action: "CreateLifeCycleRules", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 批量创建生命周期规则
     ///
     /// 批量创建生命周期规则，生命周期规则ID和创建时间无需填写。
@@ -67,7 +67,7 @@ extension Chdfs {
     public func createLifeCycleRules(fileSystemId: String, lifeCycleRules: [LifeCycleRule], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateLifeCycleRulesResponse > {
         self.createLifeCycleRules(CreateLifeCycleRulesRequest(fileSystemId: fileSystemId, lifeCycleRules: lifeCycleRules), logger: logger, on: eventLoop)
     }
-    
+
     /// 批量创建生命周期规则
     ///
     /// 批量创建生命周期规则，生命周期规则ID和创建时间无需填写。

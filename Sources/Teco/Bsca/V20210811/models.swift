@@ -19,49 +19,49 @@ extension Bsca {
     public struct CVSSV2Info: TCOutputModel {
         /// CVE评分。
         public let cvss: Float
-        
+
         /// AccessVector 攻击途径。
         /// 取值范围：
         /// <li>NETWORK 远程</li>
         /// <li>ADJACENT_NETWORK 近邻</li>
         /// <li>LOCAL 本地</li>
         public let accessVector: String
-        
+
         /// AccessComplexity 攻击复杂度。
         /// 取值范围：
         /// <li>HIGH 高</li>
         /// <li>MEDIUM 中</li>
         /// <li>LOW 低</li>
         public let accessComplexity: String
-        
+
         /// Authentication 身份验证。
         /// 取值范围：
         /// <li>MULTIPLE 多系统认证</li>
         /// <li>SINGLE 单系统认证</li>
         /// <li>NONE 无</li>
         public let authentication: String
-        
+
         /// ConfidentialityImpact 机密性影响。
         /// 取值范围：
         /// <li>NONE 无</li>
         /// <li>PARTIAL 部分</li>
         /// <li>COMPLETE 完整</li>
         public let conImpact: String
-        
+
         /// IntegrityImpact 完整性影响。
         /// 取值范围：
         /// <li>NONE 无</li>
         /// <li>PARTIAL 部分</li>
         /// <li>COMPLETE 完整</li>
         public let integrityImpact: String
-        
+
         /// AvailabilityImpact 可用性影响。
         /// 取值范围：
         /// <li>NONE 无</li>
         /// <li>PARTIAL 部分</li>
         /// <li>COMPLETE 完整</li>
         public let availabilityImpact: String
-        
+
         enum CodingKeys: String, CodingKey {
             case cvss = "CVSS"
             case accessVector = "AccessVector"
@@ -72,12 +72,12 @@ extension Bsca {
             case availabilityImpact = "AvailabilityImpact"
         }
     }
-    
+
     /// Cvssv3.0详细信息。
     public struct CVSSV3Info: TCOutputModel {
         /// CVE评分。
         public let cvss: Float
-        
+
         /// AttackVector 攻击途径。
         /// 取值范围：
         /// <li>NETWORK 远程</li>
@@ -85,53 +85,53 @@ extension Bsca {
         /// <li>LOCAL 本地</li>
         /// <li>PHYSICAL 物理</li>
         public let attackVector: String
-        
+
         /// AttackComplexity 攻击复杂度。
         /// 取值范围：
         /// <li>HIGH 高</li>
         /// <li>LOW 低</li>
         public let attackComplexity: String
-        
+
         /// PrivilegesRequired 触发特权。
         /// 取值范围：
         /// <li>HIGH 高</li>
         /// <li>LOW 低</li>
         /// <li>NONE 无</li>
         public let privilegesRequired: String
-        
+
         /// UserInteraction 交互必要性。
         /// 取值范围：
         /// <li>NONE 无</li>
         /// <li>REQUIRED 需要</li>
         public let userInteraction: String
-        
+
         /// Scope 绕过安全边界。
         /// 取值范围：
         /// <li>UNCHANGED 否</li>
         /// <li>CHANGED 能</li>
         public let scope: String
-        
+
         /// ConfidentialityImpact 机密性影响。
         /// 取值范围：
         /// <li>NONE 无</li>
         /// <li>LOW 低</li>
         /// <li>HIGH 高</li>
         public let conImpact: String
-        
+
         /// IntegrityImpact 完整性影响。
         /// 取值范围：
         /// <li>NONE 无</li>
         /// <li>LOW 低</li>
         /// <li>HIGH 高</li>
         public let integrityImpact: String
-        
+
         /// AvailabilityImpact 可用性影响。
         /// 取值范围：
         /// <li>NONE 无</li>
         /// <li>LOW 低</li>
         /// <li>HIGH 高</li>
         public let availabilityImpact: String
-        
+
         enum CodingKeys: String, CodingKey {
             case cvss = "CVSS"
             case attackVector = "AttackVector"
@@ -144,29 +144,29 @@ extension Bsca {
             case availabilityImpact = "AvailabilityImpact"
         }
     }
-    
+
     /// 描述一个第三方组件的源信息。
     public struct Component: TCOutputModel {
         /// 第三方组件的PURL
         public let purl: PURL
-        
+
         /// 第三方组件的主页
         public let homepage: String
-        
+
         /// 第三方组件的简介
         public let summary: String
-        
+
         /// 第三方组件的别名列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let nicknameList: [String]?
-        
+
         /// 第三方组件的代码位置列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let codeLocationList: [String]?
-        
+
         /// 第三方组件的许可证表达式
         public let licenseExpression: String
-        
+
         enum CodingKeys: String, CodingKey {
             case purl = "PURL"
             case homepage = "Homepage"
@@ -176,32 +176,32 @@ extension Bsca {
             case licenseExpression = "LicenseExpression"
         }
     }
-    
+
     /// 与输入组件相关的漏洞信息摘要信息。
     public struct ComponentVulnerabilitySummary: TCOutputModel {
         /// 用于匹配漏洞的PURL
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let purl: PURL?
-        
+
         /// 该组件是否包含修复漏洞的官方补丁
         public let canBeFixed: Bool
-        
+
         /// 修复漏洞的组件版本号
         public let fixedVersion: String
-        
+
         /// 漏洞影响的组件版本号
         public let affectedVersion: String
-        
+
         /// 漏洞影响组件
         public let affectedComponent: String
-        
+
         /// 漏洞在该产品中的风险等级
         /// <li>Critical</li>
         /// <li>High</li>
         /// <li>Medium</li>
         /// <li>Low</li>
         public let riskLevel: String
-        
+
         enum CodingKeys: String, CodingKey {
             case purl = "PURL"
             case canBeFixed = "CanBeFixed"
@@ -211,35 +211,35 @@ extension Bsca {
             case riskLevel = "RiskLevel"
         }
     }
-    
+
     /// 描述组件漏洞相关概览信息。
     public struct ComponentVulnerabilityUnion: TCOutputModel {
         /// 漏洞概览信息
         public let summary: VulnerabilitySummary
-        
+
         /// 与组件相关的漏洞概览信息
         public let summaryInComponent: ComponentVulnerabilitySummary
-        
+
         enum CodingKeys: String, CodingKey {
             case summary = "Summary"
             case summaryInComponent = "SummaryInComponent"
         }
     }
-    
+
     /// 描述许可证的详细信息。
     public struct LicenseDetail: TCOutputModel {
         /// 许可证内容
         public let content: String
-        
+
         /// 许可证允许信息列表
         public let conditionSet: [LicenseRestriction]
-        
+
         /// 许可证要求信息列表
         public let forbiddenSet: [LicenseRestriction]
-        
+
         /// 许可证禁止信息列表
         public let permissionSet: [LicenseRestriction]
-        
+
         enum CodingKeys: String, CodingKey {
             case content = "Content"
             case conditionSet = "ConditionSet"
@@ -247,46 +247,46 @@ extension Bsca {
             case permissionSet = "PermissionSet"
         }
     }
-    
+
     /// License约束信息。
     public struct LicenseRestriction: TCOutputModel {
         /// license约束的名称。
         public let name: String
-        
+
         /// license约束的描述。
         public let description: String
-        
+
         enum CodingKeys: String, CodingKey {
             case name = "Name"
             case description = "Description"
         }
     }
-    
+
     /// 描述许可证的概览信息。
     public struct LicenseSummary: TCInputModel, TCOutputModel {
         /// 许可证标识符
         public let key: String
-        
+
         /// 许可证的SPDX标识符，见 https://spdx.org/licenses/
         public let spdxKey: String
-        
+
         /// 许可证短名称
         public let shortName: String
-        
+
         /// 许可证完整名称
         public let name: String
-        
+
         /// License风险等级
         /// <li>NotDefined</li>
         /// <li>LowRisk</li>
         /// <li>MediumRisk</li>
         /// <li>HighRisk</li>
         public let risk: String
-        
+
         /// 许可证来源URL
         public let source: String
-        
-        public init (key: String, spdxKey: String, shortName: String, name: String, risk: String, source: String) {
+
+        public init(key: String, spdxKey: String, shortName: String, name: String, risk: String, source: String) {
             self.key = key
             self.spdxKey = spdxKey
             self.shortName = shortName
@@ -294,7 +294,7 @@ extension Bsca {
             self.risk = risk
             self.source = source
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case key = "Key"
             case spdxKey = "SPDXKey"
@@ -304,43 +304,43 @@ extension Bsca {
             case source = "Source"
         }
     }
-    
+
     /// 许可证详细信息。
     public struct LicenseUnion: TCOutputModel {
         /// 许可证概览信息
         public let licenseSummary: LicenseSummary
-        
+
         /// 许可证详细信息
         public let licenseDetail: LicenseDetail
-        
+
         enum CodingKeys: String, CodingKey {
             case licenseSummary = "LicenseSummary"
             case licenseDetail = "LicenseDetail"
         }
     }
-    
+
     /// PURL(Package URL)用于定位一个产品或组件，见 https://github.com/package-url/purl-spec。
     public struct PURL: TCInputModel, TCOutputModel {
         /// 组件名称
         public let name: String
-        
+
         /// 组件所属的类型，如：github, gitlab, generic, deb, rpm, maven 等
         public let `protocol`: String?
-        
+
         /// 组件名的前缀名，如github和gitlab的用户名，deb的操作系统，maven包的group id等
         public let namespace: String?
-        
+
         /// 修饰组件的额外属性
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let qualifiers: [Qualifier]?
-        
+
         /// 相对于组件包根位置的子目录
         public let subpath: String?
-        
+
         /// 组件版本号
         public let version: String?
-        
-        public init (name: String, protocol: String? = nil, namespace: String? = nil, qualifiers: [Qualifier]? = nil, subpath: String? = nil, version: String? = nil) {
+
+        public init(name: String, protocol: String? = nil, namespace: String? = nil, qualifiers: [Qualifier]? = nil, subpath: String? = nil, version: String? = nil) {
             self.name = name
             self.`protocol` = `protocol`
             self.namespace = namespace
@@ -348,7 +348,7 @@ extension Bsca {
             self.subpath = subpath
             self.version = version
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case name = "Name"
             case `protocol` = "Protocol"
@@ -358,66 +358,66 @@ extension Bsca {
             case version = "Version"
         }
     }
-    
+
     /// PURL下的Qualifier属性类型，用于定义第三方组件的额外属性，见 https://github.com/package-url/purl-spec。
     public struct Qualifier: TCInputModel, TCOutputModel {
         /// 额外属性的名称。
         public let key: String
-        
+
         /// 额外属性的值。
         public let value: String
-        
-        public init (key: String, value: String) {
+
+        public init(key: String, value: String) {
             self.key = key
             self.value = value
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case key = "Key"
             case value = "Value"
         }
     }
-    
+
     /// 描述漏洞详细信息。
     public struct VulnerabilityDetail: TCOutputModel {
         /// 漏洞类别
         public let category: String
-        
+
         /// 漏洞分类
         public let categoryType: String
-        
+
         /// 漏洞描述
         public let description: String
-        
+
         /// 漏洞官方解决方案
         public let officialSolution: String
-        
+
         /// 漏洞信息参考列表
         public let referenceList: [String]
-        
+
         /// 漏洞防御方案
         public let defenseSolution: String
-        
+
         /// 漏洞CVSSv2信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let cvsSv2Info: CVSSV2Info?
-        
+
         /// 漏洞CVSSv3信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let cvsSv3Info: CVSSV3Info?
-        
+
         /// 漏洞提交时间
         public let submitTime: String
-        
+
         /// CWE编号
         public let cweid: String
-        
+
         /// 漏洞CVSSv2向量
         public let cvsSv2Vector: String
-        
+
         /// 漏洞CVSSv3向量
         public let cvsSv3Vector: String
-        
+
         enum CodingKeys: String, CodingKey {
             case category = "Category"
             case categoryType = "CategoryType"
@@ -433,34 +433,34 @@ extension Bsca {
             case cvsSv3Vector = "CVSSv3Vector"
         }
     }
-    
+
     /// 描述漏洞的摘要信息。
     public struct VulnerabilitySummary: TCOutputModel {
         /// 漏洞ID
         public let vulID: String
-        
+
         /// 漏洞所属CVE编号
         public let cveid: String
-        
+
         /// 漏洞所属CNVD编号
         public let cnvdid: String
-        
+
         /// 漏洞所属CNNVD编号
         public let cnnvdid: String
-        
+
         /// 漏洞名称
         public let name: String
-        
+
         /// 该漏洞是否是需重点关注的漏洞
         public let isSuggest: Bool
-        
+
         /// 漏洞风险等级
         /// <li>Critical</li>
         /// <li>High</li>
         /// <li>Medium</li>
         /// <li>Low</li>
         public let severity: String
-        
+
         enum CodingKeys: String, CodingKey {
             case vulID = "VulID"
             case cveid = "CVEID"
@@ -471,15 +471,15 @@ extension Bsca {
             case severity = "Severity"
         }
     }
-    
+
     /// 描述漏洞的详细信息。
     public struct VulnerabilityUnion: TCOutputModel {
         /// 漏洞概览信息
         public let summary: VulnerabilitySummary
-        
+
         /// 漏洞详细信息
         public let detail: VulnerabilityDetail
-        
+
         enum CodingKeys: String, CodingKey {
             case summary = "Summary"
             case detail = "Detail"

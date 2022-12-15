@@ -19,26 +19,26 @@ extension Vpc {
     public struct DeleteDhcpIpRequest: TCRequestModel {
         /// `DhcpIp`的`ID`，是`DhcpIp`的唯一标识。
         public let dhcpIpId: String
-        
-        public init (dhcpIpId: String) {
+
+        public init(dhcpIpId: String) {
             self.dhcpIpId = dhcpIpId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case dhcpIpId = "DhcpIpId"
         }
     }
-    
+
     /// DeleteDhcpIp返回参数结构体
     public struct DeleteDhcpIpResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除DhcpIp
     ///
     /// 本接口（DeleteDhcpIp）用于删除DhcpIp。
@@ -48,7 +48,7 @@ extension Vpc {
     public func deleteDhcpIp(_ input: DeleteDhcpIpRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteDhcpIpResponse > {
         self.client.execute(action: "DeleteDhcpIp", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除DhcpIp
     ///
     /// 本接口（DeleteDhcpIp）用于删除DhcpIp。
@@ -58,7 +58,7 @@ extension Vpc {
     public func deleteDhcpIp(_ input: DeleteDhcpIpRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDhcpIpResponse {
         try await self.client.execute(action: "DeleteDhcpIp", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除DhcpIp
     ///
     /// 本接口（DeleteDhcpIp）用于删除DhcpIp。
@@ -68,7 +68,7 @@ extension Vpc {
     public func deleteDhcpIp(dhcpIpId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteDhcpIpResponse > {
         self.deleteDhcpIp(DeleteDhcpIpRequest(dhcpIpId: dhcpIpId), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除DhcpIp
     ///
     /// 本接口（DeleteDhcpIp）用于删除DhcpIp。

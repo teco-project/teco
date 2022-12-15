@@ -27,74 +27,74 @@ extension TCFaceidError {
             case unKnown = "InternalError.UnKnown"
             case other = "InternalError"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 光线太暗。
         public static var actionLightDark: InternalError {
             InternalError(.actionLightDark)
         }
-        
+
         /// 光线太强。
         public static var actionLightStrong: InternalError {
             InternalError(.actionLightStrong)
         }
-        
+
         /// 未能检测到完整人脸。
         public static var actionNodetectFace: InternalError {
             InternalError(.actionNodetectFace)
         }
-        
+
         /// 比对相似度未达到通过标准。
         public static var compareLowSimilarity: InternalError {
             InternalError(.compareLowSimilarity)
         }
-        
+
         /// 加密失败。
         public static var encryptSystemError: InternalError {
             InternalError(.encryptSystemError)
         }
-        
+
         /// 传入图片分辨率太低，请重新上传。
         public static var lifePhotoPoorQuality: InternalError {
             InternalError(.lifePhotoPoorQuality)
         }
-        
+
         /// 传入图片过大或过小。
         public static var lifePhotoSizeError: InternalError {
             InternalError(.lifePhotoSizeError)
         }
-        
+
         /// 内部未知错误。
         public static var unKnown: InternalError {
             InternalError(.unKnown)
         }
-        
+
         /// 内部错误。
         public static var other: InternalError {
             InternalError(.other)
         }
-        
+
         public func asFaceidError() -> TCFaceidError {
             let code: TCFaceidError.Code
             switch self.error {

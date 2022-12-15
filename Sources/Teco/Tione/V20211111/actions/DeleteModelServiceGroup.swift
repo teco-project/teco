@@ -19,26 +19,26 @@ extension Tione {
     public struct DeleteModelServiceGroupRequest: TCRequestModel {
         /// 服务id
         public let serviceGroupId: String
-        
-        public init (serviceGroupId: String) {
+
+        public init(serviceGroupId: String) {
             self.serviceGroupId = serviceGroupId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case serviceGroupId = "ServiceGroupId"
         }
     }
-    
+
     /// DeleteModelServiceGroup返回参数结构体
     public struct DeleteModelServiceGroupResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除模型服务组
     ///
     /// 根据服务组id删除服务组下所有模型服务
@@ -46,7 +46,7 @@ extension Tione {
     public func deleteModelServiceGroup(_ input: DeleteModelServiceGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteModelServiceGroupResponse > {
         self.client.execute(action: "DeleteModelServiceGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除模型服务组
     ///
     /// 根据服务组id删除服务组下所有模型服务
@@ -54,7 +54,7 @@ extension Tione {
     public func deleteModelServiceGroup(_ input: DeleteModelServiceGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteModelServiceGroupResponse {
         try await self.client.execute(action: "DeleteModelServiceGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除模型服务组
     ///
     /// 根据服务组id删除服务组下所有模型服务
@@ -62,7 +62,7 @@ extension Tione {
     public func deleteModelServiceGroup(serviceGroupId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteModelServiceGroupResponse > {
         self.deleteModelServiceGroup(DeleteModelServiceGroupRequest(serviceGroupId: serviceGroupId), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除模型服务组
     ///
     /// 根据服务组id删除服务组下所有模型服务

@@ -19,26 +19,26 @@ extension Eiam {
     public struct DeleteOrgNodeRequest: TCRequestModel {
         /// 机构节点ID，是机构节点的全局唯一标识。
         public let orgNodeId: String
-        
-        public init (orgNodeId: String) {
+
+        public init(orgNodeId: String) {
             self.orgNodeId = orgNodeId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case orgNodeId = "OrgNodeId"
         }
     }
-    
+
     /// DeleteOrgNode返回参数结构体
     public struct DeleteOrgNodeResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除机构节点
     ///
     /// 删除一个机构节点
@@ -46,7 +46,7 @@ extension Eiam {
     public func deleteOrgNode(_ input: DeleteOrgNodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteOrgNodeResponse > {
         self.client.execute(action: "DeleteOrgNode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除机构节点
     ///
     /// 删除一个机构节点
@@ -54,7 +54,7 @@ extension Eiam {
     public func deleteOrgNode(_ input: DeleteOrgNodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteOrgNodeResponse {
         try await self.client.execute(action: "DeleteOrgNode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除机构节点
     ///
     /// 删除一个机构节点
@@ -62,7 +62,7 @@ extension Eiam {
     public func deleteOrgNode(orgNodeId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteOrgNodeResponse > {
         self.deleteOrgNode(DeleteOrgNodeRequest(orgNodeId: orgNodeId), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除机构节点
     ///
     /// 删除一个机构节点

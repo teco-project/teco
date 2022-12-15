@@ -19,26 +19,26 @@ extension Iai {
     public struct RevertGroupFaceModelVersionRequest: TCRequestModel {
         /// 需要回滚的升级任务ID。
         public let jobId: String
-        
-        public init (jobId: String) {
+
+        public init(jobId: String) {
             self.jobId = jobId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case jobId = "JobId"
         }
     }
-    
+
     /// RevertGroupFaceModelVersion返回参数结构体
     public struct RevertGroupFaceModelVersionResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 人员库版本回滚
     ///
     /// 本接口用于回滚人员库的人脸识别算法模型版本。单个人员库有且仅有一次回滚机会。
@@ -47,7 +47,7 @@ extension Iai {
     public func revertGroupFaceModelVersion(_ input: RevertGroupFaceModelVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RevertGroupFaceModelVersionResponse > {
         self.client.execute(action: "RevertGroupFaceModelVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 人员库版本回滚
     ///
     /// 本接口用于回滚人员库的人脸识别算法模型版本。单个人员库有且仅有一次回滚机会。
@@ -56,7 +56,7 @@ extension Iai {
     public func revertGroupFaceModelVersion(_ input: RevertGroupFaceModelVersionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RevertGroupFaceModelVersionResponse {
         try await self.client.execute(action: "RevertGroupFaceModelVersion", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 人员库版本回滚
     ///
     /// 本接口用于回滚人员库的人脸识别算法模型版本。单个人员库有且仅有一次回滚机会。
@@ -65,7 +65,7 @@ extension Iai {
     public func revertGroupFaceModelVersion(jobId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RevertGroupFaceModelVersionResponse > {
         self.revertGroupFaceModelVersion(RevertGroupFaceModelVersionRequest(jobId: jobId), logger: logger, on: eventLoop)
     }
-    
+
     /// 人员库版本回滚
     ///
     /// 本接口用于回滚人员库的人脸识别算法模型版本。单个人员库有且仅有一次回滚机会。

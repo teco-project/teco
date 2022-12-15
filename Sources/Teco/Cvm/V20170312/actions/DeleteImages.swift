@@ -19,36 +19,36 @@ extension Cvm {
     public struct DeleteImagesRequest: TCRequestModel {
         /// 准备删除的镜像Id列表
         public let imageIds: [String]
-        
+
         /// 是否删除镜像关联的快照
         public let deleteBindedSnap: Bool?
-        
+
         /// 检测是否支持删除镜像
         public let dryRun: Bool?
-        
-        public init (imageIds: [String], deleteBindedSnap: Bool? = nil, dryRun: Bool? = nil) {
+
+        public init(imageIds: [String], deleteBindedSnap: Bool? = nil, dryRun: Bool? = nil) {
             self.imageIds = imageIds
             self.deleteBindedSnap = deleteBindedSnap
             self.dryRun = dryRun
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case imageIds = "ImageIds"
             case deleteBindedSnap = "DeleteBindedSnap"
             case dryRun = "DryRun"
         }
     }
-    
+
     /// DeleteImages返回参数结构体
     public struct DeleteImagesResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除镜像
     ///
     /// 本接口（DeleteImages）用于删除一个或多个镜像。
@@ -59,7 +59,7 @@ extension Cvm {
     public func deleteImages(_ input: DeleteImagesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteImagesResponse > {
         self.client.execute(action: "DeleteImages", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除镜像
     ///
     /// 本接口（DeleteImages）用于删除一个或多个镜像。
@@ -70,7 +70,7 @@ extension Cvm {
     public func deleteImages(_ input: DeleteImagesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteImagesResponse {
         try await self.client.execute(action: "DeleteImages", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除镜像
     ///
     /// 本接口（DeleteImages）用于删除一个或多个镜像。
@@ -81,7 +81,7 @@ extension Cvm {
     public func deleteImages(imageIds: [String], deleteBindedSnap: Bool? = nil, dryRun: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteImagesResponse > {
         self.deleteImages(DeleteImagesRequest(imageIds: imageIds, deleteBindedSnap: deleteBindedSnap, dryRun: dryRun), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除镜像
     ///
     /// 本接口（DeleteImages）用于删除一个或多个镜像。

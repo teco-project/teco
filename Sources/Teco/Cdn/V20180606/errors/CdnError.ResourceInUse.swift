@@ -22,49 +22,49 @@ extension TCCdnError {
             case cdnOpInProgress = "ResourceInUse.CdnOpInProgress"
             case tcbHostExists = "ResourceInUse.TcbHostExists"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 域名与系统中已存在域名存在冲突。
         public static var cdnConflictHostExists: ResourceInUse {
             ResourceInUse(.cdnConflictHostExists)
         }
-        
+
         /// 域名已存在。
         public static var cdnHostExists: ResourceInUse {
             ResourceInUse(.cdnHostExists)
         }
-        
+
         /// CDN资源正在被操作中。
         public static var cdnOpInProgress: ResourceInUse {
             ResourceInUse(.cdnOpInProgress)
         }
-        
+
         /// 域名已存在。
         public static var tcbHostExists: ResourceInUse {
             ResourceInUse(.tcbHostExists)
         }
-        
+
         public func asCdnError() -> TCCdnError {
             let code: TCCdnError.Code
             switch self.error {

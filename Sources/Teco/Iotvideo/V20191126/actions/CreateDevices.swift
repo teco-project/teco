@@ -19,23 +19,23 @@ extension Iotvideo {
     public struct CreateDevicesRequest: TCRequestModel {
         /// 产品ID
         public let productId: String
-        
+
         /// 创建设备的数量，数量范围1-100
         public let number: UInt64
-        
+
         /// 设备名称前缀，支持英文、数字，不超过10字符
         public let namePrefix: String?
-        
+
         /// 操作人
         public let `operator`: String?
-        
-        public init (productId: String, number: UInt64, namePrefix: String? = nil, operator: String? = nil) {
+
+        public init(productId: String, number: UInt64, namePrefix: String? = nil, operator: String? = nil) {
             self.productId = productId
             self.number = number
             self.namePrefix = namePrefix
             self.`operator` = `operator`
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case productId = "ProductId"
             case number = "Number"
@@ -43,21 +43,21 @@ extension Iotvideo {
             case `operator` = "Operator"
         }
     }
-    
+
     /// CreateDevices返回参数结构体
     public struct CreateDevicesResponse: TCResponseModel {
         /// 新创建设备的认证信息
         public let data: [DeviceCertificate]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case data = "Data"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 创建设备
     ///
     /// 本接口（CreateDevices）用于批量创建新的物联网视频通信设备。
@@ -66,7 +66,7 @@ extension Iotvideo {
     public func createDevices(_ input: CreateDevicesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateDevicesResponse > {
         self.client.execute(action: "CreateDevices", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 创建设备
     ///
     /// 本接口（CreateDevices）用于批量创建新的物联网视频通信设备。
@@ -75,7 +75,7 @@ extension Iotvideo {
     public func createDevices(_ input: CreateDevicesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateDevicesResponse {
         try await self.client.execute(action: "CreateDevices", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 创建设备
     ///
     /// 本接口（CreateDevices）用于批量创建新的物联网视频通信设备。
@@ -84,7 +84,7 @@ extension Iotvideo {
     public func createDevices(productId: String, number: UInt64, namePrefix: String? = nil, operator: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateDevicesResponse > {
         self.createDevices(CreateDevicesRequest(productId: productId, number: number, namePrefix: namePrefix, operator: `operator`), logger: logger, on: eventLoop)
     }
-    
+
     /// 创建设备
     ///
     /// 本接口（CreateDevices）用于批量创建新的物联网视频通信设备。

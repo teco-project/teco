@@ -22,47 +22,47 @@ extension Tem {
     public struct Autoscaler: TCInputModel, TCOutputModel {
         /// 弹性伸缩最小实例数
         public let minReplicas: Int64
-        
+
         /// 弹性伸缩最大实例数
         public let maxReplicas: Int64
-        
+
         /// 指标弹性伸缩策略
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let horizontalAutoscaler: [HorizontalAutoscaler]?
-        
+
         /// 定时弹性伸缩策略
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let cronHorizontalAutoscaler: [CronHorizontalAutoscaler]?
-        
+
         /// 弹性伸缩ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let autoscalerId: String?
-        
+
         /// 弹性伸缩名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let autoscalerName: String?
-        
+
         /// 弹性伸缩描述
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let description: String?
-        
+
         /// 创建日期
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let createDate: String?
-        
+
         /// 修改时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let modifyDate: String?
-        
+
         /// 启用时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let enableDate: String?
-        
+
         /// 是否启用
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let enabled: Bool?
-        
-        public init (minReplicas: Int64, maxReplicas: Int64, horizontalAutoscaler: [HorizontalAutoscaler]? = nil, cronHorizontalAutoscaler: [CronHorizontalAutoscaler]? = nil, autoscalerId: String? = nil, autoscalerName: String? = nil, description: String? = nil, createDate: String? = nil, modifyDate: String? = nil, enableDate: String? = nil, enabled: Bool? = nil) {
+
+        public init(minReplicas: Int64, maxReplicas: Int64, horizontalAutoscaler: [HorizontalAutoscaler]? = nil, cronHorizontalAutoscaler: [CronHorizontalAutoscaler]? = nil, autoscalerId: String? = nil, autoscalerName: String? = nil, description: String? = nil, createDate: String? = nil, modifyDate: String? = nil, enableDate: String? = nil, enabled: Bool? = nil) {
             self.minReplicas = minReplicas
             self.maxReplicas = maxReplicas
             self.horizontalAutoscaler = horizontalAutoscaler
@@ -75,7 +75,7 @@ extension Tem {
             self.enableDate = enableDate
             self.enabled = enabled
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case minReplicas = "MinReplicas"
             case maxReplicas = "MaxReplicas"
@@ -90,21 +90,21 @@ extension Tem {
             case enabled = "Enabled"
         }
     }
-    
+
     /// 配置
     public struct ConfigData: TCOutputModel {
         /// 配置名称
         public let name: String
-        
+
         /// 创建时间
         public let createTime: String
-        
+
         /// 关联的服务列表
         public let relatedApplications: [TemService]
-        
+
         /// 配置条目
         public let data: [Pair]
-        
+
         enum CodingKeys: String, CodingKey {
             case name = "Name"
             case createTime = "CreateTime"
@@ -112,36 +112,36 @@ extension Tem {
             case data = "Data"
         }
     }
-    
+
     /// Cos token
     public struct CosToken: TCOutputModel {
         /// 唯一请求 ID
         public let requestId: String
-        
+
         /// 存储桶桶名
         public let bucket: String
-        
+
         /// 存储桶所在区域
         public let region: String
-        
+
         /// 临时密钥的SecretId
         public let tmpSecretId: String
-        
+
         /// 临时密钥的SecretKey
         public let tmpSecretKey: String
-        
+
         /// 临时密钥的 sessionToken
         public let sessionToken: String
-        
+
         /// 临时密钥获取的开始时间
         public let startTime: String
-        
+
         /// 临时密钥的 expiredTime
         public let expiredTime: String
-        
+
         /// 包完整路径
         public let fullPath: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
             case bucket = "Bucket"
@@ -154,12 +154,12 @@ extension Tem {
             case fullPath = "FullPath"
         }
     }
-    
+
     /// 定时伸缩策略
     public struct CronHorizontalAutoscaler: TCInputModel, TCOutputModel {
         /// 定时伸缩策略名称
         public let name: String?
-        
+
         /// 策略周期
         /// * * *，三个范围，第一个是天，第二个是月，第三个是周，中间用空格隔开
         /// 例子：
@@ -167,24 +167,24 @@ extension Tem {
         /// * * 0-3 （每周日到周三）
         /// 1,11,21 * *（每个月1号，11号，21号）
         public let period: String?
-        
+
         /// 定时伸缩策略明细
         public let schedules: [CronHorizontalAutoscalerSchedule]?
-        
+
         /// 是否启用
         public let enabled: Bool?
-        
+
         /// 策略优先级，值越大优先级越高，0为最小值
         public let priority: Int64?
-        
-        public init (name: String? = nil, period: String? = nil, schedules: [CronHorizontalAutoscalerSchedule]? = nil, enabled: Bool? = nil, priority: Int64? = nil) {
+
+        public init(name: String? = nil, period: String? = nil, schedules: [CronHorizontalAutoscalerSchedule]? = nil, enabled: Bool? = nil, priority: Int64? = nil) {
             self.name = name
             self.period = period
             self.schedules = schedules
             self.enabled = enabled
             self.priority = priority
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case name = "Name"
             case period = "Period"
@@ -193,64 +193,64 @@ extension Tem {
             case priority = "Priority"
         }
     }
-    
+
     /// 定时伸缩策略明细
     public struct CronHorizontalAutoscalerSchedule: TCInputModel, TCOutputModel {
         /// 触发事件，小时分钟，用:分割
         /// 例如
         /// 00:00（零点零分触发）
         public let startAt: String
-        
+
         /// 目标实例数（不大于50）
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let targetReplicas: Int64?
-        
-        public init (startAt: String, targetReplicas: Int64? = nil) {
+
+        public init(startAt: String, targetReplicas: Int64? = nil) {
             self.startAt = startAt
             self.targetReplicas = targetReplicas
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case startAt = "StartAt"
             case targetReplicas = "TargetReplicas"
         }
     }
-    
+
     /// 分批发布单批次详情
     public struct DeployServiceBatchDetail: TCInputModel, TCOutputModel {
         /// 旧实例列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let oldPodList: DeployServicePodDetail?
-        
+
         /// 新实例列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let newPodList: DeployServicePodDetail?
-        
+
         /// 当前批次状态："WaitForTimeExceed", "WaitForResume", "Deploying", "Finish", "NotStart"
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let batchStatus: String?
-        
+
         /// 该批次预计旧实例数量
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let podNum: Int64?
-        
+
         /// 批次id
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let batchIndex: Int64?
-        
+
         /// 旧实例列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let oldPods: [DeployServicePodDetail]?
-        
+
         /// 新实例列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let newPods: [DeployServicePodDetail]?
-        
+
         /// =0：手动确认批次；>0：下一批次开始时间戳
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let nextBatchStartTime: Int64?
-        
-        public init (oldPodList: DeployServicePodDetail? = nil, newPodList: DeployServicePodDetail? = nil, batchStatus: String? = nil, podNum: Int64? = nil, batchIndex: Int64? = nil, oldPods: [DeployServicePodDetail]? = nil, newPods: [DeployServicePodDetail]? = nil, nextBatchStartTime: Int64? = nil) {
+
+        public init(oldPodList: DeployServicePodDetail? = nil, newPodList: DeployServicePodDetail? = nil, batchStatus: String? = nil, podNum: Int64? = nil, batchIndex: Int64? = nil, oldPods: [DeployServicePodDetail]? = nil, newPods: [DeployServicePodDetail]? = nil, nextBatchStartTime: Int64? = nil) {
             self.oldPodList = oldPodList
             self.newPodList = newPodList
             self.batchStatus = batchStatus
@@ -260,7 +260,7 @@ extension Tem {
             self.newPods = newPods
             self.nextBatchStartTime = nextBatchStartTime
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case oldPodList = "OldPodList"
             case newPodList = "NewPodList"
@@ -272,38 +272,38 @@ extension Tem {
             case nextBatchStartTime = "NextBatchStartTime"
         }
     }
-    
+
     /// 分批发布单批次详情
     public struct DeployServicePodDetail: TCInputModel, TCOutputModel {
         /// pod Id
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let podId: String?
-        
+
         /// pod状态
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let podStatus: [String]?
-        
+
         /// pod版本
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let podVersion: String?
-        
+
         /// pod创建时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let createTime: String?
-        
+
         /// pod所在可用区
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let zone: String?
-        
+
         /// webshell地址
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let webshell: String?
-        
+
         /// 状态
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let status: String?
-        
-        public init (podId: String? = nil, podStatus: [String]? = nil, podVersion: String? = nil, createTime: String? = nil, zone: String? = nil, webshell: String? = nil, status: String? = nil) {
+
+        public init(podId: String? = nil, podStatus: [String]? = nil, podVersion: String? = nil, createTime: String? = nil, zone: String? = nil, webshell: String? = nil, status: String? = nil) {
             self.podId = podId
             self.podStatus = podStatus
             self.podVersion = podVersion
@@ -312,7 +312,7 @@ extension Tem {
             self.webshell = webshell
             self.status = status
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case podId = "PodId"
             case podStatus = "PodStatus"
@@ -323,28 +323,28 @@ extension Tem {
             case status = "Status"
         }
     }
-    
+
     /// 分批发布策略配置
     public struct DeployStrategyConf: TCInputModel, TCOutputModel {
         /// 总分批数
         public let totalBatchCount: Int64?
-        
+
         /// beta分批实例数
         public let betaBatchNum: Int64?
-        
+
         /// 分批策略：0-全自动，1-全手动，2-beta分批，beta批一定是手动的，3-首次发布
         public let deployStrategyType: Int64?
-        
+
         /// 每批暂停间隔
         public let batchInterval: Int64?
-        
+
         /// 最小可用实例数
         public let minAvailable: Int64?
-        
+
         /// 是否强制发布
         public let force: Bool?
-        
-        public init (totalBatchCount: Int64? = nil, betaBatchNum: Int64? = nil, deployStrategyType: Int64? = nil, batchInterval: Int64? = nil, minAvailable: Int64? = nil, force: Bool? = nil) {
+
+        public init(totalBatchCount: Int64? = nil, betaBatchNum: Int64? = nil, deployStrategyType: Int64? = nil, batchInterval: Int64? = nil, minAvailable: Int64? = nil, force: Bool? = nil) {
             self.totalBatchCount = totalBatchCount
             self.betaBatchNum = betaBatchNum
             self.deployStrategyType = deployStrategyType
@@ -352,7 +352,7 @@ extension Tem {
             self.minAvailable = minAvailable
             self.force = force
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case totalBatchCount = "TotalBatchCount"
             case betaBatchNum = "BetaBatchNum"
@@ -362,44 +362,44 @@ extension Tem {
             case force = "Force"
         }
     }
-    
+
     /// 配置信息的分页列表
     public struct DescribeConfigDataListPage: TCOutputModel {
         /// 记录
         public let records: [ConfigData]
-        
+
         /// 分页游标，用以查询下一页
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let continueToken: String?
-        
+
         /// 剩余数目
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let remainingCount: Int64?
-        
+
         enum CodingKeys: String, CodingKey {
             case records = "Records"
             case continueToken = "ContinueToken"
             case remainingCount = "RemainingCount"
         }
     }
-    
+
     /// 版本pod列表
     public struct DescribeRunPodPage: TCOutputModel {
         /// 分页下标
         public let offset: Int64
-        
+
         /// 单页条数
         public let limit: Int64
-        
+
         /// 总数
         public let totalCount: Int64
-        
+
         /// 请求id
         public let requestId: String
-        
+
         /// 条目
         public let podList: [RunVersionPod]
-        
+
         enum CodingKeys: String, CodingKey {
             case offset = "Offset"
             case limit = "Limit"
@@ -408,74 +408,74 @@ extension Tem {
             case podList = "PodList"
         }
     }
-    
+
     /// eks service info
     public struct EksService: TCInputModel, TCOutputModel {
         /// service name
         public let name: String?
-        
+
         /// 可用端口
         public let ports: [Int64]?
-        
+
         /// yaml 内容
         public let yaml: String?
-        
+
         /// 服务名
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let applicationName: String?
-        
+
         /// 版本名
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let versionName: String?
-        
+
         /// 内网ip
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let clusterIp: [String]?
-        
+
         /// 外网ip
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let externalIp: String?
-        
+
         /// 访问类型，可选值：
         /// - EXTERNAL（公网访问）
         /// - VPC（vpc内访问）
         /// - CLUSTER（集群内访问）
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let type: String?
-        
+
         /// 子网ID，只在类型为vpc访问时才有值
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let subnetId: String?
-        
+
         /// 负载均衡ID，只在外网访问和vpc内访问才有值，默认自动创建
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let loadBalanceId: String?
-        
+
         /// 端口映射
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let portMappings: [PortMapping]?
-        
+
         /// 每种类型访问配置详情
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let servicePortMappingList: [ServicePortMapping]?
-        
+
         /// 刷新复写所有类型
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let flushAll: Bool?
-        
+
         /// 1: 下次部署自动注入注册中心信息；0：不注入
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let enableRegistryNextDeploy: Int64?
-        
+
         /// 返回应用id
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let applicationId: String?
-        
+
         /// 所有服务IP是否已经ready
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let allIpDone: Bool?
-        
-        public init (name: String? = nil, ports: [Int64]? = nil, yaml: String? = nil, applicationName: String? = nil, versionName: String? = nil, clusterIp: [String]? = nil, externalIp: String? = nil, type: String? = nil, subnetId: String? = nil, loadBalanceId: String? = nil, portMappings: [PortMapping]? = nil, servicePortMappingList: [ServicePortMapping]? = nil, flushAll: Bool? = nil, enableRegistryNextDeploy: Int64? = nil, applicationId: String? = nil, allIpDone: Bool? = nil) {
+
+        public init(name: String? = nil, ports: [Int64]? = nil, yaml: String? = nil, applicationName: String? = nil, versionName: String? = nil, clusterIp: [String]? = nil, externalIp: String? = nil, type: String? = nil, subnetId: String? = nil, loadBalanceId: String? = nil, portMappings: [PortMapping]? = nil, servicePortMappingList: [ServicePortMapping]? = nil, flushAll: Bool? = nil, enableRegistryNextDeploy: Int64? = nil, applicationId: String? = nil, allIpDone: Bool? = nil) {
             self.name = name
             self.ports = ports
             self.yaml = yaml
@@ -493,7 +493,7 @@ extension Tem {
             self.applicationId = applicationId
             self.allIpDone = allIpDone
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case name = "Name"
             case ports = "Ports"
@@ -513,51 +513,51 @@ extension Tem {
             case allIpDone = "AllIpDone"
         }
     }
-    
+
     /// 开启prometheus监控配置
     public struct EnablePrometheusConf: TCInputModel, TCOutputModel {
         /// 应用开放的监听端口
         public let port: Int64?
-        
+
         /// 业务指标暴露的url path
         public let path: String?
-        
-        public init (port: Int64? = nil, path: String? = nil) {
+
+        public init(port: Int64? = nil, path: String? = nil) {
             self.port = port
             self.path = path
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case port = "Port"
             case path = "Path"
         }
     }
-    
+
     /// 弹性伸缩配置
     public struct EsInfo: TCInputModel, TCOutputModel {
         /// 最小实例数
         public let minAliveInstances: Int64
-        
+
         /// 最大实例数
         public let maxAliveInstances: Int64
-        
+
         /// 弹性策略,1:cpu，2:内存
         public let esStrategy: Int64
-        
+
         /// 弹性扩缩容条件值
         public let threshold: UInt64
-        
+
         /// 版本Id
         public let versionId: String?
-        
-        public init (minAliveInstances: Int64, maxAliveInstances: Int64, esStrategy: Int64, threshold: UInt64, versionId: String? = nil) {
+
+        public init(minAliveInstances: Int64, maxAliveInstances: Int64, esStrategy: Int64, threshold: UInt64, versionId: String? = nil) {
             self.minAliveInstances = minAliveInstances
             self.maxAliveInstances = maxAliveInstances
             self.esStrategy = esStrategy
             self.threshold = threshold
             self.versionId = versionId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case minAliveInstances = "MinAliveInstances"
             case maxAliveInstances = "MaxAliveInstances"
@@ -566,34 +566,34 @@ extension Tem {
             case versionId = "VersionId"
         }
     }
-    
+
     /// 健康检查配置
     public struct HealthCheckConfig: TCInputModel, TCOutputModel {
         /// 支持的健康检查类型，如 HttpGet，TcpSocket，Exec
         public let type: String
-        
+
         /// 仅当健康检查类型为 HttpGet 时有效，表示协议类型，如 HTTP，HTTPS
         public let `protocol`: String?
-        
+
         /// 仅当健康检查类型为 HttpGet 时有效，表示请求路径
         public let path: String?
-        
+
         /// 仅当健康检查类型为 Exec 时有效，表示执行的脚本内容
         public let exec: String?
-        
+
         /// 仅当健康检查类型为 HttpGet\TcpSocket 时有效，表示请求路径
         public let port: Int64?
-        
+
         /// 检查延迟开始时间，单位为秒，默认为 0
         public let initialDelaySeconds: Int64?
-        
+
         /// 超时时间，单位为秒，默认为 1
         public let timeoutSeconds: Int64?
-        
+
         /// 间隔时间，单位为秒，默认为 10
         public let periodSeconds: Int64?
-        
-        public init (type: String, protocol: String? = nil, path: String? = nil, exec: String? = nil, port: Int64? = nil, initialDelaySeconds: Int64? = nil, timeoutSeconds: Int64? = nil, periodSeconds: Int64? = nil) {
+
+        public init(type: String, protocol: String? = nil, path: String? = nil, exec: String? = nil, port: Int64? = nil, initialDelaySeconds: Int64? = nil, timeoutSeconds: Int64? = nil, periodSeconds: Int64? = nil) {
             self.type = type
             self.`protocol` = `protocol`
             self.path = path
@@ -603,7 +603,7 @@ extension Tem {
             self.timeoutSeconds = timeoutSeconds
             self.periodSeconds = periodSeconds
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case type = "Type"
             case `protocol` = "Protocol"
@@ -615,15 +615,15 @@ extension Tem {
             case periodSeconds = "PeriodSeconds"
         }
     }
-    
+
     /// 弹性伸缩策略
     public struct HorizontalAutoscaler: TCInputModel, TCOutputModel {
         /// 最小实例数（可以不传）
         public let minReplicas: Int64?
-        
+
         /// 最大实例数（可以不传）
         public let maxReplicas: Int64?
-        
+
         /// 指标度量
         /// CPU（CPU使用率，%）
         /// MEMORY（内存使用率，%）
@@ -640,18 +640,18 @@ extension Tem {
         /// FS_SIZE_WRITE(磁盘写大小，MiB/s)
         /// FS_SIZE_READ(磁盘读大小，MiB/s)
         public let metrics: String?
-        
+
         /// 阈值（整数）
         public let threshold: Int64?
-        
+
         /// 是否启用
         public let enabled: Bool?
-        
+
         /// 阈值（小数，优先使用）
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let doubleThreshold: Float?
-        
-        public init (minReplicas: Int64? = nil, maxReplicas: Int64? = nil, metrics: String? = nil, threshold: Int64? = nil, enabled: Bool? = nil, doubleThreshold: Float? = nil) {
+
+        public init(minReplicas: Int64? = nil, maxReplicas: Int64? = nil, metrics: String? = nil, threshold: Int64? = nil, enabled: Bool? = nil, doubleThreshold: Float? = nil) {
             self.minReplicas = minReplicas
             self.maxReplicas = maxReplicas
             self.metrics = metrics
@@ -659,7 +659,7 @@ extension Tem {
             self.enabled = enabled
             self.doubleThreshold = doubleThreshold
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case minReplicas = "MinReplicas"
             case maxReplicas = "MaxReplicas"
@@ -669,55 +669,55 @@ extension Tem {
             case doubleThreshold = "DoubleThreshold"
         }
     }
-    
+
     /// Ingress 配置
     public struct IngressInfo: TCInputModel, TCOutputModel {
         /// 环境ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let environmentId: String?
-        
+
         /// 环境namespace
         public let clusterNamespace: String
-        
+
         /// ip version
         public let addressIPVersion: String
-        
+
         /// ingress name
         public let ingressName: String
-        
+
         /// rules 配置
         public let rules: [IngressRule]
-        
+
         /// clb ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let clbId: String?
-        
+
         /// tls 配置
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tls: [IngressTls]?
-        
+
         /// 环境集群ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let clusterId: String?
-        
+
         /// clb ip
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let vip: String?
-        
+
         /// 创建时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let createTime: String?
-        
+
         /// 是否混合 https，默认 false，可选值 true 代表有 https 协议监听
         public let mixed: Bool?
-        
+
         /// 重定向模式，可选值：
         /// - AUTO（自动重定向http到https）
         /// - NONE（不使用重定向）
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let rewriteType: String?
-        
-        public init (environmentId: String, clusterNamespace: String, addressIPVersion: String, ingressName: String, rules: [IngressRule], clbId: String? = nil, tls: [IngressTls]? = nil, clusterId: String? = nil, vip: String? = nil, createTime: String? = nil, mixed: Bool? = nil, rewriteType: String? = nil) {
+
+        public init(environmentId: String, clusterNamespace: String, addressIPVersion: String, ingressName: String, rules: [IngressRule], clbId: String? = nil, tls: [IngressTls]? = nil, clusterId: String? = nil, vip: String? = nil, createTime: String? = nil, mixed: Bool? = nil, rewriteType: String? = nil) {
             self.environmentId = environmentId
             self.clusterNamespace = clusterNamespace
             self.addressIPVersion = addressIPVersion
@@ -731,7 +731,7 @@ extension Tem {
             self.mixed = mixed
             self.rewriteType = rewriteType
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case environmentId = "EnvironmentId"
             case clusterNamespace = "ClusterNamespace"
@@ -747,159 +747,159 @@ extension Tem {
             case rewriteType = "RewriteType"
         }
     }
-    
+
     /// ingress rule 配置
     public struct IngressRule: TCInputModel, TCOutputModel {
         /// ingress rule value
         public let http: IngressRuleValue
-        
+
         /// host 地址
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let host: String?
-        
+
         /// 协议，选项为 http， https，默认为 http
         public let `protocol`: String?
-        
-        public init (http: IngressRuleValue, host: String? = nil, protocol: String? = nil) {
+
+        public init(http: IngressRuleValue, host: String? = nil, protocol: String? = nil) {
             self.http = http
             self.host = host
             self.`protocol` = `protocol`
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case http = "Http"
             case host = "Host"
             case `protocol` = "Protocol"
         }
     }
-    
+
     /// Ingress 规则 backend 配置
     public struct IngressRuleBackend: TCInputModel, TCOutputModel {
         /// eks service 名
         public let serviceName: String
-        
+
         /// eks service 端口
         public let servicePort: Int64
-        
-        public init (serviceName: String, servicePort: Int64) {
+
+        public init(serviceName: String, servicePort: Int64) {
             self.serviceName = serviceName
             self.servicePort = servicePort
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case serviceName = "ServiceName"
             case servicePort = "ServicePort"
         }
     }
-    
+
     /// Ingress Rule Path 配置
     public struct IngressRulePath: TCInputModel, TCOutputModel {
         /// path 信息
         public let path: String
-        
+
         /// backend 配置
         public let backend: IngressRuleBackend
-        
-        public init (path: String, backend: IngressRuleBackend) {
+
+        public init(path: String, backend: IngressRuleBackend) {
             self.path = path
             self.backend = backend
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case path = "Path"
             case backend = "Backend"
         }
     }
-    
+
     /// Ingress Rule Value 配置
     public struct IngressRuleValue: TCInputModel, TCOutputModel {
         /// rule 整体配置
         public let paths: [IngressRulePath]
-        
-        public init (paths: [IngressRulePath]) {
+
+        public init(paths: [IngressRulePath]) {
             self.paths = paths
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case paths = "Paths"
         }
     }
-    
+
     /// ingress tls 配置
     public struct IngressTls: TCInputModel, TCOutputModel {
         /// host 数组, 空数组表示全部域名的默认证书
         public let hosts: [String]
-        
+
         /// secret name，如使用证书，则填空字符串
         public let secretName: String
-        
+
         /// SSL Certificate Id
         public let certificateId: String?
-        
-        public init (hosts: [String], secretName: String, certificateId: String? = nil) {
+
+        public init(hosts: [String], secretName: String, certificateId: String? = nil) {
             self.hosts = hosts
             self.secretName = secretName
             self.certificateId = certificateId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case hosts = "Hosts"
             case secretName = "SecretName"
             case certificateId = "CertificateId"
         }
     }
-    
+
     /// 日志收集配置
     public struct LogConfig: TCOutputModel {
         /// 名称
         public let name: String
-        
+
         /// 收集类型，container_stdout 为标准输出；container_file 为文件；
         public let inputType: String
-        
+
         /// 日志集 ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let logsetId: String?
-        
+
         /// 日志主题 ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let topicId: String?
-        
+
         /// 日志提取模式，minimalist_log 为单行全文；multiline_log 为多行全文；  fullregex_log 为单行正则； multiline_fullregex_log 为多行正则； json_log 为 json；
         public let logType: String
-        
+
         /// 首行正则表达式，当 LogType 为多行全文、多行正则时生效
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let beginningRegex: String?
-        
+
         /// 收集文件目录，当 InputType=container_file 时生效
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let logPath: String?
-        
+
         /// 收集文件名模式，当 InputType=container_file 时生效
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let filePattern: String?
-        
+
         /// 创建时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let createDate: String?
-        
+
         /// 更新时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let modifyDate: String?
-        
+
         /// 应用 ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let applicationId: String?
-        
+
         /// 应用名
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let applicationName: String?
-        
+
         /// 导出规则
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let extractRule: LogConfigExtractRule?
-        
+
         enum CodingKeys: String, CodingKey {
             case name = "Name"
             case inputType = "InputType"
@@ -916,46 +916,46 @@ extension Tem {
             case extractRule = "ExtractRule"
         }
     }
-    
+
     /// 日志采集的导出规则配置
     public struct LogConfigExtractRule: TCInputModel, TCOutputModel {
         /// 首行正则表达式
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let beginningRegex: String?
-        
+
         /// 提取结果
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let keys: [String]?
-        
+
         /// 过滤键
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let filterKeys: [String]?
-        
+
         /// 过滤值
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let filterRegex: [String]?
-        
+
         /// 日志正则表达式
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let logRegex: String?
-        
+
         /// 时间字段
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let timeKey: String?
-        
+
         /// 时间格式
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let timeFormat: String?
-        
+
         /// 是否上传解析失败日志
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let unMatchUpload: String?
-        
+
         /// 解析失败日志的键名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let unMatchedKey: String?
-        
-        public init (beginningRegex: String? = nil, keys: [String]? = nil, filterKeys: [String]? = nil, filterRegex: [String]? = nil, logRegex: String? = nil, timeKey: String? = nil, timeFormat: String? = nil, unMatchUpload: String? = nil, unMatchedKey: String? = nil) {
+
+        public init(beginningRegex: String? = nil, keys: [String]? = nil, filterKeys: [String]? = nil, filterRegex: [String]? = nil, logRegex: String? = nil, timeKey: String? = nil, timeFormat: String? = nil, unMatchUpload: String? = nil, unMatchedKey: String? = nil) {
             self.beginningRegex = beginningRegex
             self.keys = keys
             self.filterKeys = filterKeys
@@ -966,7 +966,7 @@ extension Tem {
             self.unMatchUpload = unMatchUpload
             self.unMatchedKey = unMatchedKey
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case beginningRegex = "BeginningRegex"
             case keys = "Keys"
@@ -979,48 +979,48 @@ extension Tem {
             case unMatchedKey = "UnMatchedKey"
         }
     }
-    
+
     /// LogConfig 列表结果
     public struct LogConfigListPage: TCOutputModel {
         /// 记录
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let records: [LogConfig]?
-        
+
         /// 翻页游标
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let continueToken: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case records = "Records"
             case continueToken = "ContinueToken"
         }
     }
-    
+
     /// 日志输出配置
     public struct LogOutputConf: TCInputModel, TCOutputModel {
         /// 日志消费端类型
         public let outputType: String
-        
+
         /// cls日志集
         public let clsLogsetName: String?
-        
+
         /// cls日志主题
         public let clsLogTopicId: String?
-        
+
         /// cls日志集id
         public let clsLogsetId: String?
-        
+
         /// cls日志名称
         public let clsLogTopicName: String?
-        
-        public init (outputType: String, clsLogsetName: String? = nil, clsLogTopicId: String? = nil, clsLogsetId: String? = nil, clsLogTopicName: String? = nil) {
+
+        public init(outputType: String, clsLogsetName: String? = nil, clsLogTopicId: String? = nil, clsLogsetId: String? = nil, clsLogTopicName: String? = nil) {
             self.outputType = outputType
             self.clsLogsetName = clsLogsetName
             self.clsLogTopicId = clsLogTopicId
             self.clsLogsetId = clsLogsetId
             self.clsLogTopicName = clsLogTopicName
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case outputType = "OutputType"
             case clsLogsetName = "ClsLogsetName"
@@ -1029,28 +1029,28 @@ extension Tem {
             case clsLogTopicName = "ClsLogTopicName"
         }
     }
-    
+
     /// 挂载配置信息
     public struct MountedSettingConf: TCInputModel {
         /// 配置名称
         public let configDataName: String
-        
+
         /// 挂载路径
         public let mountedPath: String
-        
+
         /// 配置内容
         public let data: [Pair]?
-        
+
         /// 加密配置名称
         public let secretDataName: String?
-        
-        public init (configDataName: String, mountedPath: String, data: [Pair]? = nil, secretDataName: String? = nil) {
+
+        public init(configDataName: String, mountedPath: String, data: [Pair]? = nil, secretDataName: String? = nil) {
             self.configDataName = configDataName
             self.mountedPath = mountedPath
             self.data = data
             self.secretDataName = secretDataName
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case configDataName = "ConfigDataName"
             case mountedPath = "MountedPath"
@@ -1058,50 +1058,50 @@ extension Tem {
             case secretDataName = "SecretDataName"
         }
     }
-    
+
     /// Namespace 基础信息
     public struct NamespaceInfo: TCOutputModel {
         /// ID 信息
         public let environmentId: String
-        
+
         /// 名字（已弃用）
         public let namespaceName: String
-        
+
         /// 地域
         public let region: String
-        
+
         /// vpc id
         public let vpcId: String
-        
+
         /// subnet id 数组
         public let subnetIds: [String]
-        
+
         /// 描述
         public let description: String
-        
+
         /// 创建时间
         public let createdDate: String
-        
+
         /// 环境名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let environmentName: String?
-        
+
         /// APM 资源 ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let apmInstanceId: String?
-        
+
         /// 环境是否上锁，1为上锁，0则未上锁
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let locked: Int64?
-        
+
         /// 标签
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tags: [Tag]?
-        
+
         /// 环境类型：test、pre、prod
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let envType: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case environmentId = "EnvironmentId"
             case namespaceName = "NamespaceName"
@@ -1117,25 +1117,25 @@ extension Tem {
             case envType = "EnvType"
         }
     }
-    
+
     /// 命名空间分页
     public struct NamespacePage: TCOutputModel {
         /// 分页内容
         public let records: [TemNamespaceInfo]
-        
+
         /// 总数
         public let total: Int64
-        
+
         /// 条目数
         public let size: Int64
-        
+
         /// 页数
         public let pages: Int64
-        
+
         /// 当前条目
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let current: Int64?
-        
+
         enum CodingKeys: String, CodingKey {
             case records = "Records"
             case total = "Total"
@@ -1144,30 +1144,30 @@ extension Tem {
             case current = "Current"
         }
     }
-    
+
     /// 命名空间状态
     public struct NamespaceStatusInfo: TCInputModel, TCOutputModel {
         /// 命名空间id
         public let environmentId: String
-        
+
         /// 命名空间名称
         public let environmentName: String
-        
+
         /// TCB envId | EKS clusterId
         public let clusterId: String?
-        
+
         /// 环境状态
         public let clusterStatus: String?
-        
+
         /// 环境启动状态（不在启动中为null）
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let environmentStartingStatus: TemEnvironmentStartingStatus?
-        
+
         /// 环境停止状态（不在停止中为null）
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let environmentStoppingStatus: TemEnvironmentStoppingStatus?
-        
-        public init (environmentId: String, environmentName: String, clusterId: String? = nil, clusterStatus: String? = nil, environmentStartingStatus: TemEnvironmentStartingStatus? = nil, environmentStoppingStatus: TemEnvironmentStoppingStatus? = nil) {
+
+        public init(environmentId: String, environmentName: String, clusterId: String? = nil, clusterStatus: String? = nil, environmentStartingStatus: TemEnvironmentStartingStatus? = nil, environmentStoppingStatus: TemEnvironmentStoppingStatus? = nil) {
             self.environmentId = environmentId
             self.environmentName = environmentName
             self.clusterId = clusterId
@@ -1175,7 +1175,7 @@ extension Tem {
             self.environmentStartingStatus = environmentStartingStatus
             self.environmentStoppingStatus = environmentStoppingStatus
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case environmentId = "EnvironmentId"
             case environmentName = "EnvironmentName"
@@ -1185,28 +1185,28 @@ extension Tem {
             case environmentStoppingStatus = "EnvironmentStoppingStatus"
         }
     }
-    
+
     /// node信息
     public struct NodeInfo: TCOutputModel {
         /// node名字
         public let name: String
-        
+
         /// node可用区
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let zone: String?
-        
+
         /// node子网ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let subnetId: String?
-        
+
         /// 可用IP数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let availableIpCount: String?
-        
+
         /// cidr块
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let cidr: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case name = "Name"
             case zone = "Zone"
@@ -1215,35 +1215,35 @@ extension Tem {
             case cidr = "Cidr"
         }
     }
-    
+
     /// 键值对
     public struct Pair: TCInputModel, TCOutputModel {
         /// 键
         public let key: String
-        
+
         /// 值
         public let value: String
-        
+
         /// 类型，default 为自定义，reserved 为系统变量，referenced 为引用配置项
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let type: String?
-        
+
         /// 配置名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let config: String?
-        
+
         /// 加密配置名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let secret: String?
-        
-        public init (key: String, value: String, type: String? = nil, config: String? = nil, secret: String? = nil) {
+
+        public init(key: String, value: String, type: String? = nil, config: String? = nil, secret: String? = nil) {
             self.key = key
             self.value = value
             self.type = type
             self.config = config
             self.secret = secret
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case key = "Key"
             case value = "Value"
@@ -1252,28 +1252,28 @@ extension Tem {
             case secret = "Secret"
         }
     }
-    
+
     /// 服务端口映射
     public struct PortMapping: TCInputModel, TCOutputModel {
         /// 端口
         public let port: Int64
-        
+
         /// 映射端口
         public let targetPort: Int64
-        
+
         /// 协议栈 TCP/UDP
         public let `protocol`: String
-        
+
         /// k8s service名称
         public let serviceName: String?
-        
-        public init (port: Int64, targetPort: Int64, protocol: String, serviceName: String? = nil) {
+
+        public init(port: Int64, targetPort: Int64, protocol: String, serviceName: String? = nil) {
             self.port = port
             self.targetPort = targetPort
             self.`protocol` = `protocol`
             self.serviceName = serviceName
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case port = "Port"
             case targetPort = "TargetPort"
@@ -1281,87 +1281,87 @@ extension Tem {
             case serviceName = "ServiceName"
         }
     }
-    
+
     /// 查询过滤器
     public struct QueryFilter: TCInputModel {
         /// 查询字段名称
         public let name: String?
-        
+
         /// 查询字段值
         public let value: [String]?
-        
-        public init (name: String? = nil, value: [String]? = nil) {
+
+        public init(name: String? = nil, value: [String]? = nil) {
             self.name = name
             self.value = value
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case name = "Name"
             case value = "Value"
         }
     }
-    
+
     /// 应用实例
     public struct RunVersionPod: TCOutputModel {
         /// shell地址
         public let webshell: String
-        
+
         /// pod的id
         public let podId: String
-        
+
         /// 状态
         public let status: String
-        
+
         /// 创建时间
         public let createTime: String
-        
+
         /// 实例的ip
         public let podIp: String
-        
+
         /// 可用区
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let zone: String?
-        
+
         /// 部署版本
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let deployVersion: String?
-        
+
         /// 重启次数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let restartCount: Int64?
-        
+
         /// pod是否就绪
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let ready: Bool?
-        
+
         /// 容器状态
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let containerState: String?
-        
+
         /// 实例所在节点信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let nodeInfo: NodeInfo?
-        
+
         /// 启动时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let startTime: String?
-        
+
         /// 是否健康
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let unhealthy: Bool?
-        
+
         /// 不健康时的提示信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let unhealthyWarningMsg: String?
-        
+
         /// 版本ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let versionId: String?
-        
+
         /// 应用名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let applicationName: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case webshell = "Webshell"
             case podId = "PodId"
@@ -1381,33 +1381,33 @@ extension Tem {
             case applicationName = "ApplicationName"
         }
     }
-    
+
     /// 服务分页
     public struct ServicePage: TCInputModel, TCOutputModel {
         /// 条目
         public let records: [TemService]
-        
+
         /// 总数
         public let total: Int64
-        
+
         /// 条目
         public let size: Int64
-        
+
         /// 页数
         public let pages: Int64
-        
+
         /// 当前条数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let current: Int64?
-        
-        public init (records: [TemService], total: Int64, size: Int64, pages: Int64, current: Int64? = nil) {
+
+        public init(records: [TemService], total: Int64, size: Int64, pages: Int64, current: Int64? = nil) {
             self.records = records
             self.total = total
             self.size = size
             self.pages = pages
             self.current = current
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case records = "Records"
             case total = "Total"
@@ -1416,50 +1416,50 @@ extension Tem {
             case current = "Current"
         }
     }
-    
+
     /// 端口映射详细信息结构体
     public struct ServicePortMapping: TCInputModel, TCOutputModel {
         /// 服务类型
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let type: String?
-        
+
         /// 服务名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let serviceName: String?
-        
+
         /// 集群内访问vip
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let clusterIp: String?
-        
+
         /// 集群外方位vip
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let externalIp: String?
-        
+
         /// 子网id
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let subnetId: String?
-        
+
         /// vpc id
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let vpcId: String?
-        
+
         /// LoadBalance Id
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let loadBalanceId: String?
-        
+
         /// yaml 内容
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let yaml: String?
-        
+
         /// 暴露端口列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let ports: [Int64]?
-        
+
         /// 端口映射数组
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let portMappingItemList: [ServicePortMappingItem]?
-        
-        public init (type: String? = nil, serviceName: String? = nil, clusterIp: String? = nil, externalIp: String? = nil, subnetId: String? = nil, vpcId: String? = nil, loadBalanceId: String? = nil, yaml: String? = nil, ports: [Int64]? = nil, portMappingItemList: [ServicePortMappingItem]? = nil) {
+
+        public init(type: String? = nil, serviceName: String? = nil, clusterIp: String? = nil, externalIp: String? = nil, subnetId: String? = nil, vpcId: String? = nil, loadBalanceId: String? = nil, yaml: String? = nil, ports: [Int64]? = nil, portMappingItemList: [ServicePortMappingItem]? = nil) {
             self.type = type
             self.serviceName = serviceName
             self.clusterIp = clusterIp
@@ -1471,7 +1471,7 @@ extension Tem {
             self.ports = ports
             self.portMappingItemList = portMappingItemList
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case type = "Type"
             case serviceName = "ServiceName"
@@ -1485,111 +1485,111 @@ extension Tem {
             case portMappingItemList = "PortMappingItemList"
         }
     }
-    
+
     /// 服务端口映射条目
     public struct ServicePortMappingItem: TCInputModel, TCOutputModel {
         /// 应用访问端口
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let port: Int64?
-        
+
         /// 应用监听端口
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let targetPort: Int64?
-        
+
         /// 协议类型
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let `protocol`: String?
-        
-        public init (port: Int64? = nil, targetPort: Int64? = nil, protocol: String? = nil) {
+
+        public init(port: Int64? = nil, targetPort: Int64? = nil, protocol: String? = nil) {
             self.port = port
             self.targetPort = targetPort
             self.`protocol` = `protocol`
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case port = "Port"
             case targetPort = "TargetPort"
             case `protocol` = "Protocol"
         }
     }
-    
+
     /// 服务版本信息列表
     public struct ServiceVersionBrief: TCOutputModel {
         /// 版本名称
         public let versionName: String
-        
+
         /// 状态
         public let status: String
-        
+
         /// 是否启动弹性 -- 已废弃
         public let enableEs: Int64
-        
+
         /// 当前实例
         public let currentInstances: Int64
-        
+
         /// version的id
         public let versionId: String
-        
+
         /// 日志输出配置 -- 已废弃
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let logOutputConf: LogOutputConf?
-        
+
         /// 期望实例
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let expectedInstances: Int64?
-        
+
         /// 部署方式
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let deployMode: String?
-        
+
         /// 建构任务ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let buildTaskId: String?
-        
+
         /// 环境ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let environmentId: String?
-        
+
         /// 环境name
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let environmentName: String?
-        
+
         /// 服务ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let applicationId: String?
-        
+
         /// 服务name
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let applicationName: String?
-        
+
         /// 是否正在发布中
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let underDeploying: Bool?
-        
+
         /// 分批次部署状态
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let batchDeployStatus: String?
-        
+
         /// 可用区
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let zones: [String]?
-        
+
         /// 节点信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let nodeInfos: [NodeInfo]?
-        
+
         /// 实例信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let podList: DescribeRunPodPage?
-        
+
         /// 工作负载信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let workloadInfo: WorkloadInfo?
-        
+
         /// 创建日期
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let createDate: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case versionName = "VersionName"
             case status = "Status"
@@ -1613,149 +1613,149 @@ extension Tem {
             case createDate = "CreateDate"
         }
     }
-    
+
     /// 查询过滤器
     public struct SortType: TCInputModel {
         /// 排序字段名称
         public let key: String?
-        
+
         /// 0：升序，1：倒序
         public let type: Int64?
-        
-        public init (key: String? = nil, type: Int64? = nil) {
+
+        public init(key: String? = nil, type: Int64? = nil) {
             self.key = key
             self.type = type
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case key = "Key"
             case type = "Type"
         }
     }
-    
+
     /// 存储卷配置
     public struct StorageConf: TCInputModel, TCOutputModel {
         /// 存储卷名称
         public let storageVolName: String
-        
+
         /// 存储卷路径
         public let storageVolPath: String
-        
+
         /// 存储卷IP
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let storageVolIp: String?
-        
-        public init (storageVolName: String, storageVolPath: String, storageVolIp: String? = nil) {
+
+        public init(storageVolName: String, storageVolPath: String, storageVolIp: String? = nil) {
             self.storageVolName = storageVolName
             self.storageVolPath = storageVolPath
             self.storageVolIp = storageVolIp
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case storageVolName = "StorageVolName"
             case storageVolPath = "StorageVolPath"
             case storageVolIp = "StorageVolIp"
         }
     }
-    
+
     /// 数据卷挂载信息
     public struct StorageMountConf: TCInputModel, TCOutputModel {
         /// 数据卷名
         public let volumeName: String
-        
+
         /// 数据卷绑定路径
         public let mountPath: String
-        
-        public init (volumeName: String, mountPath: String) {
+
+        public init(volumeName: String, mountPath: String) {
             self.volumeName = volumeName
             self.mountPath = mountPath
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case volumeName = "VolumeName"
             case mountPath = "MountPath"
         }
     }
-    
+
     /// 标签
     public struct Tag: TCInputModel, TCOutputModel {
         /// 标签键
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tagKey: String?
-        
+
         /// 标签值
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tagValue: String?
-        
-        public init (tagKey: String? = nil, tagValue: String? = nil) {
+
+        public init(tagKey: String? = nil, tagValue: String? = nil) {
             self.tagKey = tagKey
             self.tagValue = tagValue
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case tagKey = "TagKey"
             case tagValue = "TagValue"
         }
     }
-    
+
     /// 分批发布详情
     public struct TemDeployApplicationDetailInfo: TCOutputModel {
         /// 分批发布策略
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let deployStrategyConf: DeployStrategyConf?
-        
+
         /// 开始时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let startTime: String?
-        
+
         /// 结束时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let endTime: String?
-        
+
         /// 当前状态
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let status: String?
-        
+
         /// beta分批详情
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let betaBatchDetail: DeployServiceBatchDetail?
-        
+
         /// 其他分批详情
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let otherBatchDetail: [DeployServiceBatchDetail]?
-        
+
         /// 老版本pod列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let oldVersionPodList: DescribeRunPodPage?
-        
+
         /// 当前批次id
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let currentBatchIndex: Int64?
-        
+
         /// 错误原因
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let errorMessage: String?
-        
+
         /// 当前批次状态
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let currentBatchStatus: String?
-        
+
         /// 新版本version
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let newDeployVersion: String?
-        
+
         /// 旧版本version
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let oldDeployVersion: String?
-        
+
         /// 包名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let newVersionPackageInfo: String?
-        
+
         /// 下一批次开始时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let nextBatchStartTime: Int64?
-        
+
         enum CodingKeys: String, CodingKey {
             case deployStrategyConf = "DeployStrategyConf"
             case startTime = "StartTime"
@@ -1773,135 +1773,135 @@ extension Tem {
             case nextBatchStartTime = "NextBatchStartTime"
         }
     }
-    
+
     /// 环境启动进程（只统计由环境启动操作触发的应用数量）
     public struct TemEnvironmentStartingStatus: TCInputModel, TCOutputModel {
         /// 需要启动的应用数量
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let applicationNumNeedToStart: Int64?
-        
+
         /// 已经启动的应用数量
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let startedApplicationNum: Int64?
-        
-        public init (applicationNumNeedToStart: Int64? = nil, startedApplicationNum: Int64? = nil) {
+
+        public init(applicationNumNeedToStart: Int64? = nil, startedApplicationNum: Int64? = nil) {
             self.applicationNumNeedToStart = applicationNumNeedToStart
             self.startedApplicationNum = startedApplicationNum
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case applicationNumNeedToStart = "ApplicationNumNeedToStart"
             case startedApplicationNum = "StartedApplicationNum"
         }
     }
-    
+
     /// 环境停止进程（只统计由环境停止操作触发的应用数量）
     public struct TemEnvironmentStoppingStatus: TCInputModel, TCOutputModel {
         /// 需要停止的应用数量
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let applicationNumNeedToStop: Int64?
-        
+
         /// 已经停止的应用数量
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let stoppedApplicationNum: Int64?
-        
-        public init (applicationNumNeedToStop: Int64? = nil, stoppedApplicationNum: Int64? = nil) {
+
+        public init(applicationNumNeedToStop: Int64? = nil, stoppedApplicationNum: Int64? = nil) {
             self.applicationNumNeedToStop = applicationNumNeedToStop
             self.stoppedApplicationNum = stoppedApplicationNum
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case applicationNumNeedToStop = "ApplicationNumNeedToStop"
             case stoppedApplicationNum = "StoppedApplicationNum"
         }
     }
-    
+
     /// 命名空间对象
     public struct TemNamespaceInfo: TCOutputModel {
         /// 环境id
         public let environmentId: String
-        
+
         /// 渠道
         public let channel: String
-        
+
         /// 环境名称
         public let environmentName: String
-        
+
         /// 区域名称
         public let region: String
-        
+
         /// 环境描述
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let description: String?
-        
+
         /// 状态,1:已销毁;0:正常
         public let status: Int64
-        
+
         /// vpc网络
         public let vpc: String
-        
+
         /// 创建时间
         public let createDate: String
-        
+
         /// 修改时间
         public let modifyDate: String
-        
+
         /// 修改人
         public let modifier: String
-        
+
         /// 创建人
         public let creator: String
-        
+
         /// 应用数
         public let applicationNum: Int64
-        
+
         /// 运行实例数
         public let runInstancesNum: Int64
-        
+
         /// 子网络
         public let subnetId: String
-        
+
         /// 环境集群 status
         public let clusterStatus: String
-        
+
         /// 是否开启tsw
         public let enableTswTraceService: Bool
-        
+
         /// 环境锁，1为上锁，0则为上锁
         public let locked: Int64
-        
+
         /// 用户AppId
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let appId: String?
-        
+
         /// 用户Uin
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let uin: String?
-        
+
         /// 用户SubAccountUin
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let subAccountUin: String?
-        
+
         /// 集群ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let clusterId: String?
-        
+
         /// 标签
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tags: [Tag]?
-        
+
         /// 资源是否有权限
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let hasAuthority: Bool?
-        
+
         /// 环境类型: test、pre、prod
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let envType: String?
-        
+
         /// 地域码
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let regionId: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case environmentId = "EnvironmentId"
             case channel = "Channel"
@@ -1930,25 +1930,25 @@ extension Tem {
             case regionId = "RegionId"
         }
     }
-    
+
     /// 服务
     public struct TemService: TCOutputModel {
         /// 主键
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let applicationId: String?
-        
+
         /// 服务名
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let applicationName: String?
-        
+
         /// 描述
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let description: String?
-        
+
         /// 命名空间id
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let environmentId: String?
-        
+
         /// 创建时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         ///
@@ -1957,7 +1957,7 @@ extension Tem {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var createDate: Date?
-        
+
         /// 修改时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         ///
@@ -1966,55 +1966,55 @@ extension Tem {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var modifyDate: Date?
-        
+
         /// 修改人
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let modifier: String?
-        
+
         /// 创建者
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let creator: String?
-        
+
         /// tcr个人版or企业版
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let repoType: Int64?
-        
+
         /// 企业版实例id
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let instanceId: String?
-        
+
         /// 镜像仓库名
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let repoName: String?
-        
+
         /// 编程语言
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let codingLanguage: String?
-        
+
         /// 部署方式
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let deployMode: String?
-        
+
         /// 环境名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let environmentName: String?
-        
+
         /// 服务当前运行环境的实例信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let activeVersions: [ServiceVersionBrief]?
-        
+
         /// 是否启用链路追踪
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let enableTracing: UInt64?
-        
+
         /// 标签
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tags: [Tag]?
-        
+
         /// 是否有资源权限
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let hasAuthority: Bool?
-        
+
         enum CodingKeys: String, CodingKey {
             case applicationId = "ApplicationId"
             case applicationName = "ApplicationName"
@@ -2036,336 +2036,336 @@ extension Tem {
             case hasAuthority = "HasAuthority"
         }
     }
-    
+
     /// 版本信息
     public struct TemServiceVersionInfo: TCInputModel, TCOutputModel {
         /// 主键
         public let versionId: String
-        
+
         /// 服务id
         public let applicationId: String
-        
+
         /// 部署方式
         public let deployMode: String
-        
+
         /// jdk版本
         public let jdkVersion: String
-        
+
         /// 描述
         public let description: String
-        
+
         /// 部署版本
         public let deployVersion: String
-        
+
         /// 发布方式
         public let publishMode: String
-        
+
         /// 启动参数
         public let jvmOpts: String
-        
+
         /// 初始实例
         public let initPodNum: Int64
-        
+
         /// cpu规格
         public let cpuSpec: Float
-        
+
         /// 内存规格
         public let memorySpec: Float
-        
+
         /// 镜像路径
         public let imgRepo: String
-        
+
         /// 镜像名称
         public let imgName: String
-        
+
         /// 镜像版本
         public let imgVersion: String
-        
+
         /// 弹性配置
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let esInfo: EsInfo?
-        
+
         /// 环境配置
         public let envConf: [Pair]
-        
+
         /// 存储配置
         public let storageConfs: [StorageConf]
-        
+
         /// 运行状态
         public let status: String
-        
+
         /// 私有网络
         public let vpc: String
-        
+
         /// 子网网络
         public let subnetId: String
-        
+
         /// 创建时间
         public let createDate: String
-        
+
         /// 修改时间
         public let modifyDate: String
-        
+
         /// 挂载配置
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let storageMountConfs: [StorageMountConf]?
-        
+
         /// 版本名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let versionName: String?
-        
+
         /// 日志输出配置
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let logOutputConf: LogOutputConf?
-        
+
         /// 服务名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let applicationName: String?
-        
+
         /// 服务描述
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let applicationDescription: String?
-        
+
         /// 环境名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let environmentName: String?
-        
+
         /// 环境ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let environmentId: String?
-        
+
         /// 公网地址
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let publicDomain: String?
-        
+
         /// 是否开通公网访问
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let enablePublicAccess: Bool?
-        
+
         /// 现有的实例
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let currentInstances: Int64?
-        
+
         /// 期望的实例
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let expectedInstances: Int64?
-        
+
         /// 编程语言
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let codingLanguage: String?
-        
+
         /// 程序包名
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let pkgName: String?
-        
+
         /// 是否启用弹性伸缩
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let esEnable: Int64?
-        
+
         /// 弹性策略
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let esStrategy: Int64?
-        
+
         /// 镜像tag
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let imageTag: String?
-        
+
         /// 是否启用log
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let logEnable: Int64?
-        
+
         /// 最小实例数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let minAliveInstances: String?
-        
+
         /// 安全组
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let securityGroupIds: [String]?
-        
+
         /// 镜像命令
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let imageCommand: String?
-        
+
         /// 镜像命令参数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let imageArgs: [String]?
-        
+
         /// 是否使用默认注册中心配置
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let useRegistryDefaultConfig: Bool?
-        
+
         /// eks 访问设置
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let service: EksService?
-        
+
         /// 挂载配置信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let settingConfs: [MountedSettingConf]?
-        
+
         /// log path数组信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let logConfs: [String]?
-        
+
         /// 启动后立即执行的脚本
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let postStart: String?
-        
+
         /// 停止前执行的脚本
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let preStop: String?
-        
+
         /// 存活探针配置
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let liveness: HealthCheckConfig?
-        
+
         /// 就绪探针配置
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let readiness: HealthCheckConfig?
-        
+
         /// 弹性策略
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let horizontalAutoscaler: [HorizontalAutoscaler]?
-        
+
         /// 定时弹性策略
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let cronHorizontalAutoscaler: [CronHorizontalAutoscaler]?
-        
+
         /// 应用实际可用区
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let zones: [String]?
-        
+
         /// 最新部署时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let lastDeployDate: String?
-        
+
         /// 最新部署成功时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let lastDeploySuccessDate: String?
-        
+
         /// 应用所在node信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let nodeInfos: [NodeInfo]?
-        
+
         /// image类型 -0 为demo -1为正常image
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let imageType: Int64?
-        
+
         /// 是否启用调用链组件
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let enableTracing: UInt64?
-        
+
         /// 是否开启调用链上报，只有 EnableTracing=1 时生效（参数已弃用）
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let enableTracingReport: UInt64?
-        
+
         /// 镜像类型：0-个人镜像、1-企业镜像、2-公有镜像
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let repoType: UInt64?
-        
+
         /// 分批发布子状态：batch_updating、batch_updating_waiting_confirm
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let batchDeployStatus: String?
-        
+
         /// APM 资源 ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let apmInstanceId: String?
-        
+
         /// 工作负载信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let workloadInfo: WorkloadInfo?
-        
+
         /// 是否启用应用加速
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let speedUp: Bool?
-        
+
         /// 启动检测探针配置
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let startupProbe: HealthCheckConfig?
-        
+
         /// 操作系统版本，可选参数：
         /// - ALPINE
         /// - CENTOS
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let osFlavour: String?
-        
+
         /// 镜像仓库server
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let repoServer: String?
-        
+
         /// 是否正在发布中
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let underDeploying: Bool?
-        
+
         /// 监控业务指标监控
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let enablePrometheusConf: EnablePrometheusConf?
-        
+
         /// 是否为手动停止
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let stoppedManually: Bool?
-        
+
         /// tcr实例ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tcrInstanceId: String?
-        
+
         /// 1：开始自动metrics采集（open-telemetry）；
         /// 0：关闭metrics采集；
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let enableMetrics: Int64?
-        
+
         /// 用户AppId
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let appId: String?
-        
+
         /// 用户SubAccountUin
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let subAccountUin: String?
-        
+
         /// 用户Uin
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let uin: String?
-        
+
         /// 地域
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let region: String?
-        
+
         /// 应用分组ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let groupId: String?
-        
+
         /// 是否启用注册中心
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let enableRegistry: Int64?
-        
+
         /// 弹性伸缩数组
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let autoscalerList: [Autoscaler]?
-        
+
         /// 修改人
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let modifier: String?
-        
+
         /// 创建人
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let creator: String?
-        
+
         /// 部署策略
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let deployStrategyConf: DeployStrategyConf?
-        
+
         /// 实例列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let podList: DescribeRunPodPage?
-        
+
         /// 发布时配置是否有修改
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let confEdited: Bool?
-        
+
         /// 标签
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tags: [Tag]?
-        
-        public init (versionId: String, applicationId: String, deployMode: String, jdkVersion: String, description: String, deployVersion: String, publishMode: String, jvmOpts: String, initPodNum: Int64, cpuSpec: Float, memorySpec: Float, imgRepo: String, imgName: String, imgVersion: String, esInfo: EsInfo, envConf: [Pair], storageConfs: [StorageConf], status: String, vpc: String, subnetId: String, createDate: String, modifyDate: String, storageMountConfs: [StorageMountConf], versionName: String, logOutputConf: LogOutputConf? = nil, applicationName: String? = nil, applicationDescription: String? = nil, environmentName: String? = nil, environmentId: String? = nil, publicDomain: String? = nil, enablePublicAccess: Bool? = nil, currentInstances: Int64? = nil, expectedInstances: Int64? = nil, codingLanguage: String? = nil, pkgName: String? = nil, esEnable: Int64? = nil, esStrategy: Int64? = nil, imageTag: String? = nil, logEnable: Int64? = nil, minAliveInstances: String? = nil, securityGroupIds: [String]? = nil, imageCommand: String? = nil, imageArgs: [String]? = nil, useRegistryDefaultConfig: Bool? = nil, service: EksService? = nil, settingConfs: [MountedSettingConf]? = nil, logConfs: [String]? = nil, postStart: String? = nil, preStop: String? = nil, liveness: HealthCheckConfig? = nil, readiness: HealthCheckConfig? = nil, horizontalAutoscaler: [HorizontalAutoscaler]? = nil, cronHorizontalAutoscaler: [CronHorizontalAutoscaler]? = nil, zones: [String]? = nil, lastDeployDate: String? = nil, lastDeploySuccessDate: String? = nil, nodeInfos: [NodeInfo]? = nil, imageType: Int64? = nil, enableTracing: UInt64? = nil, enableTracingReport: UInt64? = nil, repoType: UInt64? = nil, batchDeployStatus: String? = nil, apmInstanceId: String? = nil, workloadInfo: WorkloadInfo? = nil, speedUp: Bool? = nil, startupProbe: HealthCheckConfig? = nil, osFlavour: String? = nil, repoServer: String? = nil, underDeploying: Bool? = nil, enablePrometheusConf: EnablePrometheusConf? = nil, stoppedManually: Bool? = nil, tcrInstanceId: String? = nil, enableMetrics: Int64? = nil, appId: String? = nil, subAccountUin: String? = nil, uin: String? = nil, region: String? = nil, groupId: String? = nil, enableRegistry: Int64? = nil, autoscalerList: [Autoscaler]? = nil, modifier: String? = nil, creator: String? = nil, deployStrategyConf: DeployStrategyConf? = nil, podList: DescribeRunPodPage? = nil, confEdited: Bool? = nil, tags: [Tag]? = nil) {
+
+        public init(versionId: String, applicationId: String, deployMode: String, jdkVersion: String, description: String, deployVersion: String, publishMode: String, jvmOpts: String, initPodNum: Int64, cpuSpec: Float, memorySpec: Float, imgRepo: String, imgName: String, imgVersion: String, esInfo: EsInfo, envConf: [Pair], storageConfs: [StorageConf], status: String, vpc: String, subnetId: String, createDate: String, modifyDate: String, storageMountConfs: [StorageMountConf], versionName: String, logOutputConf: LogOutputConf? = nil, applicationName: String? = nil, applicationDescription: String? = nil, environmentName: String? = nil, environmentId: String? = nil, publicDomain: String? = nil, enablePublicAccess: Bool? = nil, currentInstances: Int64? = nil, expectedInstances: Int64? = nil, codingLanguage: String? = nil, pkgName: String? = nil, esEnable: Int64? = nil, esStrategy: Int64? = nil, imageTag: String? = nil, logEnable: Int64? = nil, minAliveInstances: String? = nil, securityGroupIds: [String]? = nil, imageCommand: String? = nil, imageArgs: [String]? = nil, useRegistryDefaultConfig: Bool? = nil, service: EksService? = nil, settingConfs: [MountedSettingConf]? = nil, logConfs: [String]? = nil, postStart: String? = nil, preStop: String? = nil, liveness: HealthCheckConfig? = nil, readiness: HealthCheckConfig? = nil, horizontalAutoscaler: [HorizontalAutoscaler]? = nil, cronHorizontalAutoscaler: [CronHorizontalAutoscaler]? = nil, zones: [String]? = nil, lastDeployDate: String? = nil, lastDeploySuccessDate: String? = nil, nodeInfos: [NodeInfo]? = nil, imageType: Int64? = nil, enableTracing: UInt64? = nil, enableTracingReport: UInt64? = nil, repoType: UInt64? = nil, batchDeployStatus: String? = nil, apmInstanceId: String? = nil, workloadInfo: WorkloadInfo? = nil, speedUp: Bool? = nil, startupProbe: HealthCheckConfig? = nil, osFlavour: String? = nil, repoServer: String? = nil, underDeploying: Bool? = nil, enablePrometheusConf: EnablePrometheusConf? = nil, stoppedManually: Bool? = nil, tcrInstanceId: String? = nil, enableMetrics: Int64? = nil, appId: String? = nil, subAccountUin: String? = nil, uin: String? = nil, region: String? = nil, groupId: String? = nil, enableRegistry: Int64? = nil, autoscalerList: [Autoscaler]? = nil, modifier: String? = nil, creator: String? = nil, deployStrategyConf: DeployStrategyConf? = nil, podList: DescribeRunPodPage? = nil, confEdited: Bool? = nil, tags: [Tag]? = nil) {
             self.versionId = versionId
             self.applicationId = applicationId
             self.deployMode = deployMode
@@ -2453,7 +2453,7 @@ extension Tem {
             self.confEdited = confEdited
             self.tags = tags
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case versionId = "VersionId"
             case applicationId = "ApplicationId"
@@ -2543,66 +2543,66 @@ extension Tem {
             case tags = "Tags"
         }
     }
-    
+
     /// 创建应用，创建仓库参数
     public struct UseDefaultRepoParameters: TCOutputModel {
         /// 企业版实例名
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let enterpriseInstanceName: String?
-        
+
         /// 企业版收费类型  0 按量收费   1 包年包月
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let enterpriseInstanceChargeType: Int64?
-        
+
         /// 企业版规格：basic-基础班 ，standard-标准版，premium-高级版
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let enterpriseInstanceType: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case enterpriseInstanceName = "EnterpriseInstanceName"
             case enterpriseInstanceChargeType = "EnterpriseInstanceChargeType"
             case enterpriseInstanceType = "EnterpriseInstanceType"
         }
     }
-    
+
     /// 工作负载详情
     public struct WorkloadInfo: TCOutputModel {
         /// 资源 ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let clusterId: String?
-        
+
         /// 应用名
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let applicationName: String?
-        
+
         /// 版本名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let versionName: String?
-        
+
         /// Ready实例数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let readyReplicas: Int64?
-        
+
         /// 实例数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let replicas: Int64?
-        
+
         /// Updated实例数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let updatedReplicas: Int64?
-        
+
         /// UpdatedReady实例数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let updatedReadyReplicas: Int64?
-        
+
         /// 更新版本
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let updateRevision: String?
-        
+
         /// 当前版本
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let currentRevision: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case clusterId = "ClusterId"
             case applicationName = "ApplicationName"

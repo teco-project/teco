@@ -22,37 +22,37 @@ extension Tbm {
     public struct AgePortrait: TCOutputModel {
         /// 年龄区间
         public let ageRange: String
-        
+
         /// 百分比
         public let percent: Float
-        
+
         enum CodingKeys: String, CodingKey {
             case ageRange = "AgeRange"
             case percent = "Percent"
         }
     }
-    
+
     /// 用户年龄画像元素数组
     public struct AgePortraitInfo: TCOutputModel {
         /// 用户年龄画像数组
         public let portraitSet: [AgePortrait]
-        
+
         enum CodingKeys: String, CodingKey {
             case portraitSet = "PortraitSet"
         }
     }
-    
+
     /// 文章信息
     public struct BrandReportArticle: TCOutputModel {
         /// 文章标题
         public let title: String
-        
+
         /// 文章url地址
         public let url: String
-        
+
         /// 文章来源
         public let fromSite: String
-        
+
         /// 文章发表日期
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -60,22 +60,22 @@ extension Tbm {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var pubTime: Date
-        
+
         /// 文章标识
         public let flag: UInt64
-        
+
         /// 文章热度值
         public let hot: UInt64
-        
+
         /// 文章来源等级
         public let level: UInt64
-        
+
         /// 文章摘要
         public let abstract: String
-        
+
         /// 文章ID
         public let articleId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case title = "Title"
             case url = "Url"
@@ -88,7 +88,7 @@ extension Tbm {
             case articleId = "ArticleId"
         }
     }
-    
+
     /// 用户好评差评个数信息
     public struct Comment: TCOutputModel {
         /// 评论的日期
@@ -98,25 +98,25 @@ extension Tbm {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCDateEncoding public var date: Date
-        
+
         /// 差评的个数
         public let negCommentCount: UInt64
-        
+
         /// 好评的个数
         public let posCommentCount: UInt64
-        
+
         enum CodingKeys: String, CodingKey {
             case date = "Date"
             case negCommentCount = "NegCommentCount"
             case posCommentCount = "PosCommentCount"
         }
     }
-    
+
     /// 用户评论内容类型
     public struct CommentInfo: TCOutputModel {
         /// 用户评论内容
         public let comment: String
-        
+
         /// 评论的时间
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -124,13 +124,13 @@ extension Tbm {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var date: Date
-        
+
         enum CodingKeys: String, CodingKey {
             case comment = "Comment"
             case date = "Date"
         }
     }
-    
+
     /// 按日期的统计数据
     public struct DateCount: TCOutputModel {
         /// 统计日期
@@ -140,45 +140,45 @@ extension Tbm {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCDateEncoding public var date: Date
-        
+
         /// 统计值
         public let count: UInt64
-        
+
         enum CodingKeys: String, CodingKey {
             case date = "Date"
             case count = "Count"
         }
     }
-    
+
     /// 性别画像元素
     public struct GenderPortrait: TCOutputModel {
         /// 性别
         public let gender: String
-        
+
         /// 百分比
         public let percent: UInt64
-        
+
         enum CodingKeys: String, CodingKey {
             case gender = "Gender"
             case percent = "Percent"
         }
     }
-    
+
     /// 用户性别画像元素数组
     public struct GenderPortraitInfo: TCOutputModel {
         /// 用户性别画像数组
         public let portraitSet: [GenderPortrait]
-        
+
         enum CodingKeys: String, CodingKey {
             case portraitSet = "PortraitSet"
         }
     }
-    
+
     /// 行业报道新闻
     public struct IndustryNews: TCOutputModel {
         /// 行业报道ID
         public let industryId: String
-        
+
         /// 报道发表时间
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -186,28 +186,28 @@ extension Tbm {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var pubTime: Date
-        
+
         /// 报道来源
         public let fromSite: String
-        
+
         /// 报道标题
         public let title: String
-        
+
         /// 报道来源url
         public let url: String
-        
+
         /// 报道来源等级
         public let level: UInt64
-        
+
         /// 热度值
         public let hot: UInt64
-        
+
         /// 报道标识
         public let flag: UInt64
-        
+
         /// 报道摘要
         public let abstract: String
-        
+
         enum CodingKeys: String, CodingKey {
             case industryId = "IndustryId"
             case pubTime = "PubTime"
@@ -220,74 +220,74 @@ extension Tbm {
             case abstract = "Abstract"
         }
     }
-    
+
     /// 电影喜好画像元素
     public struct MoviePortrait: TCOutputModel {
         /// 电影名称
         public let name: String
-        
+
         /// 百分比
         public let percent: Float
-        
+
         enum CodingKeys: String, CodingKey {
             case name = "Name"
             case percent = "Percent"
         }
     }
-    
+
     /// 用户喜好电影画像元素数组
     public struct MoviePortraitInfo: TCOutputModel {
         /// 用户喜好电影画像数组
         public let portraitSet: [MoviePortrait]
-        
+
         enum CodingKeys: String, CodingKey {
             case portraitSet = "PortraitSet"
         }
     }
-    
+
     /// 省份画像元素
     public struct ProvincePortrait: TCOutputModel {
         /// 省份名称
         public let province: String
-        
+
         /// 百分比
         public let percent: Float
-        
+
         enum CodingKeys: String, CodingKey {
             case province = "Province"
             case percent = "Percent"
         }
     }
-    
+
     /// 用户省份画像元素数组
     public struct ProvincePortraitInfo: TCOutputModel {
         /// 用户省份画像数组
         public let portraitSet: [ProvincePortrait]
-        
+
         enum CodingKeys: String, CodingKey {
             case portraitSet = "PortraitSet"
         }
     }
-    
+
     /// 明星喜好画像元素
     public struct StarPortrait: TCOutputModel {
         /// 喜欢的明星名字
         public let name: String
-        
+
         /// 百分比
         public let percent: Float
-        
+
         enum CodingKeys: String, CodingKey {
             case name = "Name"
             case percent = "Percent"
         }
     }
-    
+
     /// 用户喜好的明星画像元素数组
     public struct StarPortraitInfo: TCOutputModel {
         /// 用户喜好的明星画像数组
         public let portraitSet: [StarPortrait]
-        
+
         enum CodingKeys: String, CodingKey {
             case portraitSet = "PortraitSet"
         }

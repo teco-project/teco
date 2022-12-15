@@ -19,26 +19,26 @@ extension Vpc {
     public struct DeleteNatGatewayRequest: TCRequestModel {
         /// NAT网关的ID，形如：`nat-df45454`。
         public let natGatewayId: String
-        
-        public init (natGatewayId: String) {
+
+        public init(natGatewayId: String) {
             self.natGatewayId = natGatewayId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case natGatewayId = "NatGatewayId"
         }
     }
-    
+
     /// DeleteNatGateway返回参数结构体
     public struct DeleteNatGatewayResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除NAT网关
     ///
     /// 本接口（DeleteNatGateway）用于删除NAT网关。
@@ -47,7 +47,7 @@ extension Vpc {
     public func deleteNatGateway(_ input: DeleteNatGatewayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteNatGatewayResponse > {
         self.client.execute(action: "DeleteNatGateway", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除NAT网关
     ///
     /// 本接口（DeleteNatGateway）用于删除NAT网关。
@@ -56,7 +56,7 @@ extension Vpc {
     public func deleteNatGateway(_ input: DeleteNatGatewayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteNatGatewayResponse {
         try await self.client.execute(action: "DeleteNatGateway", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除NAT网关
     ///
     /// 本接口（DeleteNatGateway）用于删除NAT网关。
@@ -65,7 +65,7 @@ extension Vpc {
     public func deleteNatGateway(natGatewayId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteNatGatewayResponse > {
         self.deleteNatGateway(DeleteNatGatewayRequest(natGatewayId: natGatewayId), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除NAT网关
     ///
     /// 本接口（DeleteNatGateway）用于删除NAT网关。

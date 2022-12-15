@@ -19,31 +19,31 @@ extension Ecm {
     public struct DeleteSnapshotsRequest: TCRequestModel {
         /// 要删除的快照ID列表，可通过[DescribeSnapshots](/document/product/362/15647)查询。
         public let snapshotIds: [String]
-        
+
         /// 是否强制删除快照关联的镜像
         public let deleteBindImages: Bool?
-        
-        public init (snapshotIds: [String], deleteBindImages: Bool? = nil) {
+
+        public init(snapshotIds: [String], deleteBindImages: Bool? = nil) {
             self.snapshotIds = snapshotIds
             self.deleteBindImages = deleteBindImages
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case snapshotIds = "SnapshotIds"
             case deleteBindImages = "DeleteBindImages"
         }
     }
-    
+
     /// DeleteSnapshots返回参数结构体
     public struct DeleteSnapshotsResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除快照
     ///
     /// 本接口（DeleteSnapshots）用于删除快照。
@@ -53,7 +53,7 @@ extension Ecm {
     public func deleteSnapshots(_ input: DeleteSnapshotsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteSnapshotsResponse > {
         self.client.execute(action: "DeleteSnapshots", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除快照
     ///
     /// 本接口（DeleteSnapshots）用于删除快照。
@@ -63,7 +63,7 @@ extension Ecm {
     public func deleteSnapshots(_ input: DeleteSnapshotsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteSnapshotsResponse {
         try await self.client.execute(action: "DeleteSnapshots", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除快照
     ///
     /// 本接口（DeleteSnapshots）用于删除快照。
@@ -73,7 +73,7 @@ extension Ecm {
     public func deleteSnapshots(snapshotIds: [String], deleteBindImages: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteSnapshotsResponse > {
         self.deleteSnapshots(DeleteSnapshotsRequest(snapshotIds: snapshotIds, deleteBindImages: deleteBindImages), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除快照
     ///
     /// 本接口（DeleteSnapshots）用于删除快照。

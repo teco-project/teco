@@ -26,69 +26,69 @@ extension TCIotError {
             case iotTopicExists = "ResourceInUse.IotTopicExists"
             case mqiotResourceExists = "ResourceInUse.MqiotResourceExists"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 设备已绑定。
         public static var iotApplicationDeviceExists: ResourceInUse {
             ResourceInUse(.iotApplicationDeviceExists)
         }
-        
+
         /// 应用用户已存在。
         public static var iotApplicationUserExists: ResourceInUse {
             ResourceInUse(.iotApplicationUserExists)
         }
-        
+
         /// 设备已存在。
         public static var iotDeviceExists: ResourceInUse {
             ResourceInUse(.iotDeviceExists)
         }
-        
+
         /// 正在处理上一个操作。
         public static var iotOpInProgress: ResourceInUse {
             ResourceInUse(.iotOpInProgress)
         }
-        
+
         /// 产品已存在。
         public static var iotProductExists: ResourceInUse {
             ResourceInUse(.iotProductExists)
         }
-        
+
         /// 规则已存在。
         public static var iotRuleExists: ResourceInUse {
             ResourceInUse(.iotRuleExists)
         }
-        
+
         /// Topic已存在。
         public static var iotTopicExists: ResourceInUse {
             ResourceInUse(.iotTopicExists)
         }
-        
+
         /// 资源已存在。
         public static var mqiotResourceExists: ResourceInUse {
             ResourceInUse(.mqiotResourceExists)
         }
-        
+
         public func asIotError() -> TCIotError {
             let code: TCIotError.Code
             switch self.error {

@@ -71,265 +71,265 @@ extension TCTemError {
             case versionLowerCase = "InvalidParameterValue.VersionLowerCase"
             case versionRouteRateNotZero = "InvalidParameterValue.VersionRouteRateNotZero"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         public static var apmNotBind: InvalidParameterValue {
             InvalidParameterValue(.apmNotBind)
         }
-        
+
         public static var applicationAccessServiceReachMaximum: InvalidParameterValue {
             InvalidParameterValue(.applicationAccessServiceReachMaximum)
         }
-        
+
         public static var applicationServiceAlreadyExist: InvalidParameterValue {
             InvalidParameterValue(.applicationServiceAlreadyExist)
         }
-        
+
         public static var applicationServiceNotFound: InvalidParameterValue {
             InvalidParameterValue(.applicationServiceNotFound)
         }
-        
+
         public static var atLeastOneScalerRuleShouldBeApplied: InvalidParameterValue {
             InvalidParameterValue(.atLeastOneScalerRuleShouldBeApplied)
         }
-        
+
         /// 只支持绑定一种弹性伸缩。
         public static var autoScalerLargerThanOne: InvalidParameterValue {
             InvalidParameterValue(.autoScalerLargerThanOne)
         }
-        
+
         public static var cannotOverWriteOtherApplicationService: InvalidParameterValue {
             InvalidParameterValue(.cannotOverWriteOtherApplicationService)
         }
-        
+
         public static var cannotUpdateServiceByBothMethods: InvalidParameterValue {
             InvalidParameterValue(.cannotUpdateServiceByBothMethods)
         }
-        
+
         /// 配置已存在。
         public static var configDataAlreadyExist: InvalidParameterValue {
             InvalidParameterValue(.configDataAlreadyExist)
         }
-        
+
         /// 配置不合法。
         public static var configDataInvalid: InvalidParameterValue {
             InvalidParameterValue(.configDataInvalid)
         }
-        
+
         public static var cronHpaReplicasInvalid: InvalidParameterValue {
             InvalidParameterValue(.cronHpaReplicasInvalid)
         }
-        
+
         public static var dailyCreateNamespaceReachMaximum: InvalidParameterValue {
             InvalidParameterValue(.dailyCreateNamespaceReachMaximum)
         }
-        
+
         public static var disableScalerBeforeDelete: InvalidParameterValue {
             InvalidParameterValue(.disableScalerBeforeDelete)
         }
-        
+
         public static var environmentNameImmutable: InvalidParameterValue {
             InvalidParameterValue(.environmentNameImmutable)
         }
-        
+
         public static var hpaMetricsInvalid: InvalidParameterValue {
             InvalidParameterValue(.hpaMetricsInvalid)
         }
-        
+
         public static var hpaMinMaxInvalid: InvalidParameterValue {
             InvalidParameterValue(.hpaMinMaxInvalid)
         }
-        
+
         public static var hpaThresholdInvalid: InvalidParameterValue {
             InvalidParameterValue(.hpaThresholdInvalid)
         }
-        
+
         public static var ingressRewriteRequiredHttpsEnable: InvalidParameterValue {
             InvalidParameterValue(.ingressRewriteRequiredHttpsEnable)
         }
-        
+
         /// 无效的定时伸缩周期。
         public static var invalidCronScalerPeriod: InvalidParameterValue {
             InvalidParameterValue(.invalidCronScalerPeriod)
         }
-        
+
         /// 版本号格式非法。
         public static var invalidDeployVersion: InvalidParameterValue {
             InvalidParameterValue(.invalidDeployVersion)
         }
-        
+
         /// 访问类型不支持。
         public static var invalidEksServiceType: InvalidParameterValue {
             InvalidParameterValue(.invalidEksServiceType)
         }
-        
+
         public static var invalidEnvName: InvalidParameterValue {
             InvalidParameterValue(.invalidEnvName)
         }
-        
+
         public static var invalidEnvValue: InvalidParameterValue {
             InvalidParameterValue(.invalidEnvValue)
         }
-        
+
         public static var invalidMountPath: InvalidParameterValue {
             InvalidParameterValue(.invalidMountPath)
         }
-        
+
         /// 应用名格式非法。
         public static var invalidServiceName: InvalidParameterValue {
             InvalidParameterValue(.invalidServiceName)
         }
-        
+
         /// 无法识别租户信息。
         public static var invalidTenantInfo: InvalidParameterValue {
             InvalidParameterValue(.invalidTenantInfo)
         }
-        
+
         public static var jdkVersionRequired: InvalidParameterValue {
             InvalidParameterValue(.jdkVersionRequired)
         }
-        
+
         public static var logConfigAlreadyExist: InvalidParameterValue {
             InvalidParameterValue(.logConfigAlreadyExist)
         }
-        
+
         public static var mustProvidePortMappingRules: InvalidParameterValue {
             InvalidParameterValue(.mustProvidePortMappingRules)
         }
-        
+
         /// 环境重复。
         public static var namespaceDuplicateError: InvalidParameterValue {
             InvalidParameterValue(.namespaceDuplicateError)
         }
-        
+
         /// 命名空间不属于用户。
         public static var namespaceNotBelongToAppid: InvalidParameterValue {
             InvalidParameterValue(.namespaceNotBelongToAppid)
         }
-        
+
         /// 环境不存在。
         public static var namespaceNotFound: InvalidParameterValue {
             InvalidParameterValue(.namespaceNotFound)
         }
-        
+
         /// 环境创建失败，达到上限。
         public static var namespaceReachMaximum: InvalidParameterValue {
             InvalidParameterValue(.namespaceReachMaximum)
         }
-        
+
         /// 环境资源创建失败，达到上限。
         public static var namespaceResourceReachMaximum: InvalidParameterValue {
             InvalidParameterValue(.namespaceResourceReachMaximum)
         }
-        
+
         public static var osNotSupport: InvalidParameterValue {
             InvalidParameterValue(.osNotSupport)
         }
-        
+
         /// 服务端口映射重复。
         public static var portDuplicateError: InvalidParameterValue {
             InvalidParameterValue(.portDuplicateError)
         }
-        
+
         public static var portIsReserved: InvalidParameterValue {
             InvalidParameterValue(.portIsReserved)
         }
-        
+
         /// 公有镜像参数错误。
         public static var publicRepoTypeParameterError: InvalidParameterValue {
             InvalidParameterValue(.publicRepoTypeParameterError)
         }
-        
+
         public static var registryNotBind: InvalidParameterValue {
             InvalidParameterValue(.registryNotBind)
         }
-        
+
         public static var scalerNameDuplicated: InvalidParameterValue {
             InvalidParameterValue(.scalerNameDuplicated)
         }
-        
+
         /// 应用存在正在运行的实例。
         public static var serviceFoundRunningVersion: InvalidParameterValue {
             InvalidParameterValue(.serviceFoundRunningVersion)
         }
-        
+
         /// 服务名必须小写。
         public static var serviceLowerCase: InvalidParameterValue {
             InvalidParameterValue(.serviceLowerCase)
         }
-        
+
         /// 应用名已存在。
         public static var serviceNameDuplicateError: InvalidParameterValue {
             InvalidParameterValue(.serviceNameDuplicateError)
         }
-        
+
         /// 应用不属于此账户。
         public static var serviceNotBelongToAppid: InvalidParameterValue {
             InvalidParameterValue(.serviceNotBelongToAppid)
         }
-        
+
         /// 实例创建失败，达到上限。
         public static var servicePodReachMaximum: InvalidParameterValue {
             InvalidParameterValue(.servicePodReachMaximum)
         }
-        
+
         /// 应用创建失败，达到上限。
         public static var serviceReachMaximum: InvalidParameterValue {
             InvalidParameterValue(.serviceReachMaximum)
         }
-        
+
         public static var serviceUseReserveSuffix: InvalidParameterValue {
             InvalidParameterValue(.serviceUseReserveSuffix)
         }
-        
+
         public static var tcrEntInstanceNameNotValid: InvalidParameterValue {
             InvalidParameterValue(.tcrEntInstanceNameNotValid)
         }
-        
+
         public static var temIdInvalid: InvalidParameterValue {
             InvalidParameterValue(.temIdInvalid)
         }
-        
+
         /// 非 JAVA 应用不支持链路追踪特性。
         public static var traitsTracingNotSupported: InvalidParameterValue {
             InvalidParameterValue(.traitsTracingNotSupported)
         }
-        
+
         public static var versionLengthLimit: InvalidParameterValue {
             InvalidParameterValue(.versionLengthLimit)
         }
-        
+
         /// 版本必须小写。
         public static var versionLowerCase: InvalidParameterValue {
             InvalidParameterValue(.versionLowerCase)
         }
-        
+
         /// 版本的路由流量不为0。
         public static var versionRouteRateNotZero: InvalidParameterValue {
             InvalidParameterValue(.versionRouteRateNotZero)
         }
-        
+
         public func asTemError() -> TCTemError {
             let code: TCTemError.Code
             switch self.error {

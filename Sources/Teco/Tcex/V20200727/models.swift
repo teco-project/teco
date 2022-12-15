@@ -19,11 +19,11 @@ extension Tcex {
     public struct AlgorithmResult: TCOutputModel {
         /// 算法ID
         public let algoId: String
-        
+
         /// 算法名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let algoName: String?
-        
+
         /// 算法返回的结果。
         /// - 当算法类型为“OCR（1）”时，结果为文本字符串
         /// - 当算法类型为“文本分类（2）”时，结果字符串为json对象数组：
@@ -42,11 +42,11 @@ extension Tcex {
         ///   - Content：实体文本内容
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let result: String?
-        
+
         /// 算法调用错误信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let error: String?
-        
+
         /// 算法类型：
         /// 1：OCR算法
         /// 2：文本分类算法
@@ -55,7 +55,7 @@ extension Tcex {
         /// 5、实体识别算法
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let algoType: Int64?
-        
+
         enum CodingKeys: String, CodingKey {
             case algoId = "AlgoId"
             case algoName = "AlgoName"

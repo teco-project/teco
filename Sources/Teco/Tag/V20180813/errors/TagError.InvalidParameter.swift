@@ -24,59 +24,59 @@ extension TCTagError {
             case unsupportedService = "InvalidParameter.UnsupportedService"
             case other = "InvalidParameter"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// PaginationToken参数非法。
         public static var paginationTokenInvalid: InvalidParameter {
             InvalidParameter(.paginationTokenInvalid)
         }
-        
+
         /// 项目名称已存在。
         public static var projectNameExisted: InvalidParameter {
             InvalidParameter(.projectNameExisted)
         }
-        
+
         /// 系统预留标签键 qcloud、tencent和project 禁止创建。
         public static var reservedTagKey: InvalidParameter {
             InvalidParameter(.reservedTagKey)
         }
-        
+
         /// Tag参数错误。
         public static var tag: InvalidParameter {
             InvalidParameter(.tag)
         }
-        
+
         /// 当前业务不支持标签操作。
         public static var unsupportedService: InvalidParameter {
             InvalidParameter(.unsupportedService)
         }
-        
+
         /// 参数错误。
         public static var other: InvalidParameter {
             InvalidParameter(.other)
         }
-        
+
         public func asTagError() -> TCTagError {
             let code: TCTagError.Code
             switch self.error {

@@ -19,31 +19,31 @@ extension Clb {
     public struct ReplaceCertForLoadBalancersRequest: TCRequestModel {
         /// 需要被替换的证书的ID，可以是服务端证书或客户端证书
         public let oldCertificateId: String
-        
+
         /// 新证书的内容等相关信息
         public let certificate: CertificateInput
-        
-        public init (oldCertificateId: String, certificate: CertificateInput) {
+
+        public init(oldCertificateId: String, certificate: CertificateInput) {
             self.oldCertificateId = oldCertificateId
             self.certificate = certificate
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case oldCertificateId = "OldCertificateId"
             case certificate = "Certificate"
         }
     }
-    
+
     /// ReplaceCertForLoadBalancers返回参数结构体
     public struct ReplaceCertForLoadBalancersResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 替换负载均衡实例所关联的证书
     ///
     /// ReplaceCertForLoadBalancers 接口用以替换负载均衡实例所关联的证书，对于各个地域的负载均衡，如果指定的老的证书ID与其有关联关系，则会先解除关联，再建立新证书与该负载均衡的关联关系。
@@ -54,7 +54,7 @@ extension Clb {
     public func replaceCertForLoadBalancers(_ input: ReplaceCertForLoadBalancersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ReplaceCertForLoadBalancersResponse > {
         self.client.execute(action: "ReplaceCertForLoadBalancers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 替换负载均衡实例所关联的证书
     ///
     /// ReplaceCertForLoadBalancers 接口用以替换负载均衡实例所关联的证书，对于各个地域的负载均衡，如果指定的老的证书ID与其有关联关系，则会先解除关联，再建立新证书与该负载均衡的关联关系。
@@ -65,7 +65,7 @@ extension Clb {
     public func replaceCertForLoadBalancers(_ input: ReplaceCertForLoadBalancersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReplaceCertForLoadBalancersResponse {
         try await self.client.execute(action: "ReplaceCertForLoadBalancers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 替换负载均衡实例所关联的证书
     ///
     /// ReplaceCertForLoadBalancers 接口用以替换负载均衡实例所关联的证书，对于各个地域的负载均衡，如果指定的老的证书ID与其有关联关系，则会先解除关联，再建立新证书与该负载均衡的关联关系。
@@ -76,7 +76,7 @@ extension Clb {
     public func replaceCertForLoadBalancers(oldCertificateId: String, certificate: CertificateInput, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ReplaceCertForLoadBalancersResponse > {
         self.replaceCertForLoadBalancers(ReplaceCertForLoadBalancersRequest(oldCertificateId: oldCertificateId, certificate: certificate), logger: logger, on: eventLoop)
     }
-    
+
     /// 替换负载均衡实例所关联的证书
     ///
     /// ReplaceCertForLoadBalancers 接口用以替换负载均衡实例所关联的证书，对于各个地域的负载均衡，如果指定的老的证书ID与其有关联关系，则会先解除关联，再建立新证书与该负载均衡的关联关系。

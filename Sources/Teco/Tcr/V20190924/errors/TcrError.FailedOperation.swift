@@ -31,94 +31,94 @@ extension TCTcrError {
             case validateSupportedRegionFail = "FailedOperation.ValidateSupportedRegionFail"
             case other = "FailedOperation"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 依赖服务异常。
         ///
         /// 接口操作执行中所依赖的服务异常，请稍候重试。
         public static var dependenceError: FailedOperation {
             FailedOperation(.dependenceError)
         }
-        
+
         public static var errorGetDBDataError: FailedOperation {
             FailedOperation(.errorGetDBDataError)
         }
-        
+
         public static var errorTcrInvalidMediaType: FailedOperation {
             FailedOperation(.errorTcrInvalidMediaType)
         }
-        
+
         public static var errorTcrResourceConflict: FailedOperation {
             FailedOperation(.errorTcrResourceConflict)
         }
-        
+
         public static var errorTcrUnauthorized: FailedOperation {
             FailedOperation(.errorTcrUnauthorized)
         }
-        
+
         /// 获取数据库数据错误。
         public static var getDBDataError: FailedOperation {
             FailedOperation(.getDBDataError)
         }
-        
+
         /// 获取安全组策略错误。
         public static var getSecurityPolicyFail: FailedOperation {
             FailedOperation(.getSecurityPolicyFail)
         }
-        
+
         /// 获取TcrClient错误。
         public static var getTcrClient: FailedOperation {
             FailedOperation(.getTcrClient)
         }
-        
+
         /// 操作取消。
         public static var operationCancel: FailedOperation {
             FailedOperation(.operationCancel)
         }
-        
+
         /// 交易失败。
         ///
         /// 请检查帐户余额是否充足。
         public static var tradeFailed: FailedOperation {
             FailedOperation(.tradeFailed)
         }
-        
+
         /// 校验仓库名称失败。
         public static var validateRegistryNameFail: FailedOperation {
             FailedOperation(.validateRegistryNameFail)
         }
-        
+
         /// 校验支持地域错误。
         public static var validateSupportedRegionFail: FailedOperation {
             FailedOperation(.validateSupportedRegionFail)
         }
-        
+
         /// 操作失败。
         public static var other: FailedOperation {
             FailedOperation(.other)
         }
-        
+
         public func asTcrError() -> TCTcrError {
             let code: TCTcrError.Code
             switch self.error {

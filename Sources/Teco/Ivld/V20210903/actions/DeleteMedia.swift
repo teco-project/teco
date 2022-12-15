@@ -19,26 +19,26 @@ extension Ivld {
     public struct DeleteMediaRequest: TCRequestModel {
         /// 媒资文件在系统中的ID
         public let mediaId: String
-        
-        public init (mediaId: String) {
+
+        public init(mediaId: String) {
             self.mediaId = mediaId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case mediaId = "MediaId"
         }
     }
-    
+
     /// DeleteMedia返回参数结构体
     public struct DeleteMediaResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除媒资文件
     ///
     /// 将MediaId对应的媒资文件从系统中删除。
@@ -47,7 +47,7 @@ extension Ivld {
     public func deleteMedia(_ input: DeleteMediaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteMediaResponse > {
         self.client.execute(action: "DeleteMedia", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除媒资文件
     ///
     /// 将MediaId对应的媒资文件从系统中删除。
@@ -56,7 +56,7 @@ extension Ivld {
     public func deleteMedia(_ input: DeleteMediaRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteMediaResponse {
         try await self.client.execute(action: "DeleteMedia", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除媒资文件
     ///
     /// 将MediaId对应的媒资文件从系统中删除。
@@ -65,7 +65,7 @@ extension Ivld {
     public func deleteMedia(mediaId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteMediaResponse > {
         self.deleteMedia(DeleteMediaRequest(mediaId: mediaId), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除媒资文件
     ///
     /// 将MediaId对应的媒资文件从系统中删除。

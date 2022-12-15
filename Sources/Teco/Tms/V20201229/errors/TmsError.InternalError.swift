@@ -19,34 +19,34 @@ extension TCTmsError {
         enum Code: String {
             case errTextTimeOut = "InternalError.ErrTextTimeOut"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 请求超时。
         public static var errTextTimeOut: InternalError {
             InternalError(.errTextTimeOut)
         }
-        
+
         public func asTmsError() -> TCTmsError {
             let code: TCTmsError.Code
             switch self.error {

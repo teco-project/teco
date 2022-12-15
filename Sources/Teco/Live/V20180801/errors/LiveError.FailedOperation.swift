@@ -63,261 +63,261 @@ extension TCLiveError {
             case tagUnbindError = "FailedOperation.TagUnbindError"
             case other = "FailedOperation"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 操作 AI 接口失败。
         public static var aiTranscodeOptionFail: FailedOperation {
             FailedOperation(.aiTranscodeOptionFail)
         }
-        
+
         /// 改变任务状态失败。
         public static var alterTaskState: FailedOperation {
             FailedOperation(.alterTaskState)
         }
-        
+
         /// 请参考ssl证书-获取证书详情(https://cloud.tencent.com/document/api/400/41673)
         public static var authError: FailedOperation {
             FailedOperation(.authError)
         }
-        
+
         /// 调用第三方服务失败。
         public static var callOtherSvrError: FailedOperation {
             FailedOperation(.callOtherSvrError)
         }
-        
+
         /// 调用内部服务失败。
         public static var callOtherSvrFailed: FailedOperation {
             FailedOperation(.callOtherSvrFailed)
         }
-        
+
         /// 取消的混流 session 不存在。
         public static var cancelSessionNotExist: FailedOperation {
             FailedOperation(.cancelSessionNotExist)
         }
-        
+
         /// 请参考ssl证书-上传证书(https://cloud.tencent.com/document/api/400/41665)
         public static var cannotBeDeletedIssued: FailedOperation {
             FailedOperation(.cannotBeDeletedIssued)
         }
-        
+
         /// 请参考ssl证书-上传证书(https://cloud.tencent.com/document/api/400/41665)
         public static var cannotBeDeletedWithinHour: FailedOperation {
             FailedOperation(.cannotBeDeletedWithinHour)
         }
-        
+
         /// 请参考ssl证书-上传证书(https://cloud.tencent.com/document/api/400/41665)
         public static var certificateExists: FailedOperation {
             FailedOperation(.certificateExists)
         }
-        
+
         /// ssl接口返回：证书格式错误。
         ///
         /// 请参考ssl证书-上传证书(https://cloud.tencent.com/document/api/400/41665)
         public static var certificateInvalid: FailedOperation {
             FailedOperation(.certificateInvalid)
         }
-        
+
         /// ssl接口返回：私钥与证书不匹配。
         ///
         /// 请参考ssl证书-上传证书(https://cloud.tencent.com/document/api/400/41665)
         public static var certificateMismatch: FailedOperation {
             FailedOperation(.certificateMismatch)
         }
-        
+
         /// 证书在证书中心不存在。
         ///
         /// 请参考ssl证书-上传证书(https://cloud.tencent.com/document/api/400/41665)
         public static var certificateNotFound: FailedOperation {
             FailedOperation(.certificateNotFound)
         }
-        
+
         /// 模版使用中。
         public static var confInUsed: FailedOperation {
             FailedOperation(.confInUsed)
         }
-        
+
         /// 下发CDN平台失败。
         public static var configCDNFailed: FailedOperation {
             FailedOperation(.configCDNFailed)
         }
-        
+
         public static var cosBucketNotExist: FailedOperation {
             FailedOperation(.cosBucketNotExist)
         }
-        
+
         public static var cosBucketNotPermission: FailedOperation {
             FailedOperation(.cosBucketNotPermission)
         }
-        
+
         public static var cosRoleNotExists: FailedOperation {
             FailedOperation(.cosRoleNotExists)
         }
-        
+
         /// 2天内有产生流量，域名处于锁定期间，2天内无流量产生才允许删除域名。
         public static var deleteDomainInLockedTime: FailedOperation {
             FailedOperation(.deleteDomainInLockedTime)
         }
-        
+
         /// 当前域名已添加，不可重复添加。
         public static var domainAdded: FailedOperation {
             FailedOperation(.domainAdded)
         }
-        
+
         /// 自动配置域名规则失败，可能由于您的域名是人工维护，请联系售后同学解决。
         public static var domainGslbFail: FailedOperation {
             FailedOperation(.domainGslbFail)
         }
-        
+
         /// 国内域名需要您通过实名认证。
         public static var domainNeedRealName: FailedOperation {
             FailedOperation(.domainNeedRealName)
         }
-        
+
         /// 请按提示进行域名归属验证。
         public static var domainNeedVerifyOwner: FailedOperation {
             FailedOperation(.domainNeedVerifyOwner)
         }
-        
+
         /// 请参考ssl证书-上传证书(https://cloud.tencent.com/document/api/400/41665)
         public static var exceedsFreeLimit: FailedOperation {
             FailedOperation(.exceedsFreeLimit)
         }
-        
+
         /// 无法获取水印 url。
         public static var getPictureUrlError: FailedOperation {
             FailedOperation(.getPictureUrlError)
         }
-        
+
         /// 获取输入流长宽失败。
         public static var getStreamResolutionError: FailedOperation {
             FailedOperation(.getStreamResolutionError)
         }
-        
+
         /// 无在线流。
         public static var hasNotLivingStream: FailedOperation {
             FailedOperation(.hasNotLivingStream)
         }
-        
+
         /// 域名数量超过限制(100个）。
         public static var hostOutLimit: FailedOperation {
             FailedOperation(.hostOutLimit)
         }
-        
+
         /// 请参考ssl证书-上传证书(https://cloud.tencent.com/document/api/400/41665)
         public static var invalidCertificateStatusCode: FailedOperation {
             FailedOperation(.invalidCertificateStatusCode)
         }
-        
+
         /// ssl接口返回：Type参数错误。
         ///
         /// 请参考ssl证书-获取证书详情(https://cloud.tencent.com/document/api/400/41673)
         public static var invalidParam: FailedOperation {
             FailedOperation(.invalidParam)
         }
-        
+
         /// 操作 CDN 接口失败。
         public static var invokeCdnApiFail: FailedOperation {
             FailedOperation(.invokeCdnApiFail)
         }
-        
+
         /// 操作点播接口异常。
         public static var invokeVideoApiFail: FailedOperation {
             FailedOperation(.invokeVideoApiFail)
         }
-        
+
         /// 计费平台返回余额不足。
         public static var jiFeiNoEnoughFund: FailedOperation {
             FailedOperation(.jiFeiNoEnoughFund)
         }
-        
+
         /// 请参考ssl证书-上传证书(https://cloud.tencent.com/document/api/400/41665)
         public static var networkError: FailedOperation {
             FailedOperation(.networkError)
         }
-        
+
         /// ssl接口返回：没有项目权限。
         ///
         /// 请参考ssl证书-获取证书详情(https://cloud.tencent.com/document/api/400/41673)
         public static var noProjectPermission: FailedOperation {
             FailedOperation(.noProjectPermission)
         }
-        
+
         /// 请参考ssl证书-获取证书详情(https://cloud.tencent.com/document/api/400/41673)
         public static var noRealNameAuth: FailedOperation {
             FailedOperation(.noRealNameAuth)
         }
-        
+
         /// 找不到记录。
         public static var notFound: FailedOperation {
             FailedOperation(.notFound)
         }
-        
+
         /// 您已添加该域名父域名，与当前域名冲突。
         public static var parentDomainAdded: FailedOperation {
             FailedOperation(.parentDomainAdded)
         }
-        
+
         /// 启动混流失败。
         public static var processMixError: FailedOperation {
             FailedOperation(.processMixError)
         }
-        
+
         /// 查询 upload 信息失败。
         public static var queryUploadInfoFailed: FailedOperation {
             FailedOperation(.queryUploadInfoFailed)
         }
-        
+
         /// 规则已经存在。
         public static var ruleAlreadyExist: FailedOperation {
             FailedOperation(.ruleAlreadyExist)
         }
-        
+
         /// 用户没有有效的流量套餐包。
         public static var sdkNoPackage: FailedOperation {
             FailedOperation(.sdkNoPackage)
         }
-        
+
         /// 流不存在。
         public static var streamNotExist: FailedOperation {
             FailedOperation(.streamNotExist)
         }
-        
+
         /// 您已添加该域名子域名，与当前域名冲突。
         public static var subDomainAdded: FailedOperation {
             FailedOperation(.subDomainAdded)
         }
-        
+
         /// 解绑Tag失败，请尝试手动解绑。
         public static var tagUnbindError: FailedOperation {
             FailedOperation(.tagUnbindError)
         }
-        
+
         /// 操作失败。
         public static var other: FailedOperation {
             FailedOperation(.other)
         }
-        
+
         public func asLiveError() -> TCLiveError {
             let code: TCLiveError.Code
             switch self.error {

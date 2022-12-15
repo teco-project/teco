@@ -20,92 +20,92 @@ extension Trp {
         /// 区块hash
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let blockHash: String?
-        
+
         /// 区块高度
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let blockHeight: String?
-        
+
         /// 区块时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let blockTime: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case blockHash = "BlockHash"
             case blockHeight = "BlockHeight"
             case blockTime = "BlockTime"
         }
     }
-    
+
     /// 批次
     public struct CodeBatch: TCOutputModel {
         /// 批次号
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let batchId: String?
-        
+
         /// 企业ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let corpId: Int64?
-        
+
         /// 批次编码(未使用)
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let batchCode: String?
-        
+
         /// 码数量
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let codeCnt: Int64?
-        
+
         /// 所属商户ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let merchantId: String?
-        
+
         /// 产品ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let productId: String?
-        
+
         /// 批次类型
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let batchType: Int64?
-        
+
         /// 备注
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let remark: String?
-        
+
         /// 微信模板
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let mpTpl: String?
-        
+
         /// 批次状态 0: 未激活 1: 已激活 -1: 已冻结
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let status: Int64?
-        
+
         /// 创建时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let createTime: String?
-        
+
         /// 修改时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let updateTime: String?
-        
+
         /// 所属商户名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let merchantName: String?
-        
+
         /// 产品名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let productName: String?
-        
+
         /// 未使用
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let ext: Ext?
-        
+
         /// 模板名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tplName: String?
-        
+
         /// 调度任务
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let job: Job?
-        
+
         enum CodingKeys: String, CodingKey {
             case batchId = "BatchId"
             case corpId = "CorpId"
@@ -126,103 +126,103 @@ extension Trp {
             case job = "Job"
         }
     }
-    
+
     /// 码类型
     public struct CodeItem: TCInputModel, TCOutputModel {
         /// 无
         public let code: String?
-        
-        public init (code: String? = nil) {
+
+        public init(code: String? = nil) {
             self.code = code
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case code = "Code"
         }
     }
-    
+
     /// 码包类型
     public struct CodePack: TCOutputModel {
         /// 码id
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let packId: String?
-        
+
         /// 企业id
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let corpId: Int64?
-        
+
         /// 商户id
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let merchantId: String?
-        
+
         /// 创建时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let createTime: String?
-        
+
         /// 更新时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let updateTime: String?
-        
+
         /// 制码状态 init: 初始化, pending: 执行中, done: 完成, error: 失败
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let status: String?
-        
+
         /// 执行日志
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let log: String?
-        
+
         /// 创建人
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let createUser: String?
-        
+
         /// 码数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let amount: Int64?
-        
+
         /// 码长度
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let codeLength: Int64?
-        
+
         /// 码类型
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let codeType: String?
-        
+
         /// 是否暗码
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let cipher: Int64?
-        
+
         /// [弃用] 文字码地址，通过另一个接口查
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let textUrl: String?
-        
+
         /// [弃用] 二维码地址，通过另一个接口查
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let packUrl: String?
-        
+
         /// 商户名
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let merchantName: String?
-        
+
         /// 码规则类型 0: 默认, 1: 自定义
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let ruleType: Int64?
-        
+
         /// 自定义码规则ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let customId: String?
-        
+
         /// 码包类型 0: 普通码包 1: 层级码包
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let packType: Int64?
-        
+
         /// 生码层级
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let packLevel: UInt64?
-        
+
         /// 层级码配置
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let packSpec: [PackSpec]?
-        
+
         enum CodingKeys: String, CodingKey {
             case packId = "PackId"
             case corpId = "CorpId"
@@ -246,28 +246,28 @@ extension Trp {
             case packSpec = "PackSpec"
         }
     }
-    
+
     /// 码段配置
     public struct CodePart: TCOutputModel {
         /// 码段名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let name: String?
-        
+
         /// 码段类型
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let type: String?
-        
+
         /// 码段内容
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let value: String?
-        
+
         /// 码段长度
         public let length: UInt64
-        
+
         /// 扩展字段
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let ext: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case name = "Name"
             case type = "Type"
@@ -276,21 +276,21 @@ extension Trp {
             case ext = "Ext"
         }
     }
-    
+
     /// 渠道商的子企业额度使用情况
     public struct CorpQuota: TCOutputModel {
         /// 企业ID
         public let corpId: UInt64
-        
+
         /// 企业名称
         public let corpName: String
-        
+
         /// 额度
         public let quota: Quota
-        
+
         /// 额度使用量
         public let usageQuota: UsageQuota
-        
+
         enum CodingKeys: String, CodingKey {
             case corpId = "CorpId"
             case corpName = "CorpName"
@@ -298,39 +298,39 @@ extension Trp {
             case usageQuota = "UsageQuota"
         }
     }
-    
+
     /// 码规则
     public struct CustomRule: TCOutputModel {
         /// 码规则ID
         public let customId: String
-        
+
         /// 码规则名
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let name: String?
-        
+
         /// 企业ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let corpId: UInt64?
-        
+
         /// 商户ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let merchantId: String?
-        
+
         /// 码ID长度
         public let codeLength: UInt64
-        
+
         /// 规则状态
         public let status: Int64
-        
+
         /// 码段配置
         public let codeParts: [CodePart]
-        
+
         /// 创建时间
         public let createTime: String
-        
+
         /// 更新时间
         public let updateTime: String
-        
+
         enum CodingKeys: String, CodingKey {
             case customId = "CustomId"
             case name = "Name"
@@ -343,56 +343,56 @@ extension Trp {
             case updateTime = "UpdateTime"
         }
     }
-    
+
     /// 预留字段
     public struct Ext: TCOutputModel {
     }
-    
+
     /// 通用调度任务
     public struct Job: TCOutputModel {
         /// 调度ID
         public let jobId: Int64
-        
+
         /// 执行状态 init:初始化, pending: 执行中, done: 执行成功, error: 执行失败
         public let status: String
-        
+
         enum CodingKeys: String, CodingKey {
             case jobId = "JobId"
             case status = "Status"
         }
     }
-    
+
     /// 商户信息
     public struct Merchant: TCOutputModel {
         /// 商户标识码
         public let merchantId: String
-        
+
         /// 企业id
         public let corpId: Int64
-        
+
         /// 商户名称
         public let name: String
-        
+
         /// 备注
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let remark: String?
-        
+
         /// 创建时间
         public let createTime: String
-        
+
         /// 更新时间
         public let updateTime: String
-        
+
         /// 商户码规则
         public let codeRule: String
-        
+
         /// 码来源类型 0: 安心平台 1: 第三方码
         public let codeType: Int64
-        
+
         /// 第三方码域名前缀
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let codeUrl: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case merchantId = "MerchantId"
             case corpId = "CorpId"
@@ -405,34 +405,34 @@ extension Trp {
             case codeUrl = "CodeUrl"
         }
     }
-    
+
     /// 层级码配置
     public struct PackSpec: TCInputModel, TCOutputModel {
         /// 层级
         public let level: UInt64
-        
+
         /// 比例
         public let rate: UInt64
-        
+
         /// 数量
         public let amount: UInt64
-        
+
         /// 码规则ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let customId: String?
-        
+
         /// 码段配置
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let codeParts: [CodePart]?
-        
-        public init (level: UInt64, rate: UInt64, amount: UInt64, customId: String? = nil, codeParts: [CodePart]? = nil) {
+
+        public init(level: UInt64, rate: UInt64, amount: UInt64, customId: String? = nil, codeParts: [CodePart]? = nil) {
             self.level = level
             self.rate = rate
             self.amount = amount
             self.customId = customId
             self.codeParts = codeParts
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case level = "Level"
             case rate = "Rate"
@@ -441,28 +441,28 @@ extension Trp {
             case codeParts = "CodeParts"
         }
     }
-    
+
     /// 环节数据
     public struct PhaseData: TCInputModel {
         /// 启用头
         public let headEnabled: Bool?
-        
+
         /// 标题
         public let headTitle: String?
-        
+
         /// 标识符
         public let key: String?
-        
+
         /// 小程序AppId
         public let appId: String?
-        
+
         /// 小程序AppPath
         public let appPath: String?
-        
+
         /// 小程序名称AppName
         public let appName: String?
-        
-        public init (headEnabled: Bool? = nil, headTitle: String? = nil, key: String? = nil, appId: String? = nil, appPath: String? = nil, appName: String? = nil) {
+
+        public init(headEnabled: Bool? = nil, headTitle: String? = nil, key: String? = nil, appId: String? = nil, appPath: String? = nil, appName: String? = nil) {
             self.headEnabled = headEnabled
             self.headTitle = headTitle
             self.key = key
@@ -470,7 +470,7 @@ extension Trp {
             self.appPath = appPath
             self.appName = appName
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case headEnabled = "HeadEnabled"
             case headTitle = "HeadTitle"
@@ -480,49 +480,49 @@ extension Trp {
             case appName = "AppName"
         }
     }
-    
+
     /// 商品信息
     public struct Product: TCOutputModel {
         /// 商品id
         public let productId: String
-        
+
         /// 企业id
         public let corpId: Int64
-        
+
         /// 商户标识码
         public let merchantId: String
-        
+
         /// 商品编号
         public let productCode: String
-        
+
         /// 商品名称
         public let name: String
-        
+
         /// 商品规格
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let specification: String?
-        
+
         /// 备注
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let remark: String?
-        
+
         /// 商品图片
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let logo: [String]?
-        
+
         /// 创建时间
         public let createTime: String
-        
+
         /// 修改时间
         public let updateTime: String
-        
+
         /// 预留字段
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let ext: Ext?
-        
+
         /// 商户名称
         public let merchantName: String
-        
+
         enum CodingKeys: String, CodingKey {
             case productId = "ProductId"
             case corpId = "CorpId"
@@ -538,62 +538,62 @@ extension Trp {
             case merchantName = "MerchantName"
         }
     }
-    
+
     /// 企业配额信息
     public struct Quota: TCInputModel, TCOutputModel {
         /// 服务开始时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let startTime: String?
-        
+
         /// 服务结束时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let endTime: String?
-        
+
         /// 配额ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let quotaId: UInt64?
-        
+
         /// 企业ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let corpId: UInt64?
-        
+
         /// 开通服务
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let services: [String]?
-        
+
         /// 工厂配额
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let factoryQuota: Int64?
-        
+
         /// 产品配额
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let itemQuota: Int64?
-        
+
         /// 溯源码配额
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let trackQuota: Int64?
-        
+
         /// 销售码配额
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let saleQuota: Int64?
-        
+
         /// 上链配额
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let chainQuota: Int64?
-        
+
         /// 风控配额
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let riskQuota: Int64?
-        
+
         /// 溯源类型
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let trackType: Int64?
-        
+
         /// 开通版本 basic standard enterprise
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let version: String?
-        
-        public init (startTime: String, endTime: String, quotaId: UInt64? = nil, corpId: UInt64? = nil, services: [String]? = nil, factoryQuota: Int64? = nil, itemQuota: Int64? = nil, trackQuota: Int64? = nil, saleQuota: Int64? = nil, chainQuota: Int64? = nil, riskQuota: Int64? = nil, trackType: Int64? = nil, version: String? = nil) {
+
+        public init(startTime: String, endTime: String, quotaId: UInt64? = nil, corpId: UInt64? = nil, services: [String]? = nil, factoryQuota: Int64? = nil, itemQuota: Int64? = nil, trackQuota: Int64? = nil, saleQuota: Int64? = nil, chainQuota: Int64? = nil, riskQuota: Int64? = nil, trackType: Int64? = nil, version: String? = nil) {
             self.startTime = startTime
             self.endTime = endTime
             self.quotaId = quotaId
@@ -608,7 +608,7 @@ extension Trp {
             self.trackType = trackType
             self.version = version
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case startTime = "StartTime"
             case endTime = "EndTime"
@@ -625,42 +625,42 @@ extension Trp {
             case version = "Version"
         }
     }
-    
+
     /// 溯源码
     public struct TraceCode: TCOutputModel {
         /// 二维码
         public let code: String
-        
+
         /// 企业ID
         public let corpId: UInt64
-        
+
         /// 码包ID
         public let packId: String
-        
+
         /// 批次ID
         public let batchId: String
-        
+
         /// 所属商户ID
         public let merchantId: String
-        
+
         /// 产品ID
         public let productId: String
-        
+
         /// 码状态 0: 冻结 1: 激活
         public let status: UInt64
-        
+
         /// 创建时间
         public let createTime: String
-        
+
         /// 修改时间
         public let updateTime: String
-        
+
         /// 商户名称
         public let merchantName: String
-        
+
         /// 产品名称
         public let productName: String
-        
+
         enum CodingKeys: String, CodingKey {
             case code = "Code"
             case corpId = "CorpId"
@@ -675,69 +675,69 @@ extension Trp {
             case productName = "ProductName"
         }
     }
-    
+
     /// 溯源数据
     public struct TraceData: TCOutputModel {
         /// 溯源ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let traceId: String?
-        
+
         /// 企业ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let corpId: UInt64?
-        
+
         /// 码类型 0: 批次, 1: 码, 2: 生产任务
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let type: UInt64?
-        
+
         /// 码值，跟码类型一一对应
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let code: String?
-        
+
         /// 排序，在Phase相同情况下，值越小排名靠前
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let rank: UInt64?
-        
+
         /// 溯源阶段 0:商品 1:通用 2:生产溯源 3:销售溯源
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let phase: UInt64?
-        
+
         /// 溯源环节名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let phaseName: String?
-        
+
         /// 溯源时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let traceTime: String?
-        
+
         /// 无
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let traceItems: [TraceItem]?
-        
+
         /// 创建时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let createTime: String?
-        
+
         /// 上链状态 0: 未上链 1: 上链中 2: 已上链 -1: 异常
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let chainStatus: UInt64?
-        
+
         /// 上链时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let chainTime: String?
-        
+
         /// 上链数据
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let chainData: ChainData?
-        
+
         /// 溯源阶段配置
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let phaseData: PhaseData?
-        
+
         /// 溯源阶段状态 0: 无效, 1: 有效
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let status: Int64?
-        
+
         enum CodingKeys: String, CodingKey {
             case traceId = "TraceId"
             case corpId = "CorpId"
@@ -756,7 +756,7 @@ extension Trp {
             case status = "Status"
         }
     }
-    
+
     /// 溯源数据项
     /// Type的枚举值
     /// text:文本类型, longtext:长文本类型, banner:单图片类型, image:多图片类型, video:视频类型, mp:小程序类型
@@ -771,35 +771,35 @@ extension Trp {
         /// 字段名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let name: String?
-        
+
         /// 字段值
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let value: String?
-        
+
         /// 类型 text:文本类型, longtext:长文本类型, banner:单图片类型, image:多图片类型, video:视频类型, mp:小程序类型
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let type: String?
-        
+
         /// 只读
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let readOnly: Bool?
-        
+
         /// 扫码展示
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let hidden: Bool?
-        
+
         /// 多个值
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let values: [String]?
-        
+
         /// 类型标识
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let key: String?
-        
+
         /// 扩展字段
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let ext: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case name = "Name"
             case value = "Value"
@@ -811,41 +811,41 @@ extension Trp {
             case ext = "Ext"
         }
     }
-    
+
     /// 付费信息使用量
     public struct UsageQuota: TCOutputModel {
         /// 企业ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let corpId: UInt64?
-        
+
         /// 商户配额
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let factoryCnt: Int64?
-        
+
         /// 商品数量
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let itemCnt: Int64?
-        
+
         /// 溯源码量
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let trackCnt: Int64?
-        
+
         /// 营销码额度
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let saleCnt: Int64?
-        
+
         /// 区块链上链次数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let chainCnt: Int64?
-        
+
         /// 营销风控次数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let riskCnt: Int64?
-        
+
         /// 时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let updateTime: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case corpId = "CorpId"
             case factoryCnt = "FactoryCnt"

@@ -49,155 +49,155 @@ public struct TCCccError: TCCccErrorType {
         case unknownParameter = "UnknownParameter"
         case unsupportedOperation = "UnsupportedOperation"
     }
-    
+
     /// Error domains affliated to ``TCCccError``.
     public static var domains: [TCErrorType.Type] {
         [FailedOperation.self, InternalError.self, InvalidParameter.self, InvalidParameterValue.self, LimitExceeded.self, OperationDenied.self]
     }
-    
+
     private let error: Code
-    
+
     public let context: TCErrorContext?
-    
+
     public var errorCode: String {
         self.error.rawValue
     }
-    
+
     /// Initializer used by ``TCClient`` to match an error of this type.
-    public init ?(errorCode: String, context: TCErrorContext) {
+    public init?(errorCode: String, context: TCErrorContext) {
         guard let error = Code(rawValue: errorCode) else {
             return nil
         }
         self.error = error
         self.context = context
     }
-    
-    internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+    internal init(_ error: Code, context: TCErrorContext? = nil) {
         self.error = error
         self.context = context
     }
-    
+
     /// 外呼失败。
     ///
     /// 外呼失败，请检查主叫或被叫号码是否正常。
     public static var failedOperation_CallOutFailed: TCCccError {
         TCCccError(.failedOperation_CallOutFailed)
     }
-    
+
     public static var failedOperation_CalleeIsLimited: TCCccError {
         TCCccError(.failedOperation_CalleeIsLimited)
     }
-    
+
     public static var failedOperation_CallerOverFrequency: TCCccError {
         TCCccError(.failedOperation_CallerOverFrequency)
     }
-    
+
     public static var failedOperation_CurStateNotAllowModify: TCCccError {
         TCCccError(.failedOperation_CurStateNotAllowModify)
     }
-    
+
     /// 重复账号。
     public static var failedOperation_DuplicatedAccount: TCCccError {
         TCCccError(.failedOperation_DuplicatedAccount)
     }
-    
+
     public static var failedOperation_NoCallOutNumber: TCCccError {
         TCCccError(.failedOperation_NoCallOutNumber)
     }
-    
+
     /// 权限不足。
     ///
     /// 检查账号权限
     public static var failedOperation_PermissionDenied: TCCccError {
         TCCccError(.failedOperation_PermissionDenied)
     }
-    
+
     public static var failedOperation_SeatStatusBusy: TCCccError {
         TCCccError(.failedOperation_SeatStatusBusy)
     }
-    
+
     /// 内部错误。
     public static var internalError: TCCccError {
         TCCccError(.internalError)
     }
-    
+
     /// 内部数据库访问失败。
     public static var internalError_DBError: TCCccError {
         TCCccError(.internalError_DBError)
     }
-    
+
     /// 参数错误。
     public static var invalidParameter: TCCccError {
         TCCccError(.invalidParameter)
     }
-    
+
     /// 参数取值错误。
     public static var invalidParameterValue: TCCccError {
         TCCccError(.invalidParameterValue)
     }
-    
+
     /// 账号不存在。
     public static var invalidParameterValue_AccountNotExist: TCCccError {
         TCCccError(.invalidParameterValue_AccountNotExist)
     }
-    
+
     /// 实例不存在。
     public static var invalidParameterValue_InstanceNotExist: TCCccError {
         TCCccError(.invalidParameterValue_InstanceNotExist)
     }
-    
+
     /// 请确认手机号是否有误
     public static var invalidParameterValue_PhoneNumIsBoundOtherAccount: TCCccError {
         TCCccError(.invalidParameterValue_PhoneNumIsBoundOtherAccount)
     }
-    
+
     /// 查询记录不存在。
     ///
     /// 确认查询条件是否正确
     public static var invalidParameterValue_RecordNotExist: TCCccError {
         TCCccError(.invalidParameterValue_RecordNotExist)
     }
-    
+
     public static var invalidParameterValue_SkillGroupError: TCCccError {
         TCCccError(.invalidParameterValue_SkillGroupError)
     }
-    
+
     public static var invalidParameterValue_SkillGroupExist: TCCccError {
         TCCccError(.invalidParameterValue_SkillGroupExist)
     }
-    
+
     /// 实例不存在。
     public static var invalidParameter_InstanceNotExist: TCCccError {
         TCCccError(.invalidParameter_InstanceNotExist)
     }
-    
+
     /// 超过配额限制。
     public static var limitExceeded: TCCccError {
         TCCccError(.limitExceeded)
     }
-    
+
     /// 超出数量限制。
     public static var limitExceeded_OutOfCountLimit: TCCccError {
         TCCccError(.limitExceeded_OutOfCountLimit)
     }
-    
+
     /// 不在白名单中。
     ///
     /// 请申请号码白名单并通过之后再试。
     public static var operationDenied_NotInWhiteList: TCCccError {
         TCCccError(.operationDenied_NotInWhiteList)
     }
-    
+
     /// 未知参数错误。
     public static var unknownParameter: TCCccError {
         TCCccError(.unknownParameter)
     }
-    
+
     /// 操作不支持。
     public static var unsupportedOperation: TCCccError {
         TCCccError(.unsupportedOperation)
     }
-    
+
     public func asCccError() -> TCCccError {
         return self
     }

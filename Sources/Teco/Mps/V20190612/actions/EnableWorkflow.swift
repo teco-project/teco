@@ -19,26 +19,26 @@ extension Mps {
     public struct EnableWorkflowRequest: TCRequestModel {
         /// 工作流 ID。
         public let workflowId: Int64
-        
-        public init (workflowId: Int64) {
+
+        public init(workflowId: Int64) {
             self.workflowId = workflowId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case workflowId = "WorkflowId"
         }
     }
-    
+
     /// EnableWorkflow返回参数结构体
     public struct EnableWorkflowResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 启用工作流
     ///
     /// 启用工作流。
@@ -46,7 +46,7 @@ extension Mps {
     public func enableWorkflow(_ input: EnableWorkflowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < EnableWorkflowResponse > {
         self.client.execute(action: "EnableWorkflow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 启用工作流
     ///
     /// 启用工作流。
@@ -54,7 +54,7 @@ extension Mps {
     public func enableWorkflow(_ input: EnableWorkflowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnableWorkflowResponse {
         try await self.client.execute(action: "EnableWorkflow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 启用工作流
     ///
     /// 启用工作流。
@@ -62,7 +62,7 @@ extension Mps {
     public func enableWorkflow(workflowId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < EnableWorkflowResponse > {
         self.enableWorkflow(EnableWorkflowRequest(workflowId: workflowId), logger: logger, on: eventLoop)
     }
-    
+
     /// 启用工作流
     ///
     /// 启用工作流。

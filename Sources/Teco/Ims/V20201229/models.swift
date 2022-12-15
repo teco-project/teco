@@ -19,30 +19,30 @@ extension Ims {
     public struct Device: TCInputModel {
         /// 该字段表示业务用户对应设备的IP地址，同时**支持IPv4和IPv6**地址的记录；需要与IpType参数配合使用。
         public let ip: String?
-        
+
         /// 该字段表示业务用户对应的MAC地址，以方便设备识别与管理；其格式与取值与标准MAC地址一致。
         public let mac: String?
-        
+
         /// *内测中，敬请期待。*
         public let tokenId: String?
-        
+
         /// *内测中，敬请期待。*
         public let deviceId: String?
-        
+
         /// 该字段表示业务用户对应设备的**IMEI码**（国际移动设备识别码），该识别码可用于识别每一部独立的手机等移动通信设备，方便设备识别与管理。<br>备注：格式为**15-17位纯数字**。
         public let imei: String?
-        
+
         /// **iOS设备专用**，该字段表示业务用户对应的**IDFA**(广告标识符),这是由苹果公司提供的用于标识用户的广告标识符，由一串16进制的32位数字和字母组成。<br>
         /// 备注：苹果公司自2021年iOS14更新后允许用户手动关闭或者开启IDFA，故此字符串标记有效性可能有所降低。
         public let idfa: String?
-        
+
         /// **iOS设备专用**，该字段表示业务用户对应的**IDFV**(应用开发商标识符),这是由苹果公司提供的用于标注应用开发商的标识符，由一串16进制的32位数字和字母组成，可被用于唯一标识设备。
         public let idfv: String?
-        
+
         /// 该字段表示记录的IP地址的类型，取值：**0**（代表IPv4地址）、**1**（代表IPv6地址）；需要与IpType参数配合使用。
         public let ipType: UInt64?
-        
-        public init (ip: String? = nil, mac: String? = nil, tokenId: String? = nil, deviceId: String? = nil, imei: String? = nil, idfa: String? = nil, idfv: String? = nil, ipType: UInt64? = nil) {
+
+        public init(ip: String? = nil, mac: String? = nil, tokenId: String? = nil, deviceId: String? = nil, imei: String? = nil, idfa: String? = nil, idfv: String? = nil, ipType: UInt64? = nil) {
             self.ip = ip
             self.mac = mac
             self.tokenId = tokenId
@@ -52,7 +52,7 @@ extension Ims {
             self.idfv = idfv
             self.ipType = ipType
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case ip = "Ip"
             case mac = "Mac"
@@ -64,49 +64,49 @@ extension Ims {
             case ipType = "IpType"
         }
     }
-    
+
     /// 用于返回分类模型命中子标签的详细结果
     public struct LabelDetailItem: TCOutputModel {
         /// 该字段用于返回识别对象的ID以方便识别和区分。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let id: Int64?
-        
+
         /// 该字段用于返回识命中的子标签名称。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let name: String?
-        
+
         /// 该字段用于返回对应子标签命中的分值，取值为**0-100**，如：*Porn-SexBehavior 99* 则代表相应识别内容命中色情-性行为标签的分值为99。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let score: UInt64?
-        
+
         enum CodingKeys: String, CodingKey {
             case id = "Id"
             case name = "Name"
             case score = "Score"
         }
     }
-    
+
     /// 分类模型命中结果
     public struct LabelResult: TCOutputModel {
         /// 该字段用于返回模型识别出的场景结果，如广告、色情、有害内容等场景。
         public let scene: String
-        
+
         /// 该字段用于返回针对当前恶意标签的后续操作建议。当您获取到判定结果后，返回值表示系统推荐的后续操作；建议您按照业务所需，对不同违规类型与建议值进行处理。<br>返回值：**Block**：建议屏蔽，**Review** ：建议人工复审，**Pass**：建议通过
         public let suggestion: String
-        
+
         /// 该字段用于返回检测结果所对应的恶意标签。<br>返回值：**Normal**：正常，**Porn**：色情，**Abuse**：谩骂，**Ad**：广告，**Custom**：自定义违规；以及其他令人反感、不安全或不适宜的内容类型。
         public let label: String
-        
+
         /// 该字段用于返回对应恶意标签下的子标签的检测结果，如：*Porn-SexBehavior*等子标签。
         public let subLabel: String
-        
+
         /// 该字段用于返回当前标签（Label）下的置信度，取值范围：0（**置信度最低**）-100（**置信度最高** ），越高代表图片越有可能属于当前返回的标签；如：*色情 99*，则表明该图片非常有可能属于色情内容；*色情 0*，则表明该图片不属于色情内容。
         public let score: UInt64
-        
+
         /// 该字段用于返回分类模型命中子标签的详细信息，如：序号、命中标签名称、分数等信息。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let details: [LabelDetailItem]?
-        
+
         enum CodingKeys: String, CodingKey {
             case scene = "Scene"
             case suggestion = "Suggestion"
@@ -116,32 +116,32 @@ extension Ims {
             case details = "Details"
         }
     }
-    
+
     /// 用于返回自定义库/黑白库的明细信息
     public struct LibDetail: TCOutputModel {
         /// 该字段用于返回识别对象的ID以方便识别和区分。
         public let id: Int64
-        
+
         /// 该字段**仅当Label为Custom：自定义关键词时该参数有效**,用于返回自定义库的ID，以方便自定义库管理和配置。
         public let libId: String
-        
+
         /// 该字段**仅当Label为Custom：自定义关键词时该参数有效**,用于返回自定义库的名称,以方便自定义库管理和配置。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let libName: String?
-        
+
         /// 该字段用于返回识别图像对象的ID以方便文件管理。
         public let imageId: String
-        
+
         /// 该字段用于返回检测结果所对应的恶意标签。<br>返回值：**Normal**：正常，**Porn**：色情，**Abuse**：谩骂，**Ad**：广告，**Custom**：自定义违规；以及其他令人反感、不安全或不适宜的内容类型。
         public let label: String
-        
+
         /// 该字段用于返回其他自定义标签以满足您的定制化场景需求，若无需求则可略过。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tag: String?
-        
+
         /// 该字段用于返回对应模型命中的分值，取值为**0-100**，如：*Porn 99* 则代表相应识别内容命中色情标签的分值为99。
         public let score: Int64
-        
+
         enum CodingKeys: String, CodingKey {
             case id = "Id"
             case libId = "LibId"
@@ -152,29 +152,29 @@ extension Ims {
             case score = "Score"
         }
     }
-    
+
     /// 用于返回黑白库比对结果的详细信息
     public struct LibResult: TCOutputModel {
         /// 该字段表示模型的场景识别结果，默认取值为Similar。
         public let scene: String
-        
+
         /// 该字段用于返回后续操作建议。当您获取到判定结果后，返回值表示系统推荐的后续操作；建议您按照业务所需，对不同违规类型与建议值进行处理。<br>返回值：**Block**：建议屏蔽，**Review** ：建议人工复审，**Pass**：建议通过
         public let suggestion: String
-        
+
         /// 该字段用于返回检测结果所对应的恶意标签。<br>返回值：**Normal**：正常，**Porn**：色情，**Abuse**：谩骂，**Ad**：广告，**Custom**：自定义违规；以及其他令人反感、不安全或不适宜的内容类型。
         public let label: String
-        
+
         /// 该字段用于返回恶意标签下对应的子标签的检测结果，如：*Porn-SexBehavior*等子标签。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let subLabel: String?
-        
+
         /// 该字段用于返回图片检索模型识别的分值，取值为**0-100**，表示该审核图片**与库中样本的相似分值**，得分越高，代表当前内容越有可能命中相似图库内的样本。
         public let score: Int64
-        
+
         /// 该字段用于返回黑白库比对结果的详细信息，如：序号、库名称、恶意标签等信息；详细返回信息敬请参考对应数据结构（[LibDetail](https://cloud.tencent.com/document/product/1125/53274#LibDetail)）的描述文档
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let details: [LibDetail]?
-        
+
         enum CodingKeys: String, CodingKey {
             case scene = "Scene"
             case suggestion = "Suggestion"
@@ -184,24 +184,24 @@ extension Ims {
             case details = "Details"
         }
     }
-    
+
     /// 坐标
     public struct Location: TCOutputModel {
         /// 该参数用于返回检测框**左上角位置的横坐标**（x）所在的像素位置，结合剩余参数可唯一确定检测框的大小和位置。
         public let x: Float
-        
+
         /// 该参数用于返回检测框**左上角位置的纵坐标**（y）所在的像素位置，结合剩余参数可唯一确定检测框的大小和位置。
         public let y: Float
-        
+
         /// 该参数用于返回**检测框的宽度**（由左上角出发在x轴向右延伸的长度），结合剩余参数可唯一确定检测框的大小和位置。
         public let width: Float
-        
+
         /// 该参数用于返回**检测框的高度**（由左上角出发在y轴向下延伸的长度），结合剩余参数可唯一确定检测框的大小和位置。
         public let height: Float
-        
+
         /// 该参数用于返回**检测框的旋转角度**，该参数结合X和Y两个坐标参数可唯一确定检测框的具体位置；取值：**0-360**（**角度制**），方向为**逆时针旋转**。
         public let rotate: Float
-        
+
         enum CodingKeys: String, CodingKey {
             case x = "X"
             case y = "Y"
@@ -210,27 +210,27 @@ extension Ims {
             case rotate = "Rotate"
         }
     }
-    
+
     /// 实体检测结果明细，当检测场景为实体、广告台标、二维码时表示模型检测目标框的标签名称、标签值、标签分数以及检测框的位置信息。
     public struct ObjectDetail: TCOutputModel {
         /// 该参数用于返回识别对象的ID以方便识别和区分。
         public let id: UInt64
-        
+
         /// 该参数用于返回命中的实体标签。
         public let name: String
-        
+
         /// 该参数用于返回对应实体标签所对应的值或内容。如：当标签为*二维码(QrCode)*时，该字段为识别出的二维码对应的URL地址。
         public let value: String
-        
+
         /// 该参数用于返回对应实体标签命中的分值，取值为**0-100**，如：*QrCode 99* 则代表相应识别内容命中二维码场景标签的概率非常高。
         public let score: UInt64
-        
+
         /// 该字段用于返回实体检测框的坐标位置（左上角xy坐标、长宽、旋转角度）以方便快速定位实体的相关信息。
         public let location: Location
-        
+
         /// 该参数用于返回命中的实体二级标签。
         public let subLabel: String
-        
+
         enum CodingKeys: String, CodingKey {
             case id = "Id"
             case name = "Name"
@@ -240,33 +240,33 @@ extension Ims {
             case subLabel = "SubLabel"
         }
     }
-    
+
     /// 用于返回实体检测结果详情
     public struct ObjectResult: TCOutputModel {
         /// 该字段用于返回实体识别出的实体场景结果，如二维码、logo、图片OCR等场景。
         public let scene: String
-        
+
         /// 该字段用于返回针对当前恶意标签的后续操作建议。当您获取到判定结果后，返回值表示系统推荐的后续操作；建议您按照业务所需，对不同违规类型与建议值进行处理。<br>返回值：**Block**：建议屏蔽，**Review** ：建议人工复审，**Pass**：建议通过
         public let suggestion: String
-        
+
         /// 该字段用于返回检测结果所对应的恶意标签，表示模型推荐的审核结果，建议您按照业务所需，对不同违规类型与建议值进行处理。<br>返回值：**Normal**：正常，**Porn**：色情，**Abuse**：谩骂，**Ad**：广告，**Custom**：自定义违规；以及其他令人反感、不安全或不适宜的内容类型。
         public let label: String
-        
+
         /// 该字段用于返回当前恶意标签下对应的子标签的检测结果，如：*Porn-SexBehavior* 等子标签。
         public let subLabel: String
-        
+
         /// 该字段用于返回命中当前恶意标签下子标签的分值，取值为**0-100**，如：*Porn-SexBehavior 99* 则代表相应识别内容命中色情-性行为标签的分值为99。
         public let score: UInt64
-        
+
         /// 该标签用于返回所识别出的实体名称。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let names: [String]?
-        
+
         /// 该标签用于返回所识别出实体的详细信息，如：序号、命中标签名称、位置坐标等信息，详细返回内容敬请参考相应数据结构（[ObjectDetail
         /// ](https://cloud.tencent.com/document/api/1125/53274#ObjectDetail)）。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let details: [ObjectDetail]?
-        
+
         enum CodingKeys: String, CodingKey {
             case scene = "Scene"
             case suggestion = "Suggestion"
@@ -277,31 +277,31 @@ extension Ims {
             case details = "Details"
         }
     }
-    
+
     /// 用于返回OCR结果检测详情
     public struct OcrResult: TCOutputModel {
         /// 该字段表示识别场景，取值默认为OCR（图片OCR识别）。
         public let scene: String
-        
+
         /// 该字段用于返回优先级最高的恶意标签对应的后续操作建议。当您获取到判定结果后，返回值表示系统推荐的后续操作；建议您按照业务所需，对不同违规类型与建议值进行处理。<br>返回值：**Block**：建议屏蔽，**Review** ：建议人工复审，**Pass**：建议通过
         public let suggestion: String
-        
+
         /// 该字段用于返回OCR检测结果所对应的优先级最高的恶意标签，表示模型推荐的审核结果，建议您按照业务所需，对不同违规类型与建议值进行处理。<br>返回值：**Normal**：正常，**Porn**：色情，**Abuse**：谩骂，**Ad**：广告，**Custom**：自定义违规；以及其他令人反感、不安全或不适宜的内容类型。
         public let label: String
-        
+
         /// 该字段用于返回当前标签（Label）下对应的子标签的检测结果，如：*Porn-SexBehavior*等子标签。
         public let subLabel: String
-        
+
         /// 该字段用于返回当前标签（Label）下的置信度，取值范围：0（**置信度最低**）-100（**置信度最高** ），越高代表文本越有可能属于当前返回的标签；如：*色情 99*，则表明该文本非常有可能属于色情内容；*色情 0*，则表明该文本不属于色情内容。
         public let score: UInt64
-        
+
         /// 该字段用于返回OCR识别出的结果的详细内容，如：文本内容、对应标签、识别框位置等信息。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let details: [OcrTextDetail]?
-        
+
         /// 该字段用于返回OCR识别出的文字信息。
         public let text: String
-        
+
         enum CodingKeys: String, CodingKey {
             case scene = "Scene"
             case suggestion = "Suggestion"
@@ -312,36 +312,36 @@ extension Ims {
             case text = "Text"
         }
     }
-    
+
     /// 用于返回OCR文本结果详情，图片中的文本越多，可能导致接口返回时间增加。
     public struct OcrTextDetail: TCOutputModel {
         /// 该字段用于返回OCR识别出的文本内容。<br>备注：OCR文本识别上限在**5000字节内**。
         public let text: String
-        
+
         /// 该字段用于返回检测结果所对应的恶意标签。<br>返回值：**Normal**：正常，**Porn**：色情，**Abuse**：谩骂，**Ad**：广告，**Custom**：自定义违规；以及其他令人反感、不安全或不适宜的内容类型。
         public let label: String
-        
+
         /// 该字段**仅当Label为Custom自定义关键词时有效**，用于返回自定义库的ID，以方便自定义库管理和配置。
         public let libId: String
-        
+
         /// 该字段**仅当Label为Custom自定义关键词时有效**，用于返回自定义库的名称，以方便自定义库管理和配置。
         public let libName: String
-        
+
         /// 该参数用于返回在当前label下命中的关键词。
         public let keywords: [String]
-        
+
         /// 该参数用于返回在当前恶意标签下模型命中的分值，取值为**0-100**；分数越高，代表当前场景越符合该恶意标签所对应的场景。
         public let score: UInt64
-        
+
         /// 该参数用于返回OCR检测框在图片中的位置（左上角xy坐标、长宽、旋转角度），以方便快速定位识别文字的相关信息。
         public let location: Location
-        
+
         /// 该参数用于返回OCR文本识别结果的置信度，取值在**0**（**置信度最低**）-**100**（**置信度最高**），越高代表对应图像越有可能是识别出的文字；如：*你好 99*，则表明OCR识别框内的文字大概率是”你好“。
         public let rate: UInt64
-        
+
         /// 该字段用于返回检测结果所对应的恶意二级标签。
         public let subLabel: String
-        
+
         enum CodingKeys: String, CodingKey {
             case text = "Text"
             case label = "Label"
@@ -354,43 +354,43 @@ extension Ims {
             case subLabel = "SubLabel"
         }
     }
-    
+
     /// 用于表示业务用户的账号相关信息
     public struct User: TCInputModel {
         /// 该字段表示业务用户ID,填写后，系统可根据账号过往违规历史优化审核结果判定，有利于存在可疑违规风险时的辅助判断。<br>
         /// 备注：该字段可传入微信openid、QQopenid、字符串等账号信息，与账号类别参数（AccountType）配合使用可确定唯一账号。
         public let userId: String?
-        
+
         /// 该字段表示业务用户对应的账号昵称信息。
         public let nickname: String?
-        
+
         /// 该字段表示业务用户ID对应的账号类型，取值：**1**-微信uin，**2**-QQ号，**3**-微信群uin，**4**-qq群号，**5**-微信openid，**6**-QQopenid，**7**-其它string。<br>
         /// 该字段与账号ID参数（UserId）配合使用可确定唯一账号。
         public let accountType: String?
-        
+
         /// 该字段表示业务用户对应账号的性别信息。<br>
         /// 取值：**0**（默认值，代表性别未知）、**1**（男性）、**2**（女性）。
         public let gender: UInt64?
-        
+
         /// 该字段表示业务用户对应账号的年龄信息。<br>
         /// 取值：**0**（默认值，代表年龄未知）-（**自定义年龄上限**）之间的整数。
         public let age: UInt64?
-        
+
         /// 该字段表示业务用户对应账号的等级信息。<br>
         /// 取值：**0**（默认值，代表等级未知）、**1**（等级较低）、**2**（等级中等）、**3**（等级较高），目前**暂不支持自定义等级**。
         public let level: UInt64?
-        
+
         /// 该字段表示业务用户对应账号的手机号信息，支持全球各地区手机号的记录。<br>
         /// 备注：请保持手机号格式的统一，如区号格式（086/+86）等。
         public let phone: String?
-        
+
         /// 该字段表示业务用户的简介信息，支持汉字、英文及特殊符号，**长度不超过5000个汉字字符**。
         public let desc: String?
-        
+
         /// 该字段表示业务用户头像图片的访问链接(URL)，支持PNG、JPG、JPEG、BMP、GIF、WEBP格式。<br>备注：头像图片**大小不超过5MB**，建议**分辨率不低于256x256**；图片下载时间限制为3秒，超过则会返回下载超时。
         public let headUrl: String?
-        
-        public init (userId: String? = nil, nickname: String? = nil, accountType: String? = nil, gender: UInt64? = nil, age: UInt64? = nil, level: UInt64? = nil, phone: String? = nil, desc: String? = nil, headUrl: String? = nil) {
+
+        public init(userId: String? = nil, nickname: String? = nil, accountType: String? = nil, gender: UInt64? = nil, age: UInt64? = nil, level: UInt64? = nil, phone: String? = nil, desc: String? = nil, headUrl: String? = nil) {
             self.userId = userId
             self.nickname = nickname
             self.accountType = accountType
@@ -401,7 +401,7 @@ extension Ims {
             self.desc = desc
             self.headUrl = headUrl
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case userId = "UserId"
             case nickname = "Nickname"

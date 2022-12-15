@@ -17,20 +17,20 @@
 extension Vpc {
     /// DescribeTenantCcns请求参数结构体
     public struct DescribeTenantCcnsRequest: TCRequestModel {
-        public init () {
+        public init() {
         }
     }
-    
+
     /// DescribeTenantCcns返回参数结构体
     public struct DescribeTenantCcnsResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询租户云联网实例
     ///
     /// 本接口（DescribeTenantCcns）用于获取要锁定的云联网实例列表。
@@ -40,7 +40,7 @@ extension Vpc {
     public func describeTenantCcns(_ input: DescribeTenantCcnsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTenantCcnsResponse > {
         self.client.execute(action: "DescribeTenantCcns", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询租户云联网实例
     ///
     /// 本接口（DescribeTenantCcns）用于获取要锁定的云联网实例列表。
@@ -50,7 +50,7 @@ extension Vpc {
     public func describeTenantCcns(_ input: DescribeTenantCcnsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTenantCcnsResponse {
         try await self.client.execute(action: "DescribeTenantCcns", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询租户云联网实例
     ///
     /// 本接口（DescribeTenantCcns）用于获取要锁定的云联网实例列表。
@@ -60,7 +60,7 @@ extension Vpc {
     public func describeTenantCcns(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTenantCcnsResponse > {
         self.describeTenantCcns(DescribeTenantCcnsRequest(), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询租户云联网实例
     ///
     /// 本接口（DescribeTenantCcns）用于获取要锁定的云联网实例列表。

@@ -19,22 +19,22 @@ extension Cii {
     public struct CompareMetricsData: TCOutputModel {
         /// 短文准确率
         public let shortStructAccuracy: String
-        
+
         /// 短文召回率
         public let shortStructRecall: String
-        
+
         /// 长文结构化准确率
         public let longStructAccuracy: String
-        
+
         /// 长文结构化召回率
         public let longStructRecall: String
-        
+
         /// 长文提取准确率
         public let longContentAccuracy: String
-        
+
         /// 长文提取召回率
         public let longContentRecall: String
-        
+
         enum CodingKeys: String, CodingKey {
             case shortStructAccuracy = "ShortStructAccuracy"
             case shortStructRecall = "ShortStructRecall"
@@ -44,15 +44,15 @@ extension Cii {
             case longContentRecall = "LongContentRecall"
         }
     }
-    
+
     /// 用于返回结构化任务结果
     public struct ResultObject: TCOutputModel {
         /// 图片质量分
         public let quality: Float
-        
+
         /// 由结构化算法结构化json转换的字符串，具体协议参见算法结构化结果协议
         public let structureResult: String
-        
+
         enum CodingKeys: String, CodingKey {
             case quality = "Quality"
             case structureResult = "StructureResult"

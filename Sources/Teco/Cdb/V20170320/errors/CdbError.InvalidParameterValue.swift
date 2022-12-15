@@ -32,99 +32,99 @@ extension TCCdbError {
             case verifyAccountPrivError = "InvalidParameterValue.VerifyAccountPrivError"
             case other = "InvalidParameterValue"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 账号描述信息包含特殊字符。
         public static var accountDescriptionCharacterError: InvalidParameterValue {
             InvalidParameterValue(.accountDescriptionCharacterError)
         }
-        
+
         /// 账号描述信息长度超过255个字符。
         public static var accountDescriptionLengthError: InvalidParameterValue {
             InvalidParameterValue(.accountDescriptionLengthError)
         }
-        
+
         /// 账号主机参数规则错误。
         public static var accountHostRuleError: InvalidParameterValue {
             InvalidParameterValue(.accountHostRuleError)
         }
-        
+
         /// 账号密码中包含无效的字符。
         public static var accountPasswordCharacterError: InvalidParameterValue {
             InvalidParameterValue(.accountPasswordCharacterError)
         }
-        
+
         /// 账号密码不符合长度。
         public static var accountPasswordLengthError: InvalidParameterValue {
             InvalidParameterValue(.accountPasswordLengthError)
         }
-        
+
         /// 密码规则错误，至少包含字母、数字和字符（_+-&amp;=!@#$%^*()）中的两种，长度为8-64个字符。
         public static var accountPasswordRuleError: InvalidParameterValue {
             InvalidParameterValue(.accountPasswordRuleError)
         }
-        
+
         /// 数据转换失败。
         public static var dataConvertError: InvalidParameterValue {
             InvalidParameterValue(.dataConvertError)
         }
-        
+
         /// 参数值无效。
         public static var invalidParameterValueError: InvalidParameterValue {
             InvalidParameterValue(.invalidParameterValueError)
         }
-        
+
         /// 账号用户名规则错误。
         public static var userNameRuleError: InvalidParameterValue {
             InvalidParameterValue(.userNameRuleError)
         }
-        
+
         /// 账号信息不存在。
         public static var userNotExistError: InvalidParameterValue {
             InvalidParameterValue(.userNotExistError)
         }
-        
+
         /// 未找到root账号信息。
         public static var verifyAccountNoRootError: InvalidParameterValue {
             InvalidParameterValue(.verifyAccountNoRootError)
         }
-        
+
         /// 账号密码无效。
         public static var verifyAccountPasswordError: InvalidParameterValue {
             InvalidParameterValue(.verifyAccountPasswordError)
         }
-        
+
         /// 账号无GRANT权限。
         public static var verifyAccountPrivError: InvalidParameterValue {
             InvalidParameterValue(.verifyAccountPrivError)
         }
-        
+
         /// 参数取值错误。
         public static var other: InvalidParameterValue {
             InvalidParameterValue(.other)
         }
-        
+
         public func asCdbError() -> TCCdbError {
             let code: TCCdbError.Code
             switch self.error {

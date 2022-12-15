@@ -31,87 +31,87 @@ extension TCApmError {
             case viewNameNotExistOrIllegal = "FailedOperation.ViewNameNotExistOrIllegal"
             case other = "FailedOperation"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         public static var accessTagFail: FailedOperation {
             FailedOperation(.accessTagFail)
         }
-        
+
         /// appid和实例信息不匹配。
         public static var appIdNotMatchInstanceInfo: FailedOperation {
             FailedOperation(.appIdNotMatchInstanceInfo)
         }
-        
+
         public static var demoInstanceNotAllowModified: FailedOperation {
             FailedOperation(.demoInstanceNotAllowModified)
         }
-        
+
         /// 实例ID为空。
         public static var instanceIdIsEmpty: FailedOperation {
             FailedOperation(.instanceIdIsEmpty)
         }
-        
+
         /// apm实例不存在。
         public static var instanceNotFound: FailedOperation {
             FailedOperation(.instanceNotFound)
         }
-        
+
         public static var invalidInstanceID: FailedOperation {
             FailedOperation(.invalidInstanceID)
         }
-        
+
         public static var metricFiltersLackParams: FailedOperation {
             FailedOperation(.metricFiltersLackParams)
         }
-        
+
         /// 非内网vpc。
         public static var notInnerVPC: FailedOperation {
             FailedOperation(.notInnerVPC)
         }
-        
+
         public static var queryTimeIntervalIsNotSupported: FailedOperation {
             FailedOperation(.queryTimeIntervalIsNotSupported)
         }
-        
+
         public static var regionNotSupport: FailedOperation {
             FailedOperation(.regionNotSupport)
         }
-        
+
         /// 发送查询请求失败。
         public static var sendRequest: FailedOperation {
             FailedOperation(.sendRequest)
         }
-        
+
         public static var viewNameNotExistOrIllegal: FailedOperation {
             FailedOperation(.viewNameNotExistOrIllegal)
         }
-        
+
         /// 操作失败。
         public static var other: FailedOperation {
             FailedOperation(.other)
         }
-        
+
         public func asApmError() -> TCApmError {
             let code: TCApmError.Code
             switch self.error {

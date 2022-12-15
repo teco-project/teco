@@ -19,31 +19,31 @@ extension Monitor {
     public struct UpdateServiceDiscoveryRequest: TCRequestModel {
         /// Prometheus 实例 ID
         public let instanceId: String
-        
+
         /// <li>类型是 TKE，为对应的腾讯云容器服务集群 ID</li>
         public let kubeClusterId: String
-        
+
         /// 用户 Kubernetes 集群类型：
         /// <li> 1 = 容器服务集群(TKE) </li>
         public let kubeType: Int64
-        
+
         /// 服务发现类型，取值如下：
         /// <li> 1 = ServiceMonitor</li>
         /// <li> 2 = PodMonitor</li>
         /// <li> 3 = JobMonitor</li>
         public let type: Int64
-        
+
         /// 服务发现配置信息
         public let yaml: String
-        
-        public init (instanceId: String, kubeClusterId: String, kubeType: Int64, type: Int64, yaml: String) {
+
+        public init(instanceId: String, kubeClusterId: String, kubeType: Int64, type: Int64, yaml: String) {
             self.instanceId = instanceId
             self.kubeClusterId = kubeClusterId
             self.kubeType = kubeType
             self.type = type
             self.yaml = yaml
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
             case kubeClusterId = "KubeClusterId"
@@ -52,21 +52,21 @@ extension Monitor {
             case yaml = "Yaml"
         }
     }
-    
+
     /// UpdateServiceDiscovery返回参数结构体
     public struct UpdateServiceDiscoveryResponse: TCResponseModel {
         /// 更新成功之后，返回对应服务发现的信息
         public let serviceDiscovery: ServiceDiscoveryItem
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case serviceDiscovery = "ServiceDiscovery"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 更新服务发现
     ///
     /// 在腾讯云容器服务下更新 Prometheus 服务发现。
@@ -76,7 +76,7 @@ extension Monitor {
     public func updateServiceDiscovery(_ input: UpdateServiceDiscoveryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateServiceDiscoveryResponse > {
         self.client.execute(action: "UpdateServiceDiscovery", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 更新服务发现
     ///
     /// 在腾讯云容器服务下更新 Prometheus 服务发现。
@@ -86,7 +86,7 @@ extension Monitor {
     public func updateServiceDiscovery(_ input: UpdateServiceDiscoveryRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateServiceDiscoveryResponse {
         try await self.client.execute(action: "UpdateServiceDiscovery", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 更新服务发现
     ///
     /// 在腾讯云容器服务下更新 Prometheus 服务发现。
@@ -96,7 +96,7 @@ extension Monitor {
     public func updateServiceDiscovery(instanceId: String, kubeClusterId: String, kubeType: Int64, type: Int64, yaml: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateServiceDiscoveryResponse > {
         self.updateServiceDiscovery(UpdateServiceDiscoveryRequest(instanceId: instanceId, kubeClusterId: kubeClusterId, kubeType: kubeType, type: type, yaml: yaml), logger: logger, on: eventLoop)
     }
-    
+
     /// 更新服务发现
     ///
     /// 在腾讯云容器服务下更新 Prometheus 服务发现。

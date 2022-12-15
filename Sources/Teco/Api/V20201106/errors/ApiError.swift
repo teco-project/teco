@@ -28,44 +28,44 @@ public struct TCApiError: TCApiErrorType {
         case requestLimitExceeded = "RequestLimitExceeded"
         case unsupportedOperation = "UnsupportedOperation"
     }
-    
+
     private let error: Code
-    
+
     public let context: TCErrorContext?
-    
+
     public var errorCode: String {
         self.error.rawValue
     }
-    
+
     /// Initializer used by ``TCClient`` to match an error of this type.
-    public init ?(errorCode: String, context: TCErrorContext) {
+    public init?(errorCode: String, context: TCErrorContext) {
         guard let error = Code(rawValue: errorCode) else {
             return nil
         }
         self.error = error
         self.context = context
     }
-    
-    internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+    internal init(_ error: Code, context: TCErrorContext? = nil) {
         self.error = error
         self.context = context
     }
-    
+
     /// 参数错误。
     public static var invalidParameter: TCApiError {
         TCApiError(.invalidParameter)
     }
-    
+
     /// 请求的次数超过了频率限制。
     public static var requestLimitExceeded: TCApiError {
         TCApiError(.requestLimitExceeded)
     }
-    
+
     /// 操作不支持。
     public static var unsupportedOperation: TCApiError {
         TCApiError(.unsupportedOperation)
     }
-    
+
     public func asApiError() -> TCApiError {
         return self
     }

@@ -19,93 +19,93 @@ extension Zj {
     public struct AddSmsTemplateDataStruct: TCOutputModel {
         /// 短信模板ID
         public let templateId: UInt64
-        
+
         enum CodingKeys: String, CodingKey {
             case templateId = "TemplateId"
         }
     }
-    
+
     /// 取消活动的返回值Data部分
     public struct CancelActivityData: TCOutputModel {
         /// 成功返回时的文字描述
         public let message: String
-        
+
         enum CodingKeys: String, CodingKey {
             case message = "Message"
         }
     }
-    
+
     /// 创建样例时候content元素
     public struct CreateMmsInstanceItem: TCInputModel {
         /// 素材类型：1-文本 2-图片 3-视频 4-音频
         public let contentType: Int64
-        
+
         /// 素材内容：如果素材是文本类型，直接填写文本内容，否则填写素材文件上传到cos后的url地址
         public let content: String
-        
-        public init (contentType: Int64, content: String) {
+
+        public init(contentType: Int64, content: String) {
             self.contentType = contentType
             self.content = content
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case contentType = "ContentType"
             case content = "Content"
         }
     }
-    
+
     /// 创建超级短信样例返回结果
     public struct CreateMmsInstanceResp: TCOutputModel {
         /// 返回码：0-成功 其它-失败
         public let returnCode: Int64
-        
+
         /// 返回信息
         public let returnMsg: String
-        
+
         /// 样例id
         public let instanceId: Int64
-        
+
         enum CodingKeys: String, CodingKey {
             case returnCode = "ReturnCode"
             case returnMsg = "ReturnMsg"
             case instanceId = "InstanceId"
         }
     }
-    
+
     /// 删除超短样例响应
     public struct DelMmsInstanceData: TCOutputModel {
         /// 样例id
         public let instanceId: UInt64
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
         }
     }
-    
+
     /// 获取普通短信签名信息返回信息
     public struct DescribeSmsSignListDataStruct: TCOutputModel {
         /// 签名Id
         public let signId: UInt64
-        
+
         /// 是否国际/港澳台短信：
         /// 0：表示国内短信。
         /// 1：表示国际/港澳台短信。
         public let international: UInt64
-        
+
         /// 申请签名状态。其中：
         /// 0：表示审核通过。
         /// -1：表示审核未通过或审核失败。
         public let statusCode: Int64
-        
+
         /// 审核回复，审核人员审核后给出的回复，通常是审核未通过的原因。
         public let reviewReply: String
-        
+
         /// 签名名称。
         public let signName: String
-        
+
         /// 提交审核时间，UNIX 时间戳（单位：秒）。
         public let createTime: UInt64
-        
+
         enum CodingKeys: String, CodingKey {
             case signId = "SignId"
             case international = "International"
@@ -115,31 +115,31 @@ extension Zj {
             case createTime = "CreateTime"
         }
     }
-    
+
     /// 获取短信模板状态返回
     public struct DescribeSmsTemplateListDataStruct: TCOutputModel {
         /// 模板Id
         public let templateId: UInt64
-        
+
         /// 是否国际/港澳台短信：
         /// 0：表示国内短信。
         /// 1：表示国际/港澳台短信。
         public let international: UInt64
-        
+
         /// 申请签名状态。其中：
         /// 0：表示审核通过。
         /// -1：表示审核未通过或审核失败。
         public let statusCode: Int64
-        
+
         /// 审核回复，审核人员审核后给出的回复，通常是审核未通过的原因。
         public let reviewReply: String
-        
+
         /// 模板名称。
         public let templateName: String
-        
+
         /// 提交审核时间，UNIX 时间戳（单位：秒）。
         public let createTime: UInt64
-        
+
         enum CodingKeys: String, CodingKey {
             case templateId = "TemplateId"
             case international = "International"
@@ -149,7 +149,7 @@ extension Zj {
             case createTime = "CreateTime"
         }
     }
-    
+
     /// 彩信实例信息
     /// InstanceId   int
     /// 	InstanceName string
@@ -163,48 +163,48 @@ extension Zj {
     public struct MmsInstanceInfo: TCOutputModel {
         /// 彩信实例id
         public let instanceId: Int64
-        
+
         /// 彩信实例名称
         public let instanceName: String
-        
+
         /// 状态是否通知
         public let status: Int64
-        
+
         /// 实例审核状态信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let statusInfo: [MmsInstanceStateInfo]?
-        
+
         /// 业务码
         public let appSubId: String
-        
+
         /// 彩信标题
         public let title: String
-        
+
         /// 签名
         public let sign: String
-        
+
         /// 彩信内容
         public let contents: String
-        
+
         /// 创建时间
         public let createdAt: String
-        
+
         /// 样例配置的链接地址
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let urls: [String]?
-        
+
         /// 机型列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let phoneType: [UInt64]?
-        
+
         /// 普通参数序号数组
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let commonParams: [UInt64]?
-        
+
         /// 链接参数序号数组
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let urlParams: [UInt64]?
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
             case instanceName = "InstanceName"
@@ -221,139 +221,139 @@ extension Zj {
             case urlParams = "UrlParams"
         }
     }
-    
+
     /// 彩信实例状态列表
     public struct MmsInstanceInfoList: TCOutputModel {
         /// 总数据量
         public let total: Int64
-        
+
         /// 彩信实例状态信息列表
         public let list: [MmsInstanceInfo]
-        
+
         enum CodingKeys: String, CodingKey {
             case total = "Total"
             case list = "List"
         }
     }
-    
+
     /// 彩信实例审核状态
     public struct MmsInstanceStateInfo: TCOutputModel {
         /// 运营商
         public let `operator`: String
-        
+
         /// 审核状态：0未审核，1审核通过，2审核拒绝
         public let state: Int64
-        
+
         enum CodingKeys: String, CodingKey {
             case `operator` = "Operator"
             case state = "State"
         }
     }
-    
+
     /// 短信模板编辑接口出参
     public struct ModifySmsTemplateDataStruct: TCOutputModel {
         /// 短信模板id
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let templateId: Int64?
-        
+
         enum CodingKeys: String, CodingKey {
             case templateId = "TemplateId"
         }
     }
-    
+
     /// 创建签名返回结构
     public struct PaasCreateSignResp: TCOutputModel {
         /// 签名id
         public let signId: Int64
-        
+
         enum CodingKeys: String, CodingKey {
             case signId = "SignId"
         }
     }
-    
+
     /// 拉取活动状态返回
     public struct PaasSmsCampaignStatusResp: TCOutputModel {
         /// 0-未发送 1-发送中 2-发送结束 3-发送取消
         public let status: Int64
-        
+
         enum CodingKeys: String, CodingKey {
             case status = "Status"
         }
     }
-    
+
     /// 短信发送人群包策略
     public struct PaasStrategy: TCInputModel {
         /// 人群包id
         public let crowdID: Int64
-        
+
         /// 待选素材数组
         public let items: [PaasStrategyItem]
-        
-        public init (crowdID: Int64, items: [PaasStrategyItem]) {
+
+        public init(crowdID: Int64, items: [PaasStrategyItem]) {
             self.crowdID = crowdID
             self.items = items
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case crowdID = "CrowdID"
             case items = "Items"
         }
     }
-    
+
     /// 短信活动策略元素
     public struct PaasStrategyItem: TCInputModel {
         /// 短信模板id或超级短信样例id
         public let id: Int64
-        
+
         /// 素材类型 0-普短 1-超短
         public let contentType: Int64
-        
-        public init (id: Int64, contentType: Int64) {
+
+        public init(id: Int64, contentType: Int64) {
             self.id = id
             self.contentType = contentType
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case id = "Id"
             case contentType = "ContentType"
         }
     }
-    
+
     /// 发送超级短信返回
     public struct PushMmsContentResp: TCOutputModel {
         /// 返回码：0-成功 其它-失败
         public let returnCode: Int64
-        
+
         /// 返回信息
         public let returnMsg: String
-        
+
         /// 消息回执id
         public let messageId: Int64
-        
+
         enum CodingKeys: String, CodingKey {
             case returnCode = "ReturnCode"
             case returnMsg = "ReturnMsg"
             case messageId = "MessageId"
         }
     }
-    
+
     /// 发送短信返回
     public struct SendSmsPaasDataStruct: TCOutputModel {
         /// 发送流水号
         public let serialNo: String
-        
+
         /// 手机号码,e.164标准，+[国家或地区码][手机号] ，示例如：+8613711112222， 其中前面有一个+号 ，86为国家码，13711112222为手机号。
         public let phoneNumber: String
-        
+
         /// 计费条数
         public let fee: UInt64
-        
+
         /// OK为成功
         public let code: String
-        
+
         /// 短信请求错误码描述
         public let message: String
-        
+
         enum CodingKeys: String, CodingKey {
             case serialNo = "SerialNo"
             case phoneNumber = "PhoneNumber"
@@ -362,43 +362,43 @@ extension Zj {
             case message = "Message"
         }
     }
-    
+
     /// 添加短信人群包信息接口返回
     public struct SmsAddCrowdPackInfoResponse: TCOutputModel {
         /// 人群包id
         public let id: UInt64
-        
+
         enum CodingKeys: String, CodingKey {
             case id = "ID"
         }
     }
-    
+
     /// 短信子账号额度接口出参
     public struct SmsAmountDataStruct: TCOutputModel {
         /// 短信活动配额
         public let smsCampaignAmount: UInt64
-        
+
         /// 短信活动消耗配额
         public let smsCampaignConsume: UInt64
-        
+
         /// 短信发送额度
         public let smsSendAmount: UInt64
-        
+
         /// 短信发送消耗额度
         public let smsSendConsume: UInt64
-        
+
         /// 超短活动额度
         public let mmsCampaignAmount: UInt64
-        
+
         /// 超短活动消耗额度
         public let mmsCampaignConsume: UInt64
-        
+
         /// 超短短信额度
         public let mmsSendAmount: UInt64
-        
+
         /// 超短短信消耗额度
         public let mmsSendConsume: UInt64
-        
+
         enum CodingKeys: String, CodingKey {
             case smsCampaignAmount = "SmsCampaignAmount"
             case smsCampaignConsume = "SmsCampaignConsume"
@@ -410,21 +410,21 @@ extension Zj {
             case mmsSendConsume = "MmsSendConsume"
         }
     }
-    
+
     /// 短信活动统计人群包数据
     public struct SmsCampaignStatisticsCrowdData: TCOutputModel {
         /// 人群包id
         public let crowdId: UInt64
-        
+
         /// 人群包名称
         public let crowdName: String
-        
+
         /// 人群包目标触达总数
         public let crowdCount: UInt64
-        
+
         /// 模板列表
         public let templateList: [SmsCampaignStatisticsTemplateData]
-        
+
         enum CodingKeys: String, CodingKey {
             case crowdId = "CrowdId"
             case crowdName = "CrowdName"
@@ -432,35 +432,35 @@ extension Zj {
             case templateList = "TemplateList"
         }
     }
-    
+
     /// 短信活动统计响应
     public struct SmsCampaignStatisticsData: TCOutputModel {
         /// 活动Id
         public let campaignId: UInt64
-        
+
         /// 统计数据
         public let statistics: [SmsCampaignStatisticsCrowdData]
-        
+
         enum CodingKeys: String, CodingKey {
             case campaignId = "CampaignId"
             case statistics = "Statistics"
         }
     }
-    
+
     /// 短信活动统计模板展示结构
     public struct SmsCampaignStatisticsTemplateData: TCOutputModel {
         /// 模板或样例id
         public let templateId: String
-        
+
         /// 模板内容
         public let templateContent: String
-        
+
         /// 触达成功数
         public let sendCount: UInt64
-        
+
         /// 短链点击数
         public let clickCount: UInt64
-        
+
         enum CodingKeys: String, CodingKey {
             case templateId = "TemplateId"
             case templateContent = "TemplateContent"
@@ -468,46 +468,46 @@ extension Zj {
             case clickCount = "ClickCount"
         }
     }
-    
+
     /// 创建短信活动返回结构
     public struct SmsCreateCampaignResponse: TCOutputModel {
         /// 活动id
         public let campaignId: Int64
-        
+
         enum CodingKeys: String, CodingKey {
             case campaignId = "CampaignId"
         }
     }
-    
+
     /// 短信获取人群包列表的返回数据信息
     public struct SmsGetCrowdPackList: TCOutputModel {
         /// 创建时间
         public let createdAt: String
-        
+
         /// 人群包id
         public let id: UInt64
-        
+
         /// 人群包名称
         public let name: String
-        
+
         /// 人群包状态
         public let status: Int64
-        
+
         /// 人群包手机号数量
         public let phoneNum: Int64
-        
+
         /// 人群包标签信息
         public let tag: String
-        
+
         /// 人群包md5
         public let md5: String
-        
+
         /// 人群包文件名称
         public let fileName: String
-        
+
         /// 人群包描述
         public let desc: String
-        
+
         enum CodingKeys: String, CodingKey {
             case createdAt = "CreatedAt"
             case id = "ID"
@@ -520,39 +520,39 @@ extension Zj {
             case desc = "Desc"
         }
     }
-    
+
     /// 短信人群包返回信息
     public struct SmsGetCrowdPackListResponse: TCOutputModel {
         /// 人群包总数
         public let total: Int64
-        
+
         /// 人群包返回数据列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let list: [SmsGetCrowdPackList]?
-        
+
         enum CodingKeys: String, CodingKey {
             case total = "Total"
             case list = "List"
         }
     }
-    
+
     /// 获取短信人群包上传信息返回
     public struct SmsGetCrowdUploadInfoResponse: TCOutputModel {
         /// 过期时间
         public let expiredTime: UInt64
-        
+
         /// 会话token
         public let sessionToken: String
-        
+
         /// 临时密钥id
         public let tmpSecretId: String
-        
+
         /// 临时密钥
         public let tmpSecretKey: String
-        
+
         /// cos信息
         public let cosInfo: UploadFansInfoCosInfo
-        
+
         enum CodingKeys: String, CodingKey {
             case expiredTime = "ExpiredTime"
             case sessionToken = "SessionToken"
@@ -561,28 +561,28 @@ extension Zj {
             case cosInfo = "CosInfo"
         }
     }
-    
+
     /// 短信api成功返回信息
     public struct SmsSuccessResponse: TCOutputModel {
         /// 成功返回信息
         public let message: String
-        
+
         enum CodingKeys: String, CodingKey {
             case message = "Message"
         }
     }
-    
+
     /// 接口返回给服务商的COS路径等信息
     public struct UploadFansInfoCosInfo: TCOutputModel {
         /// COS bucket
         public let bucket: String
-        
+
         /// COS路径
         public let key: String
-        
+
         /// COS区域
         public let region: String
-        
+
         enum CodingKeys: String, CodingKey {
             case bucket = "Bucket"
             case key = "Key"

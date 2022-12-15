@@ -19,35 +19,35 @@ extension Essbasic {
     public struct DescribeSubOrganizationsRequest: TCRequestModel {
         /// 调用方信息
         public let caller: Caller
-        
+
         /// 子机构ID数组
         public let subOrganizationIds: [String]
-        
-        public init (caller: Caller, subOrganizationIds: [String]) {
+
+        public init(caller: Caller, subOrganizationIds: [String]) {
             self.caller = caller
             self.subOrganizationIds = subOrganizationIds
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case caller = "Caller"
             case subOrganizationIds = "SubOrganizationIds"
         }
     }
-    
+
     /// DescribeSubOrganizations返回参数结构体
     public struct DescribeSubOrganizationsResponse: TCResponseModel {
         /// 子机构信息列表
         public let subOrganizationInfos: [SubOrganizationDetail]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case subOrganizationInfos = "SubOrganizationInfos"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询子机构信息
     ///
     /// 此接口（DescribeSubOrganizations）用于查询子机构信息。
@@ -56,7 +56,7 @@ extension Essbasic {
     public func describeSubOrganizations(_ input: DescribeSubOrganizationsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSubOrganizationsResponse > {
         self.client.execute(action: "DescribeSubOrganizations", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询子机构信息
     ///
     /// 此接口（DescribeSubOrganizations）用于查询子机构信息。
@@ -65,7 +65,7 @@ extension Essbasic {
     public func describeSubOrganizations(_ input: DescribeSubOrganizationsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeSubOrganizationsResponse {
         try await self.client.execute(action: "DescribeSubOrganizations", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询子机构信息
     ///
     /// 此接口（DescribeSubOrganizations）用于查询子机构信息。
@@ -74,7 +74,7 @@ extension Essbasic {
     public func describeSubOrganizations(caller: Caller, subOrganizationIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeSubOrganizationsResponse > {
         self.describeSubOrganizations(DescribeSubOrganizationsRequest(caller: caller, subOrganizationIds: subOrganizationIds), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询子机构信息
     ///
     /// 此接口（DescribeSubOrganizations）用于查询子机构信息。

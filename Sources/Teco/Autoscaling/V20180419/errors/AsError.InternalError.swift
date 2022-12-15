@@ -31,93 +31,93 @@ extension TCAsError {
             case requestError = "InternalError.RequestError"
             case other = "InternalError"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// Cmq 接口调用失败。
         public static var callCmqError: InternalError {
             InternalError(.callCmqError)
         }
-        
+
         /// 内部接口调用失败。
         public static var callError: InternalError {
             InternalError(.callError)
         }
-        
+
         /// LB 接口调用失败。
         public static var callLbError: InternalError {
             InternalError(.callLbError)
         }
-        
+
         /// Monitor接口调用失败。
         public static var callMonitorError: InternalError {
             InternalError(.callMonitorError)
         }
-        
+
         /// 通知服务接口调用失败。
         public static var callNotificationError: InternalError {
             InternalError(.callNotificationError)
         }
-        
+
         /// STS 接口调用失败。
         public static var callStsError: InternalError {
             InternalError(.callStsError)
         }
-        
+
         public static var callTATError: InternalError {
             InternalError(.callTATError)
         }
-        
+
         /// Tag 接口调用失败。
         public static var callTagError: InternalError {
             InternalError(.callTagError)
         }
-        
+
         /// Tvpc 接口调用失败。
         public static var callTvpcError: InternalError {
             InternalError(.callTvpcError)
         }
-        
+
         /// VPC接口调用失败。
         public static var callVpcError: InternalError {
             InternalError(.callVpcError)
         }
-        
+
         /// 调用其他服务异常。
         public static var calleeError: InternalError {
             InternalError(.calleeError)
         }
-        
+
         /// 内部请求错误。
         public static var requestError: InternalError {
             InternalError(.requestError)
         }
-        
+
         /// 内部错误。
         public static var other: InternalError {
             InternalError(.other)
         }
-        
+
         public func asAsError() -> TCAsError {
             let code: TCAsError.Code
             switch self.error {

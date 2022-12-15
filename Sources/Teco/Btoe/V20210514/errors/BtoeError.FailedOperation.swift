@@ -30,89 +30,89 @@ extension TCBtoeError {
             case unKnowError = "FailedOperation.UnKnowError"
             case other = "FailedOperation"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 帐号已欠费。
         public static var arrearsError: FailedOperation {
             FailedOperation(.arrearsError)
         }
-        
+
         /// 今日次数达到限制。
         public static var countLimitError: FailedOperation {
             FailedOperation(.countLimitError)
         }
-        
+
         /// 数据明文内容过长。
         public static var dataInfoTooLong: FailedOperation {
             FailedOperation(.dataInfoTooLong)
         }
-        
+
         /// 文件下载失败。
         public static var downLoadError: FailedOperation {
             FailedOperation(.downLoadError)
         }
-        
+
         /// 文件编码格式错误。
         public static var fileEncodindFormatError: FailedOperation {
             FailedOperation(.fileEncodindFormatError)
         }
-        
+
         /// 文件读取失败。
         public static var fileReadFailed: FailedOperation {
             FailedOperation(.fileReadFailed)
         }
-        
+
         /// 哈希不匹配。
         public static var hashNoMatch: FailedOperation {
             FailedOperation(.hashNoMatch)
         }
-        
+
         /// 上链失败。
         public static var onChainFailure: FailedOperation {
             FailedOperation(.onChainFailure)
         }
-        
+
         /// 查询无记录。
         public static var queryNoRecord: FailedOperation {
             FailedOperation(.queryNoRecord)
         }
-        
+
         /// 敏感数据。
         public static var sensitiveData: FailedOperation {
             FailedOperation(.sensitiveData)
         }
-        
+
         /// 未知错误。
         public static var unKnowError: FailedOperation {
             FailedOperation(.unKnowError)
         }
-        
+
         /// 操作失败。
         public static var other: FailedOperation {
             FailedOperation(.other)
         }
-        
+
         public func asBtoeError() -> TCBtoeError {
             let code: TCBtoeError.Code
             switch self.error {

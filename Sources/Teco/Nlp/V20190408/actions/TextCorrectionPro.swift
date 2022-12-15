@@ -19,35 +19,35 @@ extension Nlp {
     public struct TextCorrectionProRequest: TCRequestModel {
         /// 待纠错的文本（仅支持UTF-8格式，不超过128字符）
         public let text: String
-        
-        public init (text: String) {
+
+        public init(text: String) {
             self.text = text
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case text = "Text"
         }
     }
-    
+
     /// TextCorrectionPro返回参数结构体
     public struct TextCorrectionProResponse: TCResponseModel {
         /// 纠错详情
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let cciTokens: [CCIToken]?
-        
+
         /// 纠错后的文本
         public let resultText: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case cciTokens = "CCITokens"
             case resultText = "ResultText"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 文本纠错高级版
     ///
     /// 提供对中文文本的自动纠错功能，能够识别输入文本中的错误片段，定位错误并给出正确的文本结果；支持长度不超过128字符（含标点符号）的长文本纠错。
@@ -56,7 +56,7 @@ extension Nlp {
     public func textCorrectionPro(_ input: TextCorrectionProRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < TextCorrectionProResponse > {
         self.client.execute(action: "TextCorrectionPro", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 文本纠错高级版
     ///
     /// 提供对中文文本的自动纠错功能，能够识别输入文本中的错误片段，定位错误并给出正确的文本结果；支持长度不超过128字符（含标点符号）的长文本纠错。
@@ -65,7 +65,7 @@ extension Nlp {
     public func textCorrectionPro(_ input: TextCorrectionProRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TextCorrectionProResponse {
         try await self.client.execute(action: "TextCorrectionPro", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 文本纠错高级版
     ///
     /// 提供对中文文本的自动纠错功能，能够识别输入文本中的错误片段，定位错误并给出正确的文本结果；支持长度不超过128字符（含标点符号）的长文本纠错。
@@ -74,7 +74,7 @@ extension Nlp {
     public func textCorrectionPro(text: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < TextCorrectionProResponse > {
         self.textCorrectionPro(TextCorrectionProRequest(text: text), logger: logger, on: eventLoop)
     }
-    
+
     /// 文本纠错高级版
     ///
     /// 提供对中文文本的自动纠错功能，能够识别输入文本中的错误片段，定位错误并给出正确的文本结果；支持长度不超过128字符（含标点符号）的长文本纠错。

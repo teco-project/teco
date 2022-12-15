@@ -34,109 +34,109 @@ extension TCIeError {
             case videoFormatError = "InvalidParameterValue.VideoFormatError"
             case other = "InvalidParameterValue"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 任务不支持该操作。
         public static var actionNotSupport: InvalidParameterValue {
             InvalidParameterValue(.actionNotSupport)
         }
-        
+
         /// CallbackUrl 不安全。
         public static var callbackUrlError: InvalidParameterValue {
             InvalidParameterValue(.callbackUrlError)
         }
-        
+
         /// 直播场景回调地址必选。
         public static var callbackUrlNotExist: InvalidParameterValue {
             InvalidParameterValue(.callbackUrlNotExist)
         }
-        
+
         /// Cos授权信息错误。
         public static var cosAuthModeError: InvalidParameterValue {
             InvalidParameterValue(.cosAuthModeError)
         }
-        
+
         /// Cos托管ID不存在。
         public static var cosHostedIdNotExist: InvalidParameterValue {
             InvalidParameterValue(.cosHostedIdNotExist)
         }
-        
+
         /// 视频源地址格式错误。
         public static var downInfoFormatWrong: InvalidParameterValue {
             InvalidParameterValue(.downInfoFormatWrong)
         }
-        
+
         /// 视频源下载类型错误。
         public static var downInfoTypeWrong: InvalidParameterValue {
             InvalidParameterValue(.downInfoTypeWrong)
         }
-        
+
         /// 该任务不支持直播流。
         public static var liveSourceNotSupport: InvalidParameterValue {
             InvalidParameterValue(.liveSourceNotSupport)
         }
-        
+
         /// 请确认准确填写存储信息。
         public static var saveInfoNotExist: InvalidParameterValue {
             InvalidParameterValue(.saveInfoNotExist)
         }
-        
+
         /// 任务已经结束。
         public static var taskAlreadyDone: InvalidParameterValue {
             InvalidParameterValue(.taskAlreadyDone)
         }
-        
+
         /// 任务已经删除。
         public static var taskDeleted: InvalidParameterValue {
             InvalidParameterValue(.taskDeleted)
         }
-        
+
         /// 任务ID不存在。
         public static var taskIdNotExist: InvalidParameterValue {
             InvalidParameterValue(.taskIdNotExist)
         }
-        
+
         /// 请求uri错误。
         public static var uriError: InvalidParameterValue {
             InvalidParameterValue(.uriError)
         }
-        
+
         /// URL 不安全。
         public static var urlInfoUrlError: InvalidParameterValue {
             InvalidParameterValue(.urlInfoUrlError)
         }
-        
+
         /// 视频格式不支持。
         public static var videoFormatError: InvalidParameterValue {
             InvalidParameterValue(.videoFormatError)
         }
-        
+
         /// 参数取值错误。
         public static var other: InvalidParameterValue {
             InvalidParameterValue(.other)
         }
-        
+
         public func asIeError() -> TCIeError {
             let code: TCIeError.Code
             switch self.error {

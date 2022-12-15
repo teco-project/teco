@@ -38,99 +38,99 @@ public struct TCIottidError: TCIottidErrorType {
         case invalidParameterValue_Quantity = "InvalidParameterValue.Quantity"
         case invalidParameterValue_Tid = "InvalidParameterValue.Tid"
     }
-    
+
     /// Error domains affliated to ``TCIottidError``.
     public static var domains: [TCErrorType.Type] {
         [InvalidParameterValue.self]
     }
-    
+
     private let error: Code
-    
+
     public let context: TCErrorContext?
-    
+
     public var errorCode: String {
         self.error.rawValue
     }
-    
+
     /// Initializer used by ``TCClient`` to match an error of this type.
-    public init ?(errorCode: String, context: TCErrorContext) {
+    public init?(errorCode: String, context: TCErrorContext) {
         guard let error = Code(rawValue: errorCode) else {
             return nil
         }
         self.error = error
         self.context = context
     }
-    
-    internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+    internal init(_ error: Code, context: TCErrorContext? = nil) {
         self.error = error
         self.context = context
     }
-    
+
     /// 内部错误。
     public static var internalError: TCIottidError {
         TCIottidError(.internalError)
     }
-    
+
     /// 参数错误。
     public static var invalidParameter: TCIottidError {
         TCIottidError(.invalidParameter)
     }
-    
+
     /// 参数取值错误。
     public static var invalidParameterValue: TCIottidError {
         TCIottidError(.invalidParameterValue)
     }
-    
+
     /// AppId错误。
     public static var invalidParameterValue_AppId: TCIottidError {
         TCIottidError(.invalidParameterValue_AppId)
     }
-    
+
     /// 数量错误。
     public static var invalidParameterValue_Count: TCIottidError {
         TCIottidError(.invalidParameterValue_Count)
     }
-    
+
     /// 验证数据错误。
     public static var invalidParameterValue_Data: TCIottidError {
         TCIottidError(.invalidParameterValue_Data)
     }
-    
+
     /// 输入字符串为空。
     public static var invalidParameterValue_EmptyString: TCIottidError {
         TCIottidError(.invalidParameterValue_EmptyString)
     }
-    
+
     /// 超过数量限制。
     public static var invalidParameterValue_Limit: TCIottidError {
         TCIottidError(.invalidParameterValue_Limit)
     }
-    
+
     /// 订单编号错误。
     public static var invalidParameterValue_OrderId: TCIottidError {
         TCIottidError(.invalidParameterValue_OrderId)
     }
-    
+
     /// 超过数量限制。
     public static var invalidParameterValue_OverLimit: TCIottidError {
         TCIottidError(.invalidParameterValue_OverLimit)
     }
-    
+
     /// 无权限操作。
     public static var invalidParameterValue_PermissionDenied: TCIottidError {
         TCIottidError(.invalidParameterValue_PermissionDenied)
     }
-    
+
     /// 数量错误。
     public static var invalidParameterValue_Quantity: TCIottidError {
         TCIottidError(.invalidParameterValue_Quantity)
     }
-    
+
     /// TID编码错误。
     public static var invalidParameterValue_Tid: TCIottidError {
         TCIottidError(.invalidParameterValue_Tid)
     }
-    
+
     public func asIottidError() -> TCIottidError {
         return self
     }

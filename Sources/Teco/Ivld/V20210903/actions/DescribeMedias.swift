@@ -19,23 +19,23 @@ extension Ivld {
     public struct DescribeMediasRequest: TCRequestModel {
         /// 分页序号，从1开始
         public let pageNumber: Int64
-        
+
         /// 每个分页所包含的元素数量，最大为50
         public let pageSize: Int64
-        
+
         /// 列举过滤条件，相关限制相见MediaFilter
         public let mediaFilter: MediaFilter?
-        
+
         /// 返回结果排序信息，By字段只支持CreateTime
         public let sortBy: SortBy?
-        
-        public init (pageNumber: Int64, pageSize: Int64, mediaFilter: MediaFilter? = nil, sortBy: SortBy? = nil) {
+
+        public init(pageNumber: Int64, pageSize: Int64, mediaFilter: MediaFilter? = nil, sortBy: SortBy? = nil) {
             self.pageNumber = pageNumber
             self.pageSize = pageSize
             self.mediaFilter = mediaFilter
             self.sortBy = sortBy
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case pageNumber = "PageNumber"
             case pageSize = "PageSize"
@@ -43,26 +43,26 @@ extension Ivld {
             case sortBy = "SortBy"
         }
     }
-    
+
     /// DescribeMedias返回参数结构体
     public struct DescribeMediasResponse: TCResponseModel {
         /// 满足过滤条件的媒资视频总数量
         public let totalCount: Int64
-        
+
         /// 满足过滤条件的媒资信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let mediaInfoSet: [MediaInfo]?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case mediaInfoSet = "MediaInfoSet"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 批量描述媒资文件
     ///
     /// 依照输入条件，描述命中的媒资文件信息，包括媒资状态，分辨率，帧率等。
@@ -72,7 +72,7 @@ extension Ivld {
     public func describeMedias(_ input: DescribeMediasRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeMediasResponse > {
         self.client.execute(action: "DescribeMedias", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 批量描述媒资文件
     ///
     /// 依照输入条件，描述命中的媒资文件信息，包括媒资状态，分辨率，帧率等。
@@ -82,7 +82,7 @@ extension Ivld {
     public func describeMedias(_ input: DescribeMediasRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMediasResponse {
         try await self.client.execute(action: "DescribeMedias", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 批量描述媒资文件
     ///
     /// 依照输入条件，描述命中的媒资文件信息，包括媒资状态，分辨率，帧率等。
@@ -92,7 +92,7 @@ extension Ivld {
     public func describeMedias(pageNumber: Int64, pageSize: Int64, mediaFilter: MediaFilter? = nil, sortBy: SortBy? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeMediasResponse > {
         self.describeMedias(DescribeMediasRequest(pageNumber: pageNumber, pageSize: pageSize, mediaFilter: mediaFilter, sortBy: sortBy), logger: logger, on: eventLoop)
     }
-    
+
     /// 批量描述媒资文件
     ///
     /// 依照输入条件，描述命中的媒资文件信息，包括媒资状态，分辨率，帧率等。

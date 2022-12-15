@@ -22,49 +22,49 @@ extension TCDomainError {
             case modifyDomainInfoUnsupported = "UnsupportedOperation.ModifyDomainInfoUnsupported"
             case modifyDomainUnsupported = "UnsupportedOperation.ModifyDomainUnsupported"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 账户实名认证未通过。
         public static var accountRealName: UnsupportedOperation {
             UnsupportedOperation(.accountRealName)
         }
-        
+
         /// 当前域名未完成实名认证，无法完成该操作。
         public static var domainNotVerified: UnsupportedOperation {
             UnsupportedOperation(.domainNotVerified)
         }
-        
+
         /// 当前域名状态不支持修改。
         public static var modifyDomainInfoUnsupported: UnsupportedOperation {
             UnsupportedOperation(.modifyDomainInfoUnsupported)
         }
-        
+
         /// 当前域名状态不支持修改。
         public static var modifyDomainUnsupported: UnsupportedOperation {
             UnsupportedOperation(.modifyDomainUnsupported)
         }
-        
+
         public func asDomainError() -> TCDomainError {
             let code: TCDomainError.Code
             switch self.error {

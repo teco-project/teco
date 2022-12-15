@@ -26,36 +26,36 @@ extension Tiia {
         /// • 长宽比：长边：短边<5； 
         /// 接口响应时间会受到图片下载时间的影响，建议使用更可靠的存储服务，推荐将图片存储在腾讯云COS。
         public let imageUrl: String?
-        
+
         /// 图片经过base64编码的内容。最大不超过4M。与ImageUrl同时存在时优先使用ImageUrl字段。
         /// **注意：图片需要base64编码，并且要去掉编码头部。**
         public let imageBase64: String?
-        
-        public init (imageUrl: String? = nil, imageBase64: String? = nil) {
+
+        public init(imageUrl: String? = nil, imageBase64: String? = nil) {
             self.imageUrl = imageUrl
             self.imageBase64 = imageBase64
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case imageUrl = "ImageUrl"
             case imageBase64 = "ImageBase64"
         }
     }
-    
+
     /// DetectProduct返回参数结构体
     public struct DetectProductResponse: TCResponseModel {
         /// 商品识别结果数组
         public let products: [Product]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case products = "Products"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 商品识别
     ///
     /// 本接口支持识别图片中包含的商品，能够输出商品的品类名称、类别，还可以输出商品在图片中的位置。支持一张图片多个商品的识别。
@@ -65,7 +65,7 @@ extension Tiia {
     public func detectProduct(_ input: DetectProductRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DetectProductResponse > {
         self.client.execute(action: "DetectProduct", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 商品识别
     ///
     /// 本接口支持识别图片中包含的商品，能够输出商品的品类名称、类别，还可以输出商品在图片中的位置。支持一张图片多个商品的识别。
@@ -75,7 +75,7 @@ extension Tiia {
     public func detectProduct(_ input: DetectProductRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DetectProductResponse {
         try await self.client.execute(action: "DetectProduct", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 商品识别
     ///
     /// 本接口支持识别图片中包含的商品，能够输出商品的品类名称、类别，还可以输出商品在图片中的位置。支持一张图片多个商品的识别。
@@ -85,7 +85,7 @@ extension Tiia {
     public func detectProduct(imageUrl: String? = nil, imageBase64: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DetectProductResponse > {
         self.detectProduct(DetectProductRequest(imageUrl: imageUrl, imageBase64: imageBase64), logger: logger, on: eventLoop)
     }
-    
+
     /// 商品识别
     ///
     /// 本接口支持识别图片中包含的商品，能够输出商品的品类名称、类别，还可以输出商品在图片中的位置。支持一张图片多个商品的识别。

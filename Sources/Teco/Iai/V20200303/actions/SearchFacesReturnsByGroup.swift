@@ -20,12 +20,12 @@ extension Iai {
         /// 希望搜索的人员库列表，上限60个。数组元素取值为创建人员库接口中的GroupId。
         /// 不可同时搜索不同算法模型版本（FaceModelVersion）的人员库。
         public let groupIds: [String]
-        
+
         /// 图片 base64 数据，base64 编码后大小不可超过5M。
         /// jpg格式长边像素不可超过4000，其他格式图片长边像素不可超2000。
         /// 支持PNG、JPG、JPEG、BMP，不支持 GIF 图片。
         public let image: String?
-        
+
         /// 图片的 Url 。对应图片 base64 编码后大小不可超过5M。
         /// jpg格式长边像素不可超过4000，其他格式图片长边像素不可超2000。
         /// Url、Image必须提供一个，如果都提供，只使用 Url。
@@ -33,22 +33,22 @@ extension Iai {
         /// 非腾讯云存储的Url速度和稳定性可能受一定影响。
         /// 支持PNG、JPG、JPEG、BMP，不支持 GIF 图片。
         public let url: String?
-        
+
         /// 最多识别的人脸数目。默认值为1（仅检测图片中面积最大的那张人脸），最大值为10。
         /// MaxFaceNum用于，当输入的待识别图片包含多张人脸时，设定要搜索的人脸的数量。
         /// 例：输入的Image或Url中的图片包含多张人脸，设MaxFaceNum=5，则会识别图片中面积最大的5张人脸。
         public let maxFaceNum: UInt64?
-        
+
         /// 人脸长和宽的最小尺寸，单位为像素。默认为34。低于34将影响搜索精度。建议设置为80。
         public let minFaceSize: UInt64?
-        
+
         /// 被检测到的人脸，对应最多返回的最相似人员数目。默认值为5，最大值为10。  
         /// 例，设MaxFaceNum为3，MaxPersonNumPerGroup为5，GroupIds长度为3，则最多可能返回3*5*3=45个人员。
         public let maxPersonNumPerGroup: UInt64?
-        
+
         /// 是否返回人员具体信息。0 为关闭，1 为开启。默认为 0。其他非0非1值默认为0
         public let needPersonInfo: Int64?
-        
+
         /// 图片质量控制。 
         /// 0: 不进行控制； 
         /// 1:较低的质量要求，图像存在非常模糊，眼睛鼻子嘴巴遮挡至少其中一种或多种的情况； 
@@ -58,16 +58,16 @@ extension Iai {
         /// 默认 0。 
         /// 若图片质量不满足要求，则返回结果中会提示图片质量检测不符要求。
         public let qualityControl: UInt64?
-        
+
         /// 出参Score中，只有大于等于FaceMatchThreshold值的结果才会返回。
         /// 默认为0。
         /// 取值范围[0.0,100.0) 。
         public let faceMatchThreshold: Float?
-        
+
         /// 是否开启图片旋转识别支持。0为不开启，1为开启。默认为0。本参数的作用为，当图片中的人脸被旋转且图片没有exif信息时，如果不开启图片旋转识别支持则无法正确检测、识别图片中的人脸。若您确认图片包含exif信息或者您确认输入图中人脸不会出现被旋转情况，请不要开启本参数。开启后，整体耗时将可能增加数百毫秒。
         public let needRotateDetection: UInt64?
-        
-        public init (groupIds: [String], image: String? = nil, url: String? = nil, maxFaceNum: UInt64? = nil, minFaceSize: UInt64? = nil, maxPersonNumPerGroup: UInt64? = nil, needPersonInfo: Int64? = nil, qualityControl: UInt64? = nil, faceMatchThreshold: Float? = nil, needRotateDetection: UInt64? = nil) {
+
+        public init(groupIds: [String], image: String? = nil, url: String? = nil, maxFaceNum: UInt64? = nil, minFaceSize: UInt64? = nil, maxPersonNumPerGroup: UInt64? = nil, needPersonInfo: Int64? = nil, qualityControl: UInt64? = nil, faceMatchThreshold: Float? = nil, needRotateDetection: UInt64? = nil) {
             self.groupIds = groupIds
             self.image = image
             self.url = url
@@ -79,7 +79,7 @@ extension Iai {
             self.faceMatchThreshold = faceMatchThreshold
             self.needRotateDetection = needRotateDetection
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case groupIds = "GroupIds"
             case image = "Image"
@@ -93,21 +93,21 @@ extension Iai {
             case needRotateDetection = "NeedRotateDetection"
         }
     }
-    
+
     /// SearchFacesReturnsByGroup返回参数结构体
     public struct SearchFacesReturnsByGroupResponse: TCResponseModel {
         /// 搜索的人员库中包含的人脸数。
         public let faceNum: UInt64
-        
+
         /// 识别结果。
         public let resultsReturnsByGroup: [ResultsReturnsByGroup]
-        
+
         /// 人脸识别所用的算法模型版本。
         public let faceModelVersion: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case faceNum = "FaceNum"
             case resultsReturnsByGroup = "ResultsReturnsByGroup"
@@ -115,7 +115,7 @@ extension Iai {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 人脸搜索分库返回
     ///
     /// 用于对一张待识别的人脸图片，在一个或多个人员库中识别出最相似的 TopK 人员，按照**人员库的维度**以人员相似度从大到小顺序排列。
@@ -131,7 +131,7 @@ extension Iai {
     public func searchFacesReturnsByGroup(_ input: SearchFacesReturnsByGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SearchFacesReturnsByGroupResponse > {
         self.client.execute(action: "SearchFacesReturnsByGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 人脸搜索分库返回
     ///
     /// 用于对一张待识别的人脸图片，在一个或多个人员库中识别出最相似的 TopK 人员，按照**人员库的维度**以人员相似度从大到小顺序排列。
@@ -147,7 +147,7 @@ extension Iai {
     public func searchFacesReturnsByGroup(_ input: SearchFacesReturnsByGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SearchFacesReturnsByGroupResponse {
         try await self.client.execute(action: "SearchFacesReturnsByGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 人脸搜索分库返回
     ///
     /// 用于对一张待识别的人脸图片，在一个或多个人员库中识别出最相似的 TopK 人员，按照**人员库的维度**以人员相似度从大到小顺序排列。
@@ -163,7 +163,7 @@ extension Iai {
     public func searchFacesReturnsByGroup(groupIds: [String], image: String? = nil, url: String? = nil, maxFaceNum: UInt64? = nil, minFaceSize: UInt64? = nil, maxPersonNumPerGroup: UInt64? = nil, needPersonInfo: Int64? = nil, qualityControl: UInt64? = nil, faceMatchThreshold: Float? = nil, needRotateDetection: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SearchFacesReturnsByGroupResponse > {
         self.searchFacesReturnsByGroup(SearchFacesReturnsByGroupRequest(groupIds: groupIds, image: image, url: url, maxFaceNum: maxFaceNum, minFaceSize: minFaceSize, maxPersonNumPerGroup: maxPersonNumPerGroup, needPersonInfo: needPersonInfo, qualityControl: qualityControl, faceMatchThreshold: faceMatchThreshold, needRotateDetection: needRotateDetection), logger: logger, on: eventLoop)
     }
-    
+
     /// 人脸搜索分库返回
     ///
     /// 用于对一张待识别的人脸图片，在一个或多个人员库中识别出最相似的 TopK 人员，按照**人员库的维度**以人员相似度从大到小顺序排列。

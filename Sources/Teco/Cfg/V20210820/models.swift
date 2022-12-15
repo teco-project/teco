@@ -19,17 +19,17 @@ extension Cfg {
     public struct DescribePolicy: TCOutputModel {
         /// 保护策略ID列表
         public let taskPolicyIdList: [String]
-        
+
         /// 保护策略状态
         public let taskPolicyStatus: String
-        
+
         /// 策略规则
         public let taskPolicyRule: String
-        
+
         /// 护栏策略生效处理策略 1:顺序执行，2:暂停
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let taskPolicyDealType: Int64?
-        
+
         enum CodingKeys: String, CodingKey {
             case taskPolicyIdList = "TaskPolicyIdList"
             case taskPolicyStatus = "TaskPolicyStatus"
@@ -37,116 +37,116 @@ extension Cfg {
             case taskPolicyDealType = "TaskPolicyDealType"
         }
     }
-    
+
     /// 用于传入创建、编辑标签
     public struct TagWithCreate: TCInputModel {
         /// 标签键
         public let tagKey: String
-        
+
         /// 标签值
         public let tagValue: String
-        
-        public init (tagKey: String, tagValue: String) {
+
+        public init(tagKey: String, tagValue: String) {
             self.tagKey = tagKey
             self.tagValue = tagValue
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case tagKey = "TagKey"
             case tagValue = "TagValue"
         }
     }
-    
+
     /// 展示标签列表
     public struct TagWithDescribe: TCOutputModel {
         /// 标签键
         public let tagKey: String
-        
+
         /// 标签值
         public let tagValue: String
-        
+
         enum CodingKeys: String, CodingKey {
             case tagKey = "TagKey"
             case tagValue = "TagValue"
         }
     }
-    
+
     /// 任务
     public struct Task: TCInputModel, TCOutputModel {
         /// 任务ID
         public let taskId: Int64
-        
+
         /// 任务标题
         public let taskTitle: String
-        
+
         /// 任务描述
         public let taskDescription: String
-        
+
         /// 自定义标签
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let taskTag: String?
-        
+
         /// 任务状态，1001--未开始  1002--进行中（执行）1003--进行中（暂停）1004--执行结束
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let taskStatus: Int64?
-        
+
         /// 任务结束状态，表明任务以何种状态结束: 0 -- 尚未结束，1 -- 成功，2-- 失败，3--终止
         public let taskStatusType: Int64
-        
+
         /// 保护策略
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let taskProtectStrategy: String?
-        
+
         /// 任务创建时间
         public let taskCreateTime: String
-        
+
         /// 任务更新时间
         public let taskUpdateTime: String
-        
+
         /// 任务动作组
         public let taskGroups: [TaskGroup]
-        
+
         /// 开始时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let taskStartTime: String?
-        
+
         /// 结束时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let taskEndTime: String?
-        
+
         /// 是否符合预期。1：符合预期，2：不符合预期
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let taskExpect: Int64?
-        
+
         /// 演习记录
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let taskSummary: String?
-        
+
         /// 任务模式。1:手工执行，2:自动执行
         public let taskMode: Int64
-        
+
         /// 自动暂停时长。单位分钟
         public let taskPauseDuration: Int64
-        
+
         /// 演练创建者Uin
         public let taskOwnerUin: String
-        
+
         /// 地域ID
         public let taskRegionId: Int64
-        
+
         /// 监控指标列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let taskMonitors: [TaskMonitor]?
-        
+
         /// 保护策略
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let taskPolicy: DescribePolicy?
-        
+
         /// 标签列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tags: [TagWithDescribe]?
-        
-        public init (taskId: Int64, taskTitle: String, taskDescription: String, taskTag: String, taskStatus: Int64, taskStatusType: Int64, taskProtectStrategy: String, taskCreateTime: String, taskUpdateTime: String, taskGroups: [TaskGroup], taskStartTime: String, taskEndTime: String, taskExpect: Int64, taskSummary: String, taskMode: Int64, taskPauseDuration: Int64, taskOwnerUin: String, taskRegionId: Int64, taskMonitors: [TaskMonitor], taskPolicy: DescribePolicy, tags: [TagWithDescribe]? = nil) {
+
+        public init(taskId: Int64, taskTitle: String, taskDescription: String, taskTag: String, taskStatus: Int64, taskStatusType: Int64, taskProtectStrategy: String, taskCreateTime: String, taskUpdateTime: String, taskGroups: [TaskGroup], taskStartTime: String, taskEndTime: String, taskExpect: Int64, taskSummary: String, taskMode: Int64, taskPauseDuration: Int64, taskOwnerUin: String, taskRegionId: Int64, taskMonitors: [TaskMonitor], taskPolicy: DescribePolicy, tags: [TagWithDescribe]? = nil) {
             self.taskId = taskId
             self.taskTitle = taskTitle
             self.taskDescription = taskDescription
@@ -169,7 +169,7 @@ extension Cfg {
             self.taskPolicy = taskPolicy
             self.tags = tags
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case taskId = "TaskId"
             case taskTitle = "TaskTitle"
@@ -194,28 +194,28 @@ extension Cfg {
             case tags = "Tags"
         }
     }
-    
+
     /// 从经验模版创建演练时需要配置的任务参数
     public struct TaskConfig: TCInputModel {
         /// 动作组配置，需要保证配置个数和经验中的动作组个数一致
         public let taskGroupsConfig: [TaskGroupConfig]
-        
+
         /// 更改后的演练名称，不填则默认取经验名称
         public let taskTitle: String?
-        
+
         /// 更改后的演练描述，不填则默认取经验描述
         public let taskDescription: String?
-        
+
         /// 演练执行模式：1----手工执行/ 2 ---自动执行，不填则默认取经验执行模式
         public let taskMode: UInt64?
-        
+
         /// 演练自动暂停时间，单位分钟, 不填则默认取经验自动暂停时间
         public let taskPauseDuration: UInt64?
-        
+
         /// 演练标签信息，不填则默认取经验标签
         public let tags: [TagWithCreate]?
-        
-        public init (taskGroupsConfig: [TaskGroupConfig], taskTitle: String? = nil, taskDescription: String? = nil, taskMode: UInt64? = nil, taskPauseDuration: UInt64? = nil, tags: [TagWithCreate]? = nil) {
+
+        public init(taskGroupsConfig: [TaskGroupConfig], taskTitle: String? = nil, taskDescription: String? = nil, taskMode: UInt64? = nil, taskPauseDuration: UInt64? = nil, tags: [TagWithCreate]? = nil) {
             self.taskGroupsConfig = taskGroupsConfig
             self.taskTitle = taskTitle
             self.taskDescription = taskDescription
@@ -223,7 +223,7 @@ extension Cfg {
             self.taskPauseDuration = taskPauseDuration
             self.tags = tags
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case taskGroupsConfig = "TaskGroupsConfig"
             case taskTitle = "TaskTitle"
@@ -233,41 +233,41 @@ extension Cfg {
             case tags = "Tags"
         }
     }
-    
+
     /// 任务分组
     public struct TaskGroup: TCInputModel, TCOutputModel {
         /// 任务动作ID
         public let taskGroupId: Int64
-        
+
         /// 分组标题
         public let taskGroupTitle: String
-        
+
         /// 分组描述
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let taskGroupDescription: String?
-        
+
         /// 任务分组顺序
         public let taskGroupOrder: Int64
-        
+
         /// 对象类型ID
         public let objectTypeId: Int64
-        
+
         /// 任务分组创建时间
         public let taskGroupCreateTime: String
-        
+
         /// 任务分组更新时间
         public let taskGroupUpdateTime: String
-        
+
         /// 动作分组动作列表
         public let taskGroupActions: [TaskGroupAction]
-        
+
         /// 实例列表
         public let taskGroupInstanceList: [String]
-        
+
         /// 执行模式。1 --- 顺序执行，2 --- 阶段执行
         public let taskGroupMode: Int64
-        
-        public init (taskGroupId: Int64, taskGroupTitle: String, taskGroupDescription: String, taskGroupOrder: Int64, objectTypeId: Int64, taskGroupCreateTime: String, taskGroupUpdateTime: String, taskGroupActions: [TaskGroupAction], taskGroupInstanceList: [String], taskGroupMode: Int64) {
+
+        public init(taskGroupId: Int64, taskGroupTitle: String, taskGroupDescription: String, taskGroupOrder: Int64, objectTypeId: Int64, taskGroupCreateTime: String, taskGroupUpdateTime: String, taskGroupActions: [TaskGroupAction], taskGroupInstanceList: [String], taskGroupMode: Int64) {
             self.taskGroupId = taskGroupId
             self.taskGroupTitle = taskGroupTitle
             self.taskGroupDescription = taskGroupDescription
@@ -279,7 +279,7 @@ extension Cfg {
             self.taskGroupInstanceList = taskGroupInstanceList
             self.taskGroupMode = taskGroupMode
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case taskGroupId = "TaskGroupId"
             case taskGroupTitle = "TaskGroupTitle"
@@ -293,81 +293,81 @@ extension Cfg {
             case taskGroupMode = "TaskGroupMode"
         }
     }
-    
+
     /// 任务分组动作
     public struct TaskGroupAction: TCInputModel, TCOutputModel {
         /// 任务分组动作ID
         public let taskGroupActionId: Int64
-        
+
         /// 任务分组动作实例列表
         public let taskGroupInstances: [TaskGroupInstance]
-        
+
         /// 动作ID
         public let actionId: Int64
-        
+
         /// 分组动作顺序
         public let taskGroupActionOrder: Int64
-        
+
         /// 分组动作通用配置
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let taskGroupActionGeneralConfiguration: String?
-        
+
         /// 分组动作自定义配置
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let taskGroupActionCustomConfiguration: String?
-        
+
         /// 分组动作状态
         public let taskGroupActionStatus: Int64
-        
+
         /// 动作分组创建时间
         public let taskGroupActionCreateTime: String
-        
+
         /// 动作分组更新时间
         public let taskGroupActionUpdateTime: String
-        
+
         /// 动作名称
         public let actionTitle: String
-        
+
         /// 状态类型: 0 -- 无状态，1 -- 成功，2-- 失败，3--终止，4--跳过
         public let taskGroupActionStatusType: Int64
-        
+
         /// RandomId
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let taskGroupActionRandomId: Int64?
-        
+
         /// RecoverId
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let taskGroupActionRecoverId: Int64?
-        
+
         /// ExecuteId
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let taskGroupActionExecuteId: Int64?
-        
+
         /// 调用api类型，0:tat, 1:云api
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let actionApiType: Int64?
-        
+
         /// 1:故障，2:恢复
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let actionAttribute: Int64?
-        
+
         /// 动作类型：平台、自定义
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let actionType: String?
-        
+
         /// 是否可重试
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let isExecuteRedo: Bool?
-        
+
         /// 动作风险级别
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let actionRisk: String?
-        
+
         /// 动作运行时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let taskGroupActionExecuteTime: Int64?
-        
-        public init (taskGroupActionId: Int64, taskGroupInstances: [TaskGroupInstance], actionId: Int64, taskGroupActionOrder: Int64, taskGroupActionGeneralConfiguration: String, taskGroupActionCustomConfiguration: String, taskGroupActionStatus: Int64, taskGroupActionCreateTime: String, taskGroupActionUpdateTime: String, actionTitle: String, taskGroupActionStatusType: Int64, taskGroupActionRandomId: Int64, taskGroupActionRecoverId: Int64, taskGroupActionExecuteId: Int64, actionApiType: Int64? = nil, actionAttribute: Int64? = nil, actionType: String? = nil, isExecuteRedo: Bool? = nil, actionRisk: String? = nil, taskGroupActionExecuteTime: Int64? = nil) {
+
+        public init(taskGroupActionId: Int64, taskGroupInstances: [TaskGroupInstance], actionId: Int64, taskGroupActionOrder: Int64, taskGroupActionGeneralConfiguration: String, taskGroupActionCustomConfiguration: String, taskGroupActionStatus: Int64, taskGroupActionCreateTime: String, taskGroupActionUpdateTime: String, actionTitle: String, taskGroupActionStatusType: Int64, taskGroupActionRandomId: Int64, taskGroupActionRecoverId: Int64, taskGroupActionExecuteId: Int64, actionApiType: Int64? = nil, actionAttribute: Int64? = nil, actionType: String? = nil, isExecuteRedo: Bool? = nil, actionRisk: String? = nil, taskGroupActionExecuteTime: Int64? = nil) {
             self.taskGroupActionId = taskGroupActionId
             self.taskGroupInstances = taskGroupInstances
             self.actionId = actionId
@@ -389,7 +389,7 @@ extension Cfg {
             self.actionRisk = actionRisk
             self.taskGroupActionExecuteTime = taskGroupActionExecuteTime
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case taskGroupActionId = "TaskGroupActionId"
             case taskGroupInstances = "TaskGroupInstances"
@@ -413,56 +413,56 @@ extension Cfg {
             case taskGroupActionExecuteTime = "TaskGroupActionExecuteTime"
         }
     }
-    
+
     /// 动作组中的动作参数
     public struct TaskGroupActionConfig: TCInputModel {
         /// 该动作在动作组中的顺序，从1开始，不填或填错将匹配不到经验中要修改参数的动作
         public let taskGroupActionOrder: UInt64?
-        
+
         /// 动作通用参数，需要json序列化传入，可以从查询经验详情接口获取，不填默认使用经验中动作参数
         public let taskGroupActionGeneralConfiguration: String?
-        
+
         /// 动作自定义参数，需要json序列化传入，可以从查询经验详情接口获取，不填默认使用经验中动作参数
         public let taskGroupActionCustomConfiguration: String?
-        
-        public init (taskGroupActionOrder: UInt64? = nil, taskGroupActionGeneralConfiguration: String? = nil, taskGroupActionCustomConfiguration: String? = nil) {
+
+        public init(taskGroupActionOrder: UInt64? = nil, taskGroupActionGeneralConfiguration: String? = nil, taskGroupActionCustomConfiguration: String? = nil) {
             self.taskGroupActionOrder = taskGroupActionOrder
             self.taskGroupActionGeneralConfiguration = taskGroupActionGeneralConfiguration
             self.taskGroupActionCustomConfiguration = taskGroupActionCustomConfiguration
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case taskGroupActionOrder = "TaskGroupActionOrder"
             case taskGroupActionGeneralConfiguration = "TaskGroupActionGeneralConfiguration"
             case taskGroupActionCustomConfiguration = "TaskGroupActionCustomConfiguration"
         }
     }
-    
+
     /// 动作组的配置项
     public struct TaskGroupConfig: TCInputModel {
         /// 动作组所关联的实例对象
         public let taskGroupInstances: [String]
-        
+
         /// 动作组标题，不填默认取经验中的动作组名称
         public let taskGroupTitle: String?
-        
+
         /// 动作组描述，不填默认取经验中的动作组描述
         public let taskGroupDescription: String?
-        
+
         /// 动作执行模式。1 --- 顺序执行，2 --- 阶段执行, 不填默认取经验中的动作组执行模式
         public let taskGroupMode: UInt64?
-        
+
         /// 动作组中的动作参数，不填默认使用经验中的动作参数，配置时可以只指定想要修改参数的动作
         public let taskGroupActionsConfig: [TaskGroupActionConfig]?
-        
-        public init (taskGroupInstances: [String], taskGroupTitle: String? = nil, taskGroupDescription: String? = nil, taskGroupMode: UInt64? = nil, taskGroupActionsConfig: [TaskGroupActionConfig]? = nil) {
+
+        public init(taskGroupInstances: [String], taskGroupTitle: String? = nil, taskGroupDescription: String? = nil, taskGroupMode: UInt64? = nil, taskGroupActionsConfig: [TaskGroupActionConfig]? = nil) {
             self.taskGroupInstances = taskGroupInstances
             self.taskGroupTitle = taskGroupTitle
             self.taskGroupDescription = taskGroupDescription
             self.taskGroupMode = taskGroupMode
             self.taskGroupActionsConfig = taskGroupActionsConfig
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case taskGroupInstances = "TaskGroupInstances"
             case taskGroupTitle = "TaskGroupTitle"
@@ -471,49 +471,49 @@ extension Cfg {
             case taskGroupActionsConfig = "TaskGroupActionsConfig"
         }
     }
-    
+
     /// 任务分组动作实例
     public struct TaskGroupInstance: TCInputModel, TCOutputModel {
         /// 实例ID
         public let taskGroupInstanceId: Int64
-        
+
         /// 实例ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let taskGroupInstanceObjectId: String?
-        
+
         /// 实例动作执行状态
         public let taskGroupInstanceStatus: Int64
-        
+
         /// 实例动作执行日志
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let taskGroupInstanceExecuteLog: String?
-        
+
         /// 实例创建时间
         public let taskGroupInstanceCreateTime: String
-        
+
         /// 实例更新时间
         public let taskGroupInstanceUpdateTime: String
-        
+
         /// 状态类型: 0 -- 无状态，1 -- 成功，2-- 失败，3--终止，4--跳过
         public let taskGroupInstanceStatusType: Int64
-        
+
         /// 执行开始时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let taskGroupInstanceStartTime: String?
-        
+
         /// 执行结束时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let taskGroupInstanceEndTime: String?
-        
+
         /// 实例是否可重试
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let taskGroupInstanceIsRedo: Bool?
-        
+
         /// 动作实例执行时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let taskGroupInstanceExecuteTime: Int64?
-        
-        public init (taskGroupInstanceId: Int64, taskGroupInstanceObjectId: String, taskGroupInstanceStatus: Int64, taskGroupInstanceExecuteLog: String, taskGroupInstanceCreateTime: String, taskGroupInstanceUpdateTime: String, taskGroupInstanceStatusType: Int64, taskGroupInstanceStartTime: String, taskGroupInstanceEndTime: String, taskGroupInstanceIsRedo: Bool? = nil, taskGroupInstanceExecuteTime: Int64? = nil) {
+
+        public init(taskGroupInstanceId: Int64, taskGroupInstanceObjectId: String, taskGroupInstanceStatus: Int64, taskGroupInstanceExecuteLog: String, taskGroupInstanceCreateTime: String, taskGroupInstanceUpdateTime: String, taskGroupInstanceStatusType: Int64, taskGroupInstanceStartTime: String, taskGroupInstanceEndTime: String, taskGroupInstanceIsRedo: Bool? = nil, taskGroupInstanceExecuteTime: Int64? = nil) {
             self.taskGroupInstanceId = taskGroupInstanceId
             self.taskGroupInstanceObjectId = taskGroupInstanceObjectId
             self.taskGroupInstanceStatus = taskGroupInstanceStatus
@@ -526,7 +526,7 @@ extension Cfg {
             self.taskGroupInstanceIsRedo = taskGroupInstanceIsRedo
             self.taskGroupInstanceExecuteTime = taskGroupInstanceExecuteTime
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case taskGroupInstanceId = "TaskGroupInstanceId"
             case taskGroupInstanceObjectId = "TaskGroupInstanceObjectId"
@@ -541,39 +541,39 @@ extension Cfg {
             case taskGroupInstanceExecuteTime = "TaskGroupInstanceExecuteTime"
         }
     }
-    
+
     /// 任务列表信息
     public struct TaskListItem: TCOutputModel {
         /// 任务ID
         public let taskId: Int64
-        
+
         /// 任务标题
         public let taskTitle: String
-        
+
         /// 任务描述
         public let taskDescription: String
-        
+
         /// 任务标签
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let taskTag: String?
-        
+
         /// 任务状态(1001 -- 未开始   1002 -- 进行中  1003 -- 暂停中   1004 -- 任务结束)
         public let taskStatus: Int64
-        
+
         /// 任务创建时间
         public let taskCreateTime: String
-        
+
         /// 任务更新时间
         public let taskUpdateTime: String
-        
+
         /// 0--未开始，1--进行中，2--已完成
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let taskPreCheckStatus: Int64?
-        
+
         /// 环境检查是否通过
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let taskPreCheckSuccess: Bool?
-        
+
         enum CodingKeys: String, CodingKey {
             case taskId = "TaskId"
             case taskTitle = "TaskTitle"
@@ -586,29 +586,29 @@ extension Cfg {
             case taskPreCheckSuccess = "TaskPreCheckSuccess"
         }
     }
-    
+
     /// 监控指标
     public struct TaskMonitor: TCOutputModel {
         /// 监控指标ID
         public let taskMonitorId: Int64
-        
+
         /// 监控指标对象类型ID
         public let taskMonitorObjectTypeId: Int64
-        
+
         /// 指标名称
         public let metricName: String
-        
+
         /// 实例ID列表
         public let instancesIds: [String]
-        
+
         /// 中文指标
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let metricChineseName: String?
-        
+
         /// 单位
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let unit: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case taskMonitorId = "TaskMonitorId"
             case taskMonitorObjectTypeId = "TaskMonitorObjectTypeId"
@@ -618,57 +618,57 @@ extension Cfg {
             case unit = "Unit"
         }
     }
-    
+
     /// 经验库
     public struct Template: TCOutputModel {
         /// 经验库ID
         public let templateId: Int64
-        
+
         /// 经验库标题
         public let templateTitle: String
-        
+
         /// 经验库描述
         public let templateDescription: String
-        
+
         /// 自定义标签
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let templateTag: String?
-        
+
         /// 使用状态。1 ---- 使用中，2 --- 停用
         public let templateIsUsed: Int64
-        
+
         /// 经验库创建时间
         public let templateCreateTime: String
-        
+
         /// 经验库更新时间
         public let templateUpdateTime: String
-        
+
         /// 经验库模式。1:手工执行，2:自动执行
         public let templateMode: Int64
-        
+
         /// 自动暂停时长。单位分钟
         public let templatePauseDuration: Int64
-        
+
         /// 演练创建者Uin
         public let templateOwnerUin: String
-        
+
         /// 地域ID
         public let templateRegionId: Int64
-        
+
         /// 动作组
         public let templateGroups: [TemplateGroup]
-        
+
         /// 监控指标
         public let templateMonitors: [TemplateMonitor]
-        
+
         /// 护栏监控
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let templatePolicy: TemplatePolicy?
-        
+
         /// 标签列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tags: [TagWithDescribe]?
-        
+
         enum CodingKeys: String, CodingKey {
             case templateId = "TemplateId"
             case templateTitle = "TemplateTitle"
@@ -687,38 +687,38 @@ extension Cfg {
             case tags = "Tags"
         }
     }
-    
+
     /// 任务分组
     public struct TemplateGroup: TCInputModel, TCOutputModel {
         /// 经验库动作ID
         public let templateGroupId: Int64
-        
+
         /// 经验库动作分组动作列表
         public let templateGroupActions: [TemplateGroupAction]
-        
+
         /// 分组标题
         public let title: String
-        
+
         /// 分组描述
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let description: String?
-        
+
         /// 分组顺序
         public let order: Int64
-        
+
         /// 执行模式。1 --- 顺序执行，2 --- 阶段执行
         public let mode: Int64
-        
+
         /// 对象类型ID
         public let objectTypeId: Int64
-        
+
         /// 分组创建时间
         public let createTime: String
-        
+
         /// 分组更新时间
         public let updateTime: String
-        
-        public init (templateGroupId: Int64, templateGroupActions: [TemplateGroupAction], title: String, description: String, order: Int64, mode: Int64, objectTypeId: Int64, createTime: String, updateTime: String) {
+
+        public init(templateGroupId: Int64, templateGroupActions: [TemplateGroupAction], title: String, description: String, order: Int64, mode: Int64, objectTypeId: Int64, createTime: String, updateTime: String) {
             self.templateGroupId = templateGroupId
             self.templateGroupActions = templateGroupActions
             self.title = title
@@ -729,7 +729,7 @@ extension Cfg {
             self.createTime = createTime
             self.updateTime = updateTime
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case templateGroupId = "TemplateGroupId"
             case templateGroupActions = "TemplateGroupActions"
@@ -742,60 +742,60 @@ extension Cfg {
             case updateTime = "UpdateTime"
         }
     }
-    
+
     /// 任务分组动作
     public struct TemplateGroupAction: TCInputModel, TCOutputModel {
         /// 经验库分组动作ID
         public let templateGroupActionId: Int64
-        
+
         /// 动作ID
         public let actionId: Int64
-        
+
         /// 分组动作顺序
         public let order: Int64
-        
+
         /// 分组动作通用配置
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let generalConfiguration: String?
-        
+
         /// 分组动作自定义配置
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let customConfiguration: String?
-        
+
         /// 动作分组创建时间
         public let createTime: String
-        
+
         /// 动作分组更新时间
         public let updateTime: String
-        
+
         /// 动作名称
         public let actionTitle: String
-        
+
         /// 自身随机id
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let randomId: Int64?
-        
+
         /// 恢复动作id
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let recoverId: Int64?
-        
+
         /// 执行动作id
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let executeId: Int64?
-        
+
         /// 调用api类型，0:tat, 1:云api
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let actionApiType: Int64?
-        
+
         /// 1:故障，2:恢复
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let actionAttribute: Int64?
-        
+
         /// 动作类型：平台和自定义
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let actionType: String?
-        
-        public init (templateGroupActionId: Int64, actionId: Int64, order: Int64, generalConfiguration: String, customConfiguration: String, createTime: String, updateTime: String, actionTitle: String, randomId: Int64, recoverId: Int64, executeId: Int64, actionApiType: Int64? = nil, actionAttribute: Int64? = nil, actionType: String? = nil) {
+
+        public init(templateGroupActionId: Int64, actionId: Int64, order: Int64, generalConfiguration: String, customConfiguration: String, createTime: String, updateTime: String, actionTitle: String, randomId: Int64, recoverId: Int64, executeId: Int64, actionApiType: Int64? = nil, actionAttribute: Int64? = nil, actionType: String? = nil) {
             self.templateGroupActionId = templateGroupActionId
             self.actionId = actionId
             self.order = order
@@ -811,7 +811,7 @@ extension Cfg {
             self.actionAttribute = actionAttribute
             self.actionType = actionType
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case templateGroupActionId = "TemplateGroupActionId"
             case actionId = "ActionId"
@@ -829,34 +829,34 @@ extension Cfg {
             case actionType = "ActionType"
         }
     }
-    
+
     /// 经验库列表信息
     public struct TemplateListItem: TCOutputModel {
         /// 经验库ID
         public let templateId: Int64
-        
+
         /// 经验库标题
         public let templateTitle: String
-        
+
         /// 经验库描述
         public let templateDescription: String
-        
+
         /// 经验库标签
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let templateTag: String?
-        
+
         /// 经验库状态。1 -- 使用中，2 -- 停用
         public let templateIsUsed: Int64
-        
+
         /// 经验库创建时间
         public let templateCreateTime: String
-        
+
         /// 经验库更新时间
         public let templateUpdateTime: String
-        
+
         /// 经验库关联的任务数量
         public let templateUsedNum: Int64
-        
+
         enum CodingKeys: String, CodingKey {
             case templateId = "TemplateId"
             case templateTitle = "TemplateTitle"
@@ -868,22 +868,22 @@ extension Cfg {
             case templateUsedNum = "TemplateUsedNum"
         }
     }
-    
+
     /// 监控指标
     public struct TemplateMonitor: TCOutputModel {
         /// 监控指标ID
         public let monitorId: Int64
-        
+
         /// 监控指标对象类型ID
         public let objectTypeId: Int64
-        
+
         /// 指标名称
         public let metricName: String
-        
+
         /// 中文指标
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let metricChineseName: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case monitorId = "MonitorId"
             case objectTypeId = "ObjectTypeId"
@@ -891,18 +891,18 @@ extension Cfg {
             case metricChineseName = "MetricChineseName"
         }
     }
-    
+
     /// 保护策略
     public struct TemplatePolicy: TCOutputModel {
         /// 保护策略ID列表
         public let templatePolicyIdList: [String]
-        
+
         /// 策略规则
         public let templatePolicyRule: String
-        
+
         /// 护栏策略生效处理策略 1:顺序执行，2:暂停
         public let templatePolicyDealType: Int64
-        
+
         enum CodingKeys: String, CodingKey {
             case templatePolicyIdList = "TemplatePolicyIdList"
             case templatePolicyRule = "TemplatePolicyRule"

@@ -19,26 +19,26 @@ extension Bmvpc {
     public struct DeleteCustomerGatewayRequest: TCRequestModel {
         /// 对端网关ID，例如：bmcgw-2wqq41m9，可通过DescribeCustomerGateways接口查询对端网关。
         public let customerGatewayId: String
-        
-        public init (customerGatewayId: String) {
+
+        public init(customerGatewayId: String) {
             self.customerGatewayId = customerGatewayId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case customerGatewayId = "CustomerGatewayId"
         }
     }
-    
+
     /// DeleteCustomerGateway返回参数结构体
     public struct DeleteCustomerGatewayResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除对端网关
     ///
     /// 本接口（DeleteCustomerGateway）用于删除对端网关。
@@ -46,7 +46,7 @@ extension Bmvpc {
     public func deleteCustomerGateway(_ input: DeleteCustomerGatewayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteCustomerGatewayResponse > {
         self.client.execute(action: "DeleteCustomerGateway", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除对端网关
     ///
     /// 本接口（DeleteCustomerGateway）用于删除对端网关。
@@ -54,7 +54,7 @@ extension Bmvpc {
     public func deleteCustomerGateway(_ input: DeleteCustomerGatewayRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCustomerGatewayResponse {
         try await self.client.execute(action: "DeleteCustomerGateway", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除对端网关
     ///
     /// 本接口（DeleteCustomerGateway）用于删除对端网关。
@@ -62,7 +62,7 @@ extension Bmvpc {
     public func deleteCustomerGateway(customerGatewayId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteCustomerGatewayResponse > {
         self.deleteCustomerGateway(DeleteCustomerGatewayRequest(customerGatewayId: customerGatewayId), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除对端网关
     ///
     /// 本接口（DeleteCustomerGateway）用于删除对端网关。

@@ -19,35 +19,35 @@ extension Sms {
     public struct PullSmsSendStatusRequest: TCRequestModel {
         /// 拉取最大条数，最多100条。
         public let limit: UInt64
-        
+
         /// 短信SdkAppid在 [短信控制台](https://console.cloud.tencent.com/smsv2) 添加应用后生成的实际SdkAppid，例如1400006666。
         public let smsSdkAppid: String
-        
-        public init (limit: UInt64, smsSdkAppid: String) {
+
+        public init(limit: UInt64, smsSdkAppid: String) {
             self.limit = limit
             self.smsSdkAppid = smsSdkAppid
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case limit = "Limit"
             case smsSdkAppid = "SmsSdkAppid"
         }
     }
-    
+
     /// PullSmsSendStatus返回参数结构体
     public struct PullSmsSendStatusResponse: TCResponseModel {
         /// 下发状态响应集合。
         public let pullSmsSendStatusSet: [PullSmsSendStatus]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case pullSmsSendStatusSet = "PullSmsSendStatusSet"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 拉取短信下发状态
     ///
     /// 拉取短信下发状态。
@@ -59,7 +59,7 @@ extension Sms {
     public func pullSmsSendStatus(_ input: PullSmsSendStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < PullSmsSendStatusResponse > {
         self.client.execute(action: "PullSmsSendStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 拉取短信下发状态
     ///
     /// 拉取短信下发状态。
@@ -71,7 +71,7 @@ extension Sms {
     public func pullSmsSendStatus(_ input: PullSmsSendStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> PullSmsSendStatusResponse {
         try await self.client.execute(action: "PullSmsSendStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 拉取短信下发状态
     ///
     /// 拉取短信下发状态。
@@ -83,7 +83,7 @@ extension Sms {
     public func pullSmsSendStatus(limit: UInt64, smsSdkAppid: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < PullSmsSendStatusResponse > {
         self.pullSmsSendStatus(PullSmsSendStatusRequest(limit: limit, smsSdkAppid: smsSdkAppid), logger: logger, on: eventLoop)
     }
-    
+
     /// 拉取短信下发状态
     ///
     /// 拉取短信下发状态。

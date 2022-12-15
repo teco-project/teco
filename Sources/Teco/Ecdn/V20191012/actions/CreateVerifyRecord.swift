@@ -19,30 +19,30 @@ extension Ecdn {
     public struct CreateVerifyRecordRequest: TCRequestModel {
         /// 要取回的域名
         public let domain: String
-        
-        public init (domain: String) {
+
+        public init(domain: String) {
             self.domain = domain
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case domain = "Domain"
         }
     }
-    
+
     /// CreateVerifyRecord返回参数结构体
     public struct CreateVerifyRecordResponse: TCResponseModel {
         /// 子解析
         public let subDomain: String
-        
+
         /// 解析值
         public let record: String
-        
+
         /// 解析类型
         public let recordType: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case subDomain = "SubDomain"
             case record = "Record"
@@ -50,7 +50,7 @@ extension Ecdn {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 生成解析记录
     ///
     /// 生成一条子域名解析，提示客户添加到域名解析上，用于泛域名及域名取回校验归属权。
@@ -59,7 +59,7 @@ extension Ecdn {
     public func createVerifyRecord(_ input: CreateVerifyRecordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateVerifyRecordResponse > {
         self.client.execute(action: "CreateVerifyRecord", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 生成解析记录
     ///
     /// 生成一条子域名解析，提示客户添加到域名解析上，用于泛域名及域名取回校验归属权。
@@ -68,7 +68,7 @@ extension Ecdn {
     public func createVerifyRecord(_ input: CreateVerifyRecordRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateVerifyRecordResponse {
         try await self.client.execute(action: "CreateVerifyRecord", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 生成解析记录
     ///
     /// 生成一条子域名解析，提示客户添加到域名解析上，用于泛域名及域名取回校验归属权。
@@ -77,7 +77,7 @@ extension Ecdn {
     public func createVerifyRecord(domain: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateVerifyRecordResponse > {
         self.createVerifyRecord(CreateVerifyRecordRequest(domain: domain), logger: logger, on: eventLoop)
     }
-    
+
     /// 生成解析记录
     ///
     /// 生成一条子域名解析，提示客户添加到域名解析上，用于泛域名及域名取回校验归属权。

@@ -46,139 +46,139 @@ public struct TCAaError: TCAaErrorType {
         case unauthorizedOperation_AuthFailed = "UnauthorizedOperation.AuthFailed"
         case unknownParameter_SecretIdNotExists = "UnknownParameter.SecretIdNotExists"
     }
-    
+
     /// Error domains affliated to ``TCAaError``.
     public static var domains: [TCErrorType.Type] {
         [AuthFailure.self, InternalError.self, InvalidParameter.self, InvalidParameterValue.self, LimitExceeded.self, ResourceNotFound.self, ResourceUnavailable.self, UnauthorizedOperation.self, UnknownParameter.self]
     }
-    
+
     private let error: Code
-    
+
     public let context: TCErrorContext?
-    
+
     public var errorCode: String {
         self.error.rawValue
     }
-    
+
     /// Initializer used by ``TCClient`` to match an error of this type.
-    public init ?(errorCode: String, context: TCErrorContext) {
+    public init?(errorCode: String, context: TCErrorContext) {
         guard let error = Code(rawValue: errorCode) else {
             return nil
         }
         self.error = error
         self.context = context
     }
-    
-    internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+    internal init(_ error: Code, context: TCErrorContext? = nil) {
         self.error = error
         self.context = context
     }
-    
+
     /// 验证码签名错误。
     public static var authFailure_CapSigError: TCAaError {
         TCAaError(.authFailure_CapSigError)
     }
-    
+
     /// 请求过期。
     public static var authFailure_Expired: TCAaError {
         TCAaError(.authFailure_Expired)
     }
-    
+
     /// 内部错误。
     public static var internalError: TCAaError {
         TCAaError(.internalError)
     }
-    
+
     /// 业务系统逻辑错误。
     public static var internalError_BackendLogicError: TCAaError {
         TCAaError(.internalError_BackendLogicError)
     }
-    
+
     /// Sign后端错误。
     public static var internalError_SignBackendError: TCAaError {
         TCAaError(.internalError_SignBackendError)
     }
-    
+
     /// BadBody。
     public static var invalidParameterValue_BadBody: TCAaError {
         TCAaError(.invalidParameterValue_BadBody)
     }
-    
+
     /// 请求包过大。
     public static var invalidParameterValue_BodyTooLarge: TCAaError {
         TCAaError(.invalidParameterValue_BodyTooLarge)
     }
-    
+
     /// 验证码不匹配。
     public static var invalidParameterValue_CapMisMatch: TCAaError {
         TCAaError(.invalidParameterValue_CapMisMatch)
     }
-    
+
     /// HTTP方法错误。
     public static var invalidParameterValue_HttpMethodError: TCAaError {
         TCAaError(.invalidParameterValue_HttpMethodError)
     }
-    
+
     /// 验证码签名错误。
     public static var invalidParameter_CapSigError: TCAaError {
         TCAaError(.invalidParameter_CapSigError)
     }
-    
+
     /// 参数错误。
     public static var invalidParameter_ParamError: TCAaError {
         TCAaError(.invalidParameter_ParamError)
     }
-    
+
     /// URL错误。
     public static var invalidParameter_UrlError: TCAaError {
         TCAaError(.invalidParameter_UrlError)
     }
-    
+
     /// 版本错误。
     public static var invalidParameter_VersionError: TCAaError {
         TCAaError(.invalidParameter_VersionError)
     }
-    
+
     /// 超过配额。
     public static var limitExceeded_FreqCnt: TCAaError {
         TCAaError(.limitExceeded_FreqCnt)
     }
-    
+
     /// 超过配额（用户IP）。
     public static var limitExceeded_IpFreqCnt: TCAaError {
         TCAaError(.limitExceeded_IpFreqCnt)
     }
-    
+
     /// 关键词频控限制。
     public static var limitExceeded_KeyFreqCnt: TCAaError {
         TCAaError(.limitExceeded_KeyFreqCnt)
     }
-    
+
     /// 重放攻击。
     public static var limitExceeded_ReplayAttack: TCAaError {
         TCAaError(.limitExceeded_ReplayAttack)
     }
-    
+
     /// 接口不存在。
     public static var resourceNotFound_InterfaceNotFound: TCAaError {
         TCAaError(.resourceNotFound_InterfaceNotFound)
     }
-    
+
     /// 未开通服务权限。
     public static var resourceUnavailable_PermissionDenied: TCAaError {
         TCAaError(.resourceUnavailable_PermissionDenied)
     }
-    
+
     /// 鉴权失败。
     public static var unauthorizedOperation_AuthFailed: TCAaError {
         TCAaError(.unauthorizedOperation_AuthFailed)
     }
-    
+
     /// 密钥不存在。
     public static var unknownParameter_SecretIdNotExists: TCAaError {
         TCAaError(.unknownParameter_SecretIdNotExists)
     }
-    
+
     public func asAaError() -> TCAaError {
         return self
     }

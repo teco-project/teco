@@ -27,74 +27,74 @@ extension TCApmError {
             case viewNameNotExistOrIllegal = "InvalidParameter.ViewNameNotExistOrIllegal"
             case other = "InvalidParameter"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// filters中的字段不存在或非法。
         public static var filtersFieldsNotExistOrIllegal: InvalidParameter {
             InvalidParameter(.filtersFieldsNotExistOrIllegal)
         }
-        
+
         /// groupby中的字段不存在或非法。
         public static var groupByFieldsNotExistOrIllegal: InvalidParameter {
             InvalidParameter(.groupByFieldsNotExistOrIllegal)
         }
-        
+
         /// filters中必须存在service.name字段，否则会报错。
         public static var metricFiltersLackParams: InvalidParameter {
             InvalidParameter(.metricFiltersLackParams)
         }
-        
+
         /// metrics中的字段不存在或非法。
         public static var metricsFieldNotExistOrIllegal: InvalidParameter {
             InvalidParameter(.metricsFieldNotExistOrIllegal)
         }
-        
+
         /// metrics中不允许为空。
         public static var metricsFieldsNotAllowEmpty: InvalidParameter {
             InvalidParameter(.metricsFieldsNotAllowEmpty)
         }
-        
+
         /// period不为空，0或60。
         public static var periodIsIllegal: InvalidParameter {
             InvalidParameter(.periodIsIllegal)
         }
-        
+
         /// 查询时间不支持，最多只能查询最近2天、最多一个小时的数据。
         public static var queryTimeIntervalIsNotSupported: InvalidParameter {
             InvalidParameter(.queryTimeIntervalIsNotSupported)
         }
-        
+
         /// 视图名称不存在或非法。
         public static var viewNameNotExistOrIllegal: InvalidParameter {
             InvalidParameter(.viewNameNotExistOrIllegal)
         }
-        
+
         /// 参数错误。
         public static var other: InvalidParameter {
             InvalidParameter(.other)
         }
-        
+
         public func asApmError() -> TCApmError {
             let code: TCApmError.Code
             switch self.error {

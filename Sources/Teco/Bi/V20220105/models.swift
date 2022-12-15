@@ -20,58 +20,58 @@ extension Bi {
         /// 申请结果
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let result: Bool?
-        
+
         enum CodingKeys: String, CodingKey {
             case result = "Result"
         }
     }
-    
+
     /// 报表嵌出数据结构-强鉴权
     public struct EmbedTokenInfo: TCOutputModel {
         /// 信息标识
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let id: UInt64?
-        
+
         /// 令牌
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let biToken: String?
-        
+
         /// 项目Id
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let projectId: String?
-        
+
         /// 创建人
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let createdUser: String?
-        
+
         /// 创建时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let createdAt: String?
-        
+
         /// 更新人
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let updatedUser: String?
-        
+
         /// 更新时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let updatedAt: String?
-        
+
         /// 页面Id
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let pageId: String?
-        
+
         /// 备用
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let extraParam: String?
-        
+
         /// 嵌出类型
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let scope: String?
-        
+
         /// 过期时间，分钟为单位，最大240
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let expireTime: UInt64?
-        
+
         enum CodingKeys: String, CodingKey {
             case id = "Id"
             case biToken = "BIToken"

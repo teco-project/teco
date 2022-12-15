@@ -19,26 +19,26 @@ extension Cvm {
     public struct StartInstancesRequest: TCRequestModel {
         /// 一个或多个待操作的实例ID。可通过[`DescribeInstances`](https://cloud.tencent.com/document/api/213/15728)接口返回值中的`InstanceId`获取。每次请求批量实例的上限为100。
         public let instanceIds: [String]
-        
-        public init (instanceIds: [String]) {
+
+        public init(instanceIds: [String]) {
             self.instanceIds = instanceIds
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceIds = "InstanceIds"
         }
     }
-    
+
     /// StartInstances返回参数结构体
     public struct StartInstancesResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 启动实例
     ///
     /// 本接口 (StartInstances) 用于启动一个或多个实例。
@@ -50,7 +50,7 @@ extension Cvm {
     public func startInstances(_ input: StartInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < StartInstancesResponse > {
         self.client.execute(action: "StartInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 启动实例
     ///
     /// 本接口 (StartInstances) 用于启动一个或多个实例。
@@ -62,7 +62,7 @@ extension Cvm {
     public func startInstances(_ input: StartInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartInstancesResponse {
         try await self.client.execute(action: "StartInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 启动实例
     ///
     /// 本接口 (StartInstances) 用于启动一个或多个实例。
@@ -74,7 +74,7 @@ extension Cvm {
     public func startInstances(instanceIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < StartInstancesResponse > {
         self.startInstances(StartInstancesRequest(instanceIds: instanceIds), logger: logger, on: eventLoop)
     }
-    
+
     /// 启动实例
     ///
     /// 本接口 (StartInstances) 用于启动一个或多个实例。

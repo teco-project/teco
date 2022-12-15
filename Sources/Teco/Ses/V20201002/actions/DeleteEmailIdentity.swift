@@ -19,26 +19,26 @@ extension Ses {
     public struct DeleteEmailIdentityRequest: TCRequestModel {
         /// 发信域名
         public let emailIdentity: String
-        
-        public init (emailIdentity: String) {
+
+        public init(emailIdentity: String) {
             self.emailIdentity = emailIdentity
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case emailIdentity = "EmailIdentity"
         }
     }
-    
+
     /// DeleteEmailIdentity返回参数结构体
     public struct DeleteEmailIdentityResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除发信域名
     ///
     /// 删除发信域名，删除后，将不可再使用该域名进行发信
@@ -46,7 +46,7 @@ extension Ses {
     public func deleteEmailIdentity(_ input: DeleteEmailIdentityRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteEmailIdentityResponse > {
         self.client.execute(action: "DeleteEmailIdentity", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除发信域名
     ///
     /// 删除发信域名，删除后，将不可再使用该域名进行发信
@@ -54,7 +54,7 @@ extension Ses {
     public func deleteEmailIdentity(_ input: DeleteEmailIdentityRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteEmailIdentityResponse {
         try await self.client.execute(action: "DeleteEmailIdentity", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除发信域名
     ///
     /// 删除发信域名，删除后，将不可再使用该域名进行发信
@@ -62,7 +62,7 @@ extension Ses {
     public func deleteEmailIdentity(emailIdentity: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteEmailIdentityResponse > {
         self.deleteEmailIdentity(DeleteEmailIdentityRequest(emailIdentity: emailIdentity), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除发信域名
     ///
     /// 删除发信域名，删除后，将不可再使用该域名进行发信

@@ -23,54 +23,54 @@ extension TCKmsError {
             case serviceTemporaryUnavailable = "UnsupportedOperation.ServiceTemporaryUnavailable"
             case unsupportedKeyUsageInCurrentRegion = "UnsupportedOperation.UnsupportedKeyUsageInCurrentRegion"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 用户导入类型的CMK禁止轮换。
         public static var externalCmkCanNotRotate: UnsupportedOperation {
             UnsupportedOperation(.externalCmkCanNotRotate)
         }
-        
+
         /// CMK类型错误，仅支持External CMK。
         public static var notExternalCmk: UnsupportedOperation {
             UnsupportedOperation(.notExternalCmk)
         }
-        
+
         /// 仅支持对用户自己创建的CMK做更新。
         public static var notUserCreatedCmk: UnsupportedOperation {
             UnsupportedOperation(.notUserCreatedCmk)
         }
-        
+
         /// 服务暂时不可用。
         public static var serviceTemporaryUnavailable: UnsupportedOperation {
             UnsupportedOperation(.serviceTemporaryUnavailable)
         }
-        
+
         /// 加密方式在当前region不支持。
         public static var unsupportedKeyUsageInCurrentRegion: UnsupportedOperation {
             UnsupportedOperation(.unsupportedKeyUsageInCurrentRegion)
         }
-        
+
         public func asKmsError() -> TCKmsError {
             let code: TCKmsError.Code
             switch self.error {

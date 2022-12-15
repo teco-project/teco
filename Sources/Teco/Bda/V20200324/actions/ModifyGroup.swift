@@ -19,36 +19,36 @@ extension Bda {
     public struct ModifyGroupRequest: TCRequestModel {
         /// 人体库ID。
         public let groupId: String
-        
+
         /// 人体库名称。
         public let groupName: String?
-        
+
         /// 人体库信息备注。
         public let tag: String?
-        
-        public init (groupId: String, groupName: String? = nil, tag: String? = nil) {
+
+        public init(groupId: String, groupName: String? = nil, tag: String? = nil) {
             self.groupId = groupId
             self.groupName = groupName
             self.tag = tag
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case groupId = "GroupId"
             case groupName = "GroupName"
             case tag = "Tag"
         }
     }
-    
+
     /// ModifyGroup返回参数结构体
     public struct ModifyGroupResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 修改人体库
     ///
     /// 修改人体库名称、备注。
@@ -56,7 +56,7 @@ extension Bda {
     public func modifyGroup(_ input: ModifyGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyGroupResponse > {
         self.client.execute(action: "ModifyGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 修改人体库
     ///
     /// 修改人体库名称、备注。
@@ -64,7 +64,7 @@ extension Bda {
     public func modifyGroup(_ input: ModifyGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyGroupResponse {
         try await self.client.execute(action: "ModifyGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 修改人体库
     ///
     /// 修改人体库名称、备注。
@@ -72,7 +72,7 @@ extension Bda {
     public func modifyGroup(groupId: String, groupName: String? = nil, tag: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyGroupResponse > {
         self.modifyGroup(ModifyGroupRequest(groupId: groupId, groupName: groupName, tag: tag), logger: logger, on: eventLoop)
     }
-    
+
     /// 修改人体库
     ///
     /// 修改人体库名称、备注。

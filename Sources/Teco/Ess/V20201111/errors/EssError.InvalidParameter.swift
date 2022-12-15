@@ -76,283 +76,283 @@ extension TCEssError {
             case verifyChannel = "InvalidParameter.VerifyChannel"
             case other = "InvalidParameter"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         public static var approverType: InvalidParameter {
             InvalidParameter(.approverType)
         }
-        
+
         public static var businessId: InvalidParameter {
             InvalidParameter(.businessId)
         }
-        
+
         public static var businessType: InvalidParameter {
             InvalidParameter(.businessType)
         }
-        
+
         public static var cancelReason: InvalidParameter {
             InvalidParameter(.cancelReason)
         }
-        
+
         public static var cardNumber: InvalidParameter {
             InvalidParameter(.cardNumber)
         }
-        
+
         public static var cardType: InvalidParameter {
             InvalidParameter(.cardType)
         }
-        
+
         public static var ccNum: InvalidParameter {
             InvalidParameter(.ccNum)
         }
-        
+
         public static var clientToken: InvalidParameter {
             InvalidParameter(.clientToken)
         }
-        
+
         public static var componentFileIndex: InvalidParameter {
             InvalidParameter(.componentFileIndex)
         }
-        
+
         public static var componentPage: InvalidParameter {
             InvalidParameter(.componentPage)
         }
-        
+
         public static var componentPosition: InvalidParameter {
             InvalidParameter(.componentPosition)
         }
-        
+
         public static var componentTypeNoMatchValue: InvalidParameter {
             InvalidParameter(.componentTypeNoMatchValue)
         }
-        
+
         public static var componentValue: InvalidParameter {
             InvalidParameter(.componentValue)
         }
-        
+
         public static var contentType: InvalidParameter {
             InvalidParameter(.contentType)
         }
-        
+
         public static var customShowMap: InvalidParameter {
             InvalidParameter(.customShowMap)
         }
-        
+
         /// 数据已存在。
         public static var dataExists: InvalidParameter {
             InvalidParameter(.dataExists)
         }
-        
+
         /// 数据不存在。
         public static var dataNotFound: InvalidParameter {
             InvalidParameter(.dataNotFound)
         }
-        
+
         /// 参数为空。
         public static var emptyParams: InvalidParameter {
             InvalidParameter(.emptyParams)
         }
-        
+
         public static var endPoint: InvalidParameter {
             InvalidParameter(.endPoint)
         }
-        
+
         public static var flowCallbackUrl: InvalidParameter {
             InvalidParameter(.flowCallbackUrl)
         }
-        
+
         public static var flowDeadLine: InvalidParameter {
             InvalidParameter(.flowDeadLine)
         }
-        
+
         public static var flowDescription: InvalidParameter {
             InvalidParameter(.flowDescription)
         }
-        
+
         public static var flowName: InvalidParameter {
             InvalidParameter(.flowName)
         }
-        
+
         public static var flowType: InvalidParameter {
             InvalidParameter(.flowType)
         }
-        
+
         public static var flowUserData: InvalidParameter {
             InvalidParameter(.flowUserData)
         }
-        
+
         public static var fromSource: InvalidParameter {
             InvalidParameter(.fromSource)
         }
-        
+
         public static var idCardValidityOverLimit: InvalidParameter {
             InvalidParameter(.idCardValidityOverLimit)
         }
-        
+
         /// Channel不正确。
         public static var invalidChannel: InvalidParameter {
             InvalidParameter(.invalidChannel)
         }
-        
+
         public static var invalidId: InvalidParameter {
             InvalidParameter(.invalidId)
         }
-        
+
         /// 参数Limit不正确。
         public static var invalidLimit: InvalidParameter {
             InvalidParameter(.invalidLimit)
         }
-        
+
         /// 手机号码不正确。
         public static var invalidMobile: InvalidParameter {
             InvalidParameter(.invalidMobile)
         }
-        
+
         /// 姓名不正确。
         public static var invalidName: InvalidParameter {
             InvalidParameter(.invalidName)
         }
-        
+
         /// 参数Offset不正确。
         public static var invalidOffset: InvalidParameter {
             InvalidParameter(.invalidOffset)
         }
-        
+
         /// OpenId不正确。
         public static var invalidOpenId: InvalidParameter {
             InvalidParameter(.invalidOpenId)
         }
-        
+
         /// 操作人ID不正确。
         public static var invalidOperatorId: InvalidParameter {
             InvalidParameter(.invalidOperatorId)
         }
-        
+
         /// 机构ID不正确。
         public static var invalidOrganizationId: InvalidParameter {
             InvalidParameter(.invalidOrganizationId)
         }
-        
+
         /// 组织机构名称不正确。
         public static var invalidOrganizationName: InvalidParameter {
             InvalidParameter(.invalidOrganizationName)
         }
-        
+
         /// 角色ID不正确。
         public static var invalidRoleId: InvalidParameter {
             InvalidParameter(.invalidRoleId)
         }
-        
+
         /// 角色名称不正确。
         public static var invalidRoleName: InvalidParameter {
             InvalidParameter(.invalidRoleName)
         }
-        
+
         /// 实名认证渠道不正确。
         public static var invalidVerifyChannel: InvalidParameter {
             InvalidParameter(.invalidVerifyChannel)
         }
-        
+
         /// 验证码不正确。
         public static var invalidVerifyCode: InvalidParameter {
             InvalidParameter(.invalidVerifyCode)
         }
-        
+
         /// 请检查必填控件是否都已填充非空值。
         public static var missingRequiredComponentValue: InvalidParameter {
             InvalidParameter(.missingRequiredComponentValue)
         }
-        
+
         /// 请确认手机号是正确的。
         public static var mobile: InvalidParameter {
             InvalidParameter(.mobile)
         }
-        
+
         /// 确认名字是否正确。
         public static var name: InvalidParameter {
             InvalidParameter(.name)
         }
-        
+
         public static var notifyType: InvalidParameter {
             InvalidParameter(.notifyType)
         }
-        
+
         public static var organizationName: InvalidParameter {
             InvalidParameter(.organizationName)
         }
-        
+
         /// 参数错误。
         public static var paramError: InvalidParameter {
             InvalidParameter(.paramError)
         }
-        
+
         public static var personAutoSignTag: InvalidParameter {
             InvalidParameter(.personAutoSignTag)
         }
-        
+
         public static var preReadTime: InvalidParameter {
             InvalidParameter(.preReadTime)
         }
-        
+
         public static var qrEffectDay: InvalidParameter {
             InvalidParameter(.qrEffectDay)
         }
-        
+
         public static var qrFlowEffectDay: InvalidParameter {
             InvalidParameter(.qrFlowEffectDay)
         }
-        
+
         public static var resourceType: InvalidParameter {
             InvalidParameter(.resourceType)
         }
-        
+
         public static var sealId: InvalidParameter {
             InvalidParameter(.sealId)
         }
-        
+
         public static var signComponents: InvalidParameter {
             InvalidParameter(.signComponents)
         }
-        
+
         /// 参数Status不正确。
         public static var status: InvalidParameter {
             InvalidParameter(.status)
         }
-        
+
         public static var templateId: InvalidParameter {
             InvalidParameter(.templateId)
         }
-        
+
         public static var verifyChannel: InvalidParameter {
             InvalidParameter(.verifyChannel)
         }
-        
+
         /// 参数错误。
         public static var other: InvalidParameter {
             InvalidParameter(.other)
         }
-        
+
         public func asEssError() -> TCEssError {
             let code: TCEssError.Code
             switch self.error {

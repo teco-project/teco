@@ -19,23 +19,23 @@ extension Ecm {
     public struct MigratePrivateIpAddressRequest: TCRequestModel {
         /// ECM 地域，形如ap-xian-ecm。
         public let ecmRegion: String
-        
+
         /// 当前内网IP绑定的弹性网卡实例ID，例如：eni-11112222。
         public let sourceNetworkInterfaceId: String
-        
+
         /// 待迁移的目的弹性网卡实例ID。
         public let destinationNetworkInterfaceId: String
-        
+
         /// 迁移的内网IP地址，例如：10.0.0.6。
         public let privateIpAddress: String
-        
-        public init (ecmRegion: String, sourceNetworkInterfaceId: String, destinationNetworkInterfaceId: String, privateIpAddress: String) {
+
+        public init(ecmRegion: String, sourceNetworkInterfaceId: String, destinationNetworkInterfaceId: String, privateIpAddress: String) {
             self.ecmRegion = ecmRegion
             self.sourceNetworkInterfaceId = sourceNetworkInterfaceId
             self.destinationNetworkInterfaceId = destinationNetworkInterfaceId
             self.privateIpAddress = privateIpAddress
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case ecmRegion = "EcmRegion"
             case sourceNetworkInterfaceId = "SourceNetworkInterfaceId"
@@ -43,17 +43,17 @@ extension Ecm {
             case privateIpAddress = "PrivateIpAddress"
         }
     }
-    
+
     /// MigratePrivateIpAddress返回参数结构体
     public struct MigratePrivateIpAddressResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 弹性网卡内网IP迁移
     ///
     /// 弹性网卡内网IP迁移。
@@ -63,7 +63,7 @@ extension Ecm {
     public func migratePrivateIpAddress(_ input: MigratePrivateIpAddressRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < MigratePrivateIpAddressResponse > {
         self.client.execute(action: "MigratePrivateIpAddress", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 弹性网卡内网IP迁移
     ///
     /// 弹性网卡内网IP迁移。
@@ -73,7 +73,7 @@ extension Ecm {
     public func migratePrivateIpAddress(_ input: MigratePrivateIpAddressRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> MigratePrivateIpAddressResponse {
         try await self.client.execute(action: "MigratePrivateIpAddress", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 弹性网卡内网IP迁移
     ///
     /// 弹性网卡内网IP迁移。
@@ -83,7 +83,7 @@ extension Ecm {
     public func migratePrivateIpAddress(ecmRegion: String, sourceNetworkInterfaceId: String, destinationNetworkInterfaceId: String, privateIpAddress: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < MigratePrivateIpAddressResponse > {
         self.migratePrivateIpAddress(MigratePrivateIpAddressRequest(ecmRegion: ecmRegion, sourceNetworkInterfaceId: sourceNetworkInterfaceId, destinationNetworkInterfaceId: destinationNetworkInterfaceId, privateIpAddress: privateIpAddress), logger: logger, on: eventLoop)
     }
-    
+
     /// 弹性网卡内网IP迁移
     ///
     /// 弹性网卡内网IP迁移。

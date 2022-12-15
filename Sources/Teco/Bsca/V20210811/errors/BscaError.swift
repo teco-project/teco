@@ -31,66 +31,66 @@ public struct TCBscaError: TCBscaErrorType {
         case missingParameter = "MissingParameter"
         case resourceNotFound = "ResourceNotFound"
     }
-    
+
     /// Error domains affliated to ``TCBscaError``.
     public static var domains: [TCErrorType.Type] {
         [FailedOperation.self]
     }
-    
+
     private let error: Code
-    
+
     public let context: TCErrorContext?
-    
+
     public var errorCode: String {
         self.error.rawValue
     }
-    
+
     /// Initializer used by ``TCClient`` to match an error of this type.
-    public init ?(errorCode: String, context: TCErrorContext) {
+    public init?(errorCode: String, context: TCErrorContext) {
         guard let error = Code(rawValue: errorCode) else {
             return nil
         }
         self.error = error
         self.context = context
     }
-    
-    internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+    internal init(_ error: Code, context: TCErrorContext? = nil) {
         self.error = error
         self.context = context
     }
-    
+
     /// 账户流量余额不足。
     ///
     /// 请购买流量包。
     public static var failedOperation_AccountNotEnough: TCBscaError {
         TCBscaError(.failedOperation_AccountNotEnough)
     }
-    
+
     /// 内部错误。
     public static var internalError: TCBscaError {
         TCBscaError(.internalError)
     }
-    
+
     /// 参数错误。
     public static var invalidParameter: TCBscaError {
         TCBscaError(.invalidParameter)
     }
-    
+
     /// 参数取值错误。
     public static var invalidParameterValue: TCBscaError {
         TCBscaError(.invalidParameterValue)
     }
-    
+
     /// 缺少参数错误。
     public static var missingParameter: TCBscaError {
         TCBscaError(.missingParameter)
     }
-    
+
     /// 资源不存在。
     public static var resourceNotFound: TCBscaError {
         TCBscaError(.resourceNotFound)
     }
-    
+
     public func asBscaError() -> TCBscaError {
         return self
     }

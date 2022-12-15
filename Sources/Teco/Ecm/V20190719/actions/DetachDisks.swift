@@ -19,31 +19,31 @@ extension Ecm {
     public struct DetachDisksRequest: TCRequestModel {
         /// 将要卸载的云硬盘ID， 通过[DescribeDisks](/document/product/362/16315)接口查询，单次请求最多可卸载10块弹性云盘。
         public let diskIds: [String]
-        
+
         /// 对于非共享型云盘，会忽略该参数；对于共享型云盘，该参数表示要从哪个CVM实例上卸载云盘。
         public let instanceId: String?
-        
-        public init (diskIds: [String], instanceId: String? = nil) {
+
+        public init(diskIds: [String], instanceId: String? = nil) {
             self.diskIds = diskIds
             self.instanceId = instanceId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case diskIds = "DiskIds"
             case instanceId = "InstanceId"
         }
     }
-    
+
     /// DetachDisks返回参数结构体
     public struct DetachDisksResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 卸载云硬盘
     ///
     /// 本接口（DetachDisks）用于卸载云硬盘。
@@ -53,7 +53,7 @@ extension Ecm {
     public func detachDisks(_ input: DetachDisksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DetachDisksResponse > {
         self.client.execute(action: "DetachDisks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 卸载云硬盘
     ///
     /// 本接口（DetachDisks）用于卸载云硬盘。
@@ -63,7 +63,7 @@ extension Ecm {
     public func detachDisks(_ input: DetachDisksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DetachDisksResponse {
         try await self.client.execute(action: "DetachDisks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 卸载云硬盘
     ///
     /// 本接口（DetachDisks）用于卸载云硬盘。
@@ -73,7 +73,7 @@ extension Ecm {
     public func detachDisks(diskIds: [String], instanceId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DetachDisksResponse > {
         self.detachDisks(DetachDisksRequest(diskIds: diskIds, instanceId: instanceId), logger: logger, on: eventLoop)
     }
-    
+
     /// 卸载云硬盘
     ///
     /// 本接口（DetachDisks）用于卸载云硬盘。

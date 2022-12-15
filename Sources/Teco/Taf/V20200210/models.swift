@@ -19,150 +19,150 @@ extension Taf {
     public struct Device: TCInputModel {
         /// 业务入参id
         public let deviceId: String
-        
+
         /// 业务入参类型
         public let deviceType: Int64
-        
-        public init (deviceId: String, deviceType: Int64) {
+
+        public init(deviceId: String, deviceType: Int64) {
             self.deviceId = deviceId
             self.deviceType = deviceType
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case deviceId = "DeviceId"
             case deviceType = "DeviceType"
         }
     }
-    
+
     /// 业务入参
     public struct InputBusinessEncryptData: TCInputModel {
-        public init () {
+        public init() {
         }
     }
-    
+
     /// 流量反欺诈-验准入参
     public struct InputRecognizeTargetAudience: TCInputModel {
         /// 模型ID列表
         public let modelIdList: [Int64]
-        
+
         /// 设备ID，AccountType指定的类型
         public let uid: String?
-        
+
         /// 设备号类型，1.imei 2.imeiMd5（小写后转MD5转小写）3.idfa， 4.idfaMd5（大写后转MD5转小写），5.手机号,256.其它
         public let accountType: Int64?
-        
+
         /// 用户IP
         public let ip: String?
-        
+
         /// 操作系统类型(unknown，android，ios，windows)
         public let os: String?
-        
+
         /// 操作系统版本
         public let osv: String?
-        
+
         /// 纬度
         public let lat: String?
-        
+
         /// 经度
         public let lon: String?
-        
+
         /// 设备型号(MI 6)
         public let deviceModel: String?
-        
+
         /// 竞价底价
         public let bidFloor: Int64?
-        
+
         /// 年龄
         public let age: Int64?
-        
+
         /// 性别(1.MALE 2.FEMALE)
         public let gender: Int64?
-        
+
         /// 用户地址
         public let location: String?
-        
+
         /// 投放模式（0=PDB，1=PD，2=RTB，10=其他）
         public let deliveryMode: Int64?
-        
+
         /// 广告位类型<br />（0=前贴片，1=开屏广告，2=网页头部广告、3=网页中部广告、4=网页底部广告、5=悬浮广告、10=其它）
         public let advertisingType: Int64?
-        
+
         /// mac地址，建议提供
         public let mac: String?
-        
+
         /// 电话号码
         public let phone: String?
-        
+
         /// 浏览器类型
         public let ua: String?
-        
+
         /// 客户端应用
         public let app: String?
-        
+
         /// 应用包名
         public let package: String?
-        
+
         /// 设备制造商
         public let maker: String?
-        
+
         /// 设备类型（PHONE,TABLET）
         public let deviceType: String?
-        
+
         /// 入网方式(wifi,4g,3g,2g)
         public let accessMode: String?
-        
+
         /// 运营商(1.移动 2.联通 3.电信等)
         public let sp: Int64?
-        
+
         /// 设备屏幕分辨率宽度像素数
         public let deviceW: Int64?
-        
+
         /// 设备屏幕分辨率高度像素数
         public let deviceH: Int64?
-        
+
         /// 是否全屏插广告(0-否，1-是)
         public let fullScreen: Int64?
-        
+
         /// 广告位宽度
         public let impBannerW: Int64?
-        
+
         /// 广告位高度
         public let impBannerH: Int64?
-        
+
         /// 网址
         public let url: String?
-        
+
         /// 上下文信息
         public let context: String?
-        
+
         /// 渠道
         public let channel: String?
-        
+
         /// 请求ID
         public let reqId: String?
-        
+
         /// 请求ID的md5值
         public let reqMd5: String?
-        
+
         /// ad_type
         public let adType: Int64?
-        
+
         /// app名称
         public let appName: String?
-        
+
         /// app版本描述
         public let appVer: String?
-        
+
         /// 竞价模式1：rtb 2:pd
         public let reqType: Int64?
-        
+
         /// 用户是否授权,1为授权，0为未授权
         public let isAuthorized: UInt64?
-        
+
         /// 设备信息
         public let deviceList: [Device]?
-        
-        public init (modelIdList: [Int64], uid: String? = nil, accountType: Int64? = nil, ip: String? = nil, os: String? = nil, osv: String? = nil, lat: String? = nil, lon: String? = nil, deviceModel: String? = nil, bidFloor: Int64? = nil, age: Int64? = nil, gender: Int64? = nil, location: String? = nil, deliveryMode: Int64? = nil, advertisingType: Int64? = nil, mac: String? = nil, phone: String? = nil, ua: String? = nil, app: String? = nil, package: String? = nil, maker: String? = nil, deviceType: String? = nil, accessMode: String? = nil, sp: Int64? = nil, deviceW: Int64? = nil, deviceH: Int64? = nil, fullScreen: Int64? = nil, impBannerW: Int64? = nil, impBannerH: Int64? = nil, url: String? = nil, context: String? = nil, channel: String? = nil, reqId: String? = nil, reqMd5: String? = nil, adType: Int64? = nil, appName: String? = nil, appVer: String? = nil, reqType: Int64? = nil, isAuthorized: UInt64? = nil, deviceList: [Device]? = nil) {
+
+        public init(modelIdList: [Int64], uid: String? = nil, accountType: Int64? = nil, ip: String? = nil, os: String? = nil, osv: String? = nil, lat: String? = nil, lon: String? = nil, deviceModel: String? = nil, bidFloor: Int64? = nil, age: Int64? = nil, gender: Int64? = nil, location: String? = nil, deliveryMode: Int64? = nil, advertisingType: Int64? = nil, mac: String? = nil, phone: String? = nil, ua: String? = nil, app: String? = nil, package: String? = nil, maker: String? = nil, deviceType: String? = nil, accessMode: String? = nil, sp: Int64? = nil, deviceW: Int64? = nil, deviceH: Int64? = nil, fullScreen: Int64? = nil, impBannerW: Int64? = nil, impBannerH: Int64? = nil, url: String? = nil, context: String? = nil, channel: String? = nil, reqId: String? = nil, reqMd5: String? = nil, adType: Int64? = nil, appName: String? = nil, appVer: String? = nil, reqType: Int64? = nil, isAuthorized: UInt64? = nil, deviceList: [Device]? = nil) {
             self.modelIdList = modelIdList
             self.uid = uid
             self.accountType = accountType
@@ -204,7 +204,7 @@ extension Taf {
             self.isAuthorized = isAuthorized
             self.deviceList = deviceList
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case modelIdList = "ModelIdList"
             case uid = "Uid"
@@ -248,41 +248,41 @@ extension Taf {
             case deviceList = "DeviceList"
         }
     }
-    
+
     /// 流量反欺诈-验准返回值
     public struct OutputRecognizeTargetAudience: TCOutputModel {
         /// 返回码（0，成功，其他失败）
         public let code: Int64
-        
+
         /// 返回码对应的信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let message: String?
-        
+
         /// 返回模型结果
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let value: [OutputRecognizeTargetAudienceValue]?
-        
+
         enum CodingKeys: String, CodingKey {
             case code = "Code"
             case message = "Message"
             case value = "Value"
         }
     }
-    
+
     /// 流量反欺诈-验准返回的查询分值
     public struct OutputRecognizeTargetAudienceValue: TCOutputModel {
         /// 模型ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let modelId: UInt64?
-        
+
         /// 是否正常返回结果
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let isFound: Int64?
-        
+
         /// 返回分值
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let score: Float?
-        
+
         enum CodingKeys: String, CodingKey {
             case modelId = "ModelId"
             case isFound = "IsFound"

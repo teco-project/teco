@@ -19,30 +19,30 @@ extension Tsf {
     public struct DescribeTaskLastStatusRequest: TCRequestModel {
         /// 任务ID
         public let taskId: String
-        
-        public init (taskId: String) {
+
+        public init(taskId: String) {
             self.taskId = taskId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case taskId = "TaskId"
         }
     }
-    
+
     /// DescribeTaskLastStatus返回参数结构体
     public struct DescribeTaskLastStatusResponse: TCResponseModel {
         /// 任务上一次执行状态
         public let result: TaskLastExecuteStatus
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case result = "Result"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查看任务最近执行批次状态
     ///
     /// 查询任务最近一次执行状态
@@ -50,7 +50,7 @@ extension Tsf {
     public func describeTaskLastStatus(_ input: DescribeTaskLastStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTaskLastStatusResponse > {
         self.client.execute(action: "DescribeTaskLastStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查看任务最近执行批次状态
     ///
     /// 查询任务最近一次执行状态
@@ -58,7 +58,7 @@ extension Tsf {
     public func describeTaskLastStatus(_ input: DescribeTaskLastStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTaskLastStatusResponse {
         try await self.client.execute(action: "DescribeTaskLastStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查看任务最近执行批次状态
     ///
     /// 查询任务最近一次执行状态
@@ -66,7 +66,7 @@ extension Tsf {
     public func describeTaskLastStatus(taskId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTaskLastStatusResponse > {
         self.describeTaskLastStatus(DescribeTaskLastStatusRequest(taskId: taskId), logger: logger, on: eventLoop)
     }
-    
+
     /// 查看任务最近执行批次状态
     ///
     /// 查询任务最近一次执行状态

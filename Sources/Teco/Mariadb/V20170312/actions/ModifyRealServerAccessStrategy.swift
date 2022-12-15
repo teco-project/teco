@@ -19,31 +19,31 @@ extension Mariadb {
     public struct ModifyRealServerAccessStrategyRequest: TCRequestModel {
         /// 实例 ID，格式如：tdsql-c1nl9rpv，与云数据库控制台页面中显示的实例 ID 相同。
         public let instanceId: String
-        
+
         /// RS就近模式, 0-无策略, 1-可用区就近访问。
         public let rsAccessStrategy: Int64
-        
-        public init (instanceId: String, rsAccessStrategy: Int64) {
+
+        public init(instanceId: String, rsAccessStrategy: Int64) {
             self.instanceId = instanceId
             self.rsAccessStrategy = rsAccessStrategy
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
             case rsAccessStrategy = "RsAccessStrategy"
         }
     }
-    
+
     /// ModifyRealServerAccessStrategy返回参数结构体
     public struct ModifyRealServerAccessStrategyResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 修改RS的访问策略
     ///
     /// 本接口(ModifyRealServerAccessStrategy)用于修改云数据库的VPCGW到RS的访问策略。
@@ -55,7 +55,7 @@ extension Mariadb {
     public func modifyRealServerAccessStrategy(_ input: ModifyRealServerAccessStrategyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyRealServerAccessStrategyResponse > {
         self.client.execute(action: "ModifyRealServerAccessStrategy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 修改RS的访问策略
     ///
     /// 本接口(ModifyRealServerAccessStrategy)用于修改云数据库的VPCGW到RS的访问策略。
@@ -67,7 +67,7 @@ extension Mariadb {
     public func modifyRealServerAccessStrategy(_ input: ModifyRealServerAccessStrategyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyRealServerAccessStrategyResponse {
         try await self.client.execute(action: "ModifyRealServerAccessStrategy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 修改RS的访问策略
     ///
     /// 本接口(ModifyRealServerAccessStrategy)用于修改云数据库的VPCGW到RS的访问策略。
@@ -79,7 +79,7 @@ extension Mariadb {
     public func modifyRealServerAccessStrategy(instanceId: String, rsAccessStrategy: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyRealServerAccessStrategyResponse > {
         self.modifyRealServerAccessStrategy(ModifyRealServerAccessStrategyRequest(instanceId: instanceId, rsAccessStrategy: rsAccessStrategy), logger: logger, on: eventLoop)
     }
-    
+
     /// 修改RS的访问策略
     ///
     /// 本接口(ModifyRealServerAccessStrategy)用于修改云数据库的VPCGW到RS的访问策略。

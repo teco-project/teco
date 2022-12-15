@@ -26,69 +26,69 @@ extension TCIotError {
             case iotTopicOpTooOften = "LimitExceeded.IotTopicOpTooOften"
             case iotUserTooManyProducts = "LimitExceeded.IotUserTooManyProducts"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 批量操作超限。
         public static var iotBatchTooMany: LimitExceeded {
             LimitExceeded(.iotBatchTooMany)
         }
-        
+
         /// 设备操作太频繁。
         public static var iotDeviceOpTooOften: LimitExceeded {
             LimitExceeded(.iotDeviceOpTooOften)
         }
-        
+
         /// 产品操作太频繁。
         public static var iotProductOpTooOften: LimitExceeded {
             LimitExceeded(.iotProductOpTooOften)
         }
-        
+
         /// 产品的Topics数量超限。
         public static var iotProductTooManyTopics: LimitExceeded {
             LimitExceeded(.iotProductTooManyTopics)
         }
-        
+
         /// 规则批量操作超限。
         public static var iotRuleOpTooMany: LimitExceeded {
             LimitExceeded(.iotRuleOpTooMany)
         }
-        
+
         /// 规则操作太频繁。
         public static var iotRuleOpTooOften: LimitExceeded {
             LimitExceeded(.iotRuleOpTooOften)
         }
-        
+
         /// Topic操作太频繁。
         public static var iotTopicOpTooOften: LimitExceeded {
             LimitExceeded(.iotTopicOpTooOften)
         }
-        
+
         /// 用户的产品数超限。
         public static var iotUserTooManyProducts: LimitExceeded {
             LimitExceeded(.iotUserTooManyProducts)
         }
-        
+
         public func asIotError() -> TCIotError {
             let code: TCIotError.Code
             switch self.error {

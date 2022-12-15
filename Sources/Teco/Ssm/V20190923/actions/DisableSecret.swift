@@ -19,30 +19,30 @@ extension Ssm {
     public struct DisableSecretRequest: TCRequestModel {
         /// 指定停用的凭据名称。
         public let secretName: String
-        
-        public init (secretName: String) {
+
+        public init(secretName: String) {
             self.secretName = secretName
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case secretName = "SecretName"
         }
     }
-    
+
     /// DisableSecret返回参数结构体
     public struct DisableSecretResponse: TCResponseModel {
         /// 停用的凭据名称。
         public let secretName: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case secretName = "SecretName"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 停用凭据
     ///
     /// 停用指定的凭据，停用后状态为 Disabled，无法通过接口获取该凭据的明文。
@@ -50,7 +50,7 @@ extension Ssm {
     public func disableSecret(_ input: DisableSecretRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DisableSecretResponse > {
         self.client.execute(action: "DisableSecret", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 停用凭据
     ///
     /// 停用指定的凭据，停用后状态为 Disabled，无法通过接口获取该凭据的明文。
@@ -58,7 +58,7 @@ extension Ssm {
     public func disableSecret(_ input: DisableSecretRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisableSecretResponse {
         try await self.client.execute(action: "DisableSecret", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 停用凭据
     ///
     /// 停用指定的凭据，停用后状态为 Disabled，无法通过接口获取该凭据的明文。
@@ -66,7 +66,7 @@ extension Ssm {
     public func disableSecret(secretName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DisableSecretResponse > {
         self.disableSecret(DisableSecretRequest(secretName: secretName), logger: logger, on: eventLoop)
     }
-    
+
     /// 停用凭据
     ///
     /// 停用指定的凭据，停用后状态为 Disabled，无法通过接口获取该凭据的明文。

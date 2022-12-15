@@ -47,176 +47,176 @@ extension TCTeoError {
             case zoneNotFound = "InvalidParameter.ZoneNotFound"
             case other = "InvalidParameter"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 操作频繁，请稍后重试。
         public static var actionInProgress: InvalidParameter {
             InvalidParameter(.actionInProgress)
         }
-        
+
         /// 域名不存在或不属于该账号。
         public static var domainNotFound: InvalidParameter {
             InvalidParameter(.domainNotFound)
         }
-        
+
         /// 无效的节点缓存。
         public static var invalidCacheOnlyOnSwitch: InvalidParameter {
             InvalidParameter(.invalidCacheOnlyOnSwitch)
         }
-        
+
         /// 证书信息错误。
         public static var invalidCertInfo: InvalidParameter {
             InvalidParameter(.invalidCertInfo)
         }
-        
+
         /// 无效的客户端IP请求头。
         public static var invalidClientIpHeaderName: InvalidParameter {
             InvalidParameter(.invalidClientIpHeaderName)
         }
-        
+
         /// 套餐包不支持智能加速配置。
         public static var invalidDynamicRoutineBilling: InvalidParameter {
             InvalidParameter(.invalidDynamicRoutineBilling)
         }
-        
+
         /// 不合法的过滤字段。
         public static var invalidFilterName: InvalidParameter {
             InvalidParameter(.invalidFilterName)
         }
-        
+
         /// 无效的强制HTTPS跳转。
         public static var invalidForceRedirectType: InvalidParameter {
             InvalidParameter(.invalidForceRedirectType)
         }
-        
+
         /// 无效的源站。
         public static var invalidOrigin: InvalidParameter {
             InvalidParameter(.invalidOrigin)
         }
-        
+
         /// 套餐包不支持最大上传大小。
         public static var invalidPostMaxSizeBilling: InvalidParameter {
             InvalidParameter(.invalidPostMaxSizeBilling)
         }
-        
+
         /// 无效的最大上传大小。
         public static var invalidPostSizeValue: InvalidParameter {
             InvalidParameter(.invalidPostSizeValue)
         }
-        
+
         /// 无效的URL重写。
         public static var invalidRedirectUrlCapture: InvalidParameter {
             InvalidParameter(.invalidRedirectUrlCapture)
         }
-        
+
         /// 无效的请求头header。
         public static var invalidRequestHeaderName: InvalidParameter {
             InvalidParameter(.invalidRequestHeaderName)
         }
-        
+
         /// 无效的请求头header。
         public static var invalidRequestHeaderValue: InvalidParameter {
             InvalidParameter(.invalidRequestHeaderValue)
         }
-        
+
         /// 无套餐包。
         public static var invalidResourceIdBilling: InvalidParameter {
             InvalidParameter(.invalidResourceIdBilling)
         }
-        
+
         /// 无效的响应头header。
         public static var invalidResponseHeaderValue: InvalidParameter {
             InvalidParameter(.invalidResponseHeaderValue)
         }
-        
+
         /// 无效的规则引擎操作。
         public static var invalidRuleEngineAction: InvalidParameter {
             InvalidParameter(.invalidRuleEngineAction)
         }
-        
+
         /// 无效的规则引擎条件。
         public static var invalidRuleEngineTarget: InvalidParameter {
             InvalidParameter(.invalidRuleEngineTarget)
         }
-        
+
         /// 无效的规则引擎文件后缀条件。
         public static var invalidRuleEngineTargetsExtension: InvalidParameter {
             InvalidParameter(.invalidRuleEngineTargetsExtension)
         }
-        
+
         /// URL重写的目标URL无效。
         public static var invalidUrlRedirectUrl: InvalidParameter {
             InvalidParameter(.invalidUrlRedirectUrl)
         }
-        
+
         /// 无效的WebSocket。
         public static var invalidWebSocketTimeout: InvalidParameter {
             InvalidParameter(.invalidWebSocketTimeout)
         }
-        
+
         /// 参数错误。
         public static var parameterError: InvalidParameter {
             InvalidParameter(.parameterError)
         }
-        
+
         /// 安全参数错误。
         public static var security: InvalidParameter {
             InvalidParameter(.security)
         }
-        
+
         /// 域名配置错误。
         ///
         /// 参数错误-setting非法参数。
         public static var settingInvalidParam: InvalidParameter {
             InvalidParameter(.settingInvalidParam)
         }
-        
+
         /// 资源存在错误。
         public static var target: InvalidParameter {
             InvalidParameter(.target)
         }
-        
+
         /// 任务无法生成。
         public static var taskNotGenerated: InvalidParameter {
             InvalidParameter(.taskNotGenerated)
         }
-        
+
         /// 文件上传链接存在问题。
         public static var uploadUrl: InvalidParameter {
             InvalidParameter(.uploadUrl)
         }
-        
+
         /// 站点不存在。
         public static var zoneNotFound: InvalidParameter {
             InvalidParameter(.zoneNotFound)
         }
-        
+
         /// 参数错误。
         public static var other: InvalidParameter {
             InvalidParameter(.other)
         }
-        
+
         public func asTeoError() -> TCTeoError {
             let code: TCTeoError.Code
             switch self.error {

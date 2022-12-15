@@ -19,30 +19,30 @@ extension Iotvideoindustry {
     public struct DeleteRecordPlanRequest: TCRequestModel {
         /// 录制计划ID
         public let planId: String
-        
-        public init (planId: String) {
+
+        public init(planId: String) {
             self.planId = planId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case planId = "PlanId"
         }
     }
-    
+
     /// DeleteRecordPlan返回参数结构体
     public struct DeleteRecordPlanResponse: TCResponseModel {
         /// 操作结果，OK：成功，其他：失败
         public let status: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case status = "Status"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除录制计划（旧）
     ///
     /// 本接口(DeleteRecordPlan)用于删除录制计划
@@ -52,7 +52,7 @@ extension Iotvideoindustry {
     public func deleteRecordPlan(_ input: DeleteRecordPlanRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteRecordPlanResponse > {
         self.client.execute(action: "DeleteRecordPlan", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除录制计划（旧）
     ///
     /// 本接口(DeleteRecordPlan)用于删除录制计划
@@ -62,7 +62,7 @@ extension Iotvideoindustry {
     public func deleteRecordPlan(_ input: DeleteRecordPlanRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteRecordPlanResponse {
         try await self.client.execute(action: "DeleteRecordPlan", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除录制计划（旧）
     ///
     /// 本接口(DeleteRecordPlan)用于删除录制计划
@@ -72,7 +72,7 @@ extension Iotvideoindustry {
     public func deleteRecordPlan(planId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteRecordPlanResponse > {
         self.deleteRecordPlan(DeleteRecordPlanRequest(planId: planId), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除录制计划（旧）
     ///
     /// 本接口(DeleteRecordPlan)用于删除录制计划

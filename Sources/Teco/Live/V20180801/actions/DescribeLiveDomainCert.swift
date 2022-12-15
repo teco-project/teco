@@ -19,30 +19,30 @@ extension Live {
     public struct DescribeLiveDomainCertRequest: TCRequestModel {
         /// 播放域名。
         public let domainName: String
-        
-        public init (domainName: String) {
+
+        public init(domainName: String) {
             self.domainName = domainName
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case domainName = "DomainName"
         }
     }
-    
+
     /// DescribeLiveDomainCert返回参数结构体
     public struct DescribeLiveDomainCertResponse: TCResponseModel {
         /// 证书信息。
         public let domainCertInfo: DomainCertInfo
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case domainCertInfo = "DomainCertInfo"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取域名证书信息
     ///
     /// 获取域名证书信息。
@@ -50,7 +50,7 @@ extension Live {
     public func describeLiveDomainCert(_ input: DescribeLiveDomainCertRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLiveDomainCertResponse > {
         self.client.execute(action: "DescribeLiveDomainCert", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取域名证书信息
     ///
     /// 获取域名证书信息。
@@ -58,7 +58,7 @@ extension Live {
     public func describeLiveDomainCert(_ input: DescribeLiveDomainCertRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLiveDomainCertResponse {
         try await self.client.execute(action: "DescribeLiveDomainCert", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取域名证书信息
     ///
     /// 获取域名证书信息。
@@ -66,7 +66,7 @@ extension Live {
     public func describeLiveDomainCert(domainName: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLiveDomainCertResponse > {
         self.describeLiveDomainCert(DescribeLiveDomainCertRequest(domainName: domainName), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取域名证书信息
     ///
     /// 获取域名证书信息。

@@ -19,26 +19,26 @@ extension Cdb {
     public struct SwitchForUpgradeRequest: TCRequestModel {
         /// 实例 ID，格式如：cdb-c1nl9rpv，与云数据库控制台页面中显示的实例 ID 相同。
         public let instanceId: String
-        
-        public init (instanceId: String) {
+
+        public init(instanceId: String) {
             self.instanceId = instanceId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
         }
     }
-    
+
     /// SwitchForUpgrade返回参数结构体
     public struct SwitchForUpgradeResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 切换访问新实例
     ///
     /// 本接口(SwitchForUpgrade)用于切换访问新实例，针对主升级中的实例处于待切换状态时，用户可主动发起该流程。
@@ -46,7 +46,7 @@ extension Cdb {
     public func switchForUpgrade(_ input: SwitchForUpgradeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SwitchForUpgradeResponse > {
         self.client.execute(action: "SwitchForUpgrade", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 切换访问新实例
     ///
     /// 本接口(SwitchForUpgrade)用于切换访问新实例，针对主升级中的实例处于待切换状态时，用户可主动发起该流程。
@@ -54,7 +54,7 @@ extension Cdb {
     public func switchForUpgrade(_ input: SwitchForUpgradeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SwitchForUpgradeResponse {
         try await self.client.execute(action: "SwitchForUpgrade", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 切换访问新实例
     ///
     /// 本接口(SwitchForUpgrade)用于切换访问新实例，针对主升级中的实例处于待切换状态时，用户可主动发起该流程。
@@ -62,7 +62,7 @@ extension Cdb {
     public func switchForUpgrade(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SwitchForUpgradeResponse > {
         self.switchForUpgrade(SwitchForUpgradeRequest(instanceId: instanceId), logger: logger, on: eventLoop)
     }
-    
+
     /// 切换访问新实例
     ///
     /// 本接口(SwitchForUpgrade)用于切换访问新实例，针对主升级中的实例处于待切换状态时，用户可主动发起该流程。

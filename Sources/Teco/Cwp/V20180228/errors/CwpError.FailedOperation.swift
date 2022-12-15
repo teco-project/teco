@@ -31,94 +31,94 @@ extension TCCwpError {
             case tooManyStrategy = "FailedOperation.TooManyStrategy"
             case other = "FailedOperation"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 客户端已离线。
         public static var agentOffline: FailedOperation {
             FailedOperation(.agentOffline)
         }
-        
+
         /// 调用API服务失败。
         public static var apiServerFail: FailedOperation {
             FailedOperation(.apiServerFail)
         }
-        
+
         /// 导出文件失败。
         public static var export: FailedOperation {
             FailedOperation(.export)
         }
-        
+
         /// 可用license数量不足，缺少1个license，请购买新license。
         public static var licenseExceeded: FailedOperation {
             FailedOperation(.licenseExceeded)
         }
-        
+
         /// 卸载主机。
         public static var machineDelete: FailedOperation {
             FailedOperation(.machineDelete)
         }
-        
+
         /// 无专业版主机。
         public static var noProfessionHost: FailedOperation {
             FailedOperation(.noProfessionHost)
         }
-        
+
         /// 多台主机隔离，部分或全部失败。
         public static var partSeparate: FailedOperation {
             FailedOperation(.partSeparate)
         }
-        
+
         /// 开启防护失败。
         public static var protectStartFail: FailedOperation {
             FailedOperation(.protectStartFail)
         }
-        
+
         /// 回复木马失败。
         public static var recover: FailedOperation {
             FailedOperation(.recover)
         }
-        
+
         /// 重新检测漏洞失败。
         public static var rescanVul: FailedOperation {
             FailedOperation(.rescanVul)
         }
-        
+
         /// 单台主机隔离失败。
         public static var singleSeparate: FailedOperation {
             FailedOperation(.singleSeparate)
         }
-        
+
         /// 创建基线策略超过上限。
         public static var tooManyStrategy: FailedOperation {
             FailedOperation(.tooManyStrategy)
         }
-        
+
         /// 操作失败。
         public static var other: FailedOperation {
             FailedOperation(.other)
         }
-        
+
         public func asCwpError() -> TCCwpError {
             let code: TCCwpError.Code
             switch self.error {

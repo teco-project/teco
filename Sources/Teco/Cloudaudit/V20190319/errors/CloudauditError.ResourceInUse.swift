@@ -22,49 +22,49 @@ extension TCCloudauditError {
             case alreadyExistsSameAuditCosConfig = "ResourceInUse.AlreadyExistsSameAuditCosConfig"
             case cosBucketExists = "ResourceInUse.CosBucketExists"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 已经存在相同名称的跟踪集
         public static var alreadyExistsSameAudit: ResourceInUse {
             ResourceInUse(.alreadyExistsSameAudit)
         }
-        
+
         /// 已经存在相同cmq投递配置的跟踪集
         public static var alreadyExistsSameAuditCmqConfig: ResourceInUse {
             ResourceInUse(.alreadyExistsSameAuditCmqConfig)
         }
-        
+
         /// 已经存在相同cos投递配置的跟踪集
         public static var alreadyExistsSameAuditCosConfig: ResourceInUse {
             ResourceInUse(.alreadyExistsSameAuditCosConfig)
         }
-        
+
         /// cos存储桶已经存在
         public static var cosBucketExists: ResourceInUse {
             ResourceInUse(.cosBucketExists)
         }
-        
+
         public func asCloudauditError() -> TCCloudauditError {
             let code: TCCloudauditError.Code
             switch self.error {

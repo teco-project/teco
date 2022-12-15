@@ -19,23 +19,23 @@ extension Ms {
     public struct DescribeShieldInstancesRequest: TCRequestModel {
         /// 支持通过app名称，app包名，加固的服务版本，提交的渠道进行筛选。
         public let filters: [Filter]?
-        
+
         /// 偏移量，默认为0。
         public let offset: UInt64?
-        
+
         /// 数量限制，默认为20，最大值为100。
         public let limit: UInt64?
-        
+
         /// 可以提供ItemId数组来查询一个或者多个结果。注意不可以同时指定ItemIds和Filters。
         public let itemIds: [String]?
-        
+
         /// 按某个字段排序，目前仅支持TaskTime排序。
         public let orderField: String?
-        
+
         /// 升序（asc）还是降序（desc），默认：desc。
         public let orderDirection: String?
-        
-        public init (filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, itemIds: [String]? = nil, orderField: String? = nil, orderDirection: String? = nil) {
+
+        public init(filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, itemIds: [String]? = nil, orderField: String? = nil, orderDirection: String? = nil) {
             self.filters = filters
             self.offset = offset
             self.limit = limit
@@ -43,7 +43,7 @@ extension Ms {
             self.orderField = orderField
             self.orderDirection = orderDirection
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case filters = "Filters"
             case offset = "Offset"
@@ -53,25 +53,25 @@ extension Ms {
             case orderDirection = "OrderDirection"
         }
     }
-    
+
     /// DescribeShieldInstances返回参数结构体
     public struct DescribeShieldInstancesResponse: TCResponseModel {
         /// 符合要求的app数量
         public let totalCount: UInt64
-        
+
         /// 一个关于app详细信息的结构体，主要包括app的基本信息和加固信息。
         public let appSet: [AppSetInfo]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case totalCount = "TotalCount"
             case appSet = "AppSet"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 用户查询提交过的app列表
     ///
     /// 本接口用于查看app列表。
@@ -80,7 +80,7 @@ extension Ms {
     public func describeShieldInstances(_ input: DescribeShieldInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeShieldInstancesResponse > {
         self.client.execute(action: "DescribeShieldInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 用户查询提交过的app列表
     ///
     /// 本接口用于查看app列表。
@@ -89,7 +89,7 @@ extension Ms {
     public func describeShieldInstances(_ input: DescribeShieldInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeShieldInstancesResponse {
         try await self.client.execute(action: "DescribeShieldInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 用户查询提交过的app列表
     ///
     /// 本接口用于查看app列表。
@@ -98,7 +98,7 @@ extension Ms {
     public func describeShieldInstances(filters: [Filter]? = nil, offset: UInt64? = nil, limit: UInt64? = nil, itemIds: [String]? = nil, orderField: String? = nil, orderDirection: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeShieldInstancesResponse > {
         self.describeShieldInstances(DescribeShieldInstancesRequest(filters: filters, offset: offset, limit: limit, itemIds: itemIds, orderField: orderField, orderDirection: orderDirection), logger: logger, on: eventLoop)
     }
-    
+
     /// 用户查询提交过的app列表
     ///
     /// 本接口用于查看app列表。

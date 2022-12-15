@@ -46,139 +46,139 @@ public struct TCEisError: TCEisErrorType {
         case invalidParameterValue_RuntimeZoneNotExisted = "InvalidParameterValue.RuntimeZoneNotExisted"
         case resourceUnavailable = "ResourceUnavailable"
     }
-    
+
     /// Error domains affliated to ``TCEisError``.
     public static var domains: [TCErrorType.Type] {
         [FailedOperation.self, InternalError.self, InvalidParameterValue.self]
     }
-    
+
     private let error: Code
-    
+
     public let context: TCErrorContext?
-    
+
     public var errorCode: String {
         self.error.rawValue
     }
-    
+
     /// Initializer used by ``TCClient`` to match an error of this type.
-    public init ?(errorCode: String, context: TCErrorContext) {
+    public init?(errorCode: String, context: TCErrorContext) {
         guard let error = Code(rawValue: errorCode) else {
             return nil
         }
         self.error = error
         self.context = context
     }
-    
-    internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+    internal init(_ error: Code, context: TCErrorContext? = nil) {
         self.error = error
         self.context = context
     }
-    
+
     /// 操作失败。
     public static var failedOperation: TCEisError {
         TCEisError(.failedOperation)
     }
-    
+
     /// 鉴权失败。
     public static var failedOperation_AuthenticationFailed: TCEisError {
         TCEisError(.failedOperation_AuthenticationFailed)
     }
-    
+
     /// 接口处理超时。
     public static var failedOperation_InnerLogicTimeOut: TCEisError {
         TCEisError(.failedOperation_InnerLogicTimeOut)
     }
-    
+
     /// 依赖服务错误。
     public static var failedOperation_MetaCompilerError: TCEisError {
         TCEisError(.failedOperation_MetaCompilerError)
     }
-    
+
     /// 不支持的操作类型。
     public static var failedOperation_UnSupportedOperationType: TCEisError {
         TCEisError(.failedOperation_UnSupportedOperationType)
     }
-    
+
     /// 检查运行时失败。
     public static var internalError_CheckRuntimeFailed: TCEisError {
         TCEisError(.internalError_CheckRuntimeFailed)
     }
-    
+
     /// 获取运行时应用数量失败。
     public static var internalError_CountRuntimeInstancesFailed: TCEisError {
         TCEisError(.internalError_CountRuntimeInstancesFailed)
     }
-    
+
     /// 数据库内部错误。
     public static var internalError_DatabaseError: TCEisError {
         TCEisError(.internalError_DatabaseError)
     }
-    
+
     /// 获取运行时应用列表失败。
     public static var internalError_ListRuntimeInstancesFailed: TCEisError {
         TCEisError(.internalError_ListRuntimeInstancesFailed)
     }
-    
+
     /// 获取运行时列表失败。
     public static var internalError_ListRuntimesFailed: TCEisError {
         TCEisError(.internalError_ListRuntimesFailed)
     }
-    
+
     /// 依赖模块metacompiler错误。
     public static var internalError_MetaCompilerError: TCEisError {
         TCEisError(.internalError_MetaCompilerError)
     }
-    
+
     /// rpc调用异常。
     public static var internalError_RpcPilotServerError: TCEisError {
         TCEisError(.internalError_RpcPilotServerError)
     }
-    
+
     /// 指标查询参数错误。
     public static var invalidParameterValue_InvalidRuntimeMetricSearchCondition: TCEisError {
         TCEisError(.invalidParameterValue_InvalidRuntimeMetricSearchCondition)
     }
-    
+
     /// 共享运行时不支持此操作。
     public static var invalidParameterValue_NotSupportedActionForPublicRuntime: TCEisError {
         TCEisError(.invalidParameterValue_NotSupportedActionForPublicRuntime)
     }
-    
+
     /// 不支持的Zone。
     public static var invalidParameterValue_PilotZoneNotSupported: TCEisError {
         TCEisError(.invalidParameterValue_PilotZoneNotSupported)
     }
-    
+
     /// 运行时已删除。
     public static var invalidParameterValue_RuntimeAlreadyDeleted: TCEisError {
         TCEisError(.invalidParameterValue_RuntimeAlreadyDeleted)
     }
-    
+
     /// 运行时不存在。
     public static var invalidParameterValue_RuntimeIdNotExist: TCEisError {
         TCEisError(.invalidParameterValue_RuntimeIdNotExist)
     }
-    
+
     /// 当前指标不支持查询百分比。
     public static var invalidParameterValue_RuntimeMetricRateNotSupport: TCEisError {
         TCEisError(.invalidParameterValue_RuntimeMetricRateNotSupport)
     }
-    
+
     /// 运行时命名空间不合法。
     public static var invalidParameterValue_RuntimeNamespaceInvalid: TCEisError {
         TCEisError(.invalidParameterValue_RuntimeNamespaceInvalid)
     }
-    
+
     /// 运行时地域不存在。
     public static var invalidParameterValue_RuntimeZoneNotExisted: TCEisError {
         TCEisError(.invalidParameterValue_RuntimeZoneNotExisted)
     }
-    
+
     /// 资源不可用。
     public static var resourceUnavailable: TCEisError {
         TCEisError(.resourceUnavailable)
     }
-    
+
     public func asEisError() -> TCEisError {
         return self
     }

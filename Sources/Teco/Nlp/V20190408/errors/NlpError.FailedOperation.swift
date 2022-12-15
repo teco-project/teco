@@ -25,62 +25,62 @@ extension TCNlpError {
             case wordNotFound = "FailedOperation.WordNotFound"
             case other = "FailedOperation"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 非法文本输入导致返回异常
         public static var illegalTextError: FailedOperation {
             FailedOperation(.illegalTextError)
         }
-        
+
         /// 后端服务超时。
         public static var requestTimeout: FailedOperation {
             FailedOperation(.requestTimeout)
         }
-        
+
         public static var rpcFail: FailedOperation {
             FailedOperation(.rpcFail)
         }
-        
+
         /// 文本向量化失败
         public static var textEmbeddingFailed: FailedOperation {
             FailedOperation(.textEmbeddingFailed)
         }
-        
+
         public static var unknown: FailedOperation {
             FailedOperation(.unknown)
         }
-        
+
         /// 查找不到词语
         public static var wordNotFound: FailedOperation {
             FailedOperation(.wordNotFound)
         }
-        
+
         /// 操作失败。
         public static var other: FailedOperation {
             FailedOperation(.other)
         }
-        
+
         public func asNlpError() -> TCNlpError {
             let code: TCNlpError.Code
             switch self.error {

@@ -19,30 +19,30 @@ extension Lighthouse {
     public struct DescribeInstanceVncUrlRequest: TCRequestModel {
         /// 实例 ID。可通过[DescribeInstances](https://cloud.tencent.com/document/api/1207/47573)接口返回值中的InstanceId获取。
         public let instanceId: String
-        
-        public init (instanceId: String) {
+
+        public init(instanceId: String) {
             self.instanceId = instanceId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
         }
     }
-    
+
     /// DescribeInstanceVncUrl返回参数结构体
     public struct DescribeInstanceVncUrlResponse: TCResponseModel {
         /// 实例的管理终端地址。
         public let instanceVncUrl: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceVncUrl = "InstanceVncUrl"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询实例管理终端地址
     ///
     /// 本接口 ( DescribeInstanceVncUrl ) 用于查询实例管理终端地址，获取的地址可用于实例的 VNC 登录。
@@ -60,7 +60,7 @@ extension Lighthouse {
     public func describeInstanceVncUrl(_ input: DescribeInstanceVncUrlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInstanceVncUrlResponse > {
         self.client.execute(action: "DescribeInstanceVncUrl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询实例管理终端地址
     ///
     /// 本接口 ( DescribeInstanceVncUrl ) 用于查询实例管理终端地址，获取的地址可用于实例的 VNC 登录。
@@ -78,7 +78,7 @@ extension Lighthouse {
     public func describeInstanceVncUrl(_ input: DescribeInstanceVncUrlRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceVncUrlResponse {
         try await self.client.execute(action: "DescribeInstanceVncUrl", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询实例管理终端地址
     ///
     /// 本接口 ( DescribeInstanceVncUrl ) 用于查询实例管理终端地址，获取的地址可用于实例的 VNC 登录。
@@ -96,7 +96,7 @@ extension Lighthouse {
     public func describeInstanceVncUrl(instanceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInstanceVncUrlResponse > {
         self.describeInstanceVncUrl(DescribeInstanceVncUrlRequest(instanceId: instanceId), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询实例管理终端地址
     ///
     /// 本接口 ( DescribeInstanceVncUrl ) 用于查询实例管理终端地址，获取的地址可用于实例的 VNC 登录。

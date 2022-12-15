@@ -19,16 +19,16 @@ extension Smpn {
     public struct CHPRequest: TCInputModel {
         /// 电话号码
         public let phoneNumber: String
-        
-        public init (phoneNumber: String) {
+
+        public init(phoneNumber: String) {
             self.phoneNumber = phoneNumber
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case phoneNumber = "PhoneNumber"
         }
     }
-    
+
     /// 终端骚扰保护
     public struct CHPResponse: TCOutputModel {
         /// 标记类型
@@ -41,83 +41,83 @@ extension Smpn {
         ///  55:快递电话
         ///  56:出租车专车
         public let tagType: Int64
-        
+
         /// 标记次数
         public let tagCount: Int64
-        
+
         enum CodingKeys: String, CodingKey {
             case tagType = "TagType"
             case tagCount = "TagCount"
         }
     }
-    
+
     /// 企业号码认证请求
     public struct EPARequest: TCInputModel {
         /// 电话号码
         public let phoneNumber: String
-        
+
         /// 黄页名称
         public let name: String
-        
-        public init (phoneNumber: String, name: String) {
+
+        public init(phoneNumber: String, name: String) {
             self.phoneNumber = phoneNumber
             self.name = name
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case phoneNumber = "PhoneNumber"
             case name = "Name"
         }
     }
-    
+
     /// 企业号码认证回应
     public struct EPAResponse: TCOutputModel {
         /// 0成功 其他失败
         public let retCode: Int64
-        
+
         enum CodingKeys: String, CodingKey {
             case retCode = "RetCode"
         }
     }
-    
+
     /// 虚假号码识别请求
     public struct FNRRequest: TCInputModel {
         /// 电话号码
         public let phoneNumber: String
-        
-        public init (phoneNumber: String) {
+
+        public init(phoneNumber: String) {
             self.phoneNumber = phoneNumber
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case phoneNumber = "PhoneNumber"
         }
     }
-    
+
     /// 虚假号码识别回应
     public struct FNRResponse: TCOutputModel {
         /// 虚假号码描述
         public let status: Int64
-        
+
         enum CodingKeys: String, CodingKey {
             case status = "Status"
         }
     }
-    
+
     /// 号码营销监控请求
     public struct MHMRequest: TCInputModel {
         /// 电话号码
         public let phoneNumber: String
-        
-        public init (phoneNumber: String) {
+
+        public init(phoneNumber: String) {
             self.phoneNumber = phoneNumber
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case phoneNumber = "PhoneNumber"
         }
     }
-    
+
     /// 号码营销监控回应
     public struct MHMResponse: TCOutputModel {
         /// 标记类型
@@ -130,47 +130,47 @@ extension Smpn {
         ///  55:快递电话
         ///  56:出租车专车
         public let tagType: Int64
-        
+
         /// 标记次数
         public let tagCount: Int64
-        
+
         enum CodingKeys: String, CodingKey {
             case tagType = "TagType"
             case tagCount = "TagCount"
         }
     }
-    
+
     /// 号码恶意标记等级请求
     public struct MRLRequest: TCInputModel {
         /// 电话号码
         public let phoneNumber: String
-        
-        public init (phoneNumber: String) {
+
+        public init(phoneNumber: String) {
             self.phoneNumber = phoneNumber
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case phoneNumber = "PhoneNumber"
         }
     }
-    
+
     /// 号码恶意标记等级
     public struct MRLResponse: TCOutputModel {
         /// 骚扰电话恶意标记等级
         public let disturbLevel: Int64
-        
+
         /// 房产中介恶意标记等级
         public let houseAgentLevel: Int64
-        
+
         /// 保险理财恶意标记等级
         public let insuranceLevel: Int64
-        
+
         /// 广告推销恶意标记等级
         public let salesLevel: Int64
-        
+
         /// 诈骗电话恶意标记等级
         public let cheatLevel: Int64
-        
+
         enum CodingKeys: String, CodingKey {
             case disturbLevel = "DisturbLevel"
             case houseAgentLevel = "HouseAgentLevel"

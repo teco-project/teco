@@ -83,329 +83,329 @@ public struct TCTatError: TCTatErrorType {
         case unauthorizedOperation_MFANotFound = "UnauthorizedOperation.MFANotFound"
         case unknownParameter = "UnknownParameter"
     }
-    
+
     /// Error domains affliated to ``TCTatError``.
     public static var domains: [TCErrorType.Type] {
         [FailedOperation.self, InvalidParameter.self, InvalidParameterValue.self, LimitExceeded.self, ResourceNotFound.self, ResourceUnavailable.self, UnauthorizedOperation.self]
     }
-    
+
     private let error: Code
-    
+
     public let context: TCErrorContext?
-    
+
     public var errorCode: String {
         self.error.rawValue
     }
-    
+
     /// Initializer used by ``TCClient`` to match an error of this type.
-    public init ?(errorCode: String, context: TCErrorContext) {
+    public init?(errorCode: String, context: TCErrorContext) {
         guard let error = Code(rawValue: errorCode) else {
             return nil
         }
         self.error = error
         self.context = context
     }
-    
-    internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+    internal init(_ error: Code, context: TCErrorContext? = nil) {
         self.error = error
         self.context = context
     }
-    
+
     /// CAM签名/鉴权错误。
     public static var authFailure: TCTatError {
         TCTatError(.authFailure)
     }
-    
+
     /// 调用 CVM 失败。
     public static var failedOperation_CVMError: TCTatError {
         TCTatError(.failedOperation_CVMError)
     }
-    
+
     /// 调用 Lighthouse 失败。
     public static var failedOperation_LighthouseError: TCTatError {
         TCTatError(.failedOperation_LighthouseError)
     }
-    
+
     /// 内部错误。
     public static var internalError: TCTatError {
         TCTatError(.internalError)
     }
-    
+
     /// 参数错误。
     public static var invalidParameter: TCTatError {
         TCTatError(.invalidParameter)
     }
-    
+
     /// 参数取值错误。
     public static var invalidParameterValue: TCTatError {
         TCTatError(.invalidParameterValue)
     }
-    
+
     /// Agent不支持此命令类型。
     ///
     /// 请确认执行机器是否支持此类型命令
     public static var invalidParameterValue_AgentUnsupportedCommandType: TCTatError {
         TCTatError(.invalidParameterValue_AgentUnsupportedCommandType)
     }
-    
+
     /// Command 内容无效。
     public static var invalidParameterValue_CommandContentInvalid: TCTatError {
         TCTatError(.invalidParameterValue_CommandContentInvalid)
     }
-    
+
     /// Command 名称重复。
     public static var invalidParameterValue_CommandNameDuplicated: TCTatError {
         TCTatError(.invalidParameterValue_CommandNameDuplicated)
     }
-    
+
     /// 实例类型不一致。
     public static var invalidParameterValue_InconsistentInstance: TCTatError {
         TCTatError(.invalidParameterValue_InconsistentInstance)
     }
-    
+
     /// 实例ID与执行活动无关。
     ///
     /// 检查参数InstanceIds。
     public static var invalidParameterValue_InstanceIsNotRelatedToInvocation: TCTatError {
         TCTatError(.invalidParameterValue_InstanceIsNotRelatedToInvocation)
     }
-    
+
     /// CommandId 无效。
     public static var invalidParameterValue_InvalidCommandId: TCTatError {
         TCTatError(.invalidParameterValue_InvalidCommandId)
     }
-    
+
     /// Command 名称无效。
     public static var invalidParameterValue_InvalidCommandName: TCTatError {
         TCTatError(.invalidParameterValue_InvalidCommandName)
     }
-    
+
     /// 命令内容无效。
     public static var invalidParameterValue_InvalidContent: TCTatError {
         TCTatError(.invalidParameterValue_InvalidContent)
     }
-    
+
     /// Crontab 表达式无效。
     public static var invalidParameterValue_InvalidCronExpression: TCTatError {
         TCTatError(.invalidParameterValue_InvalidCronExpression)
     }
-    
+
     /// Filter 无效。
     public static var invalidParameterValue_InvalidFilter: TCTatError {
         TCTatError(.invalidParameterValue_InvalidFilter)
     }
-    
+
     /// 实例ID无效。
     public static var invalidParameterValue_InvalidInstanceId: TCTatError {
         TCTatError(.invalidParameterValue_InvalidInstanceId)
     }
-    
+
     /// 不合法的执行活动ID。
     public static var invalidParameterValue_InvalidInvocationId: TCTatError {
         TCTatError(.invalidParameterValue_InvalidInvocationId)
     }
-    
+
     /// 不合法的执行任务ID。
     public static var invalidParameterValue_InvalidInvocationTaskId: TCTatError {
         TCTatError(.invalidParameterValue_InvalidInvocationTaskId)
     }
-    
+
     /// InvokerId 无效。
     public static var invalidParameterValue_InvalidInvokerId: TCTatError {
         TCTatError(.invalidParameterValue_InvalidInvokerId)
     }
-    
+
     /// OutputCOSBucketUrl 无效。
     ///
     /// OutputCOSBucketUrl 应该形如：https://tat-123454321.cos.ap-beijing.myqcloud.com。
     public static var invalidParameterValue_InvalidOutputCOSBucketUrl: TCTatError {
         TCTatError(.invalidParameterValue_InvalidOutputCOSBucketUrl)
     }
-    
+
     /// OutputCOSKeyPrefix 无效。
     public static var invalidParameterValue_InvalidOutputCOSKeyPrefix: TCTatError {
         TCTatError(.invalidParameterValue_InvalidOutputCOSKeyPrefix)
     }
-    
+
     public static var invalidParameterValue_InvalidUsername: TCTatError {
         TCTatError(.invalidParameterValue_InvalidUsername)
     }
-    
+
     /// 命令执行路径不合法。
     public static var invalidParameterValue_InvalidWorkingDirectory: TCTatError {
         TCTatError(.invalidParameterValue_InvalidWorkingDirectory)
     }
-    
+
     /// 已启用自定义参数功能，但缺失自定义参数信息。
     public static var invalidParameterValue_LackOfParameterInfo: TCTatError {
         TCTatError(.invalidParameterValue_LackOfParameterInfo)
     }
-    
+
     /// 未提供 Parameters 信息。
     public static var invalidParameterValue_LackOfParameters: TCTatError {
         TCTatError(.invalidParameterValue_LackOfParameters)
     }
-    
+
     /// 超过参数限制。
     public static var invalidParameterValue_LimitExceeded: TCTatError {
         TCTatError(.invalidParameterValue_LimitExceeded)
     }
-    
+
     /// 未启用自定义参数功能。
     public static var invalidParameterValue_ParameterDisabled: TCTatError {
         TCTatError(.invalidParameterValue_ParameterDisabled)
     }
-    
+
     /// 参数为非法 json string 格式。
     public static var invalidParameterValue_ParameterInvalidJsonFormat: TCTatError {
         TCTatError(.invalidParameterValue_ParameterInvalidJsonFormat)
     }
-    
+
     /// 参数 Key 包含非法字符。
     public static var invalidParameterValue_ParameterKeyContainsInvalidChar: TCTatError {
         TCTatError(.invalidParameterValue_ParameterKeyContainsInvalidChar)
     }
-    
+
     /// 参数 Key 重复。
     public static var invalidParameterValue_ParameterKeyDuplicated: TCTatError {
         TCTatError(.invalidParameterValue_ParameterKeyDuplicated)
     }
-    
+
     /// 参数 Key 过长。
     public static var invalidParameterValue_ParameterKeyLenExceeded: TCTatError {
         TCTatError(.invalidParameterValue_ParameterKeyLenExceeded)
     }
-    
+
     /// 参数数目过多。
     public static var invalidParameterValue_ParameterNumberExceeded: TCTatError {
         TCTatError(.invalidParameterValue_ParameterNumberExceeded)
     }
-    
+
     /// 参数 Value 非 string 类型。
     public static var invalidParameterValue_ParameterValueNotString: TCTatError {
         TCTatError(.invalidParameterValue_ParameterValueNotString)
     }
-    
+
     /// 参数取值范围不合法。
     public static var invalidParameterValue_Range: TCTatError {
         TCTatError(.invalidParameterValue_Range)
     }
-    
+
     /// 未启用自定义参数功能。
     public static var invalidParameterValue_SupportParametersOnlyIfEnableParameter: TCTatError {
         TCTatError(.invalidParameterValue_SupportParametersOnlyIfEnableParameter)
     }
-    
+
     /// 长度超过限制。
     public static var invalidParameterValue_TooLong: TCTatError {
         TCTatError(.invalidParameterValue_TooLong)
     }
-    
+
     /// 参数冲突。
     public static var invalidParameter_ConflictParameter: TCTatError {
         TCTatError(.invalidParameter_ConflictParameter)
     }
-    
+
     /// 无效用户名。
     public static var invalidParameter_InvalidUsername: TCTatError {
         TCTatError(.invalidParameter_InvalidUsername)
     }
-    
+
     public static var invalidParameter_ParameterNameDuplicated: TCTatError {
         TCTatError(.invalidParameter_ParameterNameDuplicated)
     }
-    
+
     /// 超过配额限制。
     public static var limitExceeded: TCTatError {
         TCTatError(.limitExceeded)
     }
-    
+
     public static var limitExceeded_FilterValueExceeded: TCTatError {
         TCTatError(.limitExceeded_FilterValueExceeded)
     }
-    
+
     /// 缺少参数错误。
     public static var missingParameter: TCTatError {
         TCTatError(.missingParameter)
     }
-    
+
     /// 资源不存在。
     public static var resourceNotFound: TCTatError {
         TCTatError(.resourceNotFound)
     }
-    
+
     /// 命令不存在。
     public static var resourceNotFound_CommandNotFound: TCTatError {
         TCTatError(.resourceNotFound_CommandNotFound)
     }
-    
+
     /// 实例不存在。
     public static var resourceNotFound_InstanceNotFound: TCTatError {
         TCTatError(.resourceNotFound_InstanceNotFound)
     }
-    
+
     /// 执行活动未找到。
     ///
     /// 检查参数InvocationId
     public static var resourceNotFound_InvocationNotFound: TCTatError {
         TCTatError(.resourceNotFound_InvocationNotFound)
     }
-    
+
     /// Agent 未安装。
     public static var resourceUnavailable_AgentNotInstalled: TCTatError {
         TCTatError(.resourceUnavailable_AgentNotInstalled)
     }
-    
+
     /// Agent 不在线。
     public static var resourceUnavailable_AgentStatusNotOnline: TCTatError {
         TCTatError(.resourceUnavailable_AgentStatusNotOnline)
     }
-    
+
     /// 命令正在执行中。
     public static var resourceUnavailable_CommandInExecuting: TCTatError {
         TCTatError(.resourceUnavailable_CommandInExecuting)
     }
-    
+
     /// 命令已关联执行器。
     public static var resourceUnavailable_CommandInInvoker: TCTatError {
         TCTatError(.resourceUnavailable_CommandInInvoker)
     }
-    
+
     /// 实例未处于运行中。
     public static var resourceUnavailable_InstanceStateNotRunning: TCTatError {
         TCTatError(.resourceUnavailable_InstanceStateNotRunning)
     }
-    
+
     /// 请确认所填实例是否为所请求的地域的资源。
     public static var resourceUnavailable_LighthouseUnsupportedRegion: TCTatError {
         TCTatError(.resourceUnavailable_LighthouseUnsupportedRegion)
     }
-    
+
     /// CAM鉴权失败。
     public static var unauthorizedOperation_CamAuthFailed: TCTatError {
         TCTatError(.unauthorizedOperation_CamAuthFailed)
     }
-    
+
     /// Token 无效。
     public static var unauthorizedOperation_InvalidToken: TCTatError {
         TCTatError(.unauthorizedOperation_InvalidToken)
     }
-    
+
     /// Multi-Factor Authentication(MFA) 过期。
     public static var unauthorizedOperation_MFAExpired: TCTatError {
         TCTatError(.unauthorizedOperation_MFAExpired)
     }
-    
+
     /// Multi-Factor Authentication(MFA) 不存在。
     public static var unauthorizedOperation_MFANotFound: TCTatError {
         TCTatError(.unauthorizedOperation_MFANotFound)
     }
-    
+
     /// 未知参数错误。
     public static var unknownParameter: TCTatError {
         TCTatError(.unknownParameter)
     }
-    
+
     public func asTatError() -> TCTatError {
         return self
     }

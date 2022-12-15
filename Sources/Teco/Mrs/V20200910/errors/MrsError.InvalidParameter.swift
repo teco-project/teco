@@ -26,69 +26,69 @@ extension TCMrsError {
             case text = "InvalidParameter.Text"
             case other = "InvalidParameter"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 参数AutoFitDirection无效。
         public static var autoFitDirection: InvalidParameter {
             InvalidParameter(.autoFitDirection)
         }
-        
+
         /// 参数ImageInfoList无效。
         public static var imageInfoList: InvalidParameter {
             InvalidParameter(.imageInfoList)
         }
-        
+
         /// 参数ImageOriginalSize无效。
         public static var imageOriginalSize: InvalidParameter {
             InvalidParameter(.imageOriginalSize)
         }
-        
+
         /// 请求Action无效。
         public static var invalidAction: InvalidParameter {
             InvalidParameter(.invalidAction)
         }
-        
+
         /// 参数OcrEngineType无效。
         public static var ocrEngineType: InvalidParameter {
             InvalidParameter(.ocrEngineType)
         }
-        
+
         /// 参数RotateTheAngle无效。
         public static var rotateTheAngle: InvalidParameter {
             InvalidParameter(.rotateTheAngle)
         }
-        
+
         /// 参数Text无效。
         public static var text: InvalidParameter {
             InvalidParameter(.text)
         }
-        
+
         /// 参数错误。
         public static var other: InvalidParameter {
             InvalidParameter(.other)
         }
-        
+
         public func asMrsError() -> TCMrsError {
             let code: TCMrsError.Code
             switch self.error {

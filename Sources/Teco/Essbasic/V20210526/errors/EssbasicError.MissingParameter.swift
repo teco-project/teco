@@ -35,99 +35,99 @@ extension TCEssbasicError {
             case userOpenId = "MissingParameter.UserOpenId"
             case other = "MissingParameter"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         public static var companyActiveInfo: MissingParameter {
             MissingParameter(.companyActiveInfo)
         }
-        
+
         public static var date: MissingParameter {
             MissingParameter(.date)
         }
-        
+
         /// 缺少流程id，请检查后重试。
         public static var flowId: MissingParameter {
             MissingParameter(.flowId)
         }
-        
+
         public static var flowIds: MissingParameter {
             MissingParameter(.flowIds)
         }
-        
+
         public static var flowIdsOrFlowGroupId: MissingParameter {
             MissingParameter(.flowIdsOrFlowGroupId)
         }
-        
+
         public static var flowInfo: MissingParameter {
             MissingParameter(.flowInfo)
         }
-        
+
         public static var missComponentName: MissingParameter {
             MissingParameter(.missComponentName)
         }
-        
+
         public static var orgOpenId: MissingParameter {
             MissingParameter(.orgOpenId)
         }
-        
+
         public static var organizationId: MissingParameter {
             MissingParameter(.organizationId)
         }
-        
+
         public static var proxyOperatorOpenId: MissingParameter {
             MissingParameter(.proxyOperatorOpenId)
         }
-        
+
         public static var sealId: MissingParameter {
             MissingParameter(.sealId)
         }
-        
+
         public static var sealImage: MissingParameter {
             MissingParameter(.sealImage)
         }
-        
+
         public static var sealName: MissingParameter {
             MissingParameter(.sealName)
         }
-        
+
         public static var signComponents: MissingParameter {
             MissingParameter(.signComponents)
         }
-        
+
         public static var templates: MissingParameter {
             MissingParameter(.templates)
         }
-        
+
         public static var userOpenId: MissingParameter {
             MissingParameter(.userOpenId)
         }
-        
+
         /// 缺少参数错误。
         public static var other: MissingParameter {
             MissingParameter(.other)
         }
-        
+
         public func asEssbasicError() -> TCEssbasicError {
             let code: TCEssbasicError.Code
             switch self.error {

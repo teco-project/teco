@@ -39,114 +39,114 @@ extension TCMpsError {
             case type = "InvalidParameter.Type"
             case other = "InvalidParameter"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         public static var endTime: InvalidParameter {
             InvalidParameter(.endTime)
         }
-        
+
         public static var exceededQuantityLimit: InvalidParameter {
             InvalidParameter(.exceededQuantityLimit)
         }
-        
+
         public static var id: InvalidParameter {
             InvalidParameter(.id)
         }
-        
+
         public static var input: InvalidParameter {
             InvalidParameter(.input)
         }
-        
+
         public static var inputOutputId: InvalidParameter {
             InvalidParameter(.inputOutputId)
         }
-        
+
         public static var maxBandwidth: InvalidParameter {
             InvalidParameter(.maxBandwidth)
         }
-        
+
         public static var name: InvalidParameter {
             InvalidParameter(.name)
         }
-        
+
         public static var notFound: InvalidParameter {
             InvalidParameter(.notFound)
         }
-        
+
         public static var output: InvalidParameter {
             InvalidParameter(.output)
         }
-        
+
         public static var outputGroups: InvalidParameter {
             InvalidParameter(.outputGroups)
         }
-        
+
         public static var outputId: InvalidParameter {
             InvalidParameter(.outputId)
         }
-        
+
         public static var pageNum: InvalidParameter {
             InvalidParameter(.pageNum)
         }
-        
+
         public static var pageSize: InvalidParameter {
             InvalidParameter(.pageSize)
         }
-        
+
         public static var period: InvalidParameter {
             InvalidParameter(.period)
         }
-        
+
         public static var pipeline: InvalidParameter {
             InvalidParameter(.pipeline)
         }
-        
+
         public static var `protocol`: InvalidParameter {
             InvalidParameter(.`protocol`)
         }
-        
+
         public static var sortType: InvalidParameter {
             InvalidParameter(.sortType)
         }
-        
+
         public static var startTime: InvalidParameter {
             InvalidParameter(.startTime)
         }
-        
+
         public static var state: InvalidParameter {
             InvalidParameter(.state)
         }
-        
+
         public static var type: InvalidParameter {
             InvalidParameter(.type)
         }
-        
+
         /// 参数错误。
         public static var other: InvalidParameter {
             InvalidParameter(.other)
         }
-        
+
         public func asMpsError() -> TCMpsError {
             let code: TCMpsError.Code
             switch self.error {

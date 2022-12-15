@@ -31,94 +31,94 @@ extension TCKmsError {
             case tagsNotExisted = "InvalidParameterValue.TagsNotExisted"
             case other = "InvalidParameterValue"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 别名已经存在。
         public static var aliasAlreadyExists: InvalidParameterValue {
             InvalidParameterValue(.aliasAlreadyExists)
         }
-        
+
         /// KeyId重复。
         public static var duplicatedKeyId: InvalidParameterValue {
             InvalidParameterValue(.duplicatedKeyId)
         }
-        
+
         /// 别名格式错误。
         public static var invalidAlias: InvalidParameterValue {
             InvalidParameterValue(.invalidAlias)
         }
-        
+
         /// 密文格式错误。
         public static var invalidCiphertext: InvalidParameterValue {
             InvalidParameterValue(.invalidCiphertext)
         }
-        
+
         /// 无效的 HSM 集群 ID。
         public static var invalidHsmClusterId: InvalidParameterValue {
             InvalidParameterValue(.invalidHsmClusterId)
         }
-        
+
         /// KeyId不合法。
         public static var invalidKeyId: InvalidParameterValue {
             InvalidParameterValue(.invalidKeyId)
         }
-        
+
         /// KeyUsage参数错误。
         public static var invalidKeyUsage: InvalidParameterValue {
             InvalidParameterValue(.invalidKeyUsage)
         }
-        
+
         /// Plaintext不合法。
         public static var invalidPlaintext: InvalidParameterValue {
             InvalidParameterValue(.invalidPlaintext)
         }
-        
+
         /// Type参数错误。
         public static var invalidType: InvalidParameterValue {
             InvalidParameterValue(.invalidType)
         }
-        
+
         /// 导入的密钥材料和历史导入不同。
         public static var materialNotMatch: InvalidParameterValue {
             InvalidParameterValue(.materialNotMatch)
         }
-        
+
         /// 标签键重复。
         public static var tagKeysDuplicated: InvalidParameterValue {
             InvalidParameterValue(.tagKeysDuplicated)
         }
-        
+
         /// 标签键或标签值不存在。
         public static var tagsNotExisted: InvalidParameterValue {
             InvalidParameterValue(.tagsNotExisted)
         }
-        
+
         /// 参数取值错误。
         public static var other: InvalidParameterValue {
             InvalidParameterValue(.other)
         }
-        
+
         public func asKmsError() -> TCKmsError {
             let code: TCKmsError.Code
             switch self.error {

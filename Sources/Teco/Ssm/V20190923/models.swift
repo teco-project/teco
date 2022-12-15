@@ -26,7 +26,7 @@ extension Ssm {
         /// 当权限为TablePrivileges时，必须通过参数Database和TableName指定数据库名以及数据库中的表名；
         /// 当权限为ColumnPrivileges时，必须通过参数Database、TableName和CoulmnName指定数据库、数据库中的表名以及表中的列名。
         public let privilegeName: String
-        
+
         /// 权限列表。
         /// 对于Mysql产品来说，可选权限值为：
         /// 1. GlobalPrivileges 中权限的可选值为："SELECT","INSERT","UPDATE","DELETE","CREATE", "PROCESS", "DROP","REFERENCES","INDEX","ALTER","SHOW DATABASES","CREATE TEMPORARY TABLES","LOCK TABLES","EXECUTE","CREATE VIEW","SHOW VIEW","CREATE ROUTINE","ALTER ROUTINE","EVENT","TRIGGER"。
@@ -38,26 +38,26 @@ extension Ssm {
         /// 4. ColumnPrivileges 权限的可选值为："SELECT","INSERT","UPDATE","REFERENCES"。
         /// 注意，不传该参数表示清除该权限。
         public let privileges: [String]
-        
+
         /// 仅当PrivilegeName为DatabasePrivileges时这个值才有效。
         public let database: String?
-        
+
         /// 仅当PrivilegeName为TablePrivileges时这个值才有效，并且此时需要填充Database显式指明所在的数据库实例。
         public let tableName: String?
-        
+
         /// 仅当PrivilegeName为ColumnPrivileges时这个值才生效，并且此时必须填充：
         /// Database - 显式指明所在的数据库实例。
         /// TableName - 显式指明所在表
         public let columnName: String?
-        
-        public init (privilegeName: String, privileges: [String], database: String? = nil, tableName: String? = nil, columnName: String? = nil) {
+
+        public init(privilegeName: String, privileges: [String], database: String? = nil, tableName: String? = nil, columnName: String? = nil) {
             self.privilegeName = privilegeName
             self.privileges = privileges
             self.database = database
             self.tableName = tableName
             self.columnName = columnName
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case privilegeName = "PrivilegeName"
             case privileges = "Privileges"
@@ -66,68 +66,68 @@ extension Ssm {
             case columnName = "ColumnName"
         }
     }
-    
+
     /// 凭据的基础信息
     public struct SecretMetadata: TCOutputModel {
         /// 凭据名称
         public let secretName: String
-        
+
         /// 凭据的描述信息
         public let description: String
-        
+
         /// 用于加密凭据的KMS KeyId
         public let kmsKeyId: String
-        
+
         /// 创建者UIN
         public let createUin: UInt64
-        
+
         /// 凭据状态：Enabled、Disabled、PendingDelete、Creating、Failed
         public let status: String
-        
+
         /// 凭据删除日期，对于status为PendingDelete 的有效，unix时间戳
         public let deleteTime: UInt64
-        
+
         /// 凭据创建时间，unix时间戳
         public let createTime: UInt64
-        
+
         /// 用于加密凭据的KMS CMK类型，DEFAULT 表示SecretsManager 创建的默认密钥， CUSTOMER 表示用户指定的密钥
         public let kmsKeyType: String
-        
+
         /// 1:--开启轮转；0--禁止轮转
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let rotationStatus: Int64?
-        
+
         /// 下一次轮转开始时间，uinx 时间戳
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let nextRotationTime: UInt64?
-        
+
         /// 0 -- 用户自定义凭据；
         /// 1 -- 云产品凭据；
         /// 2 -- SSH密钥对凭据；
         /// 3 -- 云API密钥对凭据；
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let secretType: Int64?
-        
+
         /// 云产品名称，仅在SecretType为1，即凭据类型为云产品凭据时生效
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let productName: String?
-        
+
         /// 当凭据类型为SSH密钥对凭据时，此字段有效，用于表示SSH密钥对凭据的名称。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let resourceName: String?
-        
+
         /// 当凭据类型为SSH密钥对凭据时，此字段有效，用于表示SSH密钥对所属的项目ID。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let projectID: Int64?
-        
+
         /// 当凭据类型为SSH密钥对凭据时，此字段有效，用于表示SSH密钥对所关联的CVM实例ID。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let associatedInstanceIDs: [String]?
-        
+
         /// 当凭据类型为云API密钥对凭据时，此字段有效，用于表示云API密钥对所属的用户UIN。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let targetUin: UInt64?
-        
+
         enum CodingKeys: String, CodingKey {
             case secretName = "SecretName"
             case description = "Description"
@@ -147,53 +147,53 @@ extension Ssm {
             case targetUin = "TargetUin"
         }
     }
-    
+
     /// 标签键和标签值
     public struct Tag: TCInputModel {
         /// 标签键
         public let tagKey: String
-        
+
         /// 标签值
         public let tagValue: String
-        
-        public init (tagKey: String, tagValue: String) {
+
+        public init(tagKey: String, tagValue: String) {
             self.tagKey = tagKey
             self.tagValue = tagValue
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case tagKey = "TagKey"
             case tagValue = "TagValue"
         }
     }
-    
+
     /// 标签过滤器
     public struct TagFilter: TCInputModel {
         /// 标签键
         public let tagKey: String
-        
+
         /// 标签值
         public let tagValue: [String]?
-        
-        public init (tagKey: String, tagValue: [String]? = nil) {
+
+        public init(tagKey: String, tagValue: [String]? = nil) {
             self.tagKey = tagKey
             self.tagValue = tagValue
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case tagKey = "TagKey"
             case tagValue = "TagValue"
         }
     }
-    
+
     /// 凭据版本号列表信息
     public struct VersionInfo: TCOutputModel {
         /// 版本号。
         public let versionId: String
-        
+
         /// 创建时间，unix时间戳。
         public let createTime: UInt64
-        
+
         enum CodingKeys: String, CodingKey {
             case versionId = "VersionId"
             case createTime = "CreateTime"

@@ -19,26 +19,26 @@ extension Bmeip {
     public struct EipAcl: TCInputModel, TCOutputModel {
         /// ACL 实例 ID。
         public let aclId: String
-        
+
         /// ACL 实例名称
         public let aclName: String
-        
+
         /// ACL 状态。0：无状态，1：有状态
         public let status: String
-        
+
         /// EIPACL 创建时间
         public let createdAt: String
-        
+
         /// EIPACL 已关联的 eip 数目
         public let eipNum: Int64
-        
+
         /// 出站规则
         public let outRules: [EipAclRule]
-        
+
         /// 入站规则
         public let inRules: [EipAclRule]?
-        
-        public init (aclId: String, aclName: String, status: String, createdAt: String, eipNum: Int64, outRules: [EipAclRule], inRules: [EipAclRule]? = nil) {
+
+        public init(aclId: String, aclName: String, status: String, createdAt: String, eipNum: Int64, outRules: [EipAclRule], inRules: [EipAclRule]? = nil) {
             self.aclId = aclId
             self.aclName = aclName
             self.status = status
@@ -47,7 +47,7 @@ extension Bmeip {
             self.outRules = outRules
             self.inRules = inRules
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case aclId = "AclId"
             case aclName = "AclName"
@@ -58,51 +58,51 @@ extension Bmeip {
             case inRules = "InRules"
         }
     }
-    
+
     /// eipid与aclid关联关系
     public struct EipAclMap: TCInputModel, TCOutputModel {
         /// EIP 实例 ID
         public let eipId: String
-        
+
         /// ACL 实例 ID
         public let aclId: String
-        
-        public init (eipId: String, aclId: String) {
+
+        public init(eipId: String, aclId: String) {
             self.eipId = eipId
             self.aclId = aclId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case eipId = "EipId"
             case aclId = "AclId"
         }
     }
-    
+
     /// eipacl规则
     public struct EipAclRule: TCInputModel, TCOutputModel {
         /// 源 IP
         public let ip: String
-        
+
         /// 目标端口
         public let port: String
-        
+
         /// 协议(TCP/UDP/ICMP/ANY)
         public let `protocol`: String
-        
+
         /// 策略（accept/drop）
         public let action: String
-        
+
         /// 备注
         public let description: String
-        
-        public init (ip: String, port: String, protocol: String, action: String, description: String) {
+
+        public init(ip: String, port: String, protocol: String, action: String, description: String) {
             self.ip = ip
             self.port = port
             self.`protocol` = `protocol`
             self.action = action
             self.description = description
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case ip = "Ip"
             case port = "Port"
@@ -111,93 +111,93 @@ extension Bmeip {
             case description = "Description"
         }
     }
-    
+
     /// Eip信息
     public struct EipInfo: TCOutputModel {
         /// EIP实例ID
         public let eipId: String
-        
+
         /// EIP名称
         public let eipName: String
-        
+
         /// EIP地址
         public let eip: String
-        
+
         /// 运营商ID 0：电信； 1：联通； 2：移动； 3：教育网； 4：盈科； 5：BGP； 6：中国香港
         public let ispId: Int64
-        
+
         /// 状态 0：创建中； 1：绑定中； 2：已绑定； 3：解绑中； 4：未绑定； 6：下线中； 9：创建失败
         public let status: Int64
-        
+
         /// 是否欠费隔离 1： 欠费隔离； 0： 正常。处在欠费隔离情况下的EIP不能进行任何管理操作。
         public let arrears: Int64
-        
+
         /// EIP所绑定的服务器实例ID，未绑定则为空
         public let instanceId: String
-        
+
         /// 服务器别名
         public let instanceAlias: String
-        
+
         /// EIP解绑时间
         public let freeAt: String
-        
+
         /// EIP创建时间
         public let createdAt: String
-        
+
         /// EIP更新时间
         public let updatedAt: String
-        
+
         /// EIP未绑定服务器时长（单位：秒）
         public let freeSecond: Int64
-        
+
         /// EIP所绑定的资源类型，-1：未绑定资源；0：黑石物理机，字段对应unInstanceId；1：Nat网关，字段对应natUid；2：云服务器字段对应vpcIp; 3: 托管机器，字段对应HInstanceId, HInstanceAlias
         public let type: Int64
-        
+
         /// EIP计费模式，"flow"：流量计费； "bandwidth"：带宽计费
         public let payMode: String
-        
+
         /// EIP带宽计费模式下的带宽上限（单位：MB）
         public let bandwidth: Int64
-        
+
         /// 最近一次操作变更的EIP计费模式，"flow"：流量计费； "bandwidth"：带宽计费
         public let latestPayMode: String
-        
+
         /// 最近一次操作变更的EIP计费模式对应的带宽上限值，仅在带宽计费模式下有效（单位：MB）
         public let latestBandwidth: Int64
-        
+
         /// 私有网络名称
         public let vpcName: String
-        
+
         /// EIP所绑定的NAT网关的数字ID，形如：1001,，未绑定则为空
         public let natId: Int64
-        
+
         /// EIP所绑定的NAT网关实例ID，形如："nat-n47xxxxx"，未绑定则为空
         public let natUid: String
-        
+
         /// EIP所绑定的云服务器IP(托管或者云服务器的IP），形如："10.1.1.3"。 注意：IP资源需要通过bmvpc模块注册或者申请后才可以绑定eip，接口使用申请子网IP和注册子网IP：,未绑定则为空
         public let vpcIp: String
-        
+
         /// 私有网络实例ID
         public let vpcId: String
-        
+
         /// 是否为独占类型EIP
         public let exclusive: Int64
-        
+
         /// 私有网络的cidr
         public let vpcCidr: String
-        
+
         /// EIP ACL实例ID
         public let aclId: String
-        
+
         /// EIP ACL名称
         public let aclName: String
-        
+
         /// 托管机器实例ID
         public let hInstanceId: String
-        
+
         /// 托管机器别名
         public let hInstanceAlias: String
-        
+
         enum CodingKeys: String, CodingKey {
             case eipId = "EipId"
             case eipName = "EipName"
@@ -229,20 +229,20 @@ extension Bmeip {
             case hInstanceAlias = "HInstanceAlias"
         }
     }
-    
+
     /// EipId与InstanceId绑定关系
     public struct EipRsMap: TCInputModel, TCOutputModel {
         /// EIP实例 ID
         public let eipId: String
-        
+
         /// 黑石物理机实例ID
         public let instanceId: String
-        
-        public init (eipId: String, instanceId: String) {
+
+        public init(eipId: String, instanceId: String) {
             self.eipId = eipId
             self.instanceId = instanceId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case eipId = "EipId"
             case instanceId = "InstanceId"

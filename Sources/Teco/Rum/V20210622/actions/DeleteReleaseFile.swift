@@ -19,30 +19,30 @@ extension Rum {
     public struct DeleteReleaseFileRequest: TCRequestModel {
         /// 文件 id
         public let id: Int64
-        
-        public init (id: Int64) {
+
+        public init(id: Int64) {
             self.id = id
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case id = "ID"
         }
     }
-    
+
     /// DeleteReleaseFile返回参数结构体
     public struct DeleteReleaseFileResponse: TCResponseModel {
         /// 接口请求返回字符串
         public let msg: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case msg = "Msg"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除发布文件
     ///
     /// 将对应 sourcemap 文件删除
@@ -50,7 +50,7 @@ extension Rum {
     public func deleteReleaseFile(_ input: DeleteReleaseFileRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteReleaseFileResponse > {
         self.client.execute(action: "DeleteReleaseFile", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除发布文件
     ///
     /// 将对应 sourcemap 文件删除
@@ -58,7 +58,7 @@ extension Rum {
     public func deleteReleaseFile(_ input: DeleteReleaseFileRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteReleaseFileResponse {
         try await self.client.execute(action: "DeleteReleaseFile", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除发布文件
     ///
     /// 将对应 sourcemap 文件删除
@@ -66,7 +66,7 @@ extension Rum {
     public func deleteReleaseFile(id: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteReleaseFileResponse > {
         self.deleteReleaseFile(DeleteReleaseFileRequest(id: id), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除发布文件
     ///
     /// 将对应 sourcemap 文件删除

@@ -19,26 +19,26 @@ extension Batch {
     public struct DeleteJobRequest: TCRequestModel {
         /// 作业ID
         public let jobId: String
-        
-        public init (jobId: String) {
+
+        public init(jobId: String) {
             self.jobId = jobId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case jobId = "JobId"
         }
     }
-    
+
     /// DeleteJob返回参数结构体
     public struct DeleteJobResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除作业
     ///
     /// 用于删除作业记录。
@@ -48,7 +48,7 @@ extension Batch {
     public func deleteJob(_ input: DeleteJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteJobResponse > {
         self.client.execute(action: "DeleteJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除作业
     ///
     /// 用于删除作业记录。
@@ -58,7 +58,7 @@ extension Batch {
     public func deleteJob(_ input: DeleteJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteJobResponse {
         try await self.client.execute(action: "DeleteJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除作业
     ///
     /// 用于删除作业记录。
@@ -68,7 +68,7 @@ extension Batch {
     public func deleteJob(jobId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteJobResponse > {
         self.deleteJob(DeleteJobRequest(jobId: jobId), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除作业
     ///
     /// 用于删除作业记录。

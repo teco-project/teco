@@ -19,41 +19,41 @@ extension Gse {
     public struct JoinGameServerSessionRequest: TCRequestModel {
         /// 游戏服务器会话ID，最小长度1个ASCII字符，最大长度不超过256个ASCII字符
         public let gameServerSessionId: String
-        
+
         /// 玩家ID，最大长度1024个ASCII字符
         public let playerId: String
-        
+
         /// 玩家自定义数据，最大长度2048个ASCII字符
         public let playerData: String?
-        
-        public init (gameServerSessionId: String, playerId: String, playerData: String? = nil) {
+
+        public init(gameServerSessionId: String, playerId: String, playerData: String? = nil) {
             self.gameServerSessionId = gameServerSessionId
             self.playerId = playerId
             self.playerData = playerData
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case gameServerSessionId = "GameServerSessionId"
             case playerId = "PlayerId"
             case playerData = "PlayerData"
         }
     }
-    
+
     /// JoinGameServerSession返回参数结构体
     public struct JoinGameServerSessionResponse: TCResponseModel {
         /// 玩家会话
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let playerSession: PlayerSession?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case playerSession = "PlayerSession"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 加入游戏服务器会话
     ///
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
@@ -62,7 +62,7 @@ extension Gse {
     public func joinGameServerSession(_ input: JoinGameServerSessionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < JoinGameServerSessionResponse > {
         self.client.execute(action: "JoinGameServerSession", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 加入游戏服务器会话
     ///
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
@@ -71,7 +71,7 @@ extension Gse {
     public func joinGameServerSession(_ input: JoinGameServerSessionRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> JoinGameServerSessionResponse {
         try await self.client.execute(action: "JoinGameServerSession", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 加入游戏服务器会话
     ///
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
@@ -80,7 +80,7 @@ extension Gse {
     public func joinGameServerSession(gameServerSessionId: String, playerId: String, playerData: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < JoinGameServerSessionResponse > {
         self.joinGameServerSession(JoinGameServerSessionRequest(gameServerSessionId: gameServerSessionId, playerId: playerId, playerData: playerData), logger: logger, on: eventLoop)
     }
-    
+
     /// 加入游戏服务器会话
     ///
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持

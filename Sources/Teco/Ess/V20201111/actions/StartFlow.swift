@@ -19,23 +19,23 @@ extension Ess {
     public struct StartFlowRequest: TCRequestModel {
         /// 调用方用户信息，userId 必填
         public let `operator`: UserInfo
-        
+
         /// 签署流程编号，由CreateFlow接口返回
         public let flowId: String
-        
+
         /// 客户端Token，保持接口幂等性,最大长度64个字符
         public let clientToken: String?
-        
+
         /// 应用相关信息
         public let agent: Agent?
-        
-        public init (operator: UserInfo, flowId: String, clientToken: String? = nil, agent: Agent? = nil) {
+
+        public init(operator: UserInfo, flowId: String, clientToken: String? = nil, agent: Agent? = nil) {
             self.`operator` = `operator`
             self.flowId = flowId
             self.clientToken = clientToken
             self.agent = agent
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case `operator` = "Operator"
             case flowId = "FlowId"
@@ -43,21 +43,21 @@ extension Ess {
             case agent = "Agent"
         }
     }
-    
+
     /// StartFlow返回参数结构体
     public struct StartFlowResponse: TCResponseModel {
         /// 返回描述，START-发起成功， REVIEW-提交审核成功，EXECUTING-已提交发起任务
         public let status: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case status = "Status"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 发起流程
     ///
     /// 此接口用于发起流程
@@ -67,7 +67,7 @@ extension Ess {
     public func startFlow(_ input: StartFlowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < StartFlowResponse > {
         self.client.execute(action: "StartFlow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 发起流程
     ///
     /// 此接口用于发起流程
@@ -77,7 +77,7 @@ extension Ess {
     public func startFlow(_ input: StartFlowRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StartFlowResponse {
         try await self.client.execute(action: "StartFlow", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 发起流程
     ///
     /// 此接口用于发起流程
@@ -87,7 +87,7 @@ extension Ess {
     public func startFlow(operator: UserInfo, flowId: String, clientToken: String? = nil, agent: Agent? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < StartFlowResponse > {
         self.startFlow(StartFlowRequest(operator: `operator`, flowId: flowId, clientToken: clientToken, agent: agent), logger: logger, on: eventLoop)
     }
-    
+
     /// 发起流程
     ///
     /// 此接口用于发起流程

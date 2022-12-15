@@ -22,36 +22,36 @@ extension Dnspod {
     public struct AddRecordBatch: TCInputModel {
         /// 记录类型, 详见 DescribeRecordType 接口。
         public let recordType: String
-        
+
         /// 记录值。
         public let value: String
-        
+
         /// 子域名(主机记录)，默认为@。
         public let subDomain: String?
-        
+
         /// 解析记录的线路，详见 DescribeRecordLineList 接口，RecordLine和RecordLineId都未填时，默认为「默认」线路。
         public let recordLine: String?
-        
+
         /// 解析记录的线路 ID，RecordLine和RecordLineId都有时，系统优先取 RecordLineId。
         public let recordLineId: String?
-        
+
         /// 记录权重值(暂未支持)。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let weight: UInt64?
-        
+
         /// 记录的 MX 记录值，非 MX 记录类型，默认为 0，MX记录则必选。
         public let mx: UInt64?
-        
+
         /// 记录的 TTL 值，默认600。
         public let ttl: UInt64?
-        
+
         /// 记录状态(暂未支持)。0表示禁用，1表示启用。默认启用。
         public let enabled: UInt64?
-        
+
         /// 记录备注(暂未支持)。
         public let remark: String?
-        
-        public init (recordType: String, value: String, subDomain: String? = nil, recordLine: String? = nil, recordLineId: String? = nil, weight: UInt64? = nil, mx: UInt64? = nil, ttl: UInt64? = nil, enabled: UInt64? = nil, remark: String? = nil) {
+
+        public init(recordType: String, value: String, subDomain: String? = nil, recordLine: String? = nil, recordLineId: String? = nil, weight: UInt64? = nil, mx: UInt64? = nil, ttl: UInt64? = nil, enabled: UInt64? = nil, remark: String? = nil) {
             self.recordType = recordType
             self.value = value
             self.subDomain = subDomain
@@ -63,7 +63,7 @@ extension Dnspod {
             self.enabled = enabled
             self.remark = remark
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case recordType = "RecordType"
             case value = "Value"
@@ -77,56 +77,56 @@ extension Dnspod {
             case remark = "Remark"
         }
     }
-    
+
     /// 批量任务中的记录信息
     public struct BatchRecordInfo: TCOutputModel {
         /// 记录 ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let recordId: UInt64?
-        
+
         /// 子域名(主机记录)。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let subDomain: String?
-        
+
         /// 记录类型, 详见 DescribeRecordType 接口
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let recordType: String?
-        
+
         /// 解析记录的线路，详见 DescribeRecordLineList 接口
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let recordLine: String?
-        
+
         /// 记录值
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let value: String?
-        
+
         /// 记录的 TTL 值
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let ttl: UInt64?
-        
+
         /// 记录添加状态
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let status: String?
-        
+
         /// 操作类型
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let operation: String?
-        
+
         /// 错误信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let errMsg: String?
-        
+
         /// 此条记录在列表中的ID
         public let id: UInt64
-        
+
         /// 记录生效状态
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let enabled: UInt64?
-        
+
         /// 记录的MX权重
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let mx: UInt64?
-        
+
         enum CodingKeys: String, CodingKey {
             case recordId = "RecordId"
             case subDomain = "SubDomain"
@@ -142,36 +142,36 @@ extension Dnspod {
             case mx = "MX"
         }
     }
-    
+
     /// 批量添加域名返回结构
     public struct CreateDomainBatchDetail: TCOutputModel {
         /// 见RecordInfoBatch
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let recordList: [CreateDomainBatchRecord]?
-        
+
         /// 任务编号
         public let id: UInt64
-        
+
         /// 域名
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let domain: String?
-        
+
         /// 域名等级
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let domainGrade: String?
-        
+
         /// 错误信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let errMsg: String?
-        
+
         /// 该条任务运行状态
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let status: String?
-        
+
         /// 操作类型
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let operation: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case recordList = "RecordList"
             case id = "Id"
@@ -182,44 +182,44 @@ extension Dnspod {
             case operation = "Operation"
         }
     }
-    
+
     /// 批量添加域名任务中的记录信息
     public struct CreateDomainBatchRecord: TCOutputModel {
         /// 子域名(主机记录)。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let subDomain: String?
-        
+
         /// 记录类型, 详见 DescribeRecordType 接口
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let recordType: String?
-        
+
         /// 解析记录的线路，详见 DescribeRecordLineList 接口
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let recordLine: String?
-        
+
         /// 记录值
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let value: String?
-        
+
         /// 记录的 TTL 值
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let ttl: UInt64?
-        
+
         /// 记录添加状态
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let status: String?
-        
+
         /// 操作类型
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let operation: String?
-        
+
         /// 错误信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let errMsg: String?
-        
+
         /// 此条记录在列表中的ID
         public let id: UInt64
-        
+
         enum CodingKeys: String, CodingKey {
             case subDomain = "SubDomain"
             case recordType = "RecordType"
@@ -232,40 +232,40 @@ extension Dnspod {
             case id = "Id"
         }
     }
-    
+
     /// 批量添加记录返回结构
     public struct CreateRecordBatchDetail: TCOutputModel {
         /// 见RecordInfoBatch
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let recordList: [CreateRecordBatchRecord]?
-        
+
         /// 任务编号
         public let id: UInt64
-        
+
         /// 域名
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let domain: String?
-        
+
         /// 域名等级
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let domainGrade: String?
-        
+
         /// 错误信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let errMsg: String?
-        
+
         /// 该条任务运行状态
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let status: String?
-        
+
         /// 操作类型
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let operation: String?
-        
+
         /// 域名ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let domainId: UInt64?
-        
+
         enum CodingKeys: String, CodingKey {
             case recordList = "RecordList"
             case id = "Id"
@@ -277,48 +277,48 @@ extension Dnspod {
             case domainId = "DomainId"
         }
     }
-    
+
     /// 批量添加记录任务中的记录信息
     public struct CreateRecordBatchRecord: TCOutputModel {
         /// 子域名(主机记录)。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let subDomain: String?
-        
+
         /// 记录类型, 详见 DescribeRecordType 接口
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let recordType: String?
-        
+
         /// 解析记录的线路，详见 DescribeRecordLineList 接口
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let recordLine: String?
-        
+
         /// 记录值
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let value: String?
-        
+
         /// 记录的 TTL 值
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let ttl: UInt64?
-        
+
         /// 记录添加状态
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let status: String?
-        
+
         /// 操作类型
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let operation: String?
-        
+
         /// 错误信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let errMsg: String?
-        
+
         /// 此条记录在列表中的ID
         public let id: UInt64
-        
+
         /// 记录的MX权重
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let mx: UInt64?
-        
+
         enum CodingKeys: String, CodingKey {
             case subDomain = "SubDomain"
             case recordType = "RecordType"
@@ -332,54 +332,54 @@ extension Dnspod {
             case mx = "MX"
         }
     }
-    
+
     /// 子订单号列表
     public struct Deals: TCOutputModel {
         /// 子订单ID
         public let dealId: String
-        
+
         /// 子订单号
         public let dealName: String
-        
+
         enum CodingKeys: String, CodingKey {
             case dealId = "DealId"
             case dealName = "DealName"
         }
     }
-    
+
     /// 查看任务详情返回结构
     public struct DescribeBatchTaskDetail: TCOutputModel {
         /// 见BatchRecordInfo
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let recordList: [BatchRecordInfo]?
-        
+
         /// 任务编号
         public let id: UInt64
-        
+
         /// 域名
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let domain: String?
-        
+
         /// 域名等级
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let domainGrade: String?
-        
+
         /// 错误信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let errMsg: String?
-        
+
         /// 该条任务运行状态
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let status: String?
-        
+
         /// 操作类型
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let operation: String?
-        
+
         /// 域名ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let domainId: UInt64?
-        
+
         enum CodingKeys: String, CodingKey {
             case recordList = "RecordList"
             case id = "Id"
@@ -391,71 +391,71 @@ extension Dnspod {
             case domainId = "DomainId"
         }
     }
-    
+
     /// 域名别名解析量统计信息
     public struct DomainAliasAnalyticsItem: TCOutputModel {
         /// 域名解析量统计查询信息
         public let info: DomainAnalyticsInfo
-        
+
         /// 当前统计维度解析量小计
         public let data: [DomainAnalyticsDetail]
-        
+
         enum CodingKeys: String, CodingKey {
             case info = "Info"
             case data = "Data"
         }
     }
-    
+
     /// 域名别名信息
     public struct DomainAliasInfo: TCOutputModel {
         /// 域名别名ID
         public let id: Int64
-        
+
         /// 域名别名
         public let domainAlias: String
-        
+
         enum CodingKeys: String, CodingKey {
             case id = "Id"
             case domainAlias = "DomainAlias"
         }
     }
-    
+
     /// 当前统计维度解析量小计
     public struct DomainAnalyticsDetail: TCOutputModel {
         /// 当前统计维度解析量小计
         public let num: UInt64
-        
+
         /// 按天统计时，为统计日期
         public let dateKey: String
-        
+
         /// 按小时统计时，为统计的当前时间的小时数(0-23)，例：HourKey为23时，统计周期为22点-23点的解析量
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let hourKey: UInt64?
-        
+
         enum CodingKeys: String, CodingKey {
             case num = "Num"
             case dateKey = "DateKey"
             case hourKey = "HourKey"
         }
     }
-    
+
     /// 域名解析量统计查询信息
     public struct DomainAnalyticsInfo: TCOutputModel {
         /// DATE:按天维度统计 HOUR:按小时维度统计
         public let dnsFormat: String
-        
+
         /// 当前统计周期解析量总计
         public let dnsTotal: UInt64
-        
+
         /// 当前查询的域名
         public let domain: String
-        
+
         /// 当前统计周期开始时间
         public let startDate: String
-        
+
         /// 当前统计周期结束时间
         public let endDate: String
-        
+
         enum CodingKeys: String, CodingKey {
             case dnsFormat = "DnsFormat"
             case dnsTotal = "DnsTotal"
@@ -464,45 +464,45 @@ extension Dnspod {
             case endDate = "EndDate"
         }
     }
-    
+
     /// 列表页分页统计信息
     public struct DomainCountInfo: TCOutputModel {
         /// 符合条件的域名数量
         public let domainTotal: UInt64
-        
+
         /// 用户可以查看的所有域名数量
         public let allTotal: UInt64
-        
+
         /// 用户账号添加的域名数量
         public let mineTotal: UInt64
-        
+
         /// 共享给用户的域名数量
         public let shareTotal: UInt64
-        
+
         /// 付费域名数量
         public let vipTotal: UInt64
-        
+
         /// 暂停的域名数量
         public let pauseTotal: UInt64
-        
+
         /// dns设置错误的域名数量
         public let errorTotal: UInt64
-        
+
         /// 锁定的域名数量
         public let lockTotal: UInt64
-        
+
         /// 封禁的域名数量
         public let spamTotal: UInt64
-        
+
         /// 30天内即将到期的域名数量
         public let vipExpire: UInt64
-        
+
         /// 分享给其它人的域名数量
         public let shareOutTotal: UInt64
-        
+
         /// 指定分组内的域名数量
         public let groupTotal: UInt64
-        
+
         enum CodingKeys: String, CodingKey {
             case domainTotal = "DomainTotal"
             case allTotal = "AllTotal"
@@ -518,21 +518,21 @@ extension Dnspod {
             case groupTotal = "GroupTotal"
         }
     }
-    
+
     /// 域名信息（创建域名时返回）
     public struct DomainCreateInfo: TCOutputModel {
         /// 域名ID
         public let id: UInt64
-        
+
         /// 域名
         public let domain: String
-        
+
         /// 域名的punycode
         public let punycode: String
-        
+
         /// 域名的NS列表
         public let gradeNsList: [String]
-        
+
         enum CodingKeys: String, CodingKey {
             case id = "Id"
             case domain = "Domain"
@@ -540,61 +540,61 @@ extension Dnspod {
             case gradeNsList = "GradeNsList"
         }
     }
-    
+
     /// 域名详情
     public struct DomainInfo: TCOutputModel {
         /// 域名ID
         public let domainId: UInt64
-        
+
         /// 域名状态
         public let status: String
-        
+
         /// 域名套餐等级
         public let grade: String
-        
+
         /// 域名分组ID
         public let groupId: UInt64
-        
+
         /// 是否星标域名
         public let isMark: String
-        
+
         /// TTL(DNS记录缓存时间)
         public let ttl: UInt64
-        
+
         /// cname加速启用状态
         public let cnameSpeedup: String
-        
+
         /// 域名备注
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let remark: String?
-        
+
         /// 域名Punycode
         public let punycode: String
-        
+
         /// 域名DNS状态
         public let dnsStatus: String
-        
+
         /// 域名的NS列表
         public let dnspodNsList: [String]
-        
+
         /// 域名
         public let domain: String
-        
+
         /// 域名等级代号
         public let gradeLevel: UInt64
-        
+
         /// 域名所属的用户ID
         public let userId: UInt64
-        
+
         /// 是否为付费域名
         public let isVip: String
-        
+
         /// 域名所有者的账号
         public let owner: String
-        
+
         /// 域名等级的描述
         public let gradeTitle: String
-        
+
         /// 域名创建时间
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -602,7 +602,7 @@ extension Dnspod {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var createdOn: Date
-        
+
         /// 最后操作时间
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -610,21 +610,21 @@ extension Dnspod {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var updatedOn: Date
-        
+
         /// 腾讯云账户Uin
         public let uin: String
-        
+
         /// 域名实际使用的NS列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let actualNsList: [String]?
-        
+
         /// 域名的记录数量
         public let recordCount: UInt64
-        
+
         /// 域名所有者的账户昵称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let ownerNick: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case domainId = "DomainId"
             case status = "Status"
@@ -651,54 +651,54 @@ extension Dnspod {
             case ownerNick = "OwnerNick"
         }
     }
-    
+
     /// 域名列表元素
     public struct DomainListItem: TCOutputModel {
         /// 系统分配给域名的唯一标识
         public let domainId: UInt64
-        
+
         /// 域名的原始格式
         public let name: String
-        
+
         /// 域名的状态，正常：ENABLE，暂停：PAUSE，封禁：SPAM
         public let status: String
-        
+
         /// 域名默认的解析记录默认TTL值
         public let ttl: UInt64
-        
+
         /// 是否开启CNAME加速，开启：ENABLE，未开启：DISABLE
         public let cnameSpeedup: String
-        
+
         /// DNS 设置状态，错误：DNSERROR，正常：空字符串
         public let dnsStatus: String
-        
+
         /// 域名的套餐等级代码
         public let grade: String
-        
+
         /// 域名所属的分组Id
         public let groupId: UInt64
-        
+
         /// 是否开启搜索引擎推送优化，是：YES，否：NO
         public let searchEnginePush: String
-        
+
         /// 域名备注说明
         public let remark: String
-        
+
         /// 经过punycode编码后的域名格式
         public let punycode: String
-        
+
         /// 系统为域名分配的有效DNS
         public let effectiveDNS: [String]
-        
+
         /// 域名套餐等级对应的序号
         public let gradeLevel: UInt64
-        
+
         /// 套餐名称
         public let gradeTitle: String
-        
+
         /// 是否是付费套餐
         public let isVip: String
-        
+
         /// 付费套餐开通时间
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -706,7 +706,7 @@ extension Dnspod {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var vipStartAt: Date
-        
+
         /// 付费套餐到期时间
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -714,13 +714,13 @@ extension Dnspod {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var vipEndAt: Date
-        
+
         /// 域名是否开通VIP自动续费，是：YES，否：NO，默认：DEFAULT
         public let vipAutoRenew: String
-        
+
         /// 域名下的记录数量
         public let recordCount: UInt64
-        
+
         /// 域名添加时间
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -728,7 +728,7 @@ extension Dnspod {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var createdOn: Date
-        
+
         /// 域名更新时间
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -736,10 +736,10 @@ extension Dnspod {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var updatedOn: Date
-        
+
         /// 域名所属账号
         public let owner: String
-        
+
         enum CodingKeys: String, CodingKey {
             case domainId = "DomainId"
             case name = "Name"
@@ -765,39 +765,39 @@ extension Dnspod {
             case owner = "Owner"
         }
     }
-    
+
     /// 域名共享信息
     public struct DomainShareInfo: TCOutputModel {
         /// 域名共享对象的账号
         public let shareTo: String
-        
+
         /// 共享模式，“rw”：可读写。 “r”:：只读
         public let mode: String
-        
+
         /// 共享状态“enabled”：共享成功。“pending”：共享到的账号不存在, 等待注册
         public let status: String
-        
+
         enum CodingKeys: String, CodingKey {
             case shareTo = "ShareTo"
             case mode = "Mode"
             case status = "Status"
         }
     }
-    
+
     /// 域名分组列表
     public struct GroupInfo: TCOutputModel {
         /// 分组ID
         public let groupId: Int64
-        
+
         /// 分组名称
         public let groupName: String
-        
+
         /// 分组类型
         public let groupType: String
-        
+
         /// 该分组中域名个数
         public let size: Int64
-        
+
         enum CodingKeys: String, CodingKey {
             case groupId = "GroupId"
             case groupName = "GroupName"
@@ -805,41 +805,41 @@ extension Dnspod {
             case size = "Size"
         }
     }
-    
+
     /// 键值对
     public struct KeyValue: TCInputModel, TCOutputModel {
         /// 键
         public let key: String
-        
+
         /// 值
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let value: String?
-        
-        public init (key: String, value: String? = nil) {
+
+        public init(key: String, value: String? = nil) {
             self.key = key
             self.value = value
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case key = "Key"
             case value = "Value"
         }
     }
-    
+
     /// 线路分组信息
     public struct LineGroupInfo: TCOutputModel {
         /// 线路分组ID
         public let lineId: String
-        
+
         /// 线路分组名称
         public let name: String
-        
+
         /// 分组类型
         public let type: String
-        
+
         /// 线路分组包含的线路列表
         public let lineList: [String]
-        
+
         enum CodingKeys: String, CodingKey {
             case lineId = "LineId"
             case name = "Name"
@@ -847,29 +847,29 @@ extension Dnspod {
             case lineList = "LineList"
         }
     }
-    
+
     /// 解析线路信息
     public struct LineInfo: TCOutputModel {
         /// 线路名称
         public let name: String
-        
+
         /// 线路ID
         public let lineId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case name = "Name"
             case lineId = "LineId"
         }
     }
-    
+
     /// 域名锁定信息
     public struct LockInfo: TCOutputModel {
         /// 域名 ID
         public let domainId: UInt64
-        
+
         /// 域名解锁码
         public let lockCode: String
-        
+
         /// 域名自动解锁日期
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -877,47 +877,47 @@ extension Dnspod {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCDateEncoding public var lockEnd: Date
-        
+
         enum CodingKeys: String, CodingKey {
             case domainId = "DomainId"
             case lockCode = "LockCode"
             case lockEnd = "LockEnd"
         }
     }
-    
+
     /// 批量添加记录返回结构
     public struct ModifyRecordBatchDetail: TCOutputModel {
         /// 见RecordInfoBatchModify
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let recordList: [BatchRecordInfo]?
-        
+
         /// 任务编号
         public let id: UInt64
-        
+
         /// 域名
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let domain: String?
-        
+
         /// 域名等级
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let domainGrade: String?
-        
+
         /// 错误信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let errMsg: String?
-        
+
         /// 该条任务运行状态
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let status: String?
-        
+
         /// 操作类型
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let operation: String?
-        
+
         /// 域名ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let domainId: UInt64?
-        
+
         enum CodingKeys: String, CodingKey {
             case recordList = "RecordList"
             case id = "Id"
@@ -929,101 +929,101 @@ extension Dnspod {
             case domainId = "DomainId"
         }
     }
-    
+
     /// 域名权限项
     public struct PurviewInfo: TCOutputModel {
         /// 权限名称
         public let name: String
-        
+
         /// 权限值
         public let value: String
-        
+
         enum CodingKeys: String, CodingKey {
             case name = "Name"
             case value = "Value"
         }
     }
-    
+
     /// 查询记录列表的数量统计信息
     public struct RecordCountInfo: TCOutputModel {
         /// 子域名数量
         public let subdomainCount: UInt64
-        
+
         /// 列表返回的记录数
         public let listCount: UInt64
-        
+
         /// 总的记录数
         public let totalCount: UInt64
-        
+
         enum CodingKeys: String, CodingKey {
             case subdomainCount = "SubdomainCount"
             case listCount = "ListCount"
             case totalCount = "TotalCount"
         }
     }
-    
+
     /// 解析记录分组信息
     public struct RecordGroupInfo: TCOutputModel {
         /// 分组 ID
         public let groupId: UInt64
-        
+
         /// 分组名称
         public let groupName: String
-        
+
         /// 分组类型：system-系统；user-用户
         public let groupType: String
-        
+
         enum CodingKeys: String, CodingKey {
             case groupId = "GroupId"
             case groupName = "GroupName"
             case groupType = "GroupType"
         }
     }
-    
+
     /// 记录信息
     public struct RecordInfo: TCOutputModel {
         /// 记录 ID 。
         public let id: UInt64
-        
+
         /// 子域名(主机记录)。
         public let subDomain: String
-        
+
         /// 记录类型, 详见 DescribeRecordType 接口。
         public let recordType: String
-        
+
         /// 解析记录的线路，详见 DescribeRecordLineList 接口。
         public let recordLine: String
-        
+
         /// 解析记录的线路 ID ，详见 DescribeRecordLineList 接口。
         public let recordLineId: String
-        
+
         /// 记录值。
         public let value: String
-        
+
         /// 记录权重值。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let weight: UInt64?
-        
+
         /// 记录的 MX 记录值，非 MX 记录类型，默认为 0。
         public let mx: UInt64
-        
+
         /// 记录的 TTL 值。
         public let ttl: UInt64
-        
+
         /// 记录状态。0表示禁用，1表示启用。
         public let enabled: UInt64
-        
+
         /// 该记录的 D 监控状态。
         /// "Ok" : 服务器正常。
         /// "Warn" : 该记录有报警, 服务器返回 4XX。
         /// "Down" : 服务器宕机。
         /// "" : 该记录未开启 D 监控。
         public let monitorStatus: String
-        
+
         /// 记录的备注。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let remark: String?
-        
+
         /// 记录最后更新时间。
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -1031,10 +1031,10 @@ extension Dnspod {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var updatedOn: Date
-        
+
         /// 域名 ID 。
         public let domainId: UInt64
-        
+
         enum CodingKeys: String, CodingKey {
             case id = "Id"
             case subDomain = "SubDomain"
@@ -1052,18 +1052,18 @@ extension Dnspod {
             case domainId = "DomainId"
         }
     }
-    
+
     /// 记录列表元素
     public struct RecordListItem: TCOutputModel {
         /// 记录Id
         public let recordId: UInt64
-        
+
         /// 记录值
         public let value: String
-        
+
         /// 记录状态，启用：ENABLE，暂停：DISABLE
         public let status: String
-        
+
         /// 更新时间
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -1071,36 +1071,36 @@ extension Dnspod {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var updatedOn: Date
-        
+
         /// 主机名
         public let name: String
-        
+
         /// 记录线路
         public let line: String
-        
+
         /// 线路Id
         public let lineId: String
-        
+
         /// 记录类型
         public let type: String
-        
+
         /// 记录权重，用于负载均衡记录
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let weight: UInt64?
-        
+
         /// 记录监控状态，正常：OK，告警：WARN，宕机：DOWN，未设置监控或监控暂停则为空
         public let monitorStatus: String
-        
+
         /// 记录备注说明
         public let remark: String
-        
+
         /// 记录缓存时间
         public let ttl: UInt64
-        
+
         /// MX值，只有MX记录有
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let mx: UInt64?
-        
+
         enum CodingKeys: String, CodingKey {
             case recordId = "RecordId"
             case value = "Value"
@@ -1117,30 +1117,30 @@ extension Dnspod {
             case mx = "MX"
         }
     }
-    
+
     /// 域名解析快照配置
     public struct SnapshotConfig: TCOutputModel {
         /// 配置类型：空字符串-不备份，half_hour-每半小时，hourly-每小时，daily-每天，monthly-每月
         public let config: String
-        
+
         /// 添加时间
         public let createdOn: String
-        
+
         /// 所属域名 ID
         public let domainId: String
-        
+
         /// 配置 ID
         public let id: String
-        
+
         /// 快照数量
         public let snapshotCount: UInt64
-        
+
         /// 状态：enable-启用，disable-禁用
         public let status: String
-        
+
         /// 更新时间
         public let updatedOn: String
-        
+
         enum CodingKeys: String, CodingKey {
             case config = "Config"
             case createdOn = "CreatedOn"
@@ -1151,27 +1151,27 @@ extension Dnspod {
             case updatedOn = "UpdatedOn"
         }
     }
-    
+
     /// 快照信息
     public struct SnapshotInfo: TCOutputModel {
         /// 快照的对象存储地址
         public let cosUrl: String
-        
+
         /// 添加时间
         public let createdOn: String
-        
+
         /// 所属域名
         public let domain: String
-        
+
         /// 快照记录 ID
         public let id: String
-        
+
         /// 域名解析记录数
         public let recordCount: String
-        
+
         /// 状态：normal-正常，create-备份中
         public let status: String
-        
+
         enum CodingKeys: String, CodingKey {
             case cosUrl = "CosUrl"
             case createdOn = "CreatedOn"
@@ -1181,42 +1181,42 @@ extension Dnspod {
             case status = "Status"
         }
     }
-    
+
     /// 快照列表分页信息
     public struct SnapshotPageInfo: TCOutputModel {
         /// 快照总数
         public let total: UInt64
-        
+
         enum CodingKeys: String, CodingKey {
             case total = "Total"
         }
     }
-    
+
     /// 快照解析记录
     public struct SnapshotRecord: TCInputModel, TCOutputModel {
         /// 子域名
         public let subDomain: String
-        
+
         /// 记录类型
         public let recordType: String
-        
+
         /// 解析线路
         public let recordLine: String
-        
+
         /// 解析值
         public let value: String
-        
+
         /// TTL(秒)
         public let ttl: String
-        
+
         /// 解析记录 ID
         public let recordId: String?
-        
+
         /// MX优先级
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let mx: String?
-        
-        public init (subDomain: String, recordType: String, recordLine: String, value: String, ttl: String, recordId: String? = nil, mx: String? = nil) {
+
+        public init(subDomain: String, recordType: String, recordLine: String, value: String, ttl: String, recordId: String? = nil, mx: String? = nil) {
             self.subDomain = subDomain
             self.recordType = recordType
             self.recordLine = recordLine
@@ -1225,7 +1225,7 @@ extension Dnspod {
             self.recordId = recordId
             self.mx = mx
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case subDomain = "SubDomain"
             case recordType = "RecordType"
@@ -1236,41 +1236,41 @@ extension Dnspod {
             case mx = "MX"
         }
     }
-    
+
     /// 子域名别名解析量统计信息
     public struct SubdomainAliasAnalyticsItem: TCOutputModel {
         /// 子域名解析量统计查询信息
         public let info: SubdomainAnalyticsInfo
-        
+
         /// 当前统计维度解析量小计
         public let data: [DomainAnalyticsDetail]
-        
+
         enum CodingKeys: String, CodingKey {
             case info = "Info"
             case data = "Data"
         }
     }
-    
+
     /// 子域名解析量统计查询信息
     public struct SubdomainAnalyticsInfo: TCOutputModel {
         /// DATE:按天维度统计 HOUR:按小时维度统计
         public let dnsFormat: String
-        
+
         /// 当前统计周期解析量总计
         public let dnsTotal: UInt64
-        
+
         /// 当前查询的域名
         public let domain: String
-        
+
         /// 当前统计周期开始时间
         public let startDate: String
-        
+
         /// 当前统计周期结束时间
         public let endDate: String
-        
+
         /// 当前统计的子域名
         public let subdomain: String
-        
+
         enum CodingKeys: String, CodingKey {
             case dnsFormat = "DnsFormat"
             case dnsTotal = "DnsTotal"
@@ -1280,45 +1280,45 @@ extension Dnspod {
             case subdomain = "Subdomain"
         }
     }
-    
+
     /// 用户信息
     public struct UserInfo: TCOutputModel {
         /// 用户昵称
         public let nick: String
-        
+
         /// 用户ID
         public let id: Int64
-        
+
         /// 用户账号, 邮箱格式
         public let email: String
-        
+
         /// 账号状态：”enabled”: 正常；”disabled”: 被封禁
         public let status: String
-        
+
         /// 电话号码
         public let telephone: String
-        
+
         /// 邮箱是否通过验证：”yes”: 通过；”no”: 未通过
         public let emailVerified: String
-        
+
         /// 手机是否通过验证：”yes”: 通过；”no”: 未通过
         public let telephoneVerified: String
-        
+
         /// 账号等级, 按照用户账号下域名等级排序, 选取一个最高等级为账号等级, 具体对应情况参见域名等级。
         public let userGrade: String
-        
+
         /// 用户名称, 企业用户对应为公司名称
         public let realName: String
-        
+
         /// 是否绑定微信：”yes”: 通过；”no”: 未通过
         public let wechatBinded: String
-        
+
         /// 用户UIN
         public let uin: Int64
-        
+
         /// 所属 DNS 服务器
         public let freeNs: [String]
-        
+
         enum CodingKeys: String, CodingKey {
             case nick = "Nick"
             case id = "Id"

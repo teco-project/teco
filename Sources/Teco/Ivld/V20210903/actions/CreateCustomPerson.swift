@@ -19,27 +19,27 @@ extension Ivld {
     public struct CreateCustomPersonRequest: TCRequestModel {
         /// 自定义人物姓名
         public let name: String
-        
+
         /// 自定义人物简要信息(仅用于标记，不支持检索)
         public let basicInfo: String
-        
+
         /// 自定义分类ID，如不存在接口会报错
         public let categoryId: String
-        
+
         /// 自定义人物图片URL，可支持任意地址，推荐使用COS
         public let imageURL: String?
-        
+
         /// 原始图片base64编码后的数据
         public let image: String?
-        
-        public init (name: String, basicInfo: String, categoryId: String, imageURL: String? = nil, image: String? = nil) {
+
+        public init(name: String, basicInfo: String, categoryId: String, imageURL: String? = nil, image: String? = nil) {
             self.name = name
             self.basicInfo = basicInfo
             self.categoryId = categoryId
             self.imageURL = imageURL
             self.image = image
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case name = "Name"
             case basicInfo = "BasicInfo"
@@ -48,25 +48,25 @@ extension Ivld {
             case image = "Image"
         }
     }
-    
+
     /// CreateCustomPerson返回参数结构体
     public struct CreateCustomPersonResponse: TCResponseModel {
         /// 自定义人物Id
         public let personId: String
-        
+
         /// 自定义人脸信息
         public let imageInfo: PersonImageInfo
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case personId = "PersonId"
             case imageInfo = "ImageInfo"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 创建自定义人物
     ///
     /// 创建自定义人物。
@@ -76,7 +76,7 @@ extension Ivld {
     public func createCustomPerson(_ input: CreateCustomPersonRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateCustomPersonResponse > {
         self.client.execute(action: "CreateCustomPerson", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 创建自定义人物
     ///
     /// 创建自定义人物。
@@ -86,7 +86,7 @@ extension Ivld {
     public func createCustomPerson(_ input: CreateCustomPersonRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCustomPersonResponse {
         try await self.client.execute(action: "CreateCustomPerson", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 创建自定义人物
     ///
     /// 创建自定义人物。
@@ -96,7 +96,7 @@ extension Ivld {
     public func createCustomPerson(name: String, basicInfo: String, categoryId: String, imageURL: String? = nil, image: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateCustomPersonResponse > {
         self.createCustomPerson(CreateCustomPersonRequest(name: name, basicInfo: basicInfo, categoryId: categoryId, imageURL: imageURL, image: image), logger: logger, on: eventLoop)
     }
-    
+
     /// 创建自定义人物
     ///
     /// 创建自定义人物。

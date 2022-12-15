@@ -37,115 +37,115 @@ extension TCEssError {
             case verifyUser = "ResourceNotFound.VerifyUser"
             case other = "ResourceNotFound"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 应用号不存在或已删除。
         public static var application: ResourceNotFound {
             ResourceNotFound(.application)
         }
-        
+
         public static var authActiveOrganization: ResourceNotFound {
             ResourceNotFound(.authActiveOrganization)
         }
-        
+
         public static var document: ResourceNotFound {
             ResourceNotFound(.document)
         }
-        
+
         public static var errNotExistRole: ResourceNotFound {
             ResourceNotFound(.errNotExistRole)
         }
-        
+
         /// 流程不存在。
         public static var flow: ResourceNotFound {
             ResourceNotFound(.flow)
         }
-        
+
         public static var flowApprover: ResourceNotFound {
             ResourceNotFound(.flowApprover)
         }
-        
+
         /// 电子文档不存在。
         public static var notExistDocument: ResourceNotFound {
             ResourceNotFound(.notExistDocument)
         }
-        
+
         /// 流程不存在。
         public static var notExistFlow: ResourceNotFound {
             ResourceNotFound(.notExistFlow)
         }
-        
+
         /// 指定的资源不存在。
         public static var notExistResource: ResourceNotFound {
             ResourceNotFound(.notExistResource)
         }
-        
+
         /// 模板不存在。
         public static var notExistTemplate: ResourceNotFound {
             ResourceNotFound(.notExistTemplate)
         }
-        
+
         public static var organization: ResourceNotFound {
             ResourceNotFound(.organization)
         }
-        
+
         public static var qrInfo: ResourceNotFound {
             ResourceNotFound(.qrInfo)
         }
-        
+
         /// 资源不存在。
         public static var resource: ResourceNotFound {
             ResourceNotFound(.resource)
         }
-        
+
         public static var superAdmin: ResourceNotFound {
             ResourceNotFound(.superAdmin)
         }
-        
+
         /// 模板不存在。
         public static var template: ResourceNotFound {
             ResourceNotFound(.template)
         }
-        
+
         /// 确认查询条件是否可以匹配到 Url
         public static var url: ResourceNotFound {
             ResourceNotFound(.url)
         }
-        
+
         public static var user: ResourceNotFound {
             ResourceNotFound(.user)
         }
-        
+
         public static var verifyUser: ResourceNotFound {
             ResourceNotFound(.verifyUser)
         }
-        
+
         /// 资源不存在。
         public static var other: ResourceNotFound {
             ResourceNotFound(.other)
         }
-        
+
         public func asEssError() -> TCEssError {
             let code: TCEssError.Code
             switch self.error {

@@ -19,34 +19,34 @@ extension TCCvmError {
         enum Code: String {
             case limitExceeded = "InvalidFilterValue.LimitExceeded"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// <a href="https://cloud.tencent.com/document/api/213/15753#Filter"><code>Filter</code></a>。
         public static var limitExceeded: InvalidFilterValue {
             InvalidFilterValue(.limitExceeded)
         }
-        
+
         public func asCvmError() -> TCCvmError {
             let code: TCCvmError.Code
             switch self.error {

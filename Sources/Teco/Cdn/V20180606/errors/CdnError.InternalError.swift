@@ -37,128 +37,128 @@ extension TCCdnError {
             case tagSystemError = "InternalError.TagSystemError"
             case other = "InternalError"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 内部鉴权系统错误。
         ///
         /// 该类型错误一般是偶发性问题，如果持续存在，请联系腾讯云工程师进一步排查。
         public static var camSystemError: InternalError {
             InternalError(.camSystemError)
         }
-        
+
         /// 域名配置更新失败。
         public static var cdnConfigError: InternalError {
             InternalError(.cdnConfigError)
         }
-        
+
         /// 内部数据错误，请联系腾讯云工程师进一步排查。
         public static var cdnDbError: InternalError {
             InternalError(.cdnDbError)
         }
-        
+
         /// 内部查询错误，请重试或联系客服人员解决。
         public static var cdnQueryParamError: InternalError {
             InternalError(.cdnQueryParamError)
         }
-        
+
         /// 内部查询错误，请重试或联系客服人员解决。
         public static var cdnQuerySystemError: InternalError {
             InternalError(.cdnQuerySystemError)
         }
-        
+
         /// 系统错误，请联系腾讯云工程师进一步排查。
         public static var cdnSystemError: InternalError {
             InternalError(.cdnSystemError)
         }
-        
+
         /// 日志服务内部错误。
         public static var clsInternalError: InternalError {
             InternalError(.clsInternalError)
         }
-        
+
         /// 计费数据内部查询错误，请重试或联系客服人员解决。
         public static var costDataSystemError: InternalError {
             InternalError(.costDataSystemError)
         }
-        
+
         /// 数据查询错误，请联系腾讯云工程师进一步排查。
         public static var dataSystemError: InternalError {
             InternalError(.dataSystemError)
         }
-        
+
         /// 内部服务错误，请联系腾讯云工程师进一步排查。
         ///
         /// 联系腾讯云工程师进一步排查
         public static var error: InternalError {
             InternalError(.error)
         }
-        
+
         /// 内部服务错误，请联系腾讯云工程师进一步排查。
         public static var invalidErrorCode: InternalError {
             InternalError(.invalidErrorCode)
         }
-        
+
         /// 内部服务错误，请联系腾讯云工程师进一步排查。
         public static var proxyServer: InternalError {
             InternalError(.proxyServer)
         }
-        
+
         /// 内部服务错误，请联系腾讯云工程师进一步排查。
         public static var routeError: InternalError {
             InternalError(.routeError)
         }
-        
+
         /// SCDN服务未生效，请购买或续费SCDN套餐后重试。
         public static var scdnUserNoPackage: InternalError {
             InternalError(.scdnUserNoPackage)
         }
-        
+
         /// 安全加速服务已停服，请重新购买套餐后开启。
         public static var scdnUserSuspend: InternalError {
             InternalError(.scdnUserSuspend)
         }
-        
+
         /// 内部数据错误，请重试或联系客服人员解决。
         public static var systemDBError: InternalError {
             InternalError(.systemDBError)
         }
-        
+
         /// 内部服务错误，请联系腾讯云工程师进一步排查。
         public static var systemError: InternalError {
             InternalError(.systemError)
         }
-        
+
         /// 标签内部错误，请重试或联系客服人员解决。
         public static var tagSystemError: InternalError {
             InternalError(.tagSystemError)
         }
-        
+
         /// 内部错误。
         public static var other: InternalError {
             InternalError(.other)
         }
-        
+
         public func asCdnError() -> TCCdnError {
             let code: TCCdnError.Code
             switch self.error {

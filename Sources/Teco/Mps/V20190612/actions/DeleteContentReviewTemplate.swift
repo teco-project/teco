@@ -19,26 +19,26 @@ extension Mps {
     public struct DeleteContentReviewTemplateRequest: TCRequestModel {
         /// 内容审核模板唯一标识。
         public let definition: Int64
-        
-        public init (definition: Int64) {
+
+        public init(definition: Int64) {
             self.definition = definition
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case definition = "Definition"
         }
     }
-    
+
     /// DeleteContentReviewTemplate返回参数结构体
     public struct DeleteContentReviewTemplateResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除内容审核模板
     ///
     /// 删除用户自定义内容审核模板。
@@ -46,7 +46,7 @@ extension Mps {
     public func deleteContentReviewTemplate(_ input: DeleteContentReviewTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteContentReviewTemplateResponse > {
         self.client.execute(action: "DeleteContentReviewTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除内容审核模板
     ///
     /// 删除用户自定义内容审核模板。
@@ -54,7 +54,7 @@ extension Mps {
     public func deleteContentReviewTemplate(_ input: DeleteContentReviewTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteContentReviewTemplateResponse {
         try await self.client.execute(action: "DeleteContentReviewTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除内容审核模板
     ///
     /// 删除用户自定义内容审核模板。
@@ -62,7 +62,7 @@ extension Mps {
     public func deleteContentReviewTemplate(definition: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteContentReviewTemplateResponse > {
         self.deleteContentReviewTemplate(DeleteContentReviewTemplateRequest(definition: definition), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除内容审核模板
     ///
     /// 删除用户自定义内容审核模板。

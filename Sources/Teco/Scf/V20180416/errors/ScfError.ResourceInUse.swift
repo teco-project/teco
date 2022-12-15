@@ -29,84 +29,84 @@ extension TCScfError {
             case triggerName = "ResourceInUse.TriggerName"
             case other = "ResourceInUse"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// Alias已被占用。
         public static var alias: ResourceInUse {
             ResourceInUse(.alias)
         }
-        
+
         /// Cdn已被占用。
         public static var cdn: ResourceInUse {
             ResourceInUse(.cdn)
         }
-        
+
         /// Cmq已被占用。
         public static var cmq: ResourceInUse {
             ResourceInUse(.cmq)
         }
-        
+
         /// Cos已被占用。
         public static var cos: ResourceInUse {
             ResourceInUse(.cos)
         }
-        
+
         /// 函数已存在。
         public static var function: ResourceInUse {
             ResourceInUse(.function)
         }
-        
+
         /// FunctionName已存在。
         public static var functionName: ResourceInUse {
             ResourceInUse(.functionName)
         }
-        
+
         /// Layer版本正在使用中。
         public static var layerVersion: ResourceInUse {
             ResourceInUse(.layerVersion)
         }
-        
+
         /// Namespace已存在。
         public static var namespace: ResourceInUse {
             ResourceInUse(.namespace)
         }
-        
+
         /// TriggerName已存在。
         public static var trigger: ResourceInUse {
             ResourceInUse(.trigger)
         }
-        
+
         /// TriggerName已存在。
         public static var triggerName: ResourceInUse {
             ResourceInUse(.triggerName)
         }
-        
+
         /// 资源被占用。
         public static var other: ResourceInUse {
             ResourceInUse(.other)
         }
-        
+
         public func asScfError() -> TCScfError {
             let code: TCScfError.Code
             switch self.error {

@@ -19,44 +19,44 @@ extension Gme {
     public struct ModifyUserMicStatusRequest: TCRequestModel {
         /// 来自 [腾讯云控制台](https://console.cloud.tencent.com/gamegme) 的 GME 服务提供的 AppID，获取请参考 [语音服务开通指引](https://cloud.tencent.com/document/product/607/10782#.E9.87.8D.E7.82.B9.E5.8F.82.E6.95.B0)。
         public let bizId: Int64
-        
+
         /// 实时语音房间号。
         public let roomId: String
-        
+
         /// 需要操作的房间内用户以及该用户的目标麦克风状态。
         public let users: [UserMicStatus]
-        
-        public init (bizId: Int64, roomId: String, users: [UserMicStatus]) {
+
+        public init(bizId: Int64, roomId: String, users: [UserMicStatus]) {
             self.bizId = bizId
             self.roomId = roomId
             self.users = users
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case bizId = "BizId"
             case roomId = "RoomId"
             case users = "Users"
         }
     }
-    
+
     /// ModifyUserMicStatus返回参数结构体
     public struct ModifyUserMicStatusResponse: TCResponseModel {
         /// 返回结果：0为成功，非0为失败。
         public let result: Int64
-        
+
         /// 错误信息。
         public let errMsg: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case result = "Result"
             case errMsg = "ErrMsg"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 修改用户麦克风状态
     ///
     /// **接口作用**：此接口用于修改房间用户的麦克风状态，例如房间内用户麦克风为打开状态，可调用此接口将该用户麦克风进行关闭，关闭后即使该用户使用客户端接口 EnableMic 打开麦克风，依然无法与房间内成员通话，属于被禁言状态。该状态持续到此用户退房后失效，或者调用该接口重新打开此用户麦克风状态。
@@ -66,7 +66,7 @@ extension Gme {
     public func modifyUserMicStatus(_ input: ModifyUserMicStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyUserMicStatusResponse > {
         self.client.execute(action: "ModifyUserMicStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 修改用户麦克风状态
     ///
     /// **接口作用**：此接口用于修改房间用户的麦克风状态，例如房间内用户麦克风为打开状态，可调用此接口将该用户麦克风进行关闭，关闭后即使该用户使用客户端接口 EnableMic 打开麦克风，依然无法与房间内成员通话，属于被禁言状态。该状态持续到此用户退房后失效，或者调用该接口重新打开此用户麦克风状态。
@@ -76,7 +76,7 @@ extension Gme {
     public func modifyUserMicStatus(_ input: ModifyUserMicStatusRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyUserMicStatusResponse {
         try await self.client.execute(action: "ModifyUserMicStatus", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 修改用户麦克风状态
     ///
     /// **接口作用**：此接口用于修改房间用户的麦克风状态，例如房间内用户麦克风为打开状态，可调用此接口将该用户麦克风进行关闭，关闭后即使该用户使用客户端接口 EnableMic 打开麦克风，依然无法与房间内成员通话，属于被禁言状态。该状态持续到此用户退房后失效，或者调用该接口重新打开此用户麦克风状态。
@@ -86,7 +86,7 @@ extension Gme {
     public func modifyUserMicStatus(bizId: Int64, roomId: String, users: [UserMicStatus], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyUserMicStatusResponse > {
         self.modifyUserMicStatus(ModifyUserMicStatusRequest(bizId: bizId, roomId: roomId, users: users), logger: logger, on: eventLoop)
     }
-    
+
     /// 修改用户麦克风状态
     ///
     /// **接口作用**：此接口用于修改房间用户的麦克风状态，例如房间内用户麦克风为打开状态，可调用此接口将该用户麦克风进行关闭，关闭后即使该用户使用客户端接口 EnableMic 打开麦克风，依然无法与房间内成员通话，属于被禁言状态。该状态持续到此用户退房后失效，或者调用该接口重新打开此用户麦克风状态。

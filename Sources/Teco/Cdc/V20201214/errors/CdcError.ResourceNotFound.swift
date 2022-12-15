@@ -22,55 +22,55 @@ extension TCCdcError {
             case invalidDedicatedClusterTypeId = "ResourceNotFound.InvalidDedicatedClusterTypeId"
             case invalidSiteId = "ResourceNotFound.InvalidSiteId"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 该资源没有找到。
         ///
         /// 请确认资源是否正确
         public static var invalidDedicatedClusterId: ResourceNotFound {
             ResourceNotFound(.invalidDedicatedClusterId)
         }
-        
+
         /// 请确认资源ID 是否存在。
         public static var invalidDedicatedClusterOrderId: ResourceNotFound {
             ResourceNotFound(.invalidDedicatedClusterOrderId)
         }
-        
+
         /// 该资源没有找到。
         ///
         /// 请确认该资源是否存在
         public static var invalidDedicatedClusterTypeId: ResourceNotFound {
             ResourceNotFound(.invalidDedicatedClusterTypeId)
         }
-        
+
         /// 站点机房无效。
         ///
         /// 请确认站点机房是否存在
         public static var invalidSiteId: ResourceNotFound {
             ResourceNotFound(.invalidSiteId)
         }
-        
+
         public func asCdcError() -> TCCdcError {
             let code: TCCdcError.Code
             switch self.error {

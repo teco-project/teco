@@ -19,26 +19,26 @@ extension Batch {
     public struct DeleteComputeEnvRequest: TCRequestModel {
         /// 计算环境ID
         public let envId: String
-        
-        public init (envId: String) {
+
+        public init(envId: String) {
             self.envId = envId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case envId = "EnvId"
         }
     }
-    
+
     /// DeleteComputeEnv返回参数结构体
     public struct DeleteComputeEnvResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除计算环境
     ///
     /// 用于删除计算环境
@@ -46,7 +46,7 @@ extension Batch {
     public func deleteComputeEnv(_ input: DeleteComputeEnvRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteComputeEnvResponse > {
         self.client.execute(action: "DeleteComputeEnv", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除计算环境
     ///
     /// 用于删除计算环境
@@ -54,7 +54,7 @@ extension Batch {
     public func deleteComputeEnv(_ input: DeleteComputeEnvRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteComputeEnvResponse {
         try await self.client.execute(action: "DeleteComputeEnv", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除计算环境
     ///
     /// 用于删除计算环境
@@ -62,7 +62,7 @@ extension Batch {
     public func deleteComputeEnv(envId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteComputeEnvResponse > {
         self.deleteComputeEnv(DeleteComputeEnvRequest(envId: envId), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除计算环境
     ///
     /// 用于删除计算环境

@@ -22,29 +22,29 @@ extension Ess {
         /// 2. DOCUMENT - 签署过程及签署后的合同文档/图片控件 文件类型：.pdf/.doc/.docx/.jpg/.png/.xls.xlsx/.html
         /// 3. SEAL - 印章； 文件类型：.jpg/.jpeg/.png
         public let businessType: String
-        
+
         /// 调用方信息，其中OperatorId为必填字段，即用户的UserId
         public let caller: Caller?
-        
+
         /// 上传文件内容数组，最多支持20个文件
         public let fileInfos: [UploadFile]?
-        
+
         /// 文件类型， 默认通过文件内容解析得到文件类型，客户可以显示的说明上传文件的类型。
         /// 如：PDF 表示上传的文件 xxx.pdf的文件类型是 PDF
         public let fileType: String?
-        
+
         /// 此参数只对 PDF 文件有效。是否将pdf灰色矩阵置白
         /// true--是，处理置白
         /// 默认为false--否，不处理
         public let coverRect: Bool?
-        
+
         /// 用户自定义ID数组，与上传文件一一对应
         public let customIds: [String]?
-        
+
         /// 不再使用，上传文件链接数组，最多支持20个URL
         public let fileUrls: String?
-        
-        public init (businessType: String, caller: Caller? = nil, fileInfos: [UploadFile]? = nil, fileType: String? = nil, coverRect: Bool? = nil, customIds: [String]? = nil, fileUrls: String? = nil) {
+
+        public init(businessType: String, caller: Caller? = nil, fileInfos: [UploadFile]? = nil, fileType: String? = nil, coverRect: Bool? = nil, customIds: [String]? = nil, fileUrls: String? = nil) {
             self.businessType = businessType
             self.caller = caller
             self.fileInfos = fileInfos
@@ -53,7 +53,7 @@ extension Ess {
             self.customIds = customIds
             self.fileUrls = fileUrls
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case businessType = "BusinessType"
             case caller = "Caller"
@@ -64,25 +64,25 @@ extension Ess {
             case fileUrls = "FileUrls"
         }
     }
-    
+
     /// UploadFiles返回参数结构体
     public struct UploadFilesResponse: TCResponseModel {
         /// 文件id数组
         public let fileIds: [String]
-        
+
         /// 上传成功文件数量
         public let totalCount: Int64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case fileIds = "FileIds"
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 多文件上传
     ///
     /// 此接口（UploadFiles）用于文件上传。
@@ -92,7 +92,7 @@ extension Ess {
     public func uploadFiles(_ input: UploadFilesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UploadFilesResponse > {
         self.client.execute(action: "UploadFiles", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 多文件上传
     ///
     /// 此接口（UploadFiles）用于文件上传。
@@ -102,7 +102,7 @@ extension Ess {
     public func uploadFiles(_ input: UploadFilesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UploadFilesResponse {
         try await self.client.execute(action: "UploadFiles", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 多文件上传
     ///
     /// 此接口（UploadFiles）用于文件上传。
@@ -112,7 +112,7 @@ extension Ess {
     public func uploadFiles(businessType: String, caller: Caller? = nil, fileInfos: [UploadFile]? = nil, fileType: String? = nil, coverRect: Bool? = nil, customIds: [String]? = nil, fileUrls: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UploadFilesResponse > {
         self.uploadFiles(UploadFilesRequest(businessType: businessType, caller: caller, fileInfos: fileInfos, fileType: fileType, coverRect: coverRect, customIds: customIds, fileUrls: fileUrls), logger: logger, on: eventLoop)
     }
-    
+
     /// 多文件上传
     ///
     /// 此接口（UploadFiles）用于文件上传。

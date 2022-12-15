@@ -19,38 +19,38 @@ extension Ess {
     public struct CreateMultiFlowSignQRCodeRequest: TCRequestModel {
         /// 用户信息
         public let `operator`: UserInfo
-        
+
         /// 模板ID
         public let templateId: String
-        
+
         /// 签署流程名称，最大长度不超过200字符
         public let flowName: String
-        
+
         /// 最大可发起签署流程份数，默认5份 
         /// 发起流程数量超过此上限后二维码自动失效
         public let maxFlowNum: Int64?
-        
+
         /// 签署流程有效天数 默认7天 最高设置不超过30天
         public let flowEffectiveDay: Int64?
-        
+
         /// 二维码有效天数 默认7天 最高设置不超过90天
         public let qrEffectiveDay: Int64?
-        
+
         /// 限制二维码用户条件
         public let restrictions: [ApproverRestriction]?
-        
+
         /// 回调地址,最大长度1000字符串
         /// 回调时机：
         /// 用户通过签署二维码发起签署流程时，企业额度不足导致失败
         public let callbackUrl: String?
-        
+
         /// 应用信息
         public let agent: Agent?
-        
+
         /// 限制二维码用户条件（已弃用）
         public let approverRestrictions: ApproverRestriction?
-        
-        public init (operator: UserInfo, templateId: String, flowName: String, maxFlowNum: Int64? = nil, flowEffectiveDay: Int64? = nil, qrEffectiveDay: Int64? = nil, restrictions: [ApproverRestriction]? = nil, callbackUrl: String? = nil, agent: Agent? = nil, approverRestrictions: ApproverRestriction? = nil) {
+
+        public init(operator: UserInfo, templateId: String, flowName: String, maxFlowNum: Int64? = nil, flowEffectiveDay: Int64? = nil, qrEffectiveDay: Int64? = nil, restrictions: [ApproverRestriction]? = nil, callbackUrl: String? = nil, agent: Agent? = nil, approverRestrictions: ApproverRestriction? = nil) {
             self.`operator` = `operator`
             self.templateId = templateId
             self.flowName = flowName
@@ -62,7 +62,7 @@ extension Ess {
             self.agent = agent
             self.approverRestrictions = approverRestrictions
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case `operator` = "Operator"
             case templateId = "TemplateId"
@@ -76,25 +76,25 @@ extension Ess {
             case approverRestrictions = "ApproverRestrictions"
         }
     }
-    
+
     /// CreateMultiFlowSignQRCode返回参数结构体
     public struct CreateMultiFlowSignQRCodeResponse: TCResponseModel {
         /// 签署二维码对象
         public let qrCode: SignQrCode
-        
+
         /// 签署链接对象
         public let signUrls: SignUrl
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case qrCode = "QrCode"
             case signUrls = "SignUrls"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 创建一码多扫流程签署二维码
     ///
     /// 此接口（CreateMultiFlowSignQRCode）用于创建一码多扫流程签署二维码。
@@ -104,7 +104,7 @@ extension Ess {
     public func createMultiFlowSignQRCode(_ input: CreateMultiFlowSignQRCodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateMultiFlowSignQRCodeResponse > {
         self.client.execute(action: "CreateMultiFlowSignQRCode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 创建一码多扫流程签署二维码
     ///
     /// 此接口（CreateMultiFlowSignQRCode）用于创建一码多扫流程签署二维码。
@@ -114,7 +114,7 @@ extension Ess {
     public func createMultiFlowSignQRCode(_ input: CreateMultiFlowSignQRCodeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateMultiFlowSignQRCodeResponse {
         try await self.client.execute(action: "CreateMultiFlowSignQRCode", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 创建一码多扫流程签署二维码
     ///
     /// 此接口（CreateMultiFlowSignQRCode）用于创建一码多扫流程签署二维码。
@@ -124,7 +124,7 @@ extension Ess {
     public func createMultiFlowSignQRCode(operator: UserInfo, templateId: String, flowName: String, maxFlowNum: Int64? = nil, flowEffectiveDay: Int64? = nil, qrEffectiveDay: Int64? = nil, restrictions: [ApproverRestriction]? = nil, callbackUrl: String? = nil, agent: Agent? = nil, approverRestrictions: ApproverRestriction? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateMultiFlowSignQRCodeResponse > {
         self.createMultiFlowSignQRCode(CreateMultiFlowSignQRCodeRequest(operator: `operator`, templateId: templateId, flowName: flowName, maxFlowNum: maxFlowNum, flowEffectiveDay: flowEffectiveDay, qrEffectiveDay: qrEffectiveDay, restrictions: restrictions, callbackUrl: callbackUrl, agent: agent, approverRestrictions: approverRestrictions), logger: logger, on: eventLoop)
     }
-    
+
     /// 创建一码多扫流程签署二维码
     ///
     /// 此接口（CreateMultiFlowSignQRCode）用于创建一码多扫流程签署二维码。

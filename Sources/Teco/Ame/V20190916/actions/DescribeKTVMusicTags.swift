@@ -17,24 +17,24 @@
 extension Ame {
     /// DescribeKTVMusicTags请求参数结构体
     public struct DescribeKTVMusicTagsRequest: TCRequestModel {
-        public init () {
+        public init() {
         }
     }
-    
+
     /// DescribeKTVMusicTags返回参数结构体
     public struct DescribeKTVMusicTagsResponse: TCResponseModel {
         /// 标签分组列表
         public let tagGroupSet: [KTVMusicTagGroup]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case tagGroupSet = "TagGroupSet"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取直播互动曲库标签信息
     ///
     /// 获取直播互动曲库标签分组信息和标签信息
@@ -42,7 +42,7 @@ extension Ame {
     public func describeKTVMusicTags(_ input: DescribeKTVMusicTagsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeKTVMusicTagsResponse > {
         self.client.execute(action: "DescribeKTVMusicTags", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取直播互动曲库标签信息
     ///
     /// 获取直播互动曲库标签分组信息和标签信息
@@ -50,7 +50,7 @@ extension Ame {
     public func describeKTVMusicTags(_ input: DescribeKTVMusicTagsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeKTVMusicTagsResponse {
         try await self.client.execute(action: "DescribeKTVMusicTags", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取直播互动曲库标签信息
     ///
     /// 获取直播互动曲库标签分组信息和标签信息
@@ -58,7 +58,7 @@ extension Ame {
     public func describeKTVMusicTags(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeKTVMusicTagsResponse > {
         self.describeKTVMusicTags(DescribeKTVMusicTagsRequest(), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取直播互动曲库标签信息
     ///
     /// 获取直播互动曲库标签分组信息和标签信息

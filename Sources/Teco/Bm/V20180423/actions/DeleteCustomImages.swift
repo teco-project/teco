@@ -19,30 +19,30 @@ extension Bm {
     public struct DeleteCustomImagesRequest: TCRequestModel {
         /// 准备删除的镜像ID列表
         public let imageIds: [String]
-        
-        public init (imageIds: [String]) {
+
+        public init(imageIds: [String]) {
             self.imageIds = imageIds
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case imageIds = "ImageIds"
         }
     }
-    
+
     /// DeleteCustomImages返回参数结构体
     public struct DeleteCustomImagesResponse: TCResponseModel {
         /// 黑石异步任务ID
         public let taskId: UInt64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除自定义镜像
     ///
     /// 删除自定义镜像<br>
@@ -51,7 +51,7 @@ extension Bm {
     public func deleteCustomImages(_ input: DeleteCustomImagesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteCustomImagesResponse > {
         self.client.execute(action: "DeleteCustomImages", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除自定义镜像
     ///
     /// 删除自定义镜像<br>
@@ -60,7 +60,7 @@ extension Bm {
     public func deleteCustomImages(_ input: DeleteCustomImagesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteCustomImagesResponse {
         try await self.client.execute(action: "DeleteCustomImages", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除自定义镜像
     ///
     /// 删除自定义镜像<br>
@@ -69,7 +69,7 @@ extension Bm {
     public func deleteCustomImages(imageIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteCustomImagesResponse > {
         self.deleteCustomImages(DeleteCustomImagesRequest(imageIds: imageIds), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除自定义镜像
     ///
     /// 删除自定义镜像<br>

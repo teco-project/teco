@@ -42,143 +42,143 @@ extension TCVpcError {
             case tagTagsExceeded = "LimitExceeded.TagTagsExceeded"
             case other = "LimitExceeded"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 账号退还配额超过限制。
         public static var accountReturnQuota: LimitExceeded {
             LimitExceeded(.accountReturnQuota)
         }
-        
+
         /// 分配IP地址数量达到上限。
         public static var address: LimitExceeded {
             LimitExceeded(.address)
         }
-        
+
         /// 租户申请的弹性IP超过上限。
         public static var addressQuotaLimitExceeded: LimitExceeded {
             LimitExceeded(.addressQuotaLimitExceeded)
         }
-        
+
         /// 带宽包配额超过限制。
         public static var bandwidthPackageQuota: LimitExceeded {
             LimitExceeded(.bandwidthPackageQuota)
         }
-        
+
         /// 超过更换IP配额。
         public static var changeAddressQuota: LimitExceeded {
             LimitExceeded(.changeAddressQuota)
         }
-        
+
         /// VPC分配网段数量达到上限。
         public static var cidrBlock: LimitExceeded {
             LimitExceeded(.cidrBlock)
         }
-        
+
         /// 租户每天申请的弹性IP超过上限。
         public static var dailyAllocateAddressQuotaLimitExceeded: LimitExceeded {
             LimitExceeded(.dailyAllocateAddressQuotaLimitExceeded)
         }
-        
+
         /// 超过每日更换IP配额。
         public static var dailyChangeAddressQuota: LimitExceeded {
             LimitExceeded(.dailyChangeAddressQuota)
         }
-        
+
         /// 实例绑定的弹性IP超过配额。
         public static var instanceAddressQuota: LimitExceeded {
             LimitExceeded(.instanceAddressQuota)
         }
-        
+
         /// 修改地址网络计费模式配额超过限制。
         public static var modifyAddressInternetChargeTypeQuota: LimitExceeded {
             LimitExceeded(.modifyAddressInternetChargeTypeQuota)
         }
-        
+
         /// 每月地址找回配额超过限制。
         public static var monthlyAddressRecoveryQuota: LimitExceeded {
             LimitExceeded(.monthlyAddressRecoveryQuota)
         }
-        
+
         /// NAT网关数量已达到上限。
         public static var natGatewayLimitExceeded: LimitExceeded {
             LimitExceeded(.natGatewayLimitExceeded)
         }
-        
+
         /// 私有网络创建的NAT网关超过上限。
         public static var natGatewayPerVpcLimitExceeded: LimitExceeded {
             LimitExceeded(.natGatewayPerVpcLimitExceeded)
         }
-        
+
         /// 过滤参数名称超过限制。
         public static var numberOfFilters: LimitExceeded {
             LimitExceeded(.numberOfFilters)
         }
-        
+
         /// NAT网关绑定的弹性IP超过上限。
         public static var publicIpAddressPerNatGatewayLimitExceeded: LimitExceeded {
             LimitExceeded(.publicIpAddressPerNatGatewayLimitExceeded)
         }
-        
+
         /// 安全组规则数量超过上限。
         public static var securityGroupPolicySet: LimitExceeded {
             LimitExceeded(.securityGroupPolicySet)
         }
-        
+
         /// 子网分配子网段数量达到上限。
         public static var subnetCidrBlock: LimitExceeded {
             LimitExceeded(.subnetCidrBlock)
         }
-        
+
         public static var tagKeyExceeded: LimitExceeded {
             LimitExceeded(.tagKeyExceeded)
         }
-        
+
         public static var tagKeyPerResourceExceeded: LimitExceeded {
             LimitExceeded(.tagKeyPerResourceExceeded)
         }
-        
+
         public static var tagNotEnoughQuota: LimitExceeded {
             LimitExceeded(.tagNotEnoughQuota)
         }
-        
+
         public static var tagQuota: LimitExceeded {
             LimitExceeded(.tagQuota)
         }
-        
+
         public static var tagQuotaExceeded: LimitExceeded {
             LimitExceeded(.tagQuotaExceeded)
         }
-        
+
         public static var tagTagsExceeded: LimitExceeded {
             LimitExceeded(.tagTagsExceeded)
         }
-        
+
         /// 超过配额限制。
         public static var other: LimitExceeded {
             LimitExceeded(.other)
         }
-        
+
         public func asVpcError() -> TCVpcError {
             let code: TCVpcError.Code
             switch self.error {

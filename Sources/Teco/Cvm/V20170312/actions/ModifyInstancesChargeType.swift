@@ -19,23 +19,23 @@ extension Cvm {
     public struct ModifyInstancesChargeTypeRequest: TCRequestModel {
         /// 一个或多个待操作的实例ID。可通过[`DescribeInstances`](https://cloud.tencent.com/document/api/213/15728)接口返回值中的`InstanceId`获取。每次请求批量实例的上限为30。
         public let instanceIds: [String]
-        
+
         /// 实例[计费类型](https://cloud.tencent.com/document/product/213/2180)。<br><li>PREPAID：预付费，即包年包月。<br><li>POSTPAID_BY_HOUR：后付费，即按量付费。
         public let instanceChargeType: String
-        
+
         /// 预付费模式，即包年包月相关参数设置。通过该参数可以指定包年包月实例的购买时长、是否设置自动续费等属性。<dx-alert infotype="explain" title="">若指定实例的付费模式为预付费则该参数必传。</dx-alert>
         public let instanceChargePrepaid: InstanceChargePrepaid?
-        
+
         /// 是否同时切换弹性数据云盘计费模式。取值范围：<br><li>TRUE：表示切换弹性数据云盘计费模式<br><li>FALSE：表示不切换弹性数据云盘计费模式<br><br>默认取值：FALSE。
         public let modifyPortableDataDisk: Bool?
-        
-        public init (instanceIds: [String], instanceChargeType: String, instanceChargePrepaid: InstanceChargePrepaid? = nil, modifyPortableDataDisk: Bool? = nil) {
+
+        public init(instanceIds: [String], instanceChargeType: String, instanceChargePrepaid: InstanceChargePrepaid? = nil, modifyPortableDataDisk: Bool? = nil) {
             self.instanceIds = instanceIds
             self.instanceChargeType = instanceChargeType
             self.instanceChargePrepaid = instanceChargePrepaid
             self.modifyPortableDataDisk = modifyPortableDataDisk
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceIds = "InstanceIds"
             case instanceChargeType = "InstanceChargeType"
@@ -43,17 +43,17 @@ extension Cvm {
             case modifyPortableDataDisk = "ModifyPortableDataDisk"
         }
     }
-    
+
     /// ModifyInstancesChargeType返回参数结构体
     public struct ModifyInstancesChargeTypeResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 修改实例计费模式
     ///
     /// 本接口 (ModifyInstancesChargeType) 用于切换实例的计费模式。
@@ -63,7 +63,7 @@ extension Cvm {
     public func modifyInstancesChargeType(_ input: ModifyInstancesChargeTypeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyInstancesChargeTypeResponse > {
         self.client.execute(action: "ModifyInstancesChargeType", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 修改实例计费模式
     ///
     /// 本接口 (ModifyInstancesChargeType) 用于切换实例的计费模式。
@@ -73,7 +73,7 @@ extension Cvm {
     public func modifyInstancesChargeType(_ input: ModifyInstancesChargeTypeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyInstancesChargeTypeResponse {
         try await self.client.execute(action: "ModifyInstancesChargeType", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 修改实例计费模式
     ///
     /// 本接口 (ModifyInstancesChargeType) 用于切换实例的计费模式。
@@ -83,7 +83,7 @@ extension Cvm {
     public func modifyInstancesChargeType(instanceIds: [String], instanceChargeType: String, instanceChargePrepaid: InstanceChargePrepaid? = nil, modifyPortableDataDisk: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyInstancesChargeTypeResponse > {
         self.modifyInstancesChargeType(ModifyInstancesChargeTypeRequest(instanceIds: instanceIds, instanceChargeType: instanceChargeType, instanceChargePrepaid: instanceChargePrepaid, modifyPortableDataDisk: modifyPortableDataDisk), logger: logger, on: eventLoop)
     }
-    
+
     /// 修改实例计费模式
     ///
     /// 本接口 (ModifyInstancesChargeType) 用于切换实例的计费模式。

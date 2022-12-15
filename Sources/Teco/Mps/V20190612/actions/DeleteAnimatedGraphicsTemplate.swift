@@ -19,26 +19,26 @@ extension Mps {
     public struct DeleteAnimatedGraphicsTemplateRequest: TCRequestModel {
         /// 转动图模板唯一标识。
         public let definition: UInt64
-        
-        public init (definition: UInt64) {
+
+        public init(definition: UInt64) {
             self.definition = definition
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case definition = "Definition"
         }
     }
-    
+
     /// DeleteAnimatedGraphicsTemplate返回参数结构体
     public struct DeleteAnimatedGraphicsTemplateResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除转动图模板
     ///
     /// 删除用户自定义转动图模板。
@@ -46,7 +46,7 @@ extension Mps {
     public func deleteAnimatedGraphicsTemplate(_ input: DeleteAnimatedGraphicsTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteAnimatedGraphicsTemplateResponse > {
         self.client.execute(action: "DeleteAnimatedGraphicsTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除转动图模板
     ///
     /// 删除用户自定义转动图模板。
@@ -54,7 +54,7 @@ extension Mps {
     public func deleteAnimatedGraphicsTemplate(_ input: DeleteAnimatedGraphicsTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteAnimatedGraphicsTemplateResponse {
         try await self.client.execute(action: "DeleteAnimatedGraphicsTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除转动图模板
     ///
     /// 删除用户自定义转动图模板。
@@ -62,7 +62,7 @@ extension Mps {
     public func deleteAnimatedGraphicsTemplate(definition: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteAnimatedGraphicsTemplateResponse > {
         self.deleteAnimatedGraphicsTemplate(DeleteAnimatedGraphicsTemplateRequest(definition: definition), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除转动图模板
     ///
     /// 删除用户自定义转动图模板。

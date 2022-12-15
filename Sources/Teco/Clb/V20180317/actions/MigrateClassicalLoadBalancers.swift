@@ -19,31 +19,31 @@ extension Clb {
     public struct MigrateClassicalLoadBalancersRequest: TCRequestModel {
         /// 传统型负载均衡ID数组
         public let loadBalancerIds: [String]
-        
+
         /// 独占集群信息
         public let exclusiveCluster: ExclusiveCluster?
-        
-        public init (loadBalancerIds: [String], exclusiveCluster: ExclusiveCluster? = nil) {
+
+        public init(loadBalancerIds: [String], exclusiveCluster: ExclusiveCluster? = nil) {
             self.loadBalancerIds = loadBalancerIds
             self.exclusiveCluster = exclusiveCluster
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case loadBalancerIds = "LoadBalancerIds"
             case exclusiveCluster = "ExclusiveCluster"
         }
     }
-    
+
     /// MigrateClassicalLoadBalancers返回参数结构体
     public struct MigrateClassicalLoadBalancersResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 传统型负载均衡迁移成(原应用型)负载均衡
     ///
     /// 本接口将传统型负载均衡迁移成(原应用型)负载均衡
@@ -52,7 +52,7 @@ extension Clb {
     public func migrateClassicalLoadBalancers(_ input: MigrateClassicalLoadBalancersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < MigrateClassicalLoadBalancersResponse > {
         self.client.execute(action: "MigrateClassicalLoadBalancers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 传统型负载均衡迁移成(原应用型)负载均衡
     ///
     /// 本接口将传统型负载均衡迁移成(原应用型)负载均衡
@@ -61,7 +61,7 @@ extension Clb {
     public func migrateClassicalLoadBalancers(_ input: MigrateClassicalLoadBalancersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> MigrateClassicalLoadBalancersResponse {
         try await self.client.execute(action: "MigrateClassicalLoadBalancers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 传统型负载均衡迁移成(原应用型)负载均衡
     ///
     /// 本接口将传统型负载均衡迁移成(原应用型)负载均衡
@@ -70,7 +70,7 @@ extension Clb {
     public func migrateClassicalLoadBalancers(loadBalancerIds: [String], exclusiveCluster: ExclusiveCluster? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < MigrateClassicalLoadBalancersResponse > {
         self.migrateClassicalLoadBalancers(MigrateClassicalLoadBalancersRequest(loadBalancerIds: loadBalancerIds, exclusiveCluster: exclusiveCluster), logger: logger, on: eventLoop)
     }
-    
+
     /// 传统型负载均衡迁移成(原应用型)负载均衡
     ///
     /// 本接口将传统型负载均衡迁移成(原应用型)负载均衡

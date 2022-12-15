@@ -42,149 +42,149 @@ extension TCIotexplorerError {
             case topicPolicyNotExist = "ResourceNotFound.TopicPolicyNotExist"
             case topicRuleNotExist = "ResourceNotFound.TopicRuleNotExist"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 量产不存在。
         public static var batchProductionNotExist: ResourceNotFound {
             ResourceNotFound(.batchProductionNotExist)
         }
-        
+
         /// 上传URL无法获取。
         public static var cannotGetFromUrl: ResourceNotFound {
             ResourceNotFound(.cannotGetFromUrl)
         }
-        
+
         /// 存在重复设备。
         public static var deviceDupKeyExist: ResourceNotFound {
             ResourceNotFound(.deviceDupKeyExist)
         }
-        
+
         /// 固件不存在。
         public static var deviceHasNoFirmware: ResourceNotFound {
             ResourceNotFound(.deviceHasNoFirmware)
         }
-        
+
         /// 设备未绑定家庭。
         public static var deviceNotBind: ResourceNotFound {
             ResourceNotFound(.deviceNotBind)
         }
-        
+
         /// 设备不存在。
         public static var deviceNotExist: ResourceNotFound {
             ResourceNotFound(.deviceNotExist)
         }
-        
+
         /// 设备没有影子信息。
         public static var deviceShadowNotExist: ResourceNotFound {
             ResourceNotFound(.deviceShadowNotExist)
         }
-        
+
         /// 围栏未绑定该设备。
         public static var fenceBindNotExist: ResourceNotFound {
             ResourceNotFound(.fenceBindNotExist)
         }
-        
+
         /// 围栏未创建或是已删除。
         public static var fenceNotExist: ResourceNotFound {
             ResourceNotFound(.fenceNotExist)
         }
-        
+
         /// 固件不存在。
         public static var firmwareNotExist: ResourceNotFound {
             ResourceNotFound(.firmwareNotExist)
         }
-        
+
         /// 固件升级任务不存在。
         public static var firmwareTaskNotExist: ResourceNotFound {
             ResourceNotFound(.firmwareTaskNotExist)
         }
-        
+
         /// 存在重复网关。
         public static var gatewayDupKeyExist: ResourceNotFound {
             ResourceNotFound(.gatewayDupKeyExist)
         }
-        
+
         /// 网关不存在。
         public static var gatewayNotExist: ResourceNotFound {
             ResourceNotFound(.gatewayNotExist)
         }
-        
+
         /// 实例未创建或是已删除。
         public static var instanceNotExist: ResourceNotFound {
             ResourceNotFound(.instanceNotExist)
         }
-        
+
         /// 模组不存在或改动未生效。
         public static var moduleNotExist: ResourceNotFound {
             ResourceNotFound(.moduleNotExist)
         }
-        
+
         /// 产品不存在。
         public static var productNotExist: ResourceNotFound {
             ResourceNotFound(.productNotExist)
         }
-        
+
         /// 产品或设备不存在。
         public static var productOrDeviceNotExist: ResourceNotFound {
             ResourceNotFound(.productOrDeviceNotExist)
         }
-        
+
         /// 产品资源不存在。
         public static var productResourceNotExist: ResourceNotFound {
             ResourceNotFound(.productResourceNotExist)
         }
-        
+
         /// 项目不存在。
         public static var projectNotExist: ResourceNotFound {
             ResourceNotFound(.projectNotExist)
         }
-        
+
         /// 位置空间未创建或是已删除。
         public static var spaceNotExist: ResourceNotFound {
             ResourceNotFound(.spaceNotExist)
         }
-        
+
         /// LoRa频点尚未创建或已被删除。
         public static var studioLoRaFreqNotExist: ResourceNotFound {
             ResourceNotFound(.studioLoRaFreqNotExist)
         }
-        
+
         /// 产品不存在。
         public static var studioProductNotExist: ResourceNotFound {
             ResourceNotFound(.studioProductNotExist)
         }
-        
+
         /// Topic不存在。
         public static var topicPolicyNotExist: ResourceNotFound {
             ResourceNotFound(.topicPolicyNotExist)
         }
-        
+
         /// 规则不存在。
         public static var topicRuleNotExist: ResourceNotFound {
             ResourceNotFound(.topicRuleNotExist)
         }
-        
+
         public func asIotexplorerError() -> TCIotexplorerError {
             let code: TCIotexplorerError.Code
             switch self.error {

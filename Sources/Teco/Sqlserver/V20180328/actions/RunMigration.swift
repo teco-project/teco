@@ -19,30 +19,30 @@ extension Sqlserver {
     public struct RunMigrationRequest: TCRequestModel {
         /// 迁移任务ID
         public let migrateId: UInt64
-        
-        public init (migrateId: UInt64) {
+
+        public init(migrateId: UInt64) {
             self.migrateId = migrateId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case migrateId = "MigrateId"
         }
     }
-    
+
     /// RunMigration返回参数结构体
     public struct RunMigrationResponse: TCResponseModel {
         /// 迁移流程启动后，返回流程ID
         public let flowId: Int64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case flowId = "FlowId"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 执行迁移任务
     ///
     /// 本接口（RunMigration）用于启动迁移任务，开始迁移
@@ -50,7 +50,7 @@ extension Sqlserver {
     public func runMigration(_ input: RunMigrationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RunMigrationResponse > {
         self.client.execute(action: "RunMigration", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 执行迁移任务
     ///
     /// 本接口（RunMigration）用于启动迁移任务，开始迁移
@@ -58,7 +58,7 @@ extension Sqlserver {
     public func runMigration(_ input: RunMigrationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RunMigrationResponse {
         try await self.client.execute(action: "RunMigration", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 执行迁移任务
     ///
     /// 本接口（RunMigration）用于启动迁移任务，开始迁移
@@ -66,7 +66,7 @@ extension Sqlserver {
     public func runMigration(migrateId: UInt64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RunMigrationResponse > {
         self.runMigration(RunMigrationRequest(migrateId: migrateId), logger: logger, on: eventLoop)
     }
-    
+
     /// 执行迁移任务
     ///
     /// 本接口（RunMigration）用于启动迁移任务，开始迁移

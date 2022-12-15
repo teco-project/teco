@@ -30,30 +30,30 @@ extension Lighthouse {
         /// - DATA_DISK 数据盘
         /// - FIREWALL_RULE 防火墙规则
         public let resourceNames: [String]
-        
-        public init (resourceNames: [String]) {
+
+        public init(resourceNames: [String]) {
             self.resourceNames = resourceNames
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case resourceNames = "ResourceNames"
         }
     }
-    
+
     /// DescribeGeneralResourceQuotas返回参数结构体
     public struct DescribeGeneralResourceQuotasResponse: TCResponseModel {
         /// 通用资源配额详细信息列表。
         public let generalResourceQuotaSet: [GeneralResourceQuota]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case generalResourceQuotaSet = "GeneralResourceQuotaSet"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询通用资源配额信息
     ///
     /// 本接口（DescribeGeneralResourceQuotas）用于查询通用资源配额信息。
@@ -61,7 +61,7 @@ extension Lighthouse {
     public func describeGeneralResourceQuotas(_ input: DescribeGeneralResourceQuotasRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeGeneralResourceQuotasResponse > {
         self.client.execute(action: "DescribeGeneralResourceQuotas", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询通用资源配额信息
     ///
     /// 本接口（DescribeGeneralResourceQuotas）用于查询通用资源配额信息。
@@ -69,7 +69,7 @@ extension Lighthouse {
     public func describeGeneralResourceQuotas(_ input: DescribeGeneralResourceQuotasRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeGeneralResourceQuotasResponse {
         try await self.client.execute(action: "DescribeGeneralResourceQuotas", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询通用资源配额信息
     ///
     /// 本接口（DescribeGeneralResourceQuotas）用于查询通用资源配额信息。
@@ -77,7 +77,7 @@ extension Lighthouse {
     public func describeGeneralResourceQuotas(resourceNames: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeGeneralResourceQuotasResponse > {
         self.describeGeneralResourceQuotas(DescribeGeneralResourceQuotasRequest(resourceNames: resourceNames), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询通用资源配额信息
     ///
     /// 本接口（DescribeGeneralResourceQuotas）用于查询通用资源配额信息。

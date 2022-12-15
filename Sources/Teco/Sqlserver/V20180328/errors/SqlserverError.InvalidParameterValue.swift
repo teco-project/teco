@@ -51,196 +51,196 @@ extension TCSqlserverError {
             case securityGroupIdIsIllegal = "InvalidParameterValue.SecurityGroupIdIsIllegal"
             case other = "InvalidParameterValue"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 账号已经存在。
         public static var accountExist: InvalidParameterValue {
             InvalidParameterValue(.accountExist)
         }
-        
+
         /// 账户名称不合法。
         public static var accountNameIsIllegal: InvalidParameterValue {
             InvalidParameterValue(.accountNameIsIllegal)
         }
-        
+
         /// 账号名称不允许是保留字。
         public static var accountNameIsKeyWords: InvalidParameterValue {
             InvalidParameterValue(.accountNameIsKeyWords)
         }
-        
+
         /// 账户备注内容不合法。
         public static var accountRemarkIsIllegal: InvalidParameterValue {
             InvalidParameterValue(.accountRemarkIsIllegal)
         }
-        
+
         /// 管理员账号只能申请一个。
         ///
         /// 管理员账号只能申请一个，删除已有的管理员账户后，重新创建。
         public static var adminAccountNotUnique: InvalidParameterValue {
             InvalidParameterValue(.adminAccountNotUnique)
         }
-        
+
         /// 备份名称存在非法字符。
         public static var backupNameIsIllegal: InvalidParameterValue {
             InvalidParameterValue(.backupNameIsIllegal)
         }
-        
+
         /// 购买实例数量错误。
         public static var badGoodsNum: InvalidParameterValue {
             InvalidParameterValue(.badGoodsNum)
         }
-        
+
         /// 数据库字符集设置错误。
         public static var charsetIsIllegal: InvalidParameterValue {
             InvalidParameterValue(.charsetIsIllegal)
         }
-        
+
         /// 上传路径错误。
         public static var cosPathError: InvalidParameterValue {
             InvalidParameterValue(.cosPathError)
         }
-        
+
         /// 计费类型错误。
         public static var costTypeNotSupported: InvalidParameterValue {
             InvalidParameterValue(.costTypeNotSupported)
         }
-        
+
         /// 数据库备注内容不合法。
         public static var dataBaseRemarkIsIllegal: InvalidParameterValue {
             InvalidParameterValue(.dataBaseRemarkIsIllegal)
         }
-        
+
         /// 数据库名称包含非法字符。
         public static var dbCharIllegal: InvalidParameterValue {
             InvalidParameterValue(.dbCharIllegal)
         }
-        
+
         /// 数据库已经存在。
         public static var dbExist: InvalidParameterValue {
             InvalidParameterValue(.dbExist)
         }
-        
+
         /// 数据库名称不允许是保留字。
         public static var dbNameIsKeyWrods: InvalidParameterValue {
             InvalidParameterValue(.dbNameIsKeyWrods)
         }
-        
+
         /// 数据库名称不能为空。
         public static var dbNameNotNull: InvalidParameterValue {
             InvalidParameterValue(.dbNameNotNull)
         }
-        
+
         /// 数据库重命名名称一样。
         public static var dbNameSame: InvalidParameterValue {
             InvalidParameterValue(.dbNameSame)
         }
-        
+
         /// 参数错误，GRANT 值非法。
         public static var grantIsIllegal: InvalidParameterValue {
             InvalidParameterValue(.grantIsIllegal)
         }
-        
+
         /// 地域错误。
         public static var illegalRegion: InvalidParameterValue {
             InvalidParameterValue(.illegalRegion)
         }
-        
+
         /// 实例规格信息错误。
         public static var illegalSpec: InvalidParameterValue {
             InvalidParameterValue(.illegalSpec)
         }
-        
+
         /// 可用区ID错误。
         public static var illegalZone: InvalidParameterValue {
             InvalidParameterValue(.illegalZone)
         }
-        
+
         /// 实例扩容容量低于当前容量。
         public static var instanceExpandVolumeLow: InvalidParameterValue {
             InvalidParameterValue(.instanceExpandVolumeLow)
         }
-        
+
         /// 实例名称存在非法字符。
         public static var instanceNameIsIllegal: InvalidParameterValue {
             InvalidParameterValue(.instanceNameIsIllegal)
         }
-        
+
         /// 迁移名称包含非法字符。
         public static var migrationNameIsIllegal: InvalidParameterValue {
             InvalidParameterValue(.migrationNameIsIllegal)
         }
-        
+
         /// 可选参数[enable, disable]。
         public static var modifyTypeValueInvalid: InvalidParameterValue {
             InvalidParameterValue(.modifyTypeValueInvalid)
         }
-        
+
         /// 是CVM类型。
         public static var onCvmTypeNotSupported: InvalidParameterValue {
             InvalidParameterValue(.onCvmTypeNotSupported)
         }
-        
+
         /// 参数类型错误。
         public static var parameterTypeError: InvalidParameterValue {
             InvalidParameterValue(.parameterTypeError)
         }
-        
+
         /// 账号密码非法。
         public static var passwordIsIllegal: InvalidParameterValue {
             InvalidParameterValue(.passwordIsIllegal)
         }
-        
+
         /// 数据库权限设置错误。
         public static var privilegeIsIllegal: InvalidParameterValue {
             InvalidParameterValue(.privilegeIsIllegal)
         }
-        
+
         /// 发布订阅名称不符合规范。
         public static var pubSubNameIsIllegal: InvalidParameterValue {
             InvalidParameterValue(.pubSubNameIsIllegal)
         }
-        
+
         /// 只读组名称包含非法字符。
         public static var roGroupNameIsIllegal: InvalidParameterValue {
             InvalidParameterValue(.roGroupNameIsIllegal)
         }
-        
+
         /// 只读组状态不正确。
         public static var roGroupStatusIsIllegal: InvalidParameterValue {
             InvalidParameterValue(.roGroupStatusIsIllegal)
         }
-        
+
         /// 安全组ID非法。
         public static var securityGroupIdIsIllegal: InvalidParameterValue {
             InvalidParameterValue(.securityGroupIdIsIllegal)
         }
-        
+
         /// 参数取值错误。
         public static var other: InvalidParameterValue {
             InvalidParameterValue(.other)
         }
-        
+
         public func asSqlserverError() -> TCSqlserverError {
             let code: TCSqlserverError.Code
             switch self.error {

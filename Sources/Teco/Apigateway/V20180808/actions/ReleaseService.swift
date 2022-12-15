@@ -19,23 +19,23 @@ extension Apigateway {
     public struct ReleaseServiceRequest: TCRequestModel {
         /// 待发布服务的唯一 ID。
         public let serviceId: String
-        
+
         /// 待发布的环境名称，当前支持三个环境，test（测试环境）、prepub（预发布环境）和 release（发布环境）。
         public let environmentName: String
-        
+
         /// 本次的发布描述。
         public let releaseDesc: String
-        
+
         /// apiId列表，预留字段，默认全量api发布。
         public let apiIds: [String]?
-        
-        public init (serviceId: String, environmentName: String, releaseDesc: String, apiIds: [String]? = nil) {
+
+        public init(serviceId: String, environmentName: String, releaseDesc: String, apiIds: [String]? = nil) {
             self.serviceId = serviceId
             self.environmentName = environmentName
             self.releaseDesc = releaseDesc
             self.apiIds = apiIds
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case serviceId = "ServiceId"
             case environmentName = "EnvironmentName"
@@ -43,21 +43,21 @@ extension Apigateway {
             case apiIds = "ApiIds"
         }
     }
-    
+
     /// ReleaseService返回参数结构体
     public struct ReleaseServiceResponse: TCResponseModel {
         /// 发布信息。
         public let result: ReleaseService
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case result = "Result"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 发布服务
     ///
     /// 本接口（ReleaseService）用于发布服务。
@@ -66,7 +66,7 @@ extension Apigateway {
     public func releaseService(_ input: ReleaseServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ReleaseServiceResponse > {
         self.client.execute(action: "ReleaseService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 发布服务
     ///
     /// 本接口（ReleaseService）用于发布服务。
@@ -75,7 +75,7 @@ extension Apigateway {
     public func releaseService(_ input: ReleaseServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ReleaseServiceResponse {
         try await self.client.execute(action: "ReleaseService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 发布服务
     ///
     /// 本接口（ReleaseService）用于发布服务。
@@ -84,7 +84,7 @@ extension Apigateway {
     public func releaseService(serviceId: String, environmentName: String, releaseDesc: String, apiIds: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ReleaseServiceResponse > {
         self.releaseService(ReleaseServiceRequest(serviceId: serviceId, environmentName: environmentName, releaseDesc: releaseDesc, apiIds: apiIds), logger: logger, on: eventLoop)
     }
-    
+
     /// 发布服务
     ///
     /// 本接口（ReleaseService）用于发布服务。

@@ -45,164 +45,164 @@ extension TCBdaError {
             case traceMatchThresholdIllegal = "InvalidParameterValue.TraceMatchThresholdIllegal"
             case urlIllegal = "InvalidParameterValue.UrlIllegal"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 账号人体动作轨迹数量超出限制。
         public static var accountTraceNumExceed: InvalidParameterValue {
             InvalidParameterValue(.accountTraceNumExceed)
         }
-        
+
         /// 算法模型版本不合法。
         public static var bodyModelVersionIllegal: InvalidParameterValue {
             InvalidParameterValue(.bodyModelVersionIllegal)
         }
-        
+
         /// 传入的人体框过多。
         public static var bodyRectsExceed: InvalidParameterValue {
             InvalidParameterValue(.bodyRectsExceed)
         }
-        
+
         /// 人体库ID已经存在。人体库ID不可重复。
         public static var groupIdAlreadyExist: InvalidParameterValue {
             InvalidParameterValue(.groupIdAlreadyExist)
         }
-        
+
         /// 人体库ID包含非法字符。人体库ID只支持英文、数字、-%@#&amp;_。
         public static var groupIdIllegal: InvalidParameterValue {
             InvalidParameterValue(.groupIdIllegal)
         }
-        
+
         /// 人体库ID不存在。
         public static var groupIdNotExist: InvalidParameterValue {
             InvalidParameterValue(.groupIdNotExist)
         }
-        
+
         /// 人体库ID超出长度限制。
         public static var groupIdTooLong: InvalidParameterValue {
             InvalidParameterValue(.groupIdTooLong)
         }
-        
+
         /// 人体库名称已经存在。人体库名称不可重复。
         public static var groupNameAlreadyExist: InvalidParameterValue {
             InvalidParameterValue(.groupNameAlreadyExist)
         }
-        
+
         /// 人体库名称超出长度限制。
         public static var groupNameTooLong: InvalidParameterValue {
             InvalidParameterValue(.groupNameTooLong)
         }
-        
+
         /// 人体库数量超出限制。
         public static var groupNumExceed: InvalidParameterValue {
             InvalidParameterValue(.groupNumExceed)
         }
-        
+
         /// 人体库备注超出长度限制。
         public static var groupTagTooLong: InvalidParameterValue {
             InvalidParameterValue(.groupTagTooLong)
         }
-        
+
         /// 人体库人体动作轨迹数量超出限制。
         public static var groupTraceNumExceed: InvalidParameterValue {
             InvalidParameterValue(.groupTraceNumExceed)
         }
-        
+
         /// 图片为空。
         public static var imageEmpty: InvalidParameterValue {
             InvalidParameterValue(.imageEmpty)
         }
-        
+
         /// 返回数量不在合法范围内。
         public static var limitExceed: InvalidParameterValue {
             InvalidParameterValue(.limitExceed)
         }
-        
+
         /// 图片中没有人脸。
         public static var noFaceInPhoto: InvalidParameterValue {
             InvalidParameterValue(.noFaceInPhoto)
         }
-        
+
         /// 起始序号过大。请检查需要请求的数组长度。
         public static var offsetExceed: InvalidParameterValue {
             InvalidParameterValue(.offsetExceed)
         }
-        
+
         /// 人员ID已经存在。人员ID不可重复。
         public static var personIdAlreadyExist: InvalidParameterValue {
             InvalidParameterValue(.personIdAlreadyExist)
         }
-        
+
         /// 人员ID包含非法字符。人员ID只支持英文、数字、-%@#&amp;_。
         public static var personIdIllegal: InvalidParameterValue {
             InvalidParameterValue(.personIdIllegal)
         }
-        
+
         /// 人员ID不存在。
         public static var personIdNotExist: InvalidParameterValue {
             InvalidParameterValue(.personIdNotExist)
         }
-        
+
         /// 人员ID超出长度限制。
         public static var personIdTooLong: InvalidParameterValue {
             InvalidParameterValue(.personIdTooLong)
         }
-        
+
         /// 人员名称包含非法字符。
         public static var personNameIllegal: InvalidParameterValue {
             InvalidParameterValue(.personNameIllegal)
         }
-        
+
         /// 人员名称超出长度限制。
         public static var personNameTooLong: InvalidParameterValue {
             InvalidParameterValue(.personNameTooLong)
         }
-        
+
         /// 人员人体动作轨迹数量超出限制。
         public static var personTraceNumExceed: InvalidParameterValue {
             InvalidParameterValue(.personTraceNumExceed)
         }
-        
+
         /// 搜索的人员数目超过限制。
         public static var searchPersonsExceed: InvalidParameterValue {
             InvalidParameterValue(.searchPersonsExceed)
         }
-        
+
         /// 创建人体动作轨迹的人体图片数量超出限制。
         public static var traceBodyNumExceed: InvalidParameterValue {
             InvalidParameterValue(.traceBodyNumExceed)
         }
-        
+
         /// TraceMatchThreshold参数不合法。
         public static var traceMatchThresholdIllegal: InvalidParameterValue {
             InvalidParameterValue(.traceMatchThresholdIllegal)
         }
-        
+
         /// URL格式不合法。
         public static var urlIllegal: InvalidParameterValue {
             InvalidParameterValue(.urlIllegal)
         }
-        
+
         public func asBdaError() -> TCBdaError {
             let code: TCBdaError.Code
             switch self.error {

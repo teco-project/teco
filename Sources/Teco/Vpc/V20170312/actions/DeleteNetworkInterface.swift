@@ -19,26 +19,26 @@ extension Vpc {
     public struct DeleteNetworkInterfaceRequest: TCRequestModel {
         /// 弹性网卡实例ID，例如：eni-m6dyj72l。
         public let networkInterfaceId: String
-        
-        public init (networkInterfaceId: String) {
+
+        public init(networkInterfaceId: String) {
             self.networkInterfaceId = networkInterfaceId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case networkInterfaceId = "NetworkInterfaceId"
         }
     }
-    
+
     /// DeleteNetworkInterface返回参数结构体
     public struct DeleteNetworkInterfaceResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除弹性网卡
     ///
     /// 本接口（DeleteNetworkInterface）用于删除弹性网卡。
@@ -49,7 +49,7 @@ extension Vpc {
     public func deleteNetworkInterface(_ input: DeleteNetworkInterfaceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteNetworkInterfaceResponse > {
         self.client.execute(action: "DeleteNetworkInterface", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除弹性网卡
     ///
     /// 本接口（DeleteNetworkInterface）用于删除弹性网卡。
@@ -60,7 +60,7 @@ extension Vpc {
     public func deleteNetworkInterface(_ input: DeleteNetworkInterfaceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteNetworkInterfaceResponse {
         try await self.client.execute(action: "DeleteNetworkInterface", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除弹性网卡
     ///
     /// 本接口（DeleteNetworkInterface）用于删除弹性网卡。
@@ -71,7 +71,7 @@ extension Vpc {
     public func deleteNetworkInterface(networkInterfaceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteNetworkInterfaceResponse > {
         self.deleteNetworkInterface(DeleteNetworkInterfaceRequest(networkInterfaceId: networkInterfaceId), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除弹性网卡
     ///
     /// 本接口（DeleteNetworkInterface）用于删除弹性网卡。

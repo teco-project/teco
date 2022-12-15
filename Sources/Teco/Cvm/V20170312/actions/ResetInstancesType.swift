@@ -19,36 +19,36 @@ extension Cvm {
     public struct ResetInstancesTypeRequest: TCRequestModel {
         /// 一个或多个待操作的实例ID。可通过[`DescribeInstances`](https://cloud.tencent.com/document/api/213/15728)接口返回值中的`InstanceId`获取。本接口目前仅支持每次操作1个实例。
         public let instanceIds: [String]
-        
+
         /// 实例机型。不同实例机型指定了不同的资源规格，具体取值可通过调用接口[`DescribeInstanceTypeConfigs`](https://cloud.tencent.com/document/api/213/15749)来获得最新的规格表或参见[实例类型](https://cloud.tencent.com/document/product/213/11518)描述。
         public let instanceType: String
-        
+
         /// 是否对运行中的实例选择强制关机。建议对运行中的实例先手动关机。取值范围：<br><li>TRUE：表示在正常关机失败后进行强制关机<br><li>FALSE：表示在正常关机失败后不进行强制关机<br><br>默认取值：FALSE。<br><br>强制关机的效果等同于关闭物理计算机的电源开关。强制关机可能会导致数据丢失或文件系统损坏，请仅在服务器不能正常关机时使用。
         public let forceStop: Bool?
-        
-        public init (instanceIds: [String], instanceType: String, forceStop: Bool? = nil) {
+
+        public init(instanceIds: [String], instanceType: String, forceStop: Bool? = nil) {
             self.instanceIds = instanceIds
             self.instanceType = instanceType
             self.forceStop = forceStop
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceIds = "InstanceIds"
             case instanceType = "InstanceType"
             case forceStop = "ForceStop"
         }
     }
-    
+
     /// ResetInstancesType返回参数结构体
     public struct ResetInstancesTypeResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 调整实例配置
     ///
     /// 本接口 (ResetInstancesType) 用于调整实例的机型。
@@ -59,7 +59,7 @@ extension Cvm {
     public func resetInstancesType(_ input: ResetInstancesTypeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ResetInstancesTypeResponse > {
         self.client.execute(action: "ResetInstancesType", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 调整实例配置
     ///
     /// 本接口 (ResetInstancesType) 用于调整实例的机型。
@@ -70,7 +70,7 @@ extension Cvm {
     public func resetInstancesType(_ input: ResetInstancesTypeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResetInstancesTypeResponse {
         try await self.client.execute(action: "ResetInstancesType", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 调整实例配置
     ///
     /// 本接口 (ResetInstancesType) 用于调整实例的机型。
@@ -81,7 +81,7 @@ extension Cvm {
     public func resetInstancesType(instanceIds: [String], instanceType: String, forceStop: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ResetInstancesTypeResponse > {
         self.resetInstancesType(ResetInstancesTypeRequest(instanceIds: instanceIds, instanceType: instanceType, forceStop: forceStop), logger: logger, on: eventLoop)
     }
-    
+
     /// 调整实例配置
     ///
     /// 本接口 (ResetInstancesType) 用于调整实例的机型。

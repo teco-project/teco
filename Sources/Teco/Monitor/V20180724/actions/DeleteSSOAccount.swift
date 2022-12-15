@@ -19,31 +19,31 @@ extension Monitor {
     public struct DeleteSSOAccountRequest: TCRequestModel {
         /// 实例ID
         public let instanceId: String
-        
+
         /// 用户账号ID
         public let userId: String
-        
-        public init (instanceId: String, userId: String) {
+
+        public init(instanceId: String, userId: String) {
             self.instanceId = instanceId
             self.userId = userId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
             case userId = "UserId"
         }
     }
-    
+
     /// DeleteSSOAccount返回参数结构体
     public struct DeleteSSOAccountResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除授权用户
     ///
     /// Grafana可视化服务 删除授权用户
@@ -51,7 +51,7 @@ extension Monitor {
     public func deleteSSOAccount(_ input: DeleteSSOAccountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteSSOAccountResponse > {
         self.client.execute(action: "DeleteSSOAccount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除授权用户
     ///
     /// Grafana可视化服务 删除授权用户
@@ -59,7 +59,7 @@ extension Monitor {
     public func deleteSSOAccount(_ input: DeleteSSOAccountRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteSSOAccountResponse {
         try await self.client.execute(action: "DeleteSSOAccount", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除授权用户
     ///
     /// Grafana可视化服务 删除授权用户
@@ -67,7 +67,7 @@ extension Monitor {
     public func deleteSSOAccount(instanceId: String, userId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteSSOAccountResponse > {
         self.deleteSSOAccount(DeleteSSOAccountRequest(instanceId: instanceId, userId: userId), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除授权用户
     ///
     /// Grafana可视化服务 删除授权用户

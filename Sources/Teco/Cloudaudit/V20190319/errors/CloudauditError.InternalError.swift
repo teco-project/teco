@@ -32,99 +32,99 @@ extension TCCloudauditError {
             case updateAuditError = "InternalError.UpdateAuditError"
             case other = "InternalError"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 创建cmq时发生异常，可能您准备创建的cmq队列已经存在，也有可能您没有权限或者欠费。
         public static var cmqError: InternalError {
             InternalError(.cmqError)
         }
-        
+
         /// 创建跟踪集错误，请联系开发人员。
         public static var createAuditError: InternalError {
             InternalError(.createAuditError)
         }
-        
+
         /// 删除跟踪集失败，请联系开发人员
         public static var deleteAuditError: InternalError {
             InternalError(.deleteAuditError)
         }
-        
+
         /// 查看跟踪集详情错误，请联系开发人员
         public static var describeAuditError: InternalError {
             InternalError(.describeAuditError)
         }
-        
+
         /// 查询可创建跟踪集的数量错误，请联系开发人员
         public static var inquireAuditCreditError: InternalError {
             InternalError(.inquireAuditCreditError)
         }
-        
+
         /// 查询跟踪集概要内部错误，请联系开发人员。
         public static var listAuditsError: InternalError {
             InternalError(.listAuditsError)
         }
-        
+
         /// 内部错误，请联系开发人员
         public static var listCmqEnableRegionError: InternalError {
             InternalError(.listCmqEnableRegionError)
         }
-        
+
         /// 内部错误，请联系开发人员
         public static var listCosEnableRegionError: InternalError {
             InternalError(.listCosEnableRegionError)
         }
-        
+
         /// 内部错误，请联系开发人员
         public static var listKeyAliasByRegionError: InternalError {
             InternalError(.listKeyAliasByRegionError)
         }
-        
+
         /// 内部错误，请联系开发人员
         public static var searchError: InternalError {
             InternalError(.searchError)
         }
-        
+
         /// 内部错误，请联系开发人员
         public static var startLoggingError: InternalError {
             InternalError(.startLoggingError)
         }
-        
+
         /// 内部错误，请联系开发人员
         public static var stopLoggingError: InternalError {
             InternalError(.stopLoggingError)
         }
-        
+
         /// 内部错误，请联系开发人员
         public static var updateAuditError: InternalError {
             InternalError(.updateAuditError)
         }
-        
+
         /// 内部错误。
         public static var other: InternalError {
             InternalError(.other)
         }
-        
+
         public func asCloudauditError() -> TCCloudauditError {
             let code: TCCloudauditError.Code
             switch self.error {

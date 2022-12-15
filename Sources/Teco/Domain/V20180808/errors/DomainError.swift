@@ -90,363 +90,363 @@ public struct TCDomainError: TCDomainErrorType {
         case unsupportedOperation_ModifyDomainInfoUnsupported = "UnsupportedOperation.ModifyDomainInfoUnsupported"
         case unsupportedOperation_ModifyDomainUnsupported = "UnsupportedOperation.ModifyDomainUnsupported"
     }
-    
+
     /// Error domains affliated to ``TCDomainError``.
     public static var domains: [TCErrorType.Type] {
         [FailedOperation.self, InternalError.self, InvalidParameter.self, LimitExceeded.self, MissingParameter.self, ResourceInsufficient.self, ResourceNotFound.self, ResourceUnavailable.self, UnsupportedOperation.self]
     }
-    
+
     private let error: Code
-    
+
     public let context: TCErrorContext?
-    
+
     public var errorCode: String {
         self.error.rawValue
     }
-    
+
     /// Initializer used by ``TCClient`` to match an error of this type.
-    public init ?(errorCode: String, context: TCErrorContext) {
+    public init?(errorCode: String, context: TCErrorContext) {
         guard let error = Code(rawValue: errorCode) else {
             return nil
         }
         self.error = error
         self.context = context
     }
-    
-    internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+    internal init(_ error: Code, context: TCErrorContext? = nil) {
         self.error = error
         self.context = context
     }
-    
+
     /// 操作失败。
     public static var failedOperation: TCDomainError {
         TCDomainError(.failedOperation)
     }
-    
+
     /// 域名查询失败，请稍后重试。
     public static var failedOperation_CheckDomainFailed: TCDomainError {
         TCDomainError(.failedOperation_CheckDomainFailed)
     }
-    
+
     /// 创建模板操作失败。
     public static var failedOperation_CreateTemplateFailed: TCDomainError {
         TCDomainError(.failedOperation_CreateTemplateFailed)
     }
-    
+
     /// 删除模版操作失败，请稍后重试。
     public static var failedOperation_DeleteTemplateFailed: TCDomainError {
         TCDomainError(.failedOperation_DeleteTemplateFailed)
     }
-    
+
     /// 获取域名信息操作失败，请稍后重试。
     public static var failedOperation_DescribeDomainFailed: TCDomainError {
         TCDomainError(.failedOperation_DescribeDomainFailed)
     }
-    
+
     /// 获取域名信息操作失败，请稍后重试。
     public static var failedOperation_DescribeDomainListFailed: TCDomainError {
         TCDomainError(.failedOperation_DescribeDomainListFailed)
     }
-    
+
     /// 查询模板操作失败。
     public static var failedOperation_DescribeTemplateFailed: TCDomainError {
         TCDomainError(.failedOperation_DescribeTemplateFailed)
     }
-    
+
     /// 获取域名价格列表失败。
     public static var failedOperation_DomainPriceListFailed: TCDomainError {
         TCDomainError(.failedOperation_DomainPriceListFailed)
     }
-    
+
     /// 当前账号下已有相同的手机/邮箱，无需重复添加。
     public static var failedOperation_DuplicatePhoneEmail: TCDomainError {
         TCDomainError(.failedOperation_DuplicatePhoneEmail)
     }
-    
+
     /// 域名过户失败。
     public static var failedOperation_ModifyDomainOwnerFailed: TCDomainError {
         TCDomainError(.failedOperation_ModifyDomainOwnerFailed)
     }
-    
+
     /// 域名注册操作失败，请稍后重试。
     public static var failedOperation_RegisterDomain: TCDomainError {
         TCDomainError(.failedOperation_RegisterDomain)
     }
-    
+
     /// 域名注册操作失败，请稍后重试。
     public static var failedOperation_RegisterDomainFailed: TCDomainError {
         TCDomainError(.failedOperation_RegisterDomainFailed)
     }
-    
+
     /// 当前账号为云开发（TCB）账号，无法使用验证功能，请切换登录小程序公众号后重新操作。
     public static var failedOperation_SendTcbPhoneEmailCodeFailed: TCDomainError {
         TCDomainError(.failedOperation_SendTcbPhoneEmailCodeFailed)
     }
-    
+
     /// 发送验证码过于频繁，请稍后重试。
     public static var failedOperation_SendVerifyCodeIsLimited: TCDomainError {
         TCDomainError(.failedOperation_SendVerifyCodeIsLimited)
     }
-    
+
     /// 修改 DNS 失败，请输入正确的 DNS 服务器地址。
     public static var failedOperation_SetDomainDnsFailed: TCDomainError {
         TCDomainError(.failedOperation_SetDomainDnsFailed)
     }
-    
+
     /// 信息模板超过可用数量上限，建议删除已有模板后重试。
     public static var failedOperation_TemplateMaxNumFailed: TCDomainError {
         TCDomainError(.failedOperation_TemplateMaxNumFailed)
     }
-    
+
     /// 上传图片操作失败。
     public static var failedOperation_UploadImageFailed: TCDomainError {
         TCDomainError(.failedOperation_UploadImageFailed)
     }
-    
+
     /// 当前用户未在官网进行实名操作。
     public static var failedOperation_VerifyUinIsRealname: TCDomainError {
         TCDomainError(.failedOperation_VerifyUinIsRealname)
     }
-    
+
     /// 内部错误。
     public static var internalError: TCDomainError {
         TCDomainError(.internalError)
     }
-    
+
     /// 网络错误，请稍后重试。
     public static var internalError_DomainInternalError: TCDomainError {
         TCDomainError(.internalError_DomainInternalError)
     }
-    
+
     /// 参数错误。
     public static var invalidParameter: TCDomainError {
         TCDomainError(.invalidParameter)
     }
-    
+
     /// 资质信息输入不正确。
     public static var invalidParameter_CertificateCodeIsInvalid: TCDomainError {
         TCDomainError(.invalidParameter_CertificateCodeIsInvalid)
     }
-    
+
     /// 资质照片输入不正确。
     public static var invalidParameter_CertificateImageIsInvalid: TCDomainError {
         TCDomainError(.invalidParameter_CertificateImageIsInvalid)
     }
-    
+
     /// 类型只能为手机或者邮箱。
     public static var invalidParameter_CodeTypeIsInvalid: TCDomainError {
         TCDomainError(.invalidParameter_CodeTypeIsInvalid)
     }
-    
+
     /// 无权限自定义DNS。
     public static var invalidParameter_CustomDnsNotAllowed: TCDomainError {
         TCDomainError(.invalidParameter_CustomDnsNotAllowed)
     }
-    
+
     /// 域名输入为空或者不合法。
     public static var invalidParameter_DomainNameIsInvalid: TCDomainError {
         TCDomainError(.invalidParameter_DomainNameIsInvalid)
     }
-    
+
     /// 存在重复域名，请检查后重新提交。
     public static var invalidParameter_DuplicateDomainExists: TCDomainError {
         TCDomainError(.invalidParameter_DuplicateDomainExists)
     }
-    
+
     /// 邮箱为空或者不合法。
     public static var invalidParameter_EmailIsInvalid: TCDomainError {
         TCDomainError(.invalidParameter_EmailIsInvalid)
     }
-    
+
     /// 仅支持已验证的电子邮箱，请先在控制台创建后使用
     ///
     /// 根据安全合规及 ICANN 政策要求，为了加强域名真实身份信息核验，请先进行验证，才可以使用。
     public static var invalidParameter_EmailIsUnverified: TCDomainError {
         TCDomainError(.invalidParameter_EmailIsUnverified)
     }
-    
+
     /// 不支持该格式文件，请上传 JPG、JPEG 格式图片（可使用第三方图片格式转换工具）。
     public static var invalidParameter_ImageExtInvalid: TCDomainError {
         TCDomainError(.invalidParameter_ImageExtInvalid)
     }
-    
+
     /// 上传的照片参数为空或者不合法。
     public static var invalidParameter_ImageFileIsInvalid: TCDomainError {
         TCDomainError(.invalidParameter_ImageFileIsInvalid)
     }
-    
+
     /// 非标准的 JPG、JPEG 格式图片，请使用工具转换格式后重新上传（可使用第三方图片格式转换工具）。
     public static var invalidParameter_ImageFormatIsInvalid: TCDomainError {
         TCDomainError(.invalidParameter_ImageFormatIsInvalid)
     }
-    
+
     /// 图片大小低于最小限制(55KB)，请重新上传。
     public static var invalidParameter_ImageSizeBelow: TCDomainError {
         TCDomainError(.invalidParameter_ImageSizeBelow)
     }
-    
+
     /// 图片过大，请减小后重试。
     public static var invalidParameter_ImageSizeExceed: TCDomainError {
         TCDomainError(.invalidParameter_ImageSizeExceed)
     }
-    
+
     /// 图片大小超过限制(1M)，请重新上传。
     public static var invalidParameter_ImageSizeLimit: TCDomainError {
         TCDomainError(.invalidParameter_ImageSizeLimit)
     }
-    
+
     /// 联系人为空或者不合法。
     public static var invalidParameter_NameIsInvalid: TCDomainError {
         TCDomainError(.invalidParameter_NameIsInvalid)
     }
-    
+
     /// 联系人填写有误，或因其他原因无法使用，请更换其他联系人。
     public static var invalidParameter_NameIsKeyword: TCDomainError {
         TCDomainError(.invalidParameter_NameIsKeyword)
     }
-    
+
     /// 注册人为空或者不合法。
     public static var invalidParameter_OrgIsInvalid: TCDomainError {
         TCDomainError(.invalidParameter_OrgIsInvalid)
     }
-    
+
     /// 域名所有者填写有误，或因其他原因无法使用，请更换其他域名所有者。
     public static var invalidParameter_OrgIsKeyword: TCDomainError {
         TCDomainError(.invalidParameter_OrgIsKeyword)
     }
-    
+
     /// 特惠包ID无效。
     public static var invalidParameter_PackageResourceIdInvalid: TCDomainError {
         TCDomainError(.invalidParameter_PackageResourceIdInvalid)
     }
-    
+
     /// 请求类型错误。
     public static var invalidParameter_RepTypeIsInvalid: TCDomainError {
         TCDomainError(.invalidParameter_RepTypeIsInvalid)
     }
-    
+
     /// 地址有误，请传入正确的地址。
     public static var invalidParameter_StreetIsInvalid: TCDomainError {
         TCDomainError(.invalidParameter_StreetIsInvalid)
     }
-    
+
     /// 电话为空或者不合法。
     public static var invalidParameter_TelephoneIsInvalid: TCDomainError {
         TCDomainError(.invalidParameter_TelephoneIsInvalid)
     }
-    
+
     /// 仅支持已验证的手机号码，请先在控制台创建后使用。
     ///
     /// 根据安全合规及 ICANN 政策要求，为了加强域名真实身份信息核验，请先进行验证，才可以使用。
     public static var invalidParameter_TelephoneIsUnverified: TCDomainError {
         TCDomainError(.invalidParameter_TelephoneIsUnverified)
     }
-    
+
     /// 域名数量不能超过4000个。
     public static var invalidParameter_UpTo4000: TCDomainError {
         TCDomainError(.invalidParameter_UpTo4000)
     }
-    
+
     /// 用户类型为空或者不合法。
     public static var invalidParameter_UserTypeIsInvalid: TCDomainError {
         TCDomainError(.invalidParameter_UserTypeIsInvalid)
     }
-    
+
     /// 验证码错误，请重新输入。
     public static var invalidParameter_VerifyCodeIsInvalid: TCDomainError {
         TCDomainError(.invalidParameter_VerifyCodeIsInvalid)
     }
-    
+
     /// 邮编为空或者不合法。
     public static var invalidParameter_ZipCodeIsInvalid: TCDomainError {
         TCDomainError(.invalidParameter_ZipCodeIsInvalid)
     }
-    
+
     /// 请求频率超过限制。
     public static var limitExceeded_RequestLimit: TCDomainError {
         TCDomainError(.limitExceeded_RequestLimit)
     }
-    
+
     /// 缺少参数错误。
     public static var missingParameter: TCDomainError {
         TCDomainError(.missingParameter)
     }
-    
+
     /// 域名不能为空。
     public static var missingParameter_DomainIsEmpty: TCDomainError {
         TCDomainError(.missingParameter_DomainIsEmpty)
     }
-    
+
     /// 请求数据不能为空。
     public static var missingParameter_RepDataIsNone: TCDomainError {
         TCDomainError(.missingParameter_RepDataIsNone)
     }
-    
+
     /// 模板ID为空或者不合法。
     public static var missingParameter_TemplateIdIsEmpty: TCDomainError {
         TCDomainError(.missingParameter_TemplateIdIsEmpty)
     }
-    
+
     /// 模板已存在。
     public static var missingParameter_TemplateIdIsExist: TCDomainError {
         TCDomainError(.missingParameter_TemplateIdIsExist)
     }
-    
+
     /// 请求的次数超过了频率限制。
     public static var requestLimitExceeded: TCDomainError {
         TCDomainError(.requestLimitExceeded)
     }
-    
+
     /// 当前正在执行中的任务过多，请稍后再提交新的任务。
     public static var resourceInsufficient_Overwork: TCDomainError {
         TCDomainError(.resourceInsufficient_Overwork)
     }
-    
+
     /// 资源不存在。
     public static var resourceNotFound: TCDomainError {
         TCDomainError(.resourceNotFound)
     }
-    
+
     /// 模板未实名。
     public static var resourceNotFound_ApprovedTemplateNotFound: TCDomainError {
         TCDomainError(.resourceNotFound_ApprovedTemplateNotFound)
     }
-    
+
     /// 域名地址有误，请输入正确的域名地址。
     public static var resourceNotFound_DomainNotFound: TCDomainError {
         TCDomainError(.resourceNotFound_DomainNotFound)
     }
-    
+
     /// 模板信息有误，请输入正确的信息。
     public static var resourceNotFound_TemplateNotFound: TCDomainError {
         TCDomainError(.resourceNotFound_TemplateNotFound)
     }
-    
+
     /// 该域名已有同类型操作未完成，无法执行该操作。
     public static var resourceUnavailable_DomainIsModifyingDNS: TCDomainError {
         TCDomainError(.resourceUnavailable_DomainIsModifyingDNS)
     }
-    
+
     /// 账户实名认证未通过。
     public static var unsupportedOperation_AccountRealName: TCDomainError {
         TCDomainError(.unsupportedOperation_AccountRealName)
     }
-    
+
     /// 当前域名未完成实名认证，无法完成该操作。
     public static var unsupportedOperation_DomainNotVerified: TCDomainError {
         TCDomainError(.unsupportedOperation_DomainNotVerified)
     }
-    
+
     /// 当前域名状态不支持修改。
     public static var unsupportedOperation_ModifyDomainInfoUnsupported: TCDomainError {
         TCDomainError(.unsupportedOperation_ModifyDomainInfoUnsupported)
     }
-    
+
     /// 当前域名状态不支持修改。
     public static var unsupportedOperation_ModifyDomainUnsupported: TCDomainError {
         TCDomainError(.unsupportedOperation_ModifyDomainUnsupported)
     }
-    
+
     public func asDomainError() -> TCDomainError {
         return self
     }

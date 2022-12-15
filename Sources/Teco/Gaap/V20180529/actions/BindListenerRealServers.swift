@@ -19,31 +19,31 @@ extension Gaap {
     public struct BindListenerRealServersRequest: TCRequestModel {
         /// 监听器ID
         public let listenerId: String
-        
+
         /// 待绑定源站列表。如果该监听器的源站调度策略是加权轮询，需要填写源站权重 RealServerWeight, 不填或者其他调度类型默认源站权重为1。
         public let realServerBindSet: [RealServerBindSetReq]?
-        
-        public init (listenerId: String, realServerBindSet: [RealServerBindSetReq]? = nil) {
+
+        public init(listenerId: String, realServerBindSet: [RealServerBindSetReq]? = nil) {
             self.listenerId = listenerId
             self.realServerBindSet = realServerBindSet
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case listenerId = "ListenerId"
             case realServerBindSet = "RealServerBindSet"
         }
     }
-    
+
     /// BindListenerRealServers返回参数结构体
     public struct BindListenerRealServersResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 监听器绑定源站
     ///
     /// 本接口（BindListenerRealServers）用于TCP/UDP监听器绑定解绑源站。
@@ -52,7 +52,7 @@ extension Gaap {
     public func bindListenerRealServers(_ input: BindListenerRealServersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BindListenerRealServersResponse > {
         self.client.execute(action: "BindListenerRealServers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 监听器绑定源站
     ///
     /// 本接口（BindListenerRealServers）用于TCP/UDP监听器绑定解绑源站。
@@ -61,7 +61,7 @@ extension Gaap {
     public func bindListenerRealServers(_ input: BindListenerRealServersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindListenerRealServersResponse {
         try await self.client.execute(action: "BindListenerRealServers", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 监听器绑定源站
     ///
     /// 本接口（BindListenerRealServers）用于TCP/UDP监听器绑定解绑源站。
@@ -70,7 +70,7 @@ extension Gaap {
     public func bindListenerRealServers(listenerId: String, realServerBindSet: [RealServerBindSetReq]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BindListenerRealServersResponse > {
         self.bindListenerRealServers(BindListenerRealServersRequest(listenerId: listenerId, realServerBindSet: realServerBindSet), logger: logger, on: eventLoop)
     }
-    
+
     /// 监听器绑定源站
     ///
     /// 本接口（BindListenerRealServers）用于TCP/UDP监听器绑定解绑源站。

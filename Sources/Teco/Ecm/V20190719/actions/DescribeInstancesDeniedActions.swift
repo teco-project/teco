@@ -19,30 +19,30 @@ extension Ecm {
     public struct DescribeInstancesDeniedActionsRequest: TCRequestModel {
         /// 无
         public let instanceIdSet: [String]
-        
-        public init (instanceIdSet: [String]) {
+
+        public init(instanceIdSet: [String]) {
             self.instanceIdSet = instanceIdSet
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceIdSet = "InstanceIdSet"
         }
     }
-    
+
     /// DescribeInstancesDeniedActions返回参数结构体
     public struct DescribeInstancesDeniedActionsResponse: TCResponseModel {
         /// 实例对应的禁止操作
         public let instanceOperatorSet: [InstanceOperator]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceOperatorSet = "InstanceOperatorSet"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取禁止的操作列表
     ///
     /// 通过实例id获取当前禁止的操作
@@ -50,7 +50,7 @@ extension Ecm {
     public func describeInstancesDeniedActions(_ input: DescribeInstancesDeniedActionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInstancesDeniedActionsResponse > {
         self.client.execute(action: "DescribeInstancesDeniedActions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取禁止的操作列表
     ///
     /// 通过实例id获取当前禁止的操作
@@ -58,7 +58,7 @@ extension Ecm {
     public func describeInstancesDeniedActions(_ input: DescribeInstancesDeniedActionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstancesDeniedActionsResponse {
         try await self.client.execute(action: "DescribeInstancesDeniedActions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取禁止的操作列表
     ///
     /// 通过实例id获取当前禁止的操作
@@ -66,7 +66,7 @@ extension Ecm {
     public func describeInstancesDeniedActions(instanceIdSet: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInstancesDeniedActionsResponse > {
         self.describeInstancesDeniedActions(DescribeInstancesDeniedActionsRequest(instanceIdSet: instanceIdSet), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取禁止的操作列表
     ///
     /// 通过实例id获取当前禁止的操作

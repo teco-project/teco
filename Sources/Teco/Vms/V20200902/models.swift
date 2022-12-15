@@ -19,11 +19,11 @@ extension Vms {
     public struct SendStatus: TCOutputModel {
         /// 标识本次发送 ID，标识一次下发记录。
         public let callId: String
-        
+
         /// 用户的 session 内容，腾讯 server 回包中会原样返回。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let sessionContext: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case callId = "CallId"
             case sessionContext = "SessionContext"

@@ -19,26 +19,26 @@ extension Clb {
     public struct AssociateTargetGroupsRequest: TCRequestModel {
         /// 绑定的关系数组。
         public let associations: [TargetGroupAssociation]
-        
-        public init (associations: [TargetGroupAssociation]) {
+
+        public init(associations: [TargetGroupAssociation]) {
             self.associations = associations
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case associations = "Associations"
         }
     }
-    
+
     /// AssociateTargetGroups返回参数结构体
     public struct AssociateTargetGroupsResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 规则关联目标组
     ///
     /// 本接口(AssociateTargetGroups)用来将目标组绑定到负载均衡的监听器（四层协议）或转发规则（七层协议）上。
@@ -47,7 +47,7 @@ extension Clb {
     public func associateTargetGroups(_ input: AssociateTargetGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AssociateTargetGroupsResponse > {
         self.client.execute(action: "AssociateTargetGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 规则关联目标组
     ///
     /// 本接口(AssociateTargetGroups)用来将目标组绑定到负载均衡的监听器（四层协议）或转发规则（七层协议）上。
@@ -56,7 +56,7 @@ extension Clb {
     public func associateTargetGroups(_ input: AssociateTargetGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AssociateTargetGroupsResponse {
         try await self.client.execute(action: "AssociateTargetGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 规则关联目标组
     ///
     /// 本接口(AssociateTargetGroups)用来将目标组绑定到负载均衡的监听器（四层协议）或转发规则（七层协议）上。
@@ -65,7 +65,7 @@ extension Clb {
     public func associateTargetGroups(associations: [TargetGroupAssociation], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AssociateTargetGroupsResponse > {
         self.associateTargetGroups(AssociateTargetGroupsRequest(associations: associations), logger: logger, on: eventLoop)
     }
-    
+
     /// 规则关联目标组
     ///
     /// 本接口(AssociateTargetGroups)用来将目标组绑定到负载均衡的监听器（四层协议）或转发规则（七层协议）上。

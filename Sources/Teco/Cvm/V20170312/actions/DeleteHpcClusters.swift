@@ -19,26 +19,26 @@ extension Cvm {
     public struct DeleteHpcClustersRequest: TCRequestModel {
         /// 高性能计算集群ID列表。
         public let hpcClusterIds: [String]
-        
-        public init (hpcClusterIds: [String]) {
+
+        public init(hpcClusterIds: [String]) {
             self.hpcClusterIds = hpcClusterIds
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case hpcClusterIds = "HpcClusterIds"
         }
     }
-    
+
     /// DeleteHpcClusters返回参数结构体
     public struct DeleteHpcClustersResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除高性能计算集群
     ///
     /// 当高性能计算集群为空, 即集群内没有任何设备时候, 可以删除该集群。
@@ -46,7 +46,7 @@ extension Cvm {
     public func deleteHpcClusters(_ input: DeleteHpcClustersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteHpcClustersResponse > {
         self.client.execute(action: "DeleteHpcClusters", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除高性能计算集群
     ///
     /// 当高性能计算集群为空, 即集群内没有任何设备时候, 可以删除该集群。
@@ -54,7 +54,7 @@ extension Cvm {
     public func deleteHpcClusters(_ input: DeleteHpcClustersRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteHpcClustersResponse {
         try await self.client.execute(action: "DeleteHpcClusters", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除高性能计算集群
     ///
     /// 当高性能计算集群为空, 即集群内没有任何设备时候, 可以删除该集群。
@@ -62,7 +62,7 @@ extension Cvm {
     public func deleteHpcClusters(hpcClusterIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteHpcClustersResponse > {
         self.deleteHpcClusters(DeleteHpcClustersRequest(hpcClusterIds: hpcClusterIds), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除高性能计算集群
     ///
     /// 当高性能计算集群为空, 即集群内没有任何设备时候, 可以删除该集群。

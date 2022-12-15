@@ -19,31 +19,31 @@ extension Iotvideoindustry {
     public struct DeleteDeviceGroupRequest: TCRequestModel {
         /// 分组ID
         public let groupId: String
-        
-        public init (groupId: String) {
+
+        public init(groupId: String) {
             self.groupId = groupId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case groupId = "GroupId"
         }
     }
-    
+
     /// DeleteDeviceGroup返回参数结构体
     public struct DeleteDeviceGroupResponse: TCResponseModel {
         /// 响应结果
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let status: String?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case status = "Status"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除分组
     ///
     /// 本接口(DeleteDeviceGroup)用于删除分组。
@@ -51,7 +51,7 @@ extension Iotvideoindustry {
     public func deleteDeviceGroup(_ input: DeleteDeviceGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteDeviceGroupResponse > {
         self.client.execute(action: "DeleteDeviceGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除分组
     ///
     /// 本接口(DeleteDeviceGroup)用于删除分组。
@@ -59,7 +59,7 @@ extension Iotvideoindustry {
     public func deleteDeviceGroup(_ input: DeleteDeviceGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteDeviceGroupResponse {
         try await self.client.execute(action: "DeleteDeviceGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除分组
     ///
     /// 本接口(DeleteDeviceGroup)用于删除分组。
@@ -67,7 +67,7 @@ extension Iotvideoindustry {
     public func deleteDeviceGroup(groupId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteDeviceGroupResponse > {
         self.deleteDeviceGroup(DeleteDeviceGroupRequest(groupId: groupId), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除分组
     ///
     /// 本接口(DeleteDeviceGroup)用于删除分组。

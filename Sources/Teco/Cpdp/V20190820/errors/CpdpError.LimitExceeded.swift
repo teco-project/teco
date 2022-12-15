@@ -27,92 +27,92 @@ extension TCCpdpError {
             case midasOrderProcessing = "LimitExceeded.MidasOrderProcessing"
             case midasOrderSuccess = "LimitExceeded.MidasOrderSuccess"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 聚鑫文件过大。
         ///
         /// 请联系我们
         public static var midasLargeFile: LimitExceeded {
             LimitExceeded(.midasLargeFile)
         }
-        
+
         /// 聚鑫不允许并发下单。
         ///
         /// 请联系我们
         public static var midasOrder: LimitExceeded {
             LimitExceeded(.midasOrder)
         }
-        
+
         /// 聚鑫订单已取消。
         ///
         /// 请联系我们
         public static var midasOrderCanceled: LimitExceeded {
             LimitExceeded(.midasOrderCanceled)
         }
-        
+
         /// 聚鑫已关单。
         ///
         /// 请联系我们
         public static var midasOrderClosed: LimitExceeded {
             LimitExceeded(.midasOrderClosed)
         }
-        
+
         /// 聚鑫订单已过期，包括超时未支付、超过退款期限等情况。
         ///
         /// 请联系我们
         public static var midasOrderExpired: LimitExceeded {
             LimitExceeded(.midasOrderExpired)
         }
-        
+
         /// 聚鑫处理失败。
         ///
         /// 请联系我们
         public static var midasOrderFailed: LimitExceeded {
             LimitExceeded(.midasOrderFailed)
         }
-        
+
         /// 聚鑫处理部分成功部分失败。
         ///
         /// 请联系我们
         public static var midasOrderPartialSuccess: LimitExceeded {
             LimitExceeded(.midasOrderPartialSuccess)
         }
-        
+
         /// 聚鑫处理中。
         ///
         /// 请联系我们
         public static var midasOrderProcessing: LimitExceeded {
             LimitExceeded(.midasOrderProcessing)
         }
-        
+
         /// 聚鑫处理成功，请勿再提交。
         ///
         /// 请联系我们
         public static var midasOrderSuccess: LimitExceeded {
             LimitExceeded(.midasOrderSuccess)
         }
-        
+
         public func asCpdpError() -> TCCpdpError {
             let code: TCCpdpError.Code
             switch self.error {

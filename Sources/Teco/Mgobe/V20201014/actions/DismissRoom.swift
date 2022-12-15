@@ -19,31 +19,31 @@ extension Mgobe {
     public struct DismissRoomRequest: TCRequestModel {
         /// 表示游戏资源唯一 ID, 由后台自动分配, 无法修改。
         public let gameId: String
-        
+
         /// 表示游戏房间唯一ID。
         public let roomId: String
-        
-        public init (gameId: String, roomId: String) {
+
+        public init(gameId: String, roomId: String) {
             self.gameId = gameId
             self.roomId = roomId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case gameId = "GameId"
             case roomId = "RoomId"
         }
     }
-    
+
     /// DismissRoom返回参数结构体
     public struct DismissRoomResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 解散房间
     ///
     /// 此接口无法使用，游戏联机对战引擎MGOBE已于6.1正式下架，感谢您的支持
@@ -52,7 +52,7 @@ extension Mgobe {
     public func dismissRoom(_ input: DismissRoomRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DismissRoomResponse > {
         self.client.execute(action: "DismissRoom", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 解散房间
     ///
     /// 此接口无法使用，游戏联机对战引擎MGOBE已于6.1正式下架，感谢您的支持
@@ -61,7 +61,7 @@ extension Mgobe {
     public func dismissRoom(_ input: DismissRoomRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DismissRoomResponse {
         try await self.client.execute(action: "DismissRoom", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 解散房间
     ///
     /// 此接口无法使用，游戏联机对战引擎MGOBE已于6.1正式下架，感谢您的支持
@@ -70,7 +70,7 @@ extension Mgobe {
     public func dismissRoom(gameId: String, roomId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DismissRoomResponse > {
         self.dismissRoom(DismissRoomRequest(gameId: gameId, roomId: roomId), logger: logger, on: eventLoop)
     }
-    
+
     /// 解散房间
     ///
     /// 此接口无法使用，游戏联机对战引擎MGOBE已于6.1正式下架，感谢您的支持

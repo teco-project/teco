@@ -19,39 +19,39 @@ extension Lighthouse {
     public struct ModifyInstancesBundleRequest: TCRequestModel {
         /// 实例ID列表。一个或多个待操作的实例ID。可通过[DescribeInstances](https://cloud.tencent.com/document/api/1207/47573)接口返回值中的InstanceId获取。每次请求批量实例的上限为30。
         public let instanceIds: [String]
-        
+
         /// 待变更的套餐Id。可通过[DescribeBundles](https://cloud.tencent.com/document/api/1207/47575)接口返回值中的BundleId获取。
         public let bundleId: String
-        
+
         /// 是否自动抵扣代金券。取值范围：
         /// true：表示自动抵扣代金券
         /// false：表示不自动抵扣代金券
         /// 默认取值：false。
         public let autoVoucher: Bool?
-        
-        public init (instanceIds: [String], bundleId: String, autoVoucher: Bool? = nil) {
+
+        public init(instanceIds: [String], bundleId: String, autoVoucher: Bool? = nil) {
             self.instanceIds = instanceIds
             self.bundleId = bundleId
             self.autoVoucher = autoVoucher
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceIds = "InstanceIds"
             case bundleId = "BundleId"
             case autoVoucher = "AutoVoucher"
         }
     }
-    
+
     /// ModifyInstancesBundle返回参数结构体
     public struct ModifyInstancesBundleResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 变更实例套餐
     ///
     /// 本接口(ModifyInstancesBundle)用于变更一个或多个轻量应用服务器实例套餐。
@@ -62,7 +62,7 @@ extension Lighthouse {
     public func modifyInstancesBundle(_ input: ModifyInstancesBundleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyInstancesBundleResponse > {
         self.client.execute(action: "ModifyInstancesBundle", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 变更实例套餐
     ///
     /// 本接口(ModifyInstancesBundle)用于变更一个或多个轻量应用服务器实例套餐。
@@ -73,7 +73,7 @@ extension Lighthouse {
     public func modifyInstancesBundle(_ input: ModifyInstancesBundleRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyInstancesBundleResponse {
         try await self.client.execute(action: "ModifyInstancesBundle", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 变更实例套餐
     ///
     /// 本接口(ModifyInstancesBundle)用于变更一个或多个轻量应用服务器实例套餐。
@@ -84,7 +84,7 @@ extension Lighthouse {
     public func modifyInstancesBundle(instanceIds: [String], bundleId: String, autoVoucher: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyInstancesBundleResponse > {
         self.modifyInstancesBundle(ModifyInstancesBundleRequest(instanceIds: instanceIds, bundleId: bundleId, autoVoucher: autoVoucher), logger: logger, on: eventLoop)
     }
-    
+
     /// 变更实例套餐
     ///
     /// 本接口(ModifyInstancesBundle)用于变更一个或多个轻量应用服务器实例套餐。

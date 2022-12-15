@@ -19,31 +19,31 @@ extension Clb {
     public struct ModifyTargetGroupInstancesWeightRequest: TCRequestModel {
         /// 目标组ID。
         public let targetGroupId: String
-        
+
         /// 待修改权重的服务器数组。
         public let targetGroupInstances: [TargetGroupInstance]
-        
-        public init (targetGroupId: String, targetGroupInstances: [TargetGroupInstance]) {
+
+        public init(targetGroupId: String, targetGroupInstances: [TargetGroupInstance]) {
             self.targetGroupId = targetGroupId
             self.targetGroupInstances = targetGroupInstances
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case targetGroupId = "TargetGroupId"
             case targetGroupInstances = "TargetGroupInstances"
         }
     }
-    
+
     /// ModifyTargetGroupInstancesWeight返回参数结构体
     public struct ModifyTargetGroupInstancesWeightResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 批量修改目标组的服务器权重
     ///
     /// 批量修改目标组的服务器权重。
@@ -52,7 +52,7 @@ extension Clb {
     public func modifyTargetGroupInstancesWeight(_ input: ModifyTargetGroupInstancesWeightRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyTargetGroupInstancesWeightResponse > {
         self.client.execute(action: "ModifyTargetGroupInstancesWeight", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 批量修改目标组的服务器权重
     ///
     /// 批量修改目标组的服务器权重。
@@ -61,7 +61,7 @@ extension Clb {
     public func modifyTargetGroupInstancesWeight(_ input: ModifyTargetGroupInstancesWeightRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTargetGroupInstancesWeightResponse {
         try await self.client.execute(action: "ModifyTargetGroupInstancesWeight", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 批量修改目标组的服务器权重
     ///
     /// 批量修改目标组的服务器权重。
@@ -70,7 +70,7 @@ extension Clb {
     public func modifyTargetGroupInstancesWeight(targetGroupId: String, targetGroupInstances: [TargetGroupInstance], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyTargetGroupInstancesWeightResponse > {
         self.modifyTargetGroupInstancesWeight(ModifyTargetGroupInstancesWeightRequest(targetGroupId: targetGroupId, targetGroupInstances: targetGroupInstances), logger: logger, on: eventLoop)
     }
-    
+
     /// 批量修改目标组的服务器权重
     ///
     /// 批量修改目标组的服务器权重。

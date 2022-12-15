@@ -24,57 +24,57 @@ extension TCThpcError {
             case nodeStatusNotSupport = "UnsupportedOperation.NodeStatusNotSupport"
             case vpcIdConflict = "UnsupportedOperation.VpcIdConflict"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 该伸缩组已绑定集群，请更换伸缩组。
         public static var autoScalingGroupAlreadyBinded: UnsupportedOperation {
             UnsupportedOperation(.autoScalingGroupAlreadyBinded)
         }
-        
+
         public static var autoScalingType: UnsupportedOperation {
             UnsupportedOperation(.autoScalingType)
         }
-        
+
         /// 该集群当前状态不支持该操作。
         public static var clusterStatusNotSupport: UnsupportedOperation {
             UnsupportedOperation(.clusterStatusNotSupport)
         }
-        
+
         /// 类型节点不支持当前操作。
         public static var invalidNodeRole: UnsupportedOperation {
             UnsupportedOperation(.invalidNodeRole)
         }
-        
+
         public static var nodeStatusNotSupport: UnsupportedOperation {
             UnsupportedOperation(.nodeStatusNotSupport)
         }
-        
+
         /// vpc冲突，不支持当前操作。
         public static var vpcIdConflict: UnsupportedOperation {
             UnsupportedOperation(.vpcIdConflict)
         }
-        
+
         public func asThpcError() -> TCThpcError {
             let code: TCThpcError.Code
             switch self.error {

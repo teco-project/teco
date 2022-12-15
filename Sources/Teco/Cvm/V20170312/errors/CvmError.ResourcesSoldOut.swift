@@ -21,36 +21,36 @@ extension TCCvmError {
             case eipInsufficient = "ResourcesSoldOut.EipInsufficient"
             case specifiedInstanceType = "ResourcesSoldOut.SpecifiedInstanceType"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 该可用区已售罄
         ///
         /// 无
         public static var availableZone: ResourcesSoldOut {
             ResourcesSoldOut(.availableZone)
         }
-        
+
         /// 公网IP已售罄。
         ///
         /// 1. 同网络同学确认当前地域的公网IP是否已售罄
@@ -58,12 +58,12 @@ extension TCCvmError {
         public static var eipInsufficient: ResourcesSoldOut {
             ResourcesSoldOut(.eipInsufficient)
         }
-        
+
         /// 指定的实例类型已售罄。
         public static var specifiedInstanceType: ResourcesSoldOut {
             ResourcesSoldOut(.specifiedInstanceType)
         }
-        
+
         public func asCvmError() -> TCCvmError {
             let code: TCCvmError.Code
             switch self.error {

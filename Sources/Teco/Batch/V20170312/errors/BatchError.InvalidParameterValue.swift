@@ -41,144 +41,144 @@ extension TCBatchError {
             case unsupportedBatchInstanceChargeType = "InvalidParameterValue.UnsupportedBatchInstanceChargeType"
             case other = "InvalidParameterValue"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 计算环境参数校验失败。
         public static var computeEnv: InvalidParameterValue {
             InvalidParameterValue(.computeEnv)
         }
-        
+
         /// 找不到依赖任务定义。
         public static var dependenceNotFoundTaskName: InvalidParameterValue {
             InvalidParameterValue(.dependenceNotFoundTaskName)
         }
-        
+
         /// 禁止环状任务依赖关系。
         public static var dependenceUnfeasible: InvalidParameterValue {
             InvalidParameterValue(.dependenceUnfeasible)
         }
-        
+
         /// 实例ID重复。
         public static var instanceIdDuplicated: InvalidParameterValue {
             InvalidParameterValue(.instanceIdDuplicated)
         }
-        
+
         /// 不支持指定的实例类型。
         public static var instanceType: InvalidParameterValue {
             InvalidParameterValue(.instanceType)
         }
-        
+
         /// 实例类型不能有重复值。
         public static var instanceTypeDuplicate: InvalidParameterValue {
             InvalidParameterValue(.instanceTypeDuplicate)
         }
-        
+
         /// 实例类型列表不能为空。
         public static var instanceTypesEmpty: InvalidParameterValue {
             InvalidParameterValue(.instanceTypesEmpty)
         }
-        
+
         /// DataTypeAny不合法。
         public static var invalidDataTypeAny: InvalidParameterValue {
             InvalidParameterValue(.invalidDataTypeAny)
         }
-        
+
         /// Filter参数不正确。
         public static var invalidFilter: InvalidParameterValue {
             InvalidParameterValue(.invalidFilter)
         }
-        
+
         /// 可用区和地域不匹配。
         public static var invalidZoneMismatchRegion: InvalidParameterValue {
             InvalidParameterValue(.invalidZoneMismatchRegion)
         }
-        
+
         /// Filter参数值数量超过限制。
         public static var limitExceeded: InvalidParameterValue {
             InvalidParameterValue(.limitExceeded)
         }
-        
+
         /// 非法的本地存储路径。
         public static var localPath: InvalidParameterValue {
             InvalidParameterValue(.localPath)
         }
-        
+
         /// 重试次数过大。
         public static var maxRetryCount: InvalidParameterValue {
             InvalidParameterValue(.maxRetryCount)
         }
-        
+
         /// 非法的负值参数。
         public static var negative: InvalidParameterValue {
             InvalidParameterValue(.negative)
         }
-        
+
         /// 参数值不是浮点型。
         public static var notFloat: InvalidParameterValue {
             InvalidParameterValue(.notFloat)
         }
-        
+
         /// 指定的OsTypeId不合法。
         public static var osTypeId: InvalidParameterValue {
             InvalidParameterValue(.osTypeId)
         }
-        
+
         /// 该地域不支持创建黑石计算环境。
         public static var regionNotSupportCpm: InvalidParameterValue {
             InvalidParameterValue(.regionNotSupportCpm)
         }
-        
+
         /// 非法的存储路径格式。
         public static var remoteStoragePath: InvalidParameterValue {
             InvalidParameterValue(.remoteStoragePath)
         }
-        
+
         /// 非法的存储类型。
         public static var remoteStorageSchemeType: InvalidParameterValue {
             InvalidParameterValue(.remoteStorageSchemeType)
         }
-        
+
         /// 指定的ResourceType不合法。
         public static var resourceType: InvalidParameterValue {
             InvalidParameterValue(.resourceType)
         }
-        
+
         /// Zone不可用。
         public static var unavailableZone: InvalidParameterValue {
             InvalidParameterValue(.unavailableZone)
         }
-        
+
         /// 批量计算不支持的机型付费类型。
         public static var unsupportedBatchInstanceChargeType: InvalidParameterValue {
             InvalidParameterValue(.unsupportedBatchInstanceChargeType)
         }
-        
+
         /// 参数取值错误。
         public static var other: InvalidParameterValue {
             InvalidParameterValue(.other)
         }
-        
+
         public func asBatchError() -> TCBatchError {
             let code: TCBatchError.Code
             switch self.error {

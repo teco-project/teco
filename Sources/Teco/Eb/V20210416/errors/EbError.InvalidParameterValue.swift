@@ -59,231 +59,231 @@ extension TCEbError {
             case transformations = "InvalidParameterValue.Transformations"
             case type = "InvalidParameterValue.Type"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// AMPParams取值与规范不符，请修正后再试。
         public static var ampParams: InvalidParameterValue {
             InvalidParameterValue(.ampParams)
         }
-        
+
         /// BatchEventCount取值与规范不符，请修正后再试。
         public static var batchEventCount: InvalidParameterValue {
             InvalidParameterValue(.batchEventCount)
         }
-        
+
         /// BatchTimeout取值与规范不符，请修正后再试。
         public static var batchTimeout: InvalidParameterValue {
             InvalidParameterValue(.batchTimeout)
         }
-        
+
         /// Ckafka 目标配置参数取值与规范不符，请修正后再试。
         public static var cKafkaTargetParams: InvalidParameterValue {
             InvalidParameterValue(.cKafkaTargetParams)
         }
-        
+
         /// CallbackType取值与规范不符，请修正后再试。
         public static var callbackType: InvalidParameterValue {
             InvalidParameterValue(.callbackType)
         }
-        
+
         /// CallbackWeComURL取值与规范不符，请修正后再试。
         public static var callbackWeComURL: InvalidParameterValue {
             InvalidParameterValue(.callbackWeComURL)
         }
-        
+
         /// ConnectionDescription取值与规范不符，请修正后再试。
         public static var connectionDescription: InvalidParameterValue {
             InvalidParameterValue(.connectionDescription)
         }
-        
+
         /// ConnectionId取值与规范不符，请修正后再试。
         public static var connectionId: InvalidParameterValue {
             InvalidParameterValue(.connectionId)
         }
-        
+
         /// ConnectionName取值与规范不符，请修正后再试。
         public static var connectionName: InvalidParameterValue {
             InvalidParameterValue(.connectionName)
         }
-        
+
         /// 死信队列配置参数取值与规范不符，请修正后再试。
         public static var deadLetterConfig: InvalidParameterValue {
             InvalidParameterValue(.deadLetterConfig)
         }
-        
+
         /// Description取值与规范不符，请修正后再试。
         public static var description: InvalidParameterValue {
             InvalidParameterValue(.description)
         }
-        
+
         /// DTSParams取值与规范不符，请修正后再试。
         public static var dtsParams: InvalidParameterValue {
             InvalidParameterValue(.dtsParams)
         }
-        
+
         public static var elasticSearchTargetParams: InvalidParameterValue {
             InvalidParameterValue(.elasticSearchTargetParams)
         }
-        
+
         /// EventBusId取值与规范不符，请修正后再试。
         public static var eventBusId: InvalidParameterValue {
             InvalidParameterValue(.eventBusId)
         }
-        
+
         /// EventBusName取值与规范不符，请修正后再试。
         public static var eventBusName: InvalidParameterValue {
             InvalidParameterValue(.eventBusName)
         }
-        
+
         /// EventPattern取值与规范不符，请修正后再试。
         public static var eventPattern: InvalidParameterValue {
             InvalidParameterValue(.eventPattern)
         }
-        
+
         /// 链路追踪配置参数取值与规范不符，请修正后再试。
         public static var eventTraceConfig: InvalidParameterValue {
             InvalidParameterValue(.eventTraceConfig)
         }
-        
+
         /// Filters取值与规范不符，请修正后再试。
         public static var filters: InvalidParameterValue {
             InvalidParameterValue(.filters)
         }
-        
+
         /// InvalidApiRequestConfig取值与规范不符，请修正后再试。
         public static var invalidApiRequestConfig: InvalidParameterValue {
             InvalidParameterValue(.invalidApiRequestConfig)
         }
-        
+
         /// 事件格式非法，请修正后再试。
         public static var invalidEvent: InvalidParameterValue {
             InvalidParameterValue(.invalidEvent)
         }
-        
+
         /// 非法的事件集，请检查后重试。
         public static var invalidEventBus: InvalidParameterValue {
             InvalidParameterValue(.invalidEventBus)
         }
-        
+
         /// 事件模式格式错误，请修正后再试。
         public static var invalidFilterRule: InvalidParameterValue {
             InvalidParameterValue(.invalidFilterRule)
         }
-        
+
         /// 非法的匹配规则，请检查后重试。
         public static var invalidPattern: InvalidParameterValue {
             InvalidParameterValue(.invalidPattern)
         }
-        
+
         /// Limit取值与规范不符，请修正后再试。
         public static var limit: InvalidParameterValue {
             InvalidParameterValue(.limit)
         }
-        
+
         public static var linkMode: InvalidParameterValue {
             InvalidParameterValue(.linkMode)
         }
-        
+
         /// NoticeReceiverChannel取值与规范不符，请修正后再试。
         public static var noticeReceiverChannel: InvalidParameterValue {
             InvalidParameterValue(.noticeReceiverChannel)
         }
-        
+
         /// NoticeReceiverTimeWindow取值与规范不符，请修正后再试。
         public static var noticeReceiverTimeWindow: InvalidParameterValue {
             InvalidParameterValue(.noticeReceiverTimeWindow)
         }
-        
+
         /// NoticeReceiverUserIds取值与规范不符，请修正后再试。
         public static var noticeReceiverUserIds: InvalidParameterValue {
             InvalidParameterValue(.noticeReceiverUserIds)
         }
-        
+
         /// NoticeReceiverUserType取值与规范不符，请修正后再试。
         public static var noticeReceiverUserType: InvalidParameterValue {
             InvalidParameterValue(.noticeReceiverUserType)
         }
-        
+
         /// Offset取值与规范不符，请修正后再试。
         public static var offset: InvalidParameterValue {
             InvalidParameterValue(.offset)
         }
-        
+
         /// Order取值与规范不符，请修正后再试。
         public static var order: InvalidParameterValue {
             InvalidParameterValue(.order)
         }
-        
+
         /// OrderBy取值与规范不符，请修正后再试。
         public static var orderBy: InvalidParameterValue {
             InvalidParameterValue(.orderBy)
         }
-        
+
         /// Qualifier取值与规范不符，请修正后再试。
         public static var qualifier: InvalidParameterValue {
             InvalidParameterValue(.qualifier)
         }
-        
+
         /// RuleId取值与规范不符，请修正后再试。
         public static var ruleId: InvalidParameterValue {
             InvalidParameterValue(.ruleId)
         }
-        
+
         /// RuleName取值与规范不符，请修正后再试。
         public static var ruleName: InvalidParameterValue {
             InvalidParameterValue(.ruleName)
         }
-        
+
         public static var tags: InvalidParameterValue {
             InvalidParameterValue(.tags)
         }
-        
+
         /// TargetDescription取值与规范不符，请修正后再试。
         public static var targetDescription: InvalidParameterValue {
             InvalidParameterValue(.targetDescription)
         }
-        
+
         /// TargetId取值与规范不符，请修正后再试。
         public static var targetId: InvalidParameterValue {
             InvalidParameterValue(.targetId)
         }
-        
+
         /// 数据转换配置参数取值与规范不符，请修正后再试。
         public static var transformationID: InvalidParameterValue {
             InvalidParameterValue(.transformationID)
         }
-        
+
         /// 数据转换任务创建失败，配置参数取值与规范不符，请修正后再试。
         public static var transformations: InvalidParameterValue {
             InvalidParameterValue(.transformations)
         }
-        
+
         /// Type取值与规范不符，请修正后再试。
         public static var type: InvalidParameterValue {
             InvalidParameterValue(.type)
         }
-        
+
         public func asEbError() -> TCEbError {
             let code: TCEbError.Code
             switch self.error {

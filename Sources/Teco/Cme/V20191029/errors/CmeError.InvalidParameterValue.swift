@@ -68,288 +68,288 @@ extension TCCmeError {
             case vodSubAppid = "InvalidParameterValue.VodSubAppid"
             case other = "InvalidParameterValue"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 画布宽高比不合法。
         public static var aspectRatio: InvalidParameterValue {
             InvalidParameterValue(.aspectRatio)
         }
-        
+
         /// 画布宽高比不合法。
         public static var aspectRatioSet: InvalidParameterValue {
             InvalidParameterValue(.aspectRatioSet)
         }
-        
+
         /// 项目类别不合法。
         public static var category: InvalidParameterValue {
             InvalidParameterValue(.category)
         }
-        
+
         /// 项目类别不合法。
         public static var categorySet: InvalidParameterValue {
             InvalidParameterValue(.categorySet)
         }
-        
+
         /// 分类已存在。
         public static var classExist: InvalidParameterValue {
             InvalidParameterValue(.classExist)
         }
-        
+
         /// 分类不为空。
         public static var classNotEmpty: InvalidParameterValue {
             InvalidParameterValue(.classNotEmpty)
         }
-        
+
         /// 分类不存在。
         public static var classNotExist: InvalidParameterValue {
             InvalidParameterValue(.classNotExist)
         }
-        
+
         /// 分类路径不合法。
         public static var classPath: InvalidParameterValue {
             InvalidParameterValue(.classPath)
         }
-        
+
         /// 查询不到数据。
         public static var dataNotFoundInDB: InvalidParameterValue {
             InvalidParameterValue(.dataNotFoundInDB)
         }
-        
+
         /// 模板 ID 无效。
         public static var definition: InvalidParameterValue {
             InvalidParameterValue(.definition)
         }
-        
+
         /// 目标分类不存在。
         public static var dstClassPathNotExist: InvalidParameterValue {
             InvalidParameterValue(.dstClassPathNotExist)
         }
-        
+
         /// 导出目标不合法。
         public static var exportDestination: InvalidParameterValue {
             InvalidParameterValue(.exportDestination)
         }
-        
+
         public static var extInfoInvalid: InvalidParameterValue {
             InvalidParameterValue(.extInfoInvalid)
         }
-        
+
         /// 原始媒资信息不存在。
         ///
         /// 检查填写的原始媒资信息是否有效。
         public static var externalMediaInfoNotExist: InvalidParameterValue {
             InvalidParameterValue(.externalMediaInfoNotExist)
         }
-        
+
         /// 转推输入流参数非法。
         public static var input: InvalidParameterValue {
             InvalidParameterValue(.input)
         }
-        
+
         /// 返回记录条数不合法。
         public static var limit: InvalidParameterValue {
             InvalidParameterValue(.limit)
         }
-        
+
         /// 媒体 ID 无效。
         public static var materialId: InvalidParameterValue {
             InvalidParameterValue(.materialId)
         }
-        
+
         /// 媒体替换信息无效。
         public static var mediaReplacementInfo: InvalidParameterValue {
             InvalidParameterValue(.mediaReplacementInfo)
         }
-        
+
         /// 无效的成员列表。
         public static var memberIds: InvalidParameterValue {
             InvalidParameterValue(.memberIds)
         }
-        
+
         /// 团队成员不存在。
         public static var memberNotExist: InvalidParameterValue {
             InvalidParameterValue(.memberNotExist)
         }
-        
+
         /// 名称字段编辑错误，需使用 UTF8 编码。
         public static var name: InvalidParameterValue {
             InvalidParameterValue(.name)
         }
-        
+
         /// 名称字段长度超长，限制 30 个中文字符。
         public static var nameLenLimt: InvalidParameterValue {
             InvalidParameterValue(.nameLenLimt)
         }
-        
+
         /// 非团队成员。
         ///
         /// 检查操作者是否是团队成员。
         public static var notTeamMemberError: InvalidParameterValue {
             InvalidParameterValue(.notTeamMemberError)
         }
-        
+
         /// 分页偏移不合法。
         public static var offset: InvalidParameterValue {
             InvalidParameterValue(.offset)
         }
-        
+
         /// 无效的操作者。
         public static var `operator`: InvalidParameterValue {
             InvalidParameterValue(.`operator`)
         }
-        
+
         /// 归属者 ID 不合法。
         public static var ownerId: InvalidParameterValue {
             InvalidParameterValue(.ownerId)
         }
-        
+
         /// 团队 Owner 的备注不合法。
         public static var ownerRemark: InvalidParameterValue {
             InvalidParameterValue(.ownerRemark)
         }
-        
+
         /// 归属者类型不合法。
         public static var ownerType: InvalidParameterValue {
             InvalidParameterValue(.ownerType)
         }
-        
+
         /// 平台参数取值错误。
         public static var platform: InvalidParameterValue {
             InvalidParameterValue(.platform)
         }
-        
+
         /// 预处理模板 ID 无效。
         public static var preProcessDefinition: InvalidParameterValue {
             InvalidParameterValue(.preProcessDefinition)
         }
-        
+
         /// 项目不存在。
         public static var projectId: InvalidParameterValue {
             InvalidParameterValue(.projectId)
         }
-        
+
         /// 轨道素材替换类型无效或不匹配。
         ///
         /// 需要保证新替换的素材类型与模板的素材类型一致，视频只能使用视频替换，音频只能使用音频替换。
         public static var replacementType: InvalidParameterValue {
             InvalidParameterValue(.replacementType)
         }
-        
+
         /// 角色不合法。
         public static var role: InvalidParameterValue {
             InvalidParameterValue(.role)
         }
-        
+
         /// 排序方式无效。
         public static var sortOrder: InvalidParameterValue {
             InvalidParameterValue(.sortOrder)
         }
-        
+
         /// 云转推信息非法。
         public static var streamConnect: InvalidParameterValue {
             InvalidParameterValue(.streamConnect)
         }
-        
+
         /// 转推输入源信息非法。
         public static var streamConnectInputInvalid: InvalidParameterValue {
             InvalidParameterValue(.streamConnectInputInvalid)
         }
-        
+
         /// 转推输出源信息非法。
         public static var streamConnectOutputInvalid: InvalidParameterValue {
             InvalidParameterValue(.streamConnectOutputInvalid)
         }
-        
+
         /// 输入流参数错误。
         public static var streamInput: InvalidParameterValue {
             InvalidParameterValue(.streamInput)
         }
-        
+
         /// 导播台项目输入信息无效。
         ///
         /// 更新导播台项目输入信息。
         public static var switcherProjectInput: InvalidParameterValue {
             InvalidParameterValue(.switcherProjectInput)
         }
-        
+
         /// 任务 Id 无效。
         ///
         /// 检查任务  Id 是否存在。
         public static var taskId: InvalidParameterValue {
             InvalidParameterValue(.taskId)
         }
-        
+
         /// 团队 ID 已经存在，不能重复创建。
         public static var teamId: InvalidParameterValue {
             InvalidParameterValue(.teamId)
         }
-        
+
         /// 团队不存在。
         public static var teamNotExist: InvalidParameterValue {
             InvalidParameterValue(.teamNotExist)
         }
-        
+
         /// 发布通道 ID 无效。
         public static var thirdyPartyPublishChannelId: InvalidParameterValue {
             InvalidParameterValue(.thirdyPartyPublishChannelId)
         }
-        
+
         /// 轨道数据无效。
         public static var trackData: InvalidParameterValue {
             InvalidParameterValue(.trackData)
         }
-        
+
         /// 轨道元素无效。
         public static var trackItem: InvalidParameterValue {
             InvalidParameterValue(.trackItem)
         }
-        
+
         /// 视频编辑模板不存在。
         public static var videoEditTemplateIdNotExist: InvalidParameterValue {
             InvalidParameterValue(.videoEditTemplateIdNotExist)
         }
-        
+
         /// 参数缺少 VodFile。
         public static var vodFileId: InvalidParameterValue {
             InvalidParameterValue(.vodFileId)
         }
-        
+
         /// 点播文件不存在。
         public static var vodFileNotExist: InvalidParameterValue {
             InvalidParameterValue(.vodFileNotExist)
         }
-        
+
         /// 绑定的点播子应用无效。
         public static var vodSubAppid: InvalidParameterValue {
             InvalidParameterValue(.vodSubAppid)
         }
-        
+
         /// 参数取值错误。
         public static var other: InvalidParameterValue {
             InvalidParameterValue(.other)
         }
-        
+
         public func asCmeError() -> TCCmeError {
             let code: TCCmeError.Code
             switch self.error {

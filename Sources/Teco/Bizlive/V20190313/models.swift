@@ -19,27 +19,27 @@ extension Bizlive {
     public struct DayStreamPlayInfo: TCInputModel {
         /// 带宽（单位Mbps）。
         public let bandwidth: Float
-        
+
         /// 流量 （单位MB）。
         public let flux: Float
-        
+
         /// 在线人数。
         public let online: UInt64
-        
+
         /// 请求数。
         public let request: UInt64
-        
+
         /// 数据时间点，格式：yyyy-mm-dd HH:MM:SS。
         public let time: String
-        
-        public init (bandwidth: Float, flux: Float, online: UInt64, request: UInt64, time: String) {
+
+        public init(bandwidth: Float, flux: Float, online: UInt64, request: UInt64, time: String) {
             self.bandwidth = bandwidth
             self.flux = flux
             self.online = online
             self.request = request
             self.time = time
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case bandwidth = "Bandwidth"
             case flux = "Flux"
@@ -48,20 +48,20 @@ extension Bizlive {
             case time = "Time"
         }
     }
-    
+
     /// worker的区域信息
     public struct WorkerRegionInfo: TCInputModel {
         /// 该区域空闲机器数量
         public let idle: UInt64?
-        
+
         /// 区域
         public let region: String?
-        
-        public init (idle: UInt64? = nil, region: String? = nil) {
+
+        public init(idle: UInt64? = nil, region: String? = nil) {
             self.idle = idle
             self.region = region
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case idle = "Idle"
             case region = "Region"

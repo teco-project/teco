@@ -19,40 +19,40 @@ extension Cbs {
     public struct CopySnapshotCrossRegionsRequest: TCRequestModel {
         /// 快照需要复制到的目标地域，各地域的标准取值可通过接口[DescribeRegions](https://cloud.tencent.com/document/product/213/9456)查询，且只能传入支持快照的地域。
         public let destinationRegions: [String]
-        
+
         /// 需要跨地域复制的源快照ID，可通过[DescribeSnapshots](/document/product/362/15647)查询。
         public let snapshotId: String?
-        
+
         /// 新复制快照的名称，如果不传，则默认取值为“Copied 源快照ID from 地域名”。
         public let snapshotName: String?
-        
-        public init (destinationRegions: [String], snapshotId: String? = nil, snapshotName: String? = nil) {
+
+        public init(destinationRegions: [String], snapshotId: String? = nil, snapshotName: String? = nil) {
             self.destinationRegions = destinationRegions
             self.snapshotId = snapshotId
             self.snapshotName = snapshotName
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case destinationRegions = "DestinationRegions"
             case snapshotId = "SnapshotId"
             case snapshotName = "SnapshotName"
         }
     }
-    
+
     /// CopySnapshotCrossRegions返回参数结构体
     public struct CopySnapshotCrossRegionsResponse: TCResponseModel {
         /// 快照跨地域复制的结果，如果请求下发成功，则返回相应地地域的新快照ID，否则返回Error。
         public let snapshotCopyResultSet: [SnapshotCopyResult]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case snapshotCopyResultSet = "SnapshotCopyResultSet"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 快照跨地域复制
     ///
     /// 本接口（CopySnapshotCrossRegions）用于快照跨地域复制。
@@ -62,7 +62,7 @@ extension Cbs {
     public func copySnapshotCrossRegions(_ input: CopySnapshotCrossRegionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CopySnapshotCrossRegionsResponse > {
         self.client.execute(action: "CopySnapshotCrossRegions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 快照跨地域复制
     ///
     /// 本接口（CopySnapshotCrossRegions）用于快照跨地域复制。
@@ -72,7 +72,7 @@ extension Cbs {
     public func copySnapshotCrossRegions(_ input: CopySnapshotCrossRegionsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CopySnapshotCrossRegionsResponse {
         try await self.client.execute(action: "CopySnapshotCrossRegions", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 快照跨地域复制
     ///
     /// 本接口（CopySnapshotCrossRegions）用于快照跨地域复制。
@@ -82,7 +82,7 @@ extension Cbs {
     public func copySnapshotCrossRegions(destinationRegions: [String], snapshotId: String? = nil, snapshotName: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CopySnapshotCrossRegionsResponse > {
         self.copySnapshotCrossRegions(CopySnapshotCrossRegionsRequest(destinationRegions: destinationRegions, snapshotId: snapshotId, snapshotName: snapshotName), logger: logger, on: eventLoop)
     }
-    
+
     /// 快照跨地域复制
     ///
     /// 本接口（CopySnapshotCrossRegions）用于快照跨地域复制。

@@ -37,124 +37,124 @@ extension TCEcdnError {
             case ecdnUserTooManyTagKey = "InvalidParameter.EcdnUserTooManyTagKey"
             case paramError = "InvalidParameter.ParamError"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 标签键不存在。
         public static var ecdnCamTagKeyNotExist: InvalidParameter {
             InvalidParameter(.ecdnCamTagKeyNotExist)
         }
-        
+
         /// 无法解析证书信息。
         public static var ecdnCertNoCertInfo: InvalidParameter {
             InvalidParameter(.ecdnCertNoCertInfo)
         }
-        
+
         /// 缓存配置不合法 。
         public static var ecdnConfigInvalidCache: InvalidParameter {
             InvalidParameter(.ecdnConfigInvalidCache)
         }
-        
+
         /// 域名状态不合法。
         public static var ecdnDomainInvalidStatus: InvalidParameter {
             InvalidParameter(.ecdnDomainInvalidStatus)
         }
-        
+
         /// 内部接口错误，请联系腾讯云工程师进一步排查。
         public static var ecdnInterfaceError: InvalidParameter {
             InvalidParameter(.ecdnInterfaceError)
         }
-        
+
         /// 非法Area参数，请参考文档中示例参数填充。
         public static var ecdnInvalidParamArea: InvalidParameter {
             InvalidParameter(.ecdnInvalidParamArea)
         }
-        
+
         /// 统计粒度不合法，请参考文档中统计分析示例。
         public static var ecdnInvalidParamInterval: InvalidParameter {
             InvalidParameter(.ecdnInvalidParamInterval)
         }
-        
+
         /// 参数错误，请参考文档中示例参数填充。
         public static var ecdnParamError: InvalidParameter {
             InvalidParameter(.ecdnParamError)
         }
-        
+
         /// 刷新不支持泛域名。
         public static var ecdnPurgeWildcardNotAllowed: InvalidParameter {
             InvalidParameter(.ecdnPurgeWildcardNotAllowed)
         }
-        
+
         /// 该域名绑定的标签键数量过多。
         public static var ecdnResourceManyTagKey: InvalidParameter {
             InvalidParameter(.ecdnResourceManyTagKey)
         }
-        
+
         /// 日期不合法，请参考文档中日期示例。
         public static var ecdnStatInvalidDate: InvalidParameter {
             InvalidParameter(.ecdnStatInvalidDate)
         }
-        
+
         /// 统计类型不合法，请参考文档中统计分析示例。
         public static var ecdnStatInvalidMetric: InvalidParameter {
             InvalidParameter(.ecdnStatInvalidMetric)
         }
-        
+
         /// 标签键不合法。
         public static var ecdnTagKeyInvalid: InvalidParameter {
             InvalidParameter(.ecdnTagKeyInvalid)
         }
-        
+
         /// 标签键不存在。
         public static var ecdnTagKeyNotExist: InvalidParameter {
             InvalidParameter(.ecdnTagKeyNotExist)
         }
-        
+
         /// 标签键下的值数量过多。
         public static var ecdnTagKeyTooManyValue: InvalidParameter {
             InvalidParameter(.ecdnTagKeyTooManyValue)
         }
-        
+
         /// 标签值不合法。
         public static var ecdnTagValueInvalid: InvalidParameter {
             InvalidParameter(.ecdnTagValueInvalid)
         }
-        
+
         /// URL 超过限制长度。
         public static var ecdnUrlExceedLength: InvalidParameter {
             InvalidParameter(.ecdnUrlExceedLength)
         }
-        
+
         /// 该用户下标签键数量过多。
         public static var ecdnUserTooManyTagKey: InvalidParameter {
             InvalidParameter(.ecdnUserTooManyTagKey)
         }
-        
+
         /// 参数错误。
         public static var paramError: InvalidParameter {
             InvalidParameter(.paramError)
         }
-        
+
         public func asEcdnError() -> TCEcdnError {
             let code: TCEcdnError.Code
             switch self.error {

@@ -21,43 +21,43 @@ extension TCGaapError {
             case tagQuota = "LimitExceeded.TagQuota"
             case other = "LimitExceeded"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 域名数量超限制。
         public static var domain: LimitExceeded {
             LimitExceeded(.domain)
         }
-        
+
         public static var tagQuota: LimitExceeded {
             LimitExceeded(.tagQuota)
         }
-        
+
         /// 超过配额限制。
         public static var other: LimitExceeded {
             LimitExceeded(.other)
         }
-        
+
         public func asGaapError() -> TCGaapError {
             let code: TCGaapError.Code
             switch self.error {

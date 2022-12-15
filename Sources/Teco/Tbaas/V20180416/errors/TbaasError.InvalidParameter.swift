@@ -40,139 +40,139 @@ extension TCTbaasError {
             case reDeployingContract = "InvalidParameter.ReDeployingContract"
             case roleInvalid = "InvalidParameter.RoleInvalid"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// Bcos账号参数错误。
         public static var accountParamError: InvalidParameter {
             InvalidParameter(.accountParamError)
         }
-        
+
         /// Bcos无效的机构信息。
         public static var agencyInvalid: InvalidParameter {
             InvalidParameter(.agencyInvalid)
         }
-        
+
         /// Bcos新增机构网络关联信息入参错误。
         public static var agencyNetParamInvalid: InvalidParameter {
             InvalidParameter(.agencyNetParamInvalid)
         }
-        
+
         /// Bcos所属联盟编号不能为空。
         public static var allianceIdOfNetEmpty: InvalidParameter {
             InvalidParameter(.allianceIdOfNetEmpty)
         }
-        
+
         /// Bcos无效的合约编号。
         public static var contractIdInvalid: InvalidParameter {
             InvalidParameter(.contractIdInvalid)
         }
-        
+
         /// Bcos数据已存在，请勿重复添加。
         public static var dataHadExist: InvalidParameter {
             InvalidParameter(.dataHadExist)
         }
-        
+
         /// Bcos无效参数。
         public static var emptyParam: InvalidParameter {
             InvalidParameter(.emptyParam)
         }
-        
+
         /// Bcos无效的失效时间。
         public static var expireTimeInvalid: InvalidParameter {
             InvalidParameter(.expireTimeInvalid)
         }
-        
+
         /// Bcos前置的IP或端口无效。
         public static var frontConnFail: InvalidParameter {
             InvalidParameter(.frontConnFail)
         }
-        
+
         /// Bcos IP格式错误。
         public static var frontIpInvalid: InvalidParameter {
             InvalidParameter(.frontIpInvalid)
         }
-        
+
         /// Bcos新增前置服务参数错误。
         public static var frontParamError: InvalidParameter {
             InvalidParameter(.frontParamError)
         }
-        
+
         /// Bcos前置服务调用失败。
         public static var frontRequestFail: InvalidParameter {
             InvalidParameter(.frontRequestFail)
         }
-        
+
         /// 输入参数存在违规内容。
         public static var inputDataViolation: InvalidParameter {
             InvalidParameter(.inputDataViolation)
         }
-        
+
         /// Bcos无效的合约参数。
         public static var invalidContractArg: InvalidParameter {
             InvalidParameter(.invalidContractArg)
         }
-        
+
         /// Bcos无效的网络编号。
         public static var netIdInvalid: InvalidParameter {
             InvalidParameter(.netIdInvalid)
         }
-        
+
         /// Bcos网络参数错误。
         public static var netParamError: InvalidParameter {
             InvalidParameter(.netParamError)
         }
-        
+
         /// Bcos新增私钥用户参数错误。
         public static var newKeyUserParamError: InvalidParameter {
             InvalidParameter(.newKeyUserParamError)
         }
-        
+
         /// Bcos无可删信息,请确认后重试。
         public static var noInfoToDelete: InvalidParameter {
             InvalidParameter(.noInfoToDelete)
         }
-        
+
         /// Bcos没有有效的前置服务信息。
         public static var notFoundValidFront: InvalidParameter {
             InvalidParameter(.notFoundValidFront)
         }
-        
+
         /// Bcos不能重复部署合约。
         public static var reDeployedContract: InvalidParameter {
             InvalidParameter(.reDeployedContract)
         }
-        
+
         /// Bcos合约正在部署中，请勿重复操作。
         public static var reDeployingContract: InvalidParameter {
             InvalidParameter(.reDeployingContract)
         }
-        
+
         /// Bcos无效的角色。
         public static var roleInvalid: InvalidParameter {
             InvalidParameter(.roleInvalid)
         }
-        
+
         public func asTbaasError() -> TCTbaasError {
             let code: TCTbaasError.Code
             switch self.error {

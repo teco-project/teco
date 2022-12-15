@@ -29,84 +29,84 @@ extension TCEiamError {
             case userNameCanNotBeEmpty = "InvalidParameterValue.UserNameCanNotBeEmpty"
             case userPhoneCanNotBeEmpty = "InvalidParameterValue.UserPhoneCanNotBeEmpty"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 账号ID列表不能为空。
         public static var accountIdsCanNotBeEmpty: InvalidParameterValue {
             InvalidParameterValue(.accountIdsCanNotBeEmpty)
         }
-        
+
         /// 应用ID不能为空。
         public static var appIdCanNotBeEmpty: InvalidParameterValue {
             InvalidParameterValue(.appIdCanNotBeEmpty)
         }
-        
+
         /// 应用信息分页展示的排列属性不合法。
         public static var applicationInfoSortKeyIllegal: InvalidParameterValue {
             InvalidParameterValue(.applicationInfoSortKeyIllegal)
         }
-        
+
         /// EntityType不匹配。
         public static var entityTypeNotMatch: InvalidParameterValue {
             InvalidParameterValue(.entityTypeNotMatch)
         }
-        
+
         /// 参数的长度超出限制。
         public static var lengthExceeded: InvalidParameterValue {
             InvalidParameterValue(.lengthExceeded)
         }
-        
+
         /// 新密码不能为空。
         public static var newPasswordCanNotBeEmpty: InvalidParameterValue {
             InvalidParameterValue(.newPasswordCanNotBeEmpty)
         }
-        
+
         /// 参数不合法。
         public static var parameterIllegal: InvalidParameterValue {
             InvalidParameterValue(.parameterIllegal)
         }
-        
+
         /// 分页展示的排序属性不合法。
         public static var sortKeyIllegal: InvalidParameterValue {
             InvalidParameterValue(.sortKeyIllegal)
         }
-        
+
         /// 用户ID不能为空。
         public static var userIdCanNotBeEmpty: InvalidParameterValue {
             InvalidParameterValue(.userIdCanNotBeEmpty)
         }
-        
+
         /// 用户名不能为空。
         public static var userNameCanNotBeEmpty: InvalidParameterValue {
             InvalidParameterValue(.userNameCanNotBeEmpty)
         }
-        
+
         /// 用户手机不能为空。
         public static var userPhoneCanNotBeEmpty: InvalidParameterValue {
             InvalidParameterValue(.userPhoneCanNotBeEmpty)
         }
-        
+
         public func asEiamError() -> TCEiamError {
             let code: TCEiamError.Code
             switch self.error {

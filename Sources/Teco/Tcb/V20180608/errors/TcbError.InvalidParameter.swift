@@ -26,69 +26,69 @@ extension TCTcbError {
             case serviceNotExist = "InvalidParameter.ServiceNotExist"
             case other = "InvalidParameter"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 接口名非法。
         public static var action: InvalidParameter {
             InvalidParameter(.action)
         }
-        
+
         /// API已经创建。
         public static var apiCreated: InvalidParameter {
             InvalidParameter(.apiCreated)
         }
-        
+
         /// 环境ID非法。
         public static var envId: InvalidParameter {
             InvalidParameter(.envId)
         }
-        
+
         /// 路径已存在。
         public static var pathExist: InvalidParameter {
             InvalidParameter(.pathExist)
         }
-        
+
         /// 对应资源不存在。
         public static var resourceNotExists: InvalidParameter {
             InvalidParameter(.resourceNotExists)
         }
-        
+
         /// 没有操作权限。
         public static var serviceEvil: InvalidParameter {
             InvalidParameter(.serviceEvil)
         }
-        
+
         /// 服务不存在。
         public static var serviceNotExist: InvalidParameter {
             InvalidParameter(.serviceNotExist)
         }
-        
+
         /// 参数错误。
         public static var other: InvalidParameter {
             InvalidParameter(.other)
         }
-        
+
         public func asTcbError() -> TCTcbError {
             let code: TCTcbError.Code
             switch self.error {

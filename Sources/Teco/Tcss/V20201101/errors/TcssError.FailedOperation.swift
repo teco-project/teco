@@ -30,89 +30,89 @@ extension TCTcssError {
             case ruleSelectImageOutRange = "FailedOperation.RuleSelectImageOutRange"
             case other = "FailedOperation"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 客户端已离线。
         public static var agentOffline: FailedOperation {
             FailedOperation(.agentOffline)
         }
-        
+
         /// 授权数不足。
         public static var authorizedNotEnough: FailedOperation {
             FailedOperation(.authorizedNotEnough)
         }
-        
+
         /// 响应数据值不正确。
         public static var dataValueNotCorrect: FailedOperation {
             FailedOperation(.dataValueNotCorrect)
         }
-        
+
         /// 在扫描中或无扫描权限建议授权后扫描。
         public static var errAlreadyScanning: FailedOperation {
             FailedOperation(.errAlreadyScanning)
         }
-        
+
         /// 当前规则信息未找到。
         public static var errRuleNotFind: FailedOperation {
             FailedOperation(.errRuleNotFind)
         }
-        
+
         /// 通知策略变更失败。
         public static var notifyPolicyChangeFailed: FailedOperation {
             FailedOperation(.notifyPolicyChangeFailed)
         }
-        
+
         /// 子规则配置过多。
         public static var ruleConfigTooMany: FailedOperation {
             FailedOperation(.ruleConfigTooMany)
         }
-        
+
         /// 规则信息存在重复。
         public static var ruleInfoRepeat: FailedOperation {
             FailedOperation(.ruleInfoRepeat)
         }
-        
+
         /// 规则名字存在重复。
         public static var ruleNameRepeat: FailedOperation {
             FailedOperation(.ruleNameRepeat)
         }
-        
+
         /// 当前规则信息未找到。
         public static var ruleNotFind: FailedOperation {
             FailedOperation(.ruleNotFind)
         }
-        
+
         /// 选择镜像数量过多。
         public static var ruleSelectImageOutRange: FailedOperation {
             FailedOperation(.ruleSelectImageOutRange)
         }
-        
+
         /// 操作失败。
         public static var other: FailedOperation {
             FailedOperation(.other)
         }
-        
+
         public func asTcssError() -> TCTcssError {
             let code: TCTcssError.Code
             switch self.error {

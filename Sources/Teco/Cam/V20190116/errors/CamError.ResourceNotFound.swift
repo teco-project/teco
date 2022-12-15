@@ -24,59 +24,59 @@ extension TCCamError {
             case secretNotExist = "ResourceNotFound.SecretNotExist"
             case userNotExist = "ResourceNotFound.UserNotExist"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 用户组不存在。
         public static var groupNotExist: ResourceNotFound {
             ResourceNotFound(.groupNotExist)
         }
-        
+
         /// 身份提供商不存在。
         public static var identityNotExist: ResourceNotFound {
             ResourceNotFound(.identityNotExist)
         }
-        
+
         /// 资源不存在。
         public static var notFound: ResourceNotFound {
             ResourceNotFound(.notFound)
         }
-        
+
         /// PolicyId指定的资源不存在。
         public static var policyIdNotFound: ResourceNotFound {
             ResourceNotFound(.policyIdNotFound)
         }
-        
+
         /// 密钥不存在。
         public static var secretNotExist: ResourceNotFound {
             ResourceNotFound(.secretNotExist)
         }
-        
+
         /// 用户不存在。
         public static var userNotExist: ResourceNotFound {
             ResourceNotFound(.userNotExist)
         }
-        
+
         public func asCamError() -> TCCamError {
             let code: TCCamError.Code
             switch self.error {

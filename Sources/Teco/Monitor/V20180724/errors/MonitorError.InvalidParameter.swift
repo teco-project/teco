@@ -26,69 +26,69 @@ extension TCMonitorError {
             case unsupportedProduct = "InvalidParameter.UnsupportedProduct"
             case other = "InvalidParameter"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 重复提交任务。
         public static var dupTask: InvalidParameter {
             InvalidParameter(.dupTask)
         }
-        
+
         /// 参数错误。
         public static var invalidParameter: InvalidParameter {
             InvalidParameter(.invalidParameter)
         }
-        
+
         /// 参数错误。
         public static var invalidParameterParam: InvalidParameter {
             InvalidParameter(.invalidParameterParam)
         }
-        
+
         /// 缺少平台配置。
         public static var missAKSK: InvalidParameter {
             InvalidParameter(.missAKSK)
         }
-        
+
         /// 参数错误。
         public static var paramError: InvalidParameter {
             InvalidParameter(.paramError)
         }
-        
+
         /// 平台配置错误。
         public static var secretIdOrSecretKeyError: InvalidParameter {
             InvalidParameter(.secretIdOrSecretKeyError)
         }
-        
+
         /// 这个产品还不支持扫描。
         public static var unsupportedProduct: InvalidParameter {
             InvalidParameter(.unsupportedProduct)
         }
-        
+
         /// 参数错误。
         public static var other: InvalidParameter {
             InvalidParameter(.other)
         }
-        
+
         public func asMonitorError() -> TCMonitorError {
             let code: TCMonitorError.Code
             switch self.error {

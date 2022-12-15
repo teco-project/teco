@@ -19,23 +19,23 @@ extension Cbs {
     public struct AttachDisksRequest: TCRequestModel {
         /// 云服务器实例ID。云盘将被挂载到此云服务器上，通过[DescribeInstances](/document/product/213/15728)接口查询。
         public let instanceId: String
-        
+
         /// 将要被挂载的弹性云盘ID。通过[DescribeDisks](/document/product/362/16315)接口查询。单次最多可挂载10块弹性云盘。
         public let diskIds: [String]
-        
+
         /// 可选参数，不传该参数则仅执行挂载操作。传入`True`时，会在挂载成功后将云硬盘设置为随云主机销毁模式，仅对按量计费云硬盘有效。
         public let deleteWithInstance: Bool?
-        
+
         /// 可选参数，用于控制云盘挂载时使用的挂载模式，目前仅对黑石裸金属机型有效。取值范围：<br><li>PF<br><li>VF
         public let attachMode: String?
-        
-        public init (instanceId: String, diskIds: [String], deleteWithInstance: Bool? = nil, attachMode: String? = nil) {
+
+        public init(instanceId: String, diskIds: [String], deleteWithInstance: Bool? = nil, attachMode: String? = nil) {
             self.instanceId = instanceId
             self.diskIds = diskIds
             self.deleteWithInstance = deleteWithInstance
             self.attachMode = attachMode
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
             case diskIds = "DiskIds"
@@ -43,17 +43,17 @@ extension Cbs {
             case attachMode = "AttachMode"
         }
     }
-    
+
     /// AttachDisks返回参数结构体
     public struct AttachDisksResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 挂载云硬盘
     ///
     /// 本接口（AttachDisks）用于挂载云硬盘。
@@ -64,7 +64,7 @@ extension Cbs {
     public func attachDisks(_ input: AttachDisksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AttachDisksResponse > {
         self.client.execute(action: "AttachDisks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 挂载云硬盘
     ///
     /// 本接口（AttachDisks）用于挂载云硬盘。
@@ -75,7 +75,7 @@ extension Cbs {
     public func attachDisks(_ input: AttachDisksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AttachDisksResponse {
         try await self.client.execute(action: "AttachDisks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 挂载云硬盘
     ///
     /// 本接口（AttachDisks）用于挂载云硬盘。
@@ -86,7 +86,7 @@ extension Cbs {
     public func attachDisks(instanceId: String, diskIds: [String], deleteWithInstance: Bool? = nil, attachMode: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AttachDisksResponse > {
         self.attachDisks(AttachDisksRequest(instanceId: instanceId, diskIds: diskIds, deleteWithInstance: deleteWithInstance, attachMode: attachMode), logger: logger, on: eventLoop)
     }
-    
+
     /// 挂载云硬盘
     ///
     /// 本接口（AttachDisks）用于挂载云硬盘。

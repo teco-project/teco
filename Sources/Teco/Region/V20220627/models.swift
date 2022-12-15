@@ -19,30 +19,30 @@ extension Region {
     public struct RegionInfo: TCOutputModel {
         /// 地域名称，例如，ap-guangzhou
         public let region: String
-        
+
         /// 地域描述，例如，华南地区(广州)
         public let regionName: String
-        
+
         /// 地域是否可用状态
         public let regionState: String
-        
+
         enum CodingKeys: String, CodingKey {
             case region = "Region"
             case regionName = "RegionName"
             case regionState = "RegionState"
         }
     }
-    
+
     /// 地域管理系统支持的产品信息
     public struct RegionProduct: TCOutputModel {
         /// 产品名称，如cvm
         public let name: String
-        
+
         enum CodingKeys: String, CodingKey {
             case name = "Name"
         }
     }
-    
+
     /// 可用区信息
     public struct ZoneInfo: TCOutputModel {
         /// 可用区名称，例如，ap-guangzhou-3
@@ -91,16 +91,16 @@ extension Region {
         /// <li> ap-nanjing-1 </li>
         /// <li> ap-nanjing-2 </li>
         public let zone: String
-        
+
         /// 可用区描述，例如，广州三区
         public let zoneName: String
-        
+
         /// 可用区ID
         public let zoneId: String
-        
+
         /// 可用区状态，包含AVAILABLE和UNAVAILABLE。AVAILABLE代表可用，UNAVAILABLE代表不可用。
         public let zoneState: String
-        
+
         enum CodingKeys: String, CodingKey {
             case zone = "Zone"
             case zoneName = "ZoneName"

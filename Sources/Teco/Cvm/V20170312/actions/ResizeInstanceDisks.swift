@@ -19,27 +19,27 @@ extension Cvm {
     public struct ResizeInstanceDisksRequest: TCRequestModel {
         /// 待操作的实例ID。可通过[`DescribeInstances`](https://cloud.tencent.com/document/api/213/15728)接口返回值中的`InstanceId`获取。
         public let instanceId: String
-        
+
         /// 待扩容的数据盘配置信息。只支持扩容非弹性数据盘（[`DescribeDisks`](https://cloud.tencent.com/document/api/362/16315)接口返回值中的`Portable`为`false`表示非弹性），且[数据盘类型](/document/api/213/9452#block_device)为：`CLOUD_BASIC`、`CLOUD_PREMIUM`、`CLOUD_SSD`。数据盘容量单位：GB。最小扩容步长：10G。关于数据盘类型的选择请参考[硬盘产品简介](https://cloud.tencent.com/document/product/362/2353)。可选数据盘类型受到实例类型`InstanceType`限制。另外允许扩容的最大容量也因数据盘类型的不同而有所差异。
         public let dataDisks: [DataDisk]?
-        
+
         /// 是否对运行中的实例选择强制关机。建议对运行中的实例先手动关机，然后再重置用户密码。取值范围：<br><li>TRUE：表示在正常关机失败后进行强制关机<br><li>FALSE：表示在正常关机失败后不进行强制关机<br><br>默认取值：FALSE。<br><br>强制关机的效果等同于关闭物理计算机的电源开关。强制关机可能会导致数据丢失或文件系统损坏，请仅在服务器不能正常关机时使用。
         public let forceStop: Bool?
-        
+
         /// 待扩容的系统盘配置信息。只支持扩容云盘。
         public let systemDisk: SystemDisk?
-        
+
         /// 扩容云盘的方式是否为在线扩容。
         public let resizeOnline: Bool?
-        
-        public init (instanceId: String, dataDisks: [DataDisk]? = nil, forceStop: Bool? = nil, systemDisk: SystemDisk? = nil, resizeOnline: Bool? = nil) {
+
+        public init(instanceId: String, dataDisks: [DataDisk]? = nil, forceStop: Bool? = nil, systemDisk: SystemDisk? = nil, resizeOnline: Bool? = nil) {
             self.instanceId = instanceId
             self.dataDisks = dataDisks
             self.forceStop = forceStop
             self.systemDisk = systemDisk
             self.resizeOnline = resizeOnline
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
             case dataDisks = "DataDisks"
@@ -48,17 +48,17 @@ extension Cvm {
             case resizeOnline = "ResizeOnline"
         }
     }
-    
+
     /// ResizeInstanceDisks返回参数结构体
     public struct ResizeInstanceDisksResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 扩容实例磁盘
     ///
     /// 本接口 (ResizeInstanceDisks) 用于扩容实例的数据盘。
@@ -71,7 +71,7 @@ extension Cvm {
     public func resizeInstanceDisks(_ input: ResizeInstanceDisksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ResizeInstanceDisksResponse > {
         self.client.execute(action: "ResizeInstanceDisks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 扩容实例磁盘
     ///
     /// 本接口 (ResizeInstanceDisks) 用于扩容实例的数据盘。
@@ -84,7 +84,7 @@ extension Cvm {
     public func resizeInstanceDisks(_ input: ResizeInstanceDisksRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResizeInstanceDisksResponse {
         try await self.client.execute(action: "ResizeInstanceDisks", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 扩容实例磁盘
     ///
     /// 本接口 (ResizeInstanceDisks) 用于扩容实例的数据盘。
@@ -97,7 +97,7 @@ extension Cvm {
     public func resizeInstanceDisks(instanceId: String, dataDisks: [DataDisk]? = nil, forceStop: Bool? = nil, systemDisk: SystemDisk? = nil, resizeOnline: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ResizeInstanceDisksResponse > {
         self.resizeInstanceDisks(ResizeInstanceDisksRequest(instanceId: instanceId, dataDisks: dataDisks, forceStop: forceStop, systemDisk: systemDisk, resizeOnline: resizeOnline), logger: logger, on: eventLoop)
     }
-    
+
     /// 扩容实例磁盘
     ///
     /// 本接口 (ResizeInstanceDisks) 用于扩容实例的数据盘。

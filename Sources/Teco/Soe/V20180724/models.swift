@@ -19,28 +19,28 @@ extension Soe {
     public struct Keyword: TCInputModel {
         /// 被评估语音对应的文本，句子模式下不超过 20个单词或者中文文字，段落模式不超过 120个单词或者中文文字，中文文字需使用 utf-8 编码，自由说模式RefText可以不填。如需要在单词模式和句子模式下使用自定义音素，可以通过设置 TextMode 使用[音素标注](https://cloud.tencent.com/document/product/884/33698)。
         public let refText: String
-        
+
         /// 评估模式，0：词模式（中文评测模式下为文字模式），1：句子模式，2：段落模式，3：自由说模式，当为词模式评估时，能够提供每个音节的评估信息，当为句子模式时，能够提供完整度和流利度信息。
         public let evalMode: UInt64
-        
+
         /// 评价苛刻指数，取值为[1.0 - 4.0]范围内的浮点数，用于平滑不同年龄段的分数，1.0为小年龄段，4.0为最高年龄段
         public let scoreCoeff: Float
-        
+
         /// 评估语言，0：英文，1：中文。
         /// ServerType不填默认为0
         public let serverType: UInt64?
-        
+
         /// 输入文本模式，0: 普通文本，1：[音素结构](https://cloud.tencent.com/document/product/884/33698)文本。
         public let textMode: UInt64?
-        
-        public init (refText: String, evalMode: UInt64, scoreCoeff: Float, serverType: UInt64? = nil, textMode: UInt64? = nil) {
+
+        public init(refText: String, evalMode: UInt64, scoreCoeff: Float, serverType: UInt64? = nil, textMode: UInt64? = nil) {
             self.refText = refText
             self.evalMode = evalMode
             self.scoreCoeff = scoreCoeff
             self.serverType = serverType
             self.textMode = textMode
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case refText = "RefText"
             case evalMode = "EvalMode"
@@ -49,28 +49,28 @@ extension Soe {
             case textMode = "TextMode"
         }
     }
-    
+
     /// 关键词得分
     public struct KeywordScore: TCOutputModel {
         /// 关键词
         public let keyword: String
-        
+
         /// 发音精准度，取值范围[-1, 100]，当取-1时指完全不匹配，当为句子模式时，是所有已识别单词准确度的加权平均值，在reftext中但未识别出来的词不计入分数中。当为流式模式且请求中IsEnd未置1时，取值无意义。
         public let pronAccuracy: Float
-        
+
         /// 发音流利度，取值范围[0, 1]，当为词模式时，取值无意义；当为流式模式且请求中IsEnd未置1时，取值无意义
         public let pronFluency: Float
-        
+
         /// 发音完整度，取值范围[0, 1]，当为词模式时，取值无意义；当为流式模式且请求中IsEnd未置1时，取值无意义
         public let pronCompletion: Float
-        
+
         /// 详细发音评估结果
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let words: [WordRsp]?
-        
+
         /// 建议评分，取值范围[0,100]，评分方式为建议评分 = 准确度（PronAccuracy）× 完整度（PronCompletion）×（2 - 完整度（PronCompletion）），如若评分策略不符合请参考Words数组中的详细分数自定义评分逻辑。
         public let suggestedScore: Float
-        
+
         enum CodingKeys: String, CodingKey {
             case keyword = "Keyword"
             case pronAccuracy = "PronAccuracy"
@@ -80,36 +80,36 @@ extension Soe {
             case suggestedScore = "SuggestedScore"
         }
     }
-    
+
     /// 单音节评价结果
     public struct PhoneInfo: TCOutputModel {
         /// 当前音节语音起始时间点，单位为ms
         public let memBeginTime: Int64
-        
+
         /// 当前音节语音终止时间点，单位为ms
         public let memEndTime: Int64
-        
+
         /// 音节发音准确度，取值范围[-1, 100]，当取-1时指完全不匹配
         public let pronAccuracy: Float
-        
+
         /// 当前音节是否检测为重音
         public let detectedStress: Bool
-        
+
         /// 当前音节，当前评测识别的音素
         public let phone: String
-        
+
         /// 当前音节是否应为重音
         public let stress: Bool
-        
+
         /// 参考音素，在单词诊断模式下，代表标准音素
         public let referencePhone: String
-        
+
         /// 当前词与输入语句的匹配情况，0：匹配单词、1：新增单词、2：缺少单词、3：错读的词、4：未录入单词。
         public let matchTag: Int64
-        
+
         /// 参考字符，在单词诊断模式下，代表音素对应的原始文本
         public let referenceLetter: String
-        
+
         enum CodingKeys: String, CodingKey {
             case memBeginTime = "MemBeginTime"
             case memEndTime = "MemEndTime"
@@ -122,39 +122,39 @@ extension Soe {
             case referenceLetter = "ReferenceLetter"
         }
     }
-    
+
     /// 语音过程中断句的中间结果
     public struct SentenceInfo: TCOutputModel {
         /// 句子序号，在段落、自由说模式下有效，表示断句序号，最后的综合结果的为-1.
         public let sentenceId: Int64
-        
+
         /// 详细发音评估结果
         public let words: [WordRsp]
-        
+
         /// 发音精准度，取值范围[-1, 100]，当取-1时指完全不匹配，当为句子模式时，是所有已识别单词准确度的加权平均值，在reftext中但未识别出来的词不计入分数中。
         public let pronAccuracy: Float
-        
+
         /// 发音流利度，取值范围[0, 1]，当为词模式时，取值无意义；当为流式模式且请求中IsEnd未置1时，取值无意义
         public let pronFluency: Float
-        
+
         /// 发音完整度，取值范围[0, 1]，当为词模式时，取值无意义；当为流式模式且请求中IsEnd未置1时，取值无意义
         public let pronCompletion: Float
-        
+
         /// 建议评分，取值范围[0,100]，评分方式为建议评分 = 准确度（PronAccuracyfloat）* 完整度（PronCompletionfloat）*（2 - 完整度（PronCompletionfloat）），如若评分策略不符合请参考Words数组中的详细分数自定义评分逻辑。
         public let suggestedScore: Float
-        
+
         /// 匹配候选文本的序号，在句子多分支、情景对 话、段落模式下表示匹配到的文本序号
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let refTextId: Int64?
-        
+
         /// 主题词命中标志，0表示没命中，1表示命中
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let keyWordHits: [Float]?
-        
+
         /// 负向主题词命中标志，0表示没命中，1表示命中
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let unKeyWordHits: [Float]?
-        
+
         enum CodingKeys: String, CodingKey {
             case sentenceId = "SentenceId"
             case words = "Words"
@@ -167,37 +167,37 @@ extension Soe {
             case unKeyWordHits = "UnKeyWordHits"
         }
     }
-    
+
     /// 单词评分细则
     public struct WordRsp: TCOutputModel {
         /// 当前单词语音起始时间点，单位为ms，该字段段落模式下无意义。
         public let memBeginTime: Int64
-        
+
         /// 当前单词语音终止时间点，单位为ms，该字段段落模式下无意义。
         public let memEndTime: Int64
-        
+
         /// 单词发音准确度，取值范围[-1, 100]，当取-1时指完全不匹配
         public let pronAccuracy: Float
-        
+
         /// 单词发音流利度，取值范围[0, 1]
         public let pronFluency: Float
-        
+
         /// 当前词
         public let word: String
-        
+
         /// 当前词与输入语句的匹配情况，0：匹配单词、1：新增单词、2：缺少单词、3：错读的词、4：未录入单词。
         public let matchTag: Int64
-        
+
         /// 音节评估详情
         public let phoneInfos: [PhoneInfo]
-        
+
         /// 参考词，目前为保留字段。
         public let referenceWord: String
-        
+
         /// 主题词命中标志，0表示没命中，1表示命中
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let keywordTag: Int64?
-        
+
         enum CodingKeys: String, CodingKey {
             case memBeginTime = "MemBeginTime"
             case memEndTime = "MemEndTime"

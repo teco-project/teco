@@ -22,23 +22,23 @@ extension Msp {
     public struct DstInfo: TCInputModel, TCOutputModel {
         /// 迁移目的地域
         public let region: String?
-        
+
         /// 迁移目的Ip
         public let ip: String?
-        
+
         /// 迁移目的端口
         public let port: String?
-        
+
         /// 迁移目的实例Id
         public let instanceId: String?
-        
-        public init (region: String? = nil, ip: String? = nil, port: String? = nil, instanceId: String? = nil) {
+
+        public init(region: String? = nil, ip: String? = nil, port: String? = nil, instanceId: String? = nil) {
             self.region = region
             self.ip = ip
             self.port = port
             self.instanceId = instanceId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case region = "Region"
             case ip = "Ip"
@@ -46,42 +46,42 @@ extension Msp {
             case instanceId = "InstanceId"
         }
     }
-    
+
     /// 列表类型
     public struct Project: TCOutputModel {
         /// 项目ID
         public let projectId: UInt64
-        
+
         /// 项目名称
         public let projectName: String
-        
+
         enum CodingKeys: String, CodingKey {
             case projectId = "ProjectId"
             case projectName = "ProjectName"
         }
     }
-    
+
     /// 迁移源信息
     public struct SrcInfo: TCInputModel, TCOutputModel {
         /// 迁移源地域
         public let region: String?
-        
+
         /// 迁移源Ip
         public let ip: String?
-        
+
         /// 迁移源端口
         public let port: String?
-        
+
         /// 迁移源实例Id
         public let instanceId: String?
-        
-        public init (region: String? = nil, ip: String? = nil, port: String? = nil, instanceId: String? = nil) {
+
+        public init(region: String? = nil, ip: String? = nil, port: String? = nil, instanceId: String? = nil) {
             self.region = region
             self.ip = ip
             self.port = port
             self.instanceId = instanceId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case region = "Region"
             case ip = "Ip"
@@ -89,33 +89,33 @@ extension Msp {
             case instanceId = "InstanceId"
         }
     }
-    
+
     /// 迁移任务类别
     public struct Task: TCOutputModel {
         /// 任务Id
         public let taskId: String
-        
+
         /// 任务名称
         public let taskName: String
-        
+
         /// 迁移类型
         public let migrationType: String
-        
+
         /// 迁移状态
         public let status: String
-        
+
         /// 项目Id
         public let projectId: UInt64
-        
+
         /// 项目名称
         public let projectName: String
-        
+
         /// 迁移源信息
         public let srcInfo: SrcInfo
-        
+
         /// 迁移时间信息
         public let migrationTimeLine: TimeObj
-        
+
         /// 状态更新时间
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -123,10 +123,10 @@ extension Msp {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var updated: Date
-        
+
         /// 迁移目的信息
         public let dstInfo: DstInfo
-        
+
         enum CodingKeys: String, CodingKey {
             case taskId = "TaskId"
             case taskName = "TaskName"
@@ -140,15 +140,15 @@ extension Msp {
             case dstInfo = "DstInfo"
         }
     }
-    
+
     /// 迁移详情列表
     public struct TaskStatus: TCOutputModel {
         /// 迁移状态
         public let status: String
-        
+
         /// 迁移进度
         public let progress: String
-        
+
         /// 迁移日期
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -156,14 +156,14 @@ extension Msp {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var updateTime: Date
-        
+
         enum CodingKeys: String, CodingKey {
             case status = "Status"
             case progress = "Progress"
             case updateTime = "UpdateTime"
         }
     }
-    
+
     /// 时间对象
     public struct TimeObj: TCOutputModel {
         /// 创建时间
@@ -173,7 +173,7 @@ extension Msp {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var createTime: Date
-        
+
         /// 结束时间
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -181,7 +181,7 @@ extension Msp {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var endTime: Date
-        
+
         enum CodingKeys: String, CodingKey {
             case createTime = "CreateTime"
             case endTime = "EndTime"

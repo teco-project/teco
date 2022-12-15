@@ -19,36 +19,36 @@ extension Vpc {
     public struct UnassignPrivateIpAddressesRequest: TCRequestModel {
         /// 弹性网卡实例ID，例如：eni-m6dyj72l。
         public let networkInterfaceId: String
-        
+
         /// 指定的内网IP信息，单次最多指定10个。
         public let privateIpAddresses: [PrivateIpAddressSpecification]
-        
+
         /// 网卡绑定的子机实例ID，该参数仅用于指定网卡退还IP并解绑子机的场景，如果不涉及解绑子机，请勿填写。
         public let instanceId: String?
-        
-        public init (networkInterfaceId: String, privateIpAddresses: [PrivateIpAddressSpecification], instanceId: String? = nil) {
+
+        public init(networkInterfaceId: String, privateIpAddresses: [PrivateIpAddressSpecification], instanceId: String? = nil) {
             self.networkInterfaceId = networkInterfaceId
             self.privateIpAddresses = privateIpAddresses
             self.instanceId = instanceId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case networkInterfaceId = "NetworkInterfaceId"
             case privateIpAddresses = "PrivateIpAddresses"
             case instanceId = "InstanceId"
         }
     }
-    
+
     /// UnassignPrivateIpAddresses返回参数结构体
     public struct UnassignPrivateIpAddressesResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 弹性网卡退还内网 IP
     ///
     /// 本接口（UnassignPrivateIpAddresses）用于弹性网卡退还内网 IP。
@@ -58,7 +58,7 @@ extension Vpc {
     public func unassignPrivateIpAddresses(_ input: UnassignPrivateIpAddressesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UnassignPrivateIpAddressesResponse > {
         self.client.execute(action: "UnassignPrivateIpAddresses", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 弹性网卡退还内网 IP
     ///
     /// 本接口（UnassignPrivateIpAddresses）用于弹性网卡退还内网 IP。
@@ -68,7 +68,7 @@ extension Vpc {
     public func unassignPrivateIpAddresses(_ input: UnassignPrivateIpAddressesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UnassignPrivateIpAddressesResponse {
         try await self.client.execute(action: "UnassignPrivateIpAddresses", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 弹性网卡退还内网 IP
     ///
     /// 本接口（UnassignPrivateIpAddresses）用于弹性网卡退还内网 IP。
@@ -78,7 +78,7 @@ extension Vpc {
     public func unassignPrivateIpAddresses(networkInterfaceId: String, privateIpAddresses: [PrivateIpAddressSpecification], instanceId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UnassignPrivateIpAddressesResponse > {
         self.unassignPrivateIpAddresses(UnassignPrivateIpAddressesRequest(networkInterfaceId: networkInterfaceId, privateIpAddresses: privateIpAddresses, instanceId: instanceId), logger: logger, on: eventLoop)
     }
-    
+
     /// 弹性网卡退还内网 IP
     ///
     /// 本接口（UnassignPrivateIpAddresses）用于弹性网卡退还内网 IP。

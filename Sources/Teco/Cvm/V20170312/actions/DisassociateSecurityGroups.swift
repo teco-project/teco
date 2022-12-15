@@ -19,31 +19,31 @@ extension Cvm {
     public struct DisassociateSecurityGroupsRequest: TCRequestModel {
         /// 要解绑的`安全组ID`，类似sg-efil73jd，只支持解绑单个安全组。
         public let securityGroupIds: [String]
-        
+
         /// 被解绑的`实例ID`，类似ins-lesecurk，支持指定多个实例 。
         public let instanceIds: [String]
-        
-        public init (securityGroupIds: [String], instanceIds: [String]) {
+
+        public init(securityGroupIds: [String], instanceIds: [String]) {
             self.securityGroupIds = securityGroupIds
             self.instanceIds = instanceIds
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case securityGroupIds = "SecurityGroupIds"
             case instanceIds = "InstanceIds"
         }
     }
-    
+
     /// DisassociateSecurityGroups返回参数结构体
     public struct DisassociateSecurityGroupsResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 解绑安全组
     ///
     /// 本接口 (DisassociateSecurityGroups) 用于解绑实例的指定安全组。
@@ -52,7 +52,7 @@ extension Cvm {
     public func disassociateSecurityGroups(_ input: DisassociateSecurityGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DisassociateSecurityGroupsResponse > {
         self.client.execute(action: "DisassociateSecurityGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 解绑安全组
     ///
     /// 本接口 (DisassociateSecurityGroups) 用于解绑实例的指定安全组。
@@ -61,7 +61,7 @@ extension Cvm {
     public func disassociateSecurityGroups(_ input: DisassociateSecurityGroupsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DisassociateSecurityGroupsResponse {
         try await self.client.execute(action: "DisassociateSecurityGroups", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 解绑安全组
     ///
     /// 本接口 (DisassociateSecurityGroups) 用于解绑实例的指定安全组。
@@ -70,7 +70,7 @@ extension Cvm {
     public func disassociateSecurityGroups(securityGroupIds: [String], instanceIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DisassociateSecurityGroupsResponse > {
         self.disassociateSecurityGroups(DisassociateSecurityGroupsRequest(securityGroupIds: securityGroupIds, instanceIds: instanceIds), logger: logger, on: eventLoop)
     }
-    
+
     /// 解绑安全组
     ///
     /// 本接口 (DisassociateSecurityGroups) 用于解绑实例的指定安全组。

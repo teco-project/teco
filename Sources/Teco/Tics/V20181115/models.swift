@@ -19,58 +19,58 @@ extension Tics {
     public struct FileInfoType: TCOutputModel {
         /// 判定渠道
         public let detectId: String
-        
+
         /// 检测优先级
         public let detectPriority: String
-        
+
         /// 引擎优先级
         public let enginePriority: String
-        
+
         /// 样本是否存在
         public let fileExist: String
-        
+
         /// 文件上传
         public let fileForceUpload: String
-        
+
         /// 文件大小
         public let fileSize: String
-        
+
         /// 文件上传时间
         public let fileupTime: String
-        
+
         /// 病毒文件全名
         public let fullVirusName: String
-        
+
         /// IDC位置
         public let idcPosition: String
-        
+
         /// 文件md5值
         public let md5Type: String
-        
+
         /// PE结构是否存在
         public let peExist: String
-        
+
         /// PE结构上传
         public let peForceUpload: String
-        
+
         /// 安全性等级
         public let safeLevel: String
-        
+
         /// 扫描时间
         public let scanModiTime: String
-        
+
         /// 子判定渠道
         public let subdetectId: String
-        
+
         /// 病毒名
         public let userDefName: String
-        
+
         /// 病毒类型
         public let virusType: String
-        
+
         /// 白名单分数
         public let whiteScore: String
-        
+
         enum CodingKeys: String, CodingKey {
             case detectId = "DetectId"
             case detectPriority = "DetectPriority"
@@ -92,33 +92,33 @@ extension Tics {
             case whiteScore = "WhiteScore"
         }
     }
-    
+
     /// { "source": "inergj_ai_predict", "stamp": "msraminer", "time": 1531994023 }
     public struct IntelligenceType: TCOutputModel {
         /// 来源
         public let source: String
-        
+
         /// 标记
         public let stamp: String
-        
+
         /// 时间
         public let time: UInt64
-        
+
         enum CodingKeys: String, CodingKey {
             case source = "Source"
             case stamp = "Stamp"
             case time = "Time"
         }
     }
-    
+
     /// 标签及对应的解释
     public struct TagType: TCOutputModel {
         /// 标签
         public let tag: String
-        
+
         /// 标签对应的中文解释
         public let desc: String
-        
+
         enum CodingKeys: String, CodingKey {
             case tag = "Tag"
             case desc = "Desc"

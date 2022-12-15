@@ -19,26 +19,26 @@ extension Vpc {
     public struct EnableFlowLogsRequest: TCRequestModel {
         /// 流日志Id。
         public let flowLogIds: [String]
-        
-        public init (flowLogIds: [String]) {
+
+        public init(flowLogIds: [String]) {
             self.flowLogIds = flowLogIds
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case flowLogIds = "FlowLogIds"
         }
     }
-    
+
     /// EnableFlowLogs返回参数结构体
     public struct EnableFlowLogsResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 启动流日志
     ///
     /// 本接口（EnableFlowLogs）用于启动流日志。
@@ -46,7 +46,7 @@ extension Vpc {
     public func enableFlowLogs(_ input: EnableFlowLogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < EnableFlowLogsResponse > {
         self.client.execute(action: "EnableFlowLogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 启动流日志
     ///
     /// 本接口（EnableFlowLogs）用于启动流日志。
@@ -54,7 +54,7 @@ extension Vpc {
     public func enableFlowLogs(_ input: EnableFlowLogsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnableFlowLogsResponse {
         try await self.client.execute(action: "EnableFlowLogs", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 启动流日志
     ///
     /// 本接口（EnableFlowLogs）用于启动流日志。
@@ -62,7 +62,7 @@ extension Vpc {
     public func enableFlowLogs(flowLogIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < EnableFlowLogsResponse > {
         self.enableFlowLogs(EnableFlowLogsRequest(flowLogIds: flowLogIds), logger: logger, on: eventLoop)
     }
-    
+
     /// 启动流日志
     ///
     /// 本接口（EnableFlowLogs）用于启动流日志。

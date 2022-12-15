@@ -19,35 +19,35 @@ extension Gse {
     public struct GetUploadCredentialsRequest: TCRequestModel {
         /// 生成包所在地域，详见产品支持的 [地域列表](https://cloud.tencent.com/document/api/1165/42053#.E5.9C.B0.E5.9F.9F.E5.88.97.E8.A1.A8)
         public let assetRegion: String
-        
+
         /// 生成包的ZIP包名，例如：server.zip
         public let bucketKey: String
-        
-        public init (assetRegion: String, bucketKey: String) {
+
+        public init(assetRegion: String, bucketKey: String) {
             self.assetRegion = assetRegion
             self.bucketKey = bucketKey
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case assetRegion = "AssetRegion"
             case bucketKey = "BucketKey"
         }
     }
-    
+
     /// GetUploadCredentials返回参数结构体
     public struct GetUploadCredentialsResponse: TCResponseModel {
         /// 上传文件授权信息Auth
         public let bucketAuth: String
-        
+
         /// Bucket名字
         public let bucketName: String
-        
+
         /// 生成包所在地域
         public let assetRegion: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case bucketAuth = "BucketAuth"
             case bucketName = "BucketName"
@@ -55,7 +55,7 @@ extension Gse {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取上传文件授权信息
     ///
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
@@ -65,7 +65,7 @@ extension Gse {
     public func getUploadCredentials(_ input: GetUploadCredentialsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetUploadCredentialsResponse > {
         self.client.execute(action: "GetUploadCredentials", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取上传文件授权信息
     ///
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
@@ -75,7 +75,7 @@ extension Gse {
     public func getUploadCredentials(_ input: GetUploadCredentialsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetUploadCredentialsResponse {
         try await self.client.execute(action: "GetUploadCredentials", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取上传文件授权信息
     ///
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
@@ -85,7 +85,7 @@ extension Gse {
     public func getUploadCredentials(assetRegion: String, bucketKey: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetUploadCredentialsResponse > {
         self.getUploadCredentials(GetUploadCredentialsRequest(assetRegion: assetRegion, bucketKey: bucketKey), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取上传文件授权信息
     ///
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持

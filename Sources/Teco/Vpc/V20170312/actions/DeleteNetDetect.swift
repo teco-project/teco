@@ -19,26 +19,26 @@ extension Vpc {
     public struct DeleteNetDetectRequest: TCRequestModel {
         /// 网络探测实例`ID`。形如：`netd-12345678`
         public let netDetectId: String
-        
-        public init (netDetectId: String) {
+
+        public init(netDetectId: String) {
             self.netDetectId = netDetectId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case netDetectId = "NetDetectId"
         }
     }
-    
+
     /// DeleteNetDetect返回参数结构体
     public struct DeleteNetDetectResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除网络探测
     ///
     /// 本接口(DeleteNetDetect)用于删除网络探测实例。
@@ -46,7 +46,7 @@ extension Vpc {
     public func deleteNetDetect(_ input: DeleteNetDetectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteNetDetectResponse > {
         self.client.execute(action: "DeleteNetDetect", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除网络探测
     ///
     /// 本接口(DeleteNetDetect)用于删除网络探测实例。
@@ -54,7 +54,7 @@ extension Vpc {
     public func deleteNetDetect(_ input: DeleteNetDetectRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteNetDetectResponse {
         try await self.client.execute(action: "DeleteNetDetect", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除网络探测
     ///
     /// 本接口(DeleteNetDetect)用于删除网络探测实例。
@@ -62,7 +62,7 @@ extension Vpc {
     public func deleteNetDetect(netDetectId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteNetDetectResponse > {
         self.deleteNetDetect(DeleteNetDetectRequest(netDetectId: netDetectId), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除网络探测
     ///
     /// 本接口(DeleteNetDetect)用于删除网络探测实例。

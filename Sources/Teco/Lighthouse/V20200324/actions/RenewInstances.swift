@@ -19,29 +19,29 @@ extension Lighthouse {
     public struct RenewInstancesRequest: TCRequestModel {
         /// 实例ID列表。一个或多个待操作的实例ID。可通过[DescribeInstances](https://cloud.tencent.com/document/api/1207/47573)接口返回值中的InstanceId获取。每次请求批量实例的上限为100。
         public let instanceIds: [String]
-        
+
         /// 预付费模式，即包年包月相关参数设置。通过该参数可以指定包年包月实例的购买时长、是否设置自动续费等属性。若指定实例的付费模式为预付费则该参数必传。
         public let instanceChargePrepaid: InstanceChargePrepaid
-        
+
         /// 是否续费弹性数据盘。取值范围：
         /// TRUE：表示续费实例同时续费其挂载的数据盘
         /// FALSE：表示续费实例同时不再续费其挂载的数据盘
         /// 默认取值：TRUE。
         public let renewDataDisk: Bool?
-        
+
         /// 是否自动抵扣代金券。取值范围：
         /// TRUE：表示自动抵扣代金券
         /// FALSE：表示不自动抵扣代金券
         /// 默认取值：FALSE。
         public let autoVoucher: Bool?
-        
-        public init (instanceIds: [String], instanceChargePrepaid: InstanceChargePrepaid, renewDataDisk: Bool? = nil, autoVoucher: Bool? = nil) {
+
+        public init(instanceIds: [String], instanceChargePrepaid: InstanceChargePrepaid, renewDataDisk: Bool? = nil, autoVoucher: Bool? = nil) {
             self.instanceIds = instanceIds
             self.instanceChargePrepaid = instanceChargePrepaid
             self.renewDataDisk = renewDataDisk
             self.autoVoucher = autoVoucher
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceIds = "InstanceIds"
             case instanceChargePrepaid = "InstanceChargePrepaid"
@@ -49,17 +49,17 @@ extension Lighthouse {
             case autoVoucher = "AutoVoucher"
         }
     }
-    
+
     /// RenewInstances返回参数结构体
     public struct RenewInstancesResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 续费实例
     ///
     /// 本接口(RenewInstances)用于续费一个或多个轻量应用服务器实例。
@@ -70,7 +70,7 @@ extension Lighthouse {
     public func renewInstances(_ input: RenewInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RenewInstancesResponse > {
         self.client.execute(action: "RenewInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 续费实例
     ///
     /// 本接口(RenewInstances)用于续费一个或多个轻量应用服务器实例。
@@ -81,7 +81,7 @@ extension Lighthouse {
     public func renewInstances(_ input: RenewInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RenewInstancesResponse {
         try await self.client.execute(action: "RenewInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 续费实例
     ///
     /// 本接口(RenewInstances)用于续费一个或多个轻量应用服务器实例。
@@ -92,7 +92,7 @@ extension Lighthouse {
     public func renewInstances(instanceIds: [String], instanceChargePrepaid: InstanceChargePrepaid, renewDataDisk: Bool? = nil, autoVoucher: Bool? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RenewInstancesResponse > {
         self.renewInstances(RenewInstancesRequest(instanceIds: instanceIds, instanceChargePrepaid: instanceChargePrepaid, renewDataDisk: renewDataDisk, autoVoucher: autoVoucher), logger: logger, on: eventLoop)
     }
-    
+
     /// 续费实例
     ///
     /// 本接口(RenewInstances)用于续费一个或多个轻量应用服务器实例。

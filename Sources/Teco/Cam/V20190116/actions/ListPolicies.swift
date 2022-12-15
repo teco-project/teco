@@ -19,23 +19,23 @@ extension Cam {
     public struct ListPoliciesRequest: TCRequestModel {
         /// 每页数量，默认值是 20，必须大于 0 且小于或等于 200
         public let rp: UInt64?
-        
+
         /// 页码，默认值是 1，从 1开始，不能大于 200
         public let page: UInt64?
-        
+
         /// 可取值 'All'、'QCS' 和 'Local'，'All' 获取所有策略，'QCS' 只获取预设策略，'Local' 只获取自定义策略，默认取 'All'
         public let scope: String?
-        
+
         /// 按策略名匹配
         public let keyword: String?
-        
-        public init (rp: UInt64? = nil, page: UInt64? = nil, scope: String? = nil, keyword: String? = nil) {
+
+        public init(rp: UInt64? = nil, page: UInt64? = nil, scope: String? = nil, keyword: String? = nil) {
             self.rp = rp
             self.page = page
             self.scope = scope
             self.keyword = keyword
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case rp = "Rp"
             case page = "Page"
@@ -43,12 +43,12 @@ extension Cam {
             case keyword = "Keyword"
         }
     }
-    
+
     /// ListPolicies返回参数结构体
     public struct ListPoliciesResponse: TCResponseModel {
         /// 策略总数
         public let totalNum: UInt64
-        
+
         /// 策略数组，数组每个成员包括 policyId、policyName、addTime、type、description、 createMode 字段。其中： 
         /// policyId：策略 id 
         /// policyName：策略名
@@ -60,14 +60,14 @@ extension Cam {
         /// ServiceType: 策略关联的产品
         /// IsAttached: 当需要查询标记实体是否已经关联策略时不为null。0表示未关联策略，1表示已关联策略
         public let list: [StrategyInfo]
-        
+
         /// 保留字段
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let serviceTypeList: [String]?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case totalNum = "TotalNum"
             case list = "List"
@@ -75,7 +75,7 @@ extension Cam {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询策略列表
     ///
     /// 本接口（ListPolicies）可用于查询策略列表。
@@ -83,7 +83,7 @@ extension Cam {
     public func listPolicies(_ input: ListPoliciesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListPoliciesResponse > {
         self.client.execute(action: "ListPolicies", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询策略列表
     ///
     /// 本接口（ListPolicies）可用于查询策略列表。
@@ -91,7 +91,7 @@ extension Cam {
     public func listPolicies(_ input: ListPoliciesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ListPoliciesResponse {
         try await self.client.execute(action: "ListPolicies", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询策略列表
     ///
     /// 本接口（ListPolicies）可用于查询策略列表。
@@ -99,7 +99,7 @@ extension Cam {
     public func listPolicies(rp: UInt64? = nil, page: UInt64? = nil, scope: String? = nil, keyword: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ListPoliciesResponse > {
         self.listPolicies(ListPoliciesRequest(rp: rp, page: page, scope: scope, keyword: keyword), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询策略列表
     ///
     /// 本接口（ListPolicies）可用于查询策略列表。

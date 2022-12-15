@@ -19,26 +19,26 @@ extension Vpc {
     public struct DeleteSecurityGroupRequest: TCRequestModel {
         /// 安全组实例ID，例如sg-33ocnj9n，可通过DescribeSecurityGroups获取。
         public let securityGroupId: String
-        
-        public init (securityGroupId: String) {
+
+        public init(securityGroupId: String) {
             self.securityGroupId = securityGroupId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case securityGroupId = "SecurityGroupId"
         }
     }
-    
+
     /// DeleteSecurityGroup返回参数结构体
     public struct DeleteSecurityGroupResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除安全组
     ///
     /// 本接口（DeleteSecurityGroup）用于删除安全组（SecurityGroup）。
@@ -49,7 +49,7 @@ extension Vpc {
     public func deleteSecurityGroup(_ input: DeleteSecurityGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteSecurityGroupResponse > {
         self.client.execute(action: "DeleteSecurityGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除安全组
     ///
     /// 本接口（DeleteSecurityGroup）用于删除安全组（SecurityGroup）。
@@ -60,7 +60,7 @@ extension Vpc {
     public func deleteSecurityGroup(_ input: DeleteSecurityGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteSecurityGroupResponse {
         try await self.client.execute(action: "DeleteSecurityGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除安全组
     ///
     /// 本接口（DeleteSecurityGroup）用于删除安全组（SecurityGroup）。
@@ -71,7 +71,7 @@ extension Vpc {
     public func deleteSecurityGroup(securityGroupId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteSecurityGroupResponse > {
         self.deleteSecurityGroup(DeleteSecurityGroupRequest(securityGroupId: securityGroupId), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除安全组
     ///
     /// 本接口（DeleteSecurityGroup）用于删除安全组（SecurityGroup）。

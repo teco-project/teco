@@ -19,44 +19,44 @@ extension Ecdn {
     public struct AddEcdnDomainRequest: TCRequestModel {
         /// 域名。
         public let domain: String
-        
+
         /// 源站配置。
         public let origin: Origin
-        
+
         /// 域名加速区域，mainland，overseas或global，分别表示中国境内加速，海外加速或全球加速。
         public let area: String
-        
+
         /// 项目id，默认0。
         public let projectId: Int64?
-        
+
         /// IP黑白名单配置。
         public let ipFilter: IpFilter?
-        
+
         /// IP限频配置。
         public let ipFreqLimit: IpFreqLimit?
-        
+
         /// 源站响应头部配置。
         public let responseHeader: ResponseHeader?
-        
+
         /// 节点缓存配置。
         public let cacheKey: CacheKey?
-        
+
         /// 缓存规则配置。
         public let cache: Cache?
-        
+
         /// Https配置。
         public let https: Https?
-        
+
         /// 访问协议强制跳转配置。
         public let forceRedirect: ForceRedirect?
-        
+
         /// 域名绑定的标签
         public let tag: [Tag]?
-        
+
         /// WebSocket配置
         public let webSocket: WebSocket?
-        
-        public init (domain: String, origin: Origin, area: String, projectId: Int64? = nil, ipFilter: IpFilter? = nil, ipFreqLimit: IpFreqLimit? = nil, responseHeader: ResponseHeader? = nil, cacheKey: CacheKey? = nil, cache: Cache? = nil, https: Https? = nil, forceRedirect: ForceRedirect? = nil, tag: [Tag]? = nil, webSocket: WebSocket? = nil) {
+
+        public init(domain: String, origin: Origin, area: String, projectId: Int64? = nil, ipFilter: IpFilter? = nil, ipFreqLimit: IpFreqLimit? = nil, responseHeader: ResponseHeader? = nil, cacheKey: CacheKey? = nil, cache: Cache? = nil, https: Https? = nil, forceRedirect: ForceRedirect? = nil, tag: [Tag]? = nil, webSocket: WebSocket? = nil) {
             self.domain = domain
             self.origin = origin
             self.area = area
@@ -71,7 +71,7 @@ extension Ecdn {
             self.tag = tag
             self.webSocket = webSocket
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case domain = "Domain"
             case origin = "Origin"
@@ -88,17 +88,17 @@ extension Ecdn {
             case webSocket = "WebSocket"
         }
     }
-    
+
     /// AddEcdnDomain返回参数结构体
     public struct AddEcdnDomainResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 新增加速域名
     ///
     /// 本接口（AddEcdnDomain）用于创建加速域名。
@@ -107,7 +107,7 @@ extension Ecdn {
     public func addEcdnDomain(_ input: AddEcdnDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AddEcdnDomainResponse > {
         self.client.execute(action: "AddEcdnDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 新增加速域名
     ///
     /// 本接口（AddEcdnDomain）用于创建加速域名。
@@ -116,7 +116,7 @@ extension Ecdn {
     public func addEcdnDomain(_ input: AddEcdnDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AddEcdnDomainResponse {
         try await self.client.execute(action: "AddEcdnDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 新增加速域名
     ///
     /// 本接口（AddEcdnDomain）用于创建加速域名。
@@ -125,7 +125,7 @@ extension Ecdn {
     public func addEcdnDomain(domain: String, origin: Origin, area: String, projectId: Int64? = nil, ipFilter: IpFilter? = nil, ipFreqLimit: IpFreqLimit? = nil, responseHeader: ResponseHeader? = nil, cacheKey: CacheKey? = nil, cache: Cache? = nil, https: Https? = nil, forceRedirect: ForceRedirect? = nil, tag: [Tag]? = nil, webSocket: WebSocket? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AddEcdnDomainResponse > {
         self.addEcdnDomain(AddEcdnDomainRequest(domain: domain, origin: origin, area: area, projectId: projectId, ipFilter: ipFilter, ipFreqLimit: ipFreqLimit, responseHeader: responseHeader, cacheKey: cacheKey, cache: cache, https: https, forceRedirect: forceRedirect, tag: tag, webSocket: webSocket), logger: logger, on: eventLoop)
     }
-    
+
     /// 新增加速域名
     ///
     /// 本接口（AddEcdnDomain）用于创建加速域名。

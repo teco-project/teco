@@ -19,30 +19,30 @@ extension Vpc {
     public struct DeleteVpnGatewaySslServerRequest: TCRequestModel {
         /// SSL-VPN-SERVER 实例ID。
         public let sslVpnServerId: String
-        
-        public init (sslVpnServerId: String) {
+
+        public init(sslVpnServerId: String) {
             self.sslVpnServerId = sslVpnServerId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case sslVpnServerId = "SslVpnServerId"
         }
     }
-    
+
     /// DeleteVpnGatewaySslServer返回参数结构体
     public struct DeleteVpnGatewaySslServerResponse: TCResponseModel {
         /// 异步任务ID。
         public let taskId: UInt64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case taskId = "TaskId"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除SSL-VPN-SERVER
     ///
     /// 删除SSL-VPN-SERVER 实例
@@ -50,7 +50,7 @@ extension Vpc {
     public func deleteVpnGatewaySslServer(_ input: DeleteVpnGatewaySslServerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteVpnGatewaySslServerResponse > {
         self.client.execute(action: "DeleteVpnGatewaySslServer", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除SSL-VPN-SERVER
     ///
     /// 删除SSL-VPN-SERVER 实例
@@ -58,7 +58,7 @@ extension Vpc {
     public func deleteVpnGatewaySslServer(_ input: DeleteVpnGatewaySslServerRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteVpnGatewaySslServerResponse {
         try await self.client.execute(action: "DeleteVpnGatewaySslServer", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除SSL-VPN-SERVER
     ///
     /// 删除SSL-VPN-SERVER 实例
@@ -66,7 +66,7 @@ extension Vpc {
     public func deleteVpnGatewaySslServer(sslVpnServerId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteVpnGatewaySslServerResponse > {
         self.deleteVpnGatewaySslServer(DeleteVpnGatewaySslServerRequest(sslVpnServerId: sslVpnServerId), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除SSL-VPN-SERVER
     ///
     /// 删除SSL-VPN-SERVER 实例

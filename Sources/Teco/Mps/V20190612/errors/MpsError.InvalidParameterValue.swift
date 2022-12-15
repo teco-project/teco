@@ -96,419 +96,419 @@ extension TCMpsError {
             case yPos = "InvalidParameterValue.YPos"
             case other = "InvalidParameterValue"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 参数错误：音频流码率。
         public static var audioBitrate: InvalidParameterValue {
             InvalidParameterValue(.audioBitrate)
         }
-        
+
         /// 参数值错误：AudioChannel。
         public static var audioChannel: InvalidParameterValue {
             InvalidParameterValue(.audioChannel)
         }
-        
+
         /// 参数错误：音频流编码格式。
         public static var audioCodec: InvalidParameterValue {
             InvalidParameterValue(.audioCodec)
         }
-        
+
         /// 参数错误：音频流采样率。
         public static var audioSampleRate: InvalidParameterValue {
             InvalidParameterValue(.audioSampleRate)
         }
-        
+
         /// 无效的音频/视频码率。
         public static var bitrate: InvalidParameterValue {
             InvalidParameterValue(.bitrate)
         }
-        
+
         /// 参数值错误：BlockConfidence 参数取值非法。
         public static var blockConfidence: InvalidParameterValue {
             InvalidParameterValue(.blockConfidence)
         }
-        
+
         /// 参数值错误：智能分类控制字段参数错误。
         public static var classifcationConfigure: InvalidParameterValue {
             InvalidParameterValue(.classifcationConfigure)
         }
-        
+
         /// 无效的音频/视频编编码格式。
         public static var codec: InvalidParameterValue {
             InvalidParameterValue(.codec)
         }
-        
+
         /// 参数值错误：ColumnCount。
         public static var columnCount: InvalidParameterValue {
             InvalidParameterValue(.columnCount)
         }
-        
+
         /// 参数错误：对该模板的描述。
         public static var comment: InvalidParameterValue {
             InvalidParameterValue(.comment)
         }
-        
+
         /// 参数错误：封装格式。
         public static var container: InvalidParameterValue {
             InvalidParameterValue(.container)
         }
-        
+
         /// 参数值错误：ContainerType。
         public static var containerType: InvalidParameterValue {
             InvalidParameterValue(.containerType)
         }
-        
+
         /// 参数值错误：CoordinateOrigin。
         public static var coordinateOrigin: InvalidParameterValue {
             InvalidParameterValue(.coordinateOrigin)
         }
-        
+
         /// 参数值错误：智能封面控制字段参数错误。
         public static var coverConfigure: InvalidParameterValue {
             InvalidParameterValue(.coverConfigure)
         }
-        
+
         /// 参数值错误：人脸默认库过滤标签非法。
         public static var defaultLibraryLabelSet: InvalidParameterValue {
             InvalidParameterValue(.defaultLibraryLabelSet)
         }
-        
+
         /// 参数错误：Definition。
         public static var definition: InvalidParameterValue {
             InvalidParameterValue(.definition)
         }
-        
+
         /// 参数错误：Definitions。
         public static var definitions: InvalidParameterValue {
             InvalidParameterValue(.definitions)
         }
-        
+
         /// 参数值错误：不允许删除默认模板。
         public static var deleteDefaultTemplate: InvalidParameterValue {
             InvalidParameterValue(.deleteDefaultTemplate)
         }
-        
+
         /// 无效的禁止码率低转高开关值。
         public static var disableHigherVideoBitrate: InvalidParameterValue {
             InvalidParameterValue(.disableHigherVideoBitrate)
         }
-        
+
         /// 无效的禁止分辨率低转高开关值。
         public static var disableHigherVideoResolution: InvalidParameterValue {
             InvalidParameterValue(.disableHigherVideoResolution)
         }
-        
+
         /// 参数值错误：人脸重复。
         public static var faceDuplicate: InvalidParameterValue {
             InvalidParameterValue(.faceDuplicate)
         }
-        
+
         /// 参数值错误：人脸库参数非法。
         public static var faceLibrary: InvalidParameterValue {
             InvalidParameterValue(.faceLibrary)
         }
-        
+
         /// 参数值错误：人脸分数参数取值非法。
         public static var faceScore: InvalidParameterValue {
             InvalidParameterValue(.faceScore)
         }
-        
+
         /// 参数错误：填充方式错误。
         public static var fillType: InvalidParameterValue {
             InvalidParameterValue(.fillType)
         }
-        
+
         /// 参数值错误：Format。
         public static var format: InvalidParameterValue {
             InvalidParameterValue(.format)
         }
-        
+
         /// 参数值错误：Format 为 webp 时，Width、Height 均为空。
         public static var formatWebpLackWidthAndHeight: InvalidParameterValue {
             InvalidParameterValue(.formatWebpLackWidthAndHeight)
         }
-        
+
         /// 参数值错误：Format 为 webp 时，不允许 Width、Height 都为 0。
         public static var formatWebpWidthAndHeightBothZero: InvalidParameterValue {
             InvalidParameterValue(.formatWebpWidthAndHeightBothZero)
         }
-        
+
         /// 参数错误：视频帧率。
         public static var fps: InvalidParameterValue {
             InvalidParameterValue(.fps)
         }
-        
+
         /// 参数值错误：智能按帧标签控制字段参数错误。
         public static var frameTagConfigure: InvalidParameterValue {
             InvalidParameterValue(.frameTagConfigure)
         }
-        
+
         /// 参数值错误：FunctionArg。
         public static var functionArg: InvalidParameterValue {
             InvalidParameterValue(.functionArg)
         }
-        
+
         /// 参数值错误：FunctionName。
         public static var functionName: InvalidParameterValue {
             InvalidParameterValue(.functionName)
         }
-        
+
         /// 无效的Gop值。
         public static var gop: InvalidParameterValue {
             InvalidParameterValue(.gop)
         }
-        
+
         /// 参数错误：高度。
         public static var height: InvalidParameterValue {
             InvalidParameterValue(.height)
         }
-        
+
         /// ImageContent参数值无效。
         public static var imageContent: InvalidParameterValue {
             InvalidParameterValue(.imageContent)
         }
-        
+
         /// 参数错误：图片水印模板。
         public static var imageTemplate: InvalidParameterValue {
             InvalidParameterValue(.imageTemplate)
         }
-        
+
         /// 解析内容 Content 的值不合法。
         public static var invalidContent: InvalidParameterValue {
             InvalidParameterValue(.invalidContent)
         }
-        
+
         /// 无效的操作类型。
         public static var invalidOperationType: InvalidParameterValue {
             InvalidParameterValue(.invalidOperationType)
         }
-        
+
         /// 参数值错误：LabelSet 参数取值非法。
         public static var labelSet: InvalidParameterValue {
             InvalidParameterValue(.labelSet)
         }
-        
+
         /// 参数错误：Limit。
         public static var limit: InvalidParameterValue {
             InvalidParameterValue(.limit)
         }
-        
+
         /// 参数值错误：不允许修改默认模板。
         public static var modifyDefaultTemplate: InvalidParameterValue {
             InvalidParameterValue(.modifyDefaultTemplate)
         }
-        
+
         /// 参数值错误：Name 超过长度限制。
         public static var name: InvalidParameterValue {
             InvalidParameterValue(.name)
         }
-        
+
         /// 不支持状态不为处理中的任务。
         public static var notProcessingTask: InvalidParameterValue {
             InvalidParameterValue(.notProcessingTask)
         }
-        
+
         /// 参数值错误：物体库参数非法。
         public static var objectLibrary: InvalidParameterValue {
             InvalidParameterValue(.objectLibrary)
         }
-        
+
         /// 参数值错误：人脸图片格式错误。
         public static var picFormatError: InvalidParameterValue {
             InvalidParameterValue(.picFormatError)
         }
-        
+
         /// 参数值错误：Quality。
         public static var quality: InvalidParameterValue {
             InvalidParameterValue(.quality)
         }
-        
+
         /// 参数值错误：RemoveAudio。
         public static var removeAudio: InvalidParameterValue {
             InvalidParameterValue(.removeAudio)
         }
-        
+
         /// 参数值错误：RemoveVideo。
         public static var removeVideo: InvalidParameterValue {
             InvalidParameterValue(.removeVideo)
         }
-        
+
         /// 参数错误：RepeatType 无效。
         public static var repeatType: InvalidParameterValue {
             InvalidParameterValue(.repeatType)
         }
-        
+
         /// 参数错误：分辨率错误。
         public static var resolution: InvalidParameterValue {
             InvalidParameterValue(.resolution)
         }
-        
+
         /// 无效的ResolutionAdaptive。
         public static var resolutionAdaptive: InvalidParameterValue {
             InvalidParameterValue(.resolutionAdaptive)
         }
-        
+
         /// 参数值错误：ReviewConfidence 参数取值非法。
         public static var reviewConfidence: InvalidParameterValue {
             InvalidParameterValue(.reviewConfidence)
         }
-        
+
         /// 参数值错误：RowCount。
         public static var rowCount: InvalidParameterValue {
             InvalidParameterValue(.rowCount)
         }
-        
+
         /// 参数值错误：SampleInterval。
         public static var sampleInterval: InvalidParameterValue {
             InvalidParameterValue(.sampleInterval)
         }
-        
+
         /// 无效的音频采样率。
         public static var sampleRate: InvalidParameterValue {
             InvalidParameterValue(.sampleRate)
         }
-        
+
         /// 参数值错误：SampleType。
         public static var sampleType: InvalidParameterValue {
             InvalidParameterValue(.sampleType)
         }
-        
+
         /// SessionContext 过长。
         public static var sessionContextTooLong: InvalidParameterValue {
             InvalidParameterValue(.sessionContextTooLong)
         }
-        
+
         /// 去重识别码重复，请求被去重。
         public static var sessionId: InvalidParameterValue {
             InvalidParameterValue(.sessionId)
         }
-        
+
         /// SessionId 过长。
         public static var sessionIdTooLong: InvalidParameterValue {
             InvalidParameterValue(.sessionIdTooLong)
         }
-        
+
         /// 参数错误：音频通道方式。
         public static var soundSystem: InvalidParameterValue {
             InvalidParameterValue(.soundSystem)
         }
-        
+
         /// 源文件错误。
         public static var srcFile: InvalidParameterValue {
             InvalidParameterValue(.srcFile)
         }
-        
+
         /// 参数值错误：SubtitleFormat 参数非法。
         public static var subtitleFormat: InvalidParameterValue {
             InvalidParameterValue(.subtitleFormat)
         }
-        
+
         /// 参数值错误：SVG 为空。
         public static var svgTemplate: InvalidParameterValue {
             InvalidParameterValue(.svgTemplate)
         }
-        
+
         /// 参数值错误：SVG 高度。
         public static var svgTemplateHeight: InvalidParameterValue {
             InvalidParameterValue(.svgTemplateHeight)
         }
-        
+
         /// 参数值错误：SVG 宽度。
         public static var svgTemplateWidth: InvalidParameterValue {
             InvalidParameterValue(.svgTemplateWidth)
         }
-        
+
         /// 参数值错误：Switch 参数取值非法。
         public static var `switch`: InvalidParameterValue {
             InvalidParameterValue(.`switch`)
         }
-        
+
         /// 参数值错误：智能标签控制字段参数错误。
         public static var tagConfigure: InvalidParameterValue {
             InvalidParameterValue(.tagConfigure)
         }
-        
+
         /// 任务 ID 不存在。
         public static var taskId: InvalidParameterValue {
             InvalidParameterValue(.taskId)
         }
-        
+
         /// 参数值错误：TEHD Type 无效。
         public static var tehdType: InvalidParameterValue {
             InvalidParameterValue(.tehdType)
         }
-        
+
         /// 参数错误：文字透明度。
         public static var textAlpha: InvalidParameterValue {
             InvalidParameterValue(.textAlpha)
         }
-        
+
         /// 参数错误：文字模板。
         public static var textTemplate: InvalidParameterValue {
             InvalidParameterValue(.textTemplate)
         }
-        
+
         /// 参数错误：Type 参数值错误。
         public static var type: InvalidParameterValue {
             InvalidParameterValue(.type)
         }
-        
+
         /// 参数值错误：人脸用户自定义库过滤标签非法。
         public static var userDefineLibraryLabelSet: InvalidParameterValue {
             InvalidParameterValue(.userDefineLibraryLabelSet)
         }
-        
+
         /// 参数错误：视频流码率。
         public static var videoBitrate: InvalidParameterValue {
             InvalidParameterValue(.videoBitrate)
         }
-        
+
         /// 参数错误：视频流的编码格式。
         public static var videoCodec: InvalidParameterValue {
             InvalidParameterValue(.videoCodec)
         }
-        
+
         /// 参数错误：宽度。
         public static var width: InvalidParameterValue {
             InvalidParameterValue(.width)
         }
-        
+
         /// 水印原点距离视频图像坐标原点的水平位置。支持 %、px 两种格式。
         public static var xPos: InvalidParameterValue {
             InvalidParameterValue(.xPos)
         }
-        
+
         /// 水印原点距离视频图像坐标原点的垂直位置。支持 %、px 两种格式。
         public static var yPos: InvalidParameterValue {
             InvalidParameterValue(.yPos)
         }
-        
+
         /// 参数取值错误。
         public static var other: InvalidParameterValue {
             InvalidParameterValue(.other)
         }
-        
+
         public func asMpsError() -> TCMpsError {
             let code: TCMpsError.Code
             switch self.error {

@@ -19,26 +19,26 @@ extension Gse {
     public struct UpdateBucketAccelerateOptRequest: TCRequestModel {
         /// true为开启全球加速，false为关闭
         public let allowed: Bool
-        
-        public init (allowed: Bool) {
+
+        public init(allowed: Bool) {
             self.allowed = allowed
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case allowed = "Allowed"
         }
     }
-    
+
     /// UpdateBucketAccelerateOpt返回参数结构体
     public struct UpdateBucketAccelerateOptResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// cos设置全球加速
     ///
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
@@ -47,7 +47,7 @@ extension Gse {
     public func updateBucketAccelerateOpt(_ input: UpdateBucketAccelerateOptRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateBucketAccelerateOptResponse > {
         self.client.execute(action: "UpdateBucketAccelerateOpt", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// cos设置全球加速
     ///
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
@@ -56,7 +56,7 @@ extension Gse {
     public func updateBucketAccelerateOpt(_ input: UpdateBucketAccelerateOptRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> UpdateBucketAccelerateOptResponse {
         try await self.client.execute(action: "UpdateBucketAccelerateOpt", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// cos设置全球加速
     ///
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
@@ -65,7 +65,7 @@ extension Gse {
     public func updateBucketAccelerateOpt(allowed: Bool, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < UpdateBucketAccelerateOptResponse > {
         self.updateBucketAccelerateOpt(UpdateBucketAccelerateOptRequest(allowed: allowed), logger: logger, on: eventLoop)
     }
-    
+
     /// cos设置全球加速
     ///
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持

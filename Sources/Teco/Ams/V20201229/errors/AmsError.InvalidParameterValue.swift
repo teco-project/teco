@@ -26,69 +26,69 @@ extension TCAmsError {
             case invalidParameter = "InvalidParameterValue.InvalidParameter"
             case other = "InvalidParameterValue"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// InvalidParameterValue.EmptyImageContent
         public static var emptyImageContent: InvalidParameterValue {
             InvalidParameterValue(.emptyImageContent)
         }
-        
+
         /// InvalidParameterValue.ImageSizeTooSmall
         public static var imageSizeTooSmall: InvalidParameterValue {
             InvalidParameterValue(.imageSizeTooSmall)
         }
-        
+
         /// InvalidParameterValue.InvalidContent
         public static var invalidContent: InvalidParameterValue {
             InvalidParameterValue(.invalidContent)
         }
-        
+
         /// InvalidParameterValue.InvalidDataId
         public static var invalidDataId: InvalidParameterValue {
             InvalidParameterValue(.invalidDataId)
         }
-        
+
         /// InvalidParameterValue.InvalidFileContentSize
         public static var invalidFileContentSize: InvalidParameterValue {
             InvalidParameterValue(.invalidFileContentSize)
         }
-        
+
         /// InvalidParameterValue.InvalidImageContent
         public static var invalidImageContent: InvalidParameterValue {
             InvalidParameterValue(.invalidImageContent)
         }
-        
+
         /// InvalidParameterValue.InvalidParameter
         public static var invalidParameter: InvalidParameterValue {
             InvalidParameterValue(.invalidParameter)
         }
-        
+
         /// 参数取值错误。
         public static var other: InvalidParameterValue {
             InvalidParameterValue(.other)
         }
-        
+
         public func asAmsError() -> TCAmsError {
             let code: TCAmsError.Code
             switch self.error {

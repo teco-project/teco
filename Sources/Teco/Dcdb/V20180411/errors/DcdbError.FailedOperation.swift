@@ -46,166 +46,166 @@ extension TCDcdbError {
             case vpcUpdateRouteFailed = "FailedOperation.VpcUpdateRouteFailed"
             case wanStatusAbnormal = "FailedOperation.WanStatusAbnormal"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 实例安全组信息添加失败。
         public static var addInstanceInfoFailed: FailedOperation {
             FailedOperation(.addInstanceInfoFailed)
         }
-        
+
         /// 申请VIP失败。
         public static var applyVipFailed: FailedOperation {
             FailedOperation(.applyVipFailed)
         }
-        
+
         /// 绑定安全组失败。
         public static var associateSecurityGroupsFailed: FailedOperation {
             FailedOperation(.associateSecurityGroupsFailed)
         }
-        
+
         /// 鉴权失败。
         public static var authNoStrategy: FailedOperation {
             FailedOperation(.authNoStrategy)
         }
-        
+
         /// 实例安全组信息清除失败。
         public static var clearInstanceInfoFailed: FailedOperation {
             FailedOperation(.clearInstanceInfoFailed)
         }
-        
+
         /// 复制账号权限出错。
         public static var copyRightError: FailedOperation {
             FailedOperation(.copyRightError)
         }
-        
+
         /// 创建流程失败。
         public static var createFlowFailed: FailedOperation {
             FailedOperation(.createFlowFailed)
         }
-        
+
         /// 创建订单失败。
         public static var createOrderFailed: FailedOperation {
             FailedOperation(.createOrderFailed)
         }
-        
+
         /// 创建账号失败。
         public static var createUserFailed: FailedOperation {
             FailedOperation(.createUserFailed)
         }
-        
+
         /// 删除账号失败。
         public static var deleteUserFailed: FailedOperation {
             FailedOperation(.deleteUserFailed)
         }
-        
+
         /// 解绑安全组失败。
         public static var disassociateSecurityGroupsFailed: FailedOperation {
             FailedOperation(.disassociateSecurityGroupsFailed)
         }
-        
+
         public static var getSecurityGroupDetailFailed: FailedOperation {
             FailedOperation(.getSecurityGroupDetailFailed)
         }
-        
+
         /// 修改账号权限失败。
         public static var modifyRightFailed: FailedOperation {
             FailedOperation(.modifyRightFailed)
         }
-        
+
         /// 消息队列操作失败。
         public static var msgQueueOperationFailed: FailedOperation {
             FailedOperation(.msgQueueOperationFailed)
         }
-        
+
         public static var ossIsolateInstanceFailed: FailedOperation {
             FailedOperation(.ossIsolateInstanceFailed)
         }
-        
+
         /// 请求后端接口失败。
         public static var ossOperationFailed: FailedOperation {
             FailedOperation(.ossOperationFailed)
         }
-        
+
         /// 支付订单失败。
         public static var payFailed: FailedOperation {
             FailedOperation(.payFailed)
         }
-        
+
         /// 重置账号密码失败。
         public static var resetPasswordFailed: FailedOperation {
             FailedOperation(.resetPasswordFailed)
         }
-        
+
         /// 设置规则失败。
         public static var setRuleLocationFailed: FailedOperation {
             FailedOperation(.setRuleLocationFailed)
         }
-        
+
         public static var setSvcLocationFailed: FailedOperation {
             FailedOperation(.setSvcLocationFailed)
         }
-        
+
         /// 更新安全组失败。
         public static var sgChangeVip: FailedOperation {
             FailedOperation(.sgChangeVip)
         }
-        
+
         /// 标签键值校验或鉴权失败。
         public static var tagDryRunError: FailedOperation {
             FailedOperation(.tagDryRunError)
         }
-        
+
         /// 实例安全组信息更新失败。
         public static var updateInstanceInfoFailed: FailedOperation {
             FailedOperation(.updateInstanceInfoFailed)
         }
-        
+
         /// 用户未实名认证。
         public static var userNotAuthed: FailedOperation {
             FailedOperation(.userNotAuthed)
         }
-        
+
         /// VIP不能与之前一样。
         public static var vipNotChange: FailedOperation {
             FailedOperation(.vipNotChange)
         }
-        
+
         /// VPC添加服务失败。
         public static var vpcAddServiceFailed: FailedOperation {
             FailedOperation(.vpcAddServiceFailed)
         }
-        
+
         /// VPC更新路由失败。
         public static var vpcUpdateRouteFailed: FailedOperation {
             FailedOperation(.vpcUpdateRouteFailed)
         }
-        
+
         /// 外网状态异常。
         public static var wanStatusAbnormal: FailedOperation {
             FailedOperation(.wanStatusAbnormal)
         }
-        
+
         public func asDcdbError() -> TCDcdbError {
             let code: TCDcdbError.Code
             switch self.error {

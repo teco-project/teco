@@ -28,79 +28,79 @@ extension TCTiwError {
             case urlFormatError = "InvalidParameter.UrlFormatError"
             case other = "InvalidParameter"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 参数类型不匹配。
         public static var bodyParameterTypeUnmatched: InvalidParameter {
             InvalidParameter(.bodyParameterTypeUnmatched)
         }
-        
+
         /// 回调地址格式错误。
         public static var callbackAddressFormatError: InvalidParameter {
             InvalidParameter(.callbackAddressFormatError)
         }
-        
+
         /// 文档后缀名对应的格式不支持。
         public static var fileFormatUnsupported: InvalidParameter {
             InvalidParameter(.fileFormatUnsupported)
         }
-        
+
         /// 额外指定的特殊功能不存在。
         public static var invalidExtra: InvalidParameter {
             InvalidParameter(.invalidExtra)
         }
-        
+
         /// 实时录制参数格式不正确。
         public static var recordParameter: InvalidParameter {
             InvalidParameter(.recordParameter)
         }
-        
+
         /// SdkAppId不存在或格式错误。
         public static var sdkAppIdNotFound: InvalidParameter {
             InvalidParameter(.sdkAppIdNotFound)
         }
-        
+
         /// 需要查询的任务不存在。
         public static var taskNotFound: InvalidParameter {
             InvalidParameter(.taskNotFound)
         }
-        
+
         /// 文档转码参数格式不正确。
         public static var transcodeParameter: InvalidParameter {
             InvalidParameter(.transcodeParameter)
         }
-        
+
         /// 文档下载Url格式错误，请检查请求参数里的Url。
         public static var urlFormatError: InvalidParameter {
             InvalidParameter(.urlFormatError)
         }
-        
+
         /// 参数错误。
         public static var other: InvalidParameter {
             InvalidParameter(.other)
         }
-        
+
         public func asTiwError() -> TCTiwError {
             let code: TCTiwError.Code
             switch self.error {

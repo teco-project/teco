@@ -17,24 +17,24 @@
 extension Gse {
     /// DescribeInstanceTypes请求参数结构体
     public struct DescribeInstanceTypesRequest: TCRequestModel {
-        public init () {
+        public init() {
         }
     }
-    
+
     /// DescribeInstanceTypes返回参数结构体
     public struct DescribeInstanceTypesResponse: TCResponseModel {
         /// 服务器实例类型列表
         public let instanceTypeList: [InstanceTypeInfo]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceTypeList = "InstanceTypeList"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取服务器实例类型列表
     ///
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
@@ -43,7 +43,7 @@ extension Gse {
     public func describeInstanceTypes(_ input: DescribeInstanceTypesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInstanceTypesResponse > {
         self.client.execute(action: "DescribeInstanceTypes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取服务器实例类型列表
     ///
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
@@ -52,7 +52,7 @@ extension Gse {
     public func describeInstanceTypes(_ input: DescribeInstanceTypesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeInstanceTypesResponse {
         try await self.client.execute(action: "DescribeInstanceTypes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取服务器实例类型列表
     ///
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持
@@ -61,7 +61,7 @@ extension Gse {
     public func describeInstanceTypes(logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeInstanceTypesResponse > {
         self.describeInstanceTypes(DescribeInstanceTypesRequest(), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取服务器实例类型列表
     ///
     /// 此接口无法使用，游戏服务器引擎GSE已于6.1正式下架，感谢您的支持

@@ -19,30 +19,30 @@ extension Rce {
     public struct DescribeRiskTrendsRequest: TCRequestModel {
         /// 业务入参
         public let businessSecurityData: InputFrontRisk
-        
-        public init (businessSecurityData: InputFrontRisk) {
+
+        public init(businessSecurityData: InputFrontRisk) {
             self.businessSecurityData = businessSecurityData
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case businessSecurityData = "BusinessSecurityData"
         }
     }
-    
+
     /// DescribeRiskTrends返回参数结构体
     public struct DescribeRiskTrendsResponse: TCResponseModel {
         /// 业务出参
         public let data: OutputFrontRiskData
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case data = "Data"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 风险趋势统计
     ///
     /// 以图表形式展示三种请求状态的趋势变化
@@ -50,7 +50,7 @@ extension Rce {
     public func describeRiskTrends(_ input: DescribeRiskTrendsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRiskTrendsResponse > {
         self.client.execute(action: "DescribeRiskTrends", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 风险趋势统计
     ///
     /// 以图表形式展示三种请求状态的趋势变化
@@ -58,7 +58,7 @@ extension Rce {
     public func describeRiskTrends(_ input: DescribeRiskTrendsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeRiskTrendsResponse {
         try await self.client.execute(action: "DescribeRiskTrends", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 风险趋势统计
     ///
     /// 以图表形式展示三种请求状态的趋势变化
@@ -66,7 +66,7 @@ extension Rce {
     public func describeRiskTrends(businessSecurityData: InputFrontRisk, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeRiskTrendsResponse > {
         self.describeRiskTrends(DescribeRiskTrendsRequest(businessSecurityData: businessSecurityData), logger: logger, on: eventLoop)
     }
-    
+
     /// 风险趋势统计
     ///
     /// 以图表形式展示三种请求状态的趋势变化

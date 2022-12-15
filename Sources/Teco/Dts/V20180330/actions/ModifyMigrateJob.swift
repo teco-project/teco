@@ -19,25 +19,25 @@ extension Dts {
     public struct ModifyMigrateJobRequest: TCRequestModel {
         /// 待修改的数据迁移任务ID
         public let jobId: String
-        
+
         /// 数据迁移任务名称
         public let jobName: String?
-        
+
         /// 迁移任务配置选项
         public let migrateOption: MigrateOption?
-        
+
         /// 源实例接入类型，值包括：extranet(外网),cvm(CVM自建实例),dcg(专线接入的实例),vpncloud(云VPN接入的实例),cdb(云上CDB实例)
         public let srcAccessType: String?
-        
+
         /// 源实例信息，具体内容跟迁移任务类型相关
         public let srcInfo: SrcInfo?
-        
+
         /// 目标实例接入类型，值包括：extranet(外网),cvm(CVM自建实例),dcg(专线接入的实例),vpncloud(云VPN接入的实例)，cdb(云上CDB实例). 目前只支持cdb.
         public let dstAccessType: String?
-        
+
         /// 目标实例信息, 其中目标实例地域不允许修改.
         public let dstInfo: DstInfo?
-        
+
         /// 当选择'指定库表'迁移的时候, 需要设置待迁移的源数据库表信息,用符合json数组格式的字符串描述, 如下所例。
         /// 对于database-table两级结构的数据库：
         /// [{"Database":"db1","Table":["table1","table2"]},{"Database":"db2"}]
@@ -45,14 +45,14 @@ extension Dts {
         /// [{"Database":"db1","Schema":"s1","Table":["table1","table2"]},{"Database":"db1","Schema":"s2","Table":["table1","table2"]},{"Database":"db2","Schema":"s1","Table":["table1","table2"]},{"Database":"db3"},{"Database":"db4","Schema":"s1"}]
         /// 如果是'整个实例'的迁移模式,不需设置该字段
         public let databaseInfo: String?
-        
+
         /// 源实例类型: ""或者"simple":主从节点，"cluster": 集群节点
         public let srcNodeType: String?
-        
+
         /// 源实例信息，具体内容跟迁移任务类型相关
         public let srcInfoMulti: [SrcInfo]?
-        
-        public init (jobId: String, jobName: String? = nil, migrateOption: MigrateOption? = nil, srcAccessType: String? = nil, srcInfo: SrcInfo? = nil, dstAccessType: String? = nil, dstInfo: DstInfo? = nil, databaseInfo: String? = nil, srcNodeType: String? = nil, srcInfoMulti: [SrcInfo]? = nil) {
+
+        public init(jobId: String, jobName: String? = nil, migrateOption: MigrateOption? = nil, srcAccessType: String? = nil, srcInfo: SrcInfo? = nil, dstAccessType: String? = nil, dstInfo: DstInfo? = nil, databaseInfo: String? = nil, srcNodeType: String? = nil, srcInfoMulti: [SrcInfo]? = nil) {
             self.jobId = jobId
             self.jobName = jobName
             self.migrateOption = migrateOption
@@ -64,7 +64,7 @@ extension Dts {
             self.srcNodeType = srcNodeType
             self.srcInfoMulti = srcInfoMulti
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case jobId = "JobId"
             case jobName = "JobName"
@@ -78,17 +78,17 @@ extension Dts {
             case srcInfoMulti = "SrcInfoMulti"
         }
     }
-    
+
     /// ModifyMigrateJob返回参数结构体
     public struct ModifyMigrateJobResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 修改数据迁移任务
     ///
     /// 本接口（ModifyMigrateJob）用于修改数据迁移任务。
@@ -98,7 +98,7 @@ extension Dts {
     public func modifyMigrateJob(_ input: ModifyMigrateJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyMigrateJobResponse > {
         self.client.execute(action: "ModifyMigrateJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 修改数据迁移任务
     ///
     /// 本接口（ModifyMigrateJob）用于修改数据迁移任务。
@@ -108,7 +108,7 @@ extension Dts {
     public func modifyMigrateJob(_ input: ModifyMigrateJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyMigrateJobResponse {
         try await self.client.execute(action: "ModifyMigrateJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 修改数据迁移任务
     ///
     /// 本接口（ModifyMigrateJob）用于修改数据迁移任务。
@@ -118,7 +118,7 @@ extension Dts {
     public func modifyMigrateJob(jobId: String, jobName: String? = nil, migrateOption: MigrateOption? = nil, srcAccessType: String? = nil, srcInfo: SrcInfo? = nil, dstAccessType: String? = nil, dstInfo: DstInfo? = nil, databaseInfo: String? = nil, srcNodeType: String? = nil, srcInfoMulti: [SrcInfo]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyMigrateJobResponse > {
         self.modifyMigrateJob(ModifyMigrateJobRequest(jobId: jobId, jobName: jobName, migrateOption: migrateOption, srcAccessType: srcAccessType, srcInfo: srcInfo, dstAccessType: dstAccessType, dstInfo: dstInfo, databaseInfo: databaseInfo, srcNodeType: srcNodeType, srcInfoMulti: srcInfoMulti), logger: logger, on: eventLoop)
     }
-    
+
     /// 修改数据迁移任务
     ///
     /// 本接口（ModifyMigrateJob）用于修改数据迁移任务。

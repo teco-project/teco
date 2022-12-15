@@ -19,26 +19,26 @@ extension Vpc {
     public struct DeleteSubnetRequest: TCRequestModel {
         /// 子网实例ID。可通过DescribeSubnets接口返回值中的SubnetId获取。
         public let subnetId: String
-        
-        public init (subnetId: String) {
+
+        public init(subnetId: String) {
             self.subnetId = subnetId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case subnetId = "SubnetId"
         }
     }
-    
+
     /// DeleteSubnet返回参数结构体
     public struct DeleteSubnetResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除子网
     ///
     /// 本接口（DeleteSubnet）用于用于删除子网(Subnet)。
@@ -47,7 +47,7 @@ extension Vpc {
     public func deleteSubnet(_ input: DeleteSubnetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteSubnetResponse > {
         self.client.execute(action: "DeleteSubnet", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除子网
     ///
     /// 本接口（DeleteSubnet）用于用于删除子网(Subnet)。
@@ -56,7 +56,7 @@ extension Vpc {
     public func deleteSubnet(_ input: DeleteSubnetRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteSubnetResponse {
         try await self.client.execute(action: "DeleteSubnet", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除子网
     ///
     /// 本接口（DeleteSubnet）用于用于删除子网(Subnet)。
@@ -65,7 +65,7 @@ extension Vpc {
     public func deleteSubnet(subnetId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteSubnetResponse > {
         self.deleteSubnet(DeleteSubnetRequest(subnetId: subnetId), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除子网
     ///
     /// 本接口（DeleteSubnet）用于用于删除子网(Subnet)。

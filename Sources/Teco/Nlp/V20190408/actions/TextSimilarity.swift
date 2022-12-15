@@ -19,35 +19,35 @@ extension Nlp {
     public struct TextSimilarityRequest: TCRequestModel {
         /// 需要与目标句子计算相似度的源句子（仅支持UTF-8格式，不超过500字符）
         public let srcText: String
-        
+
         /// 目标句子（以句子数量为单位消耗资源包）
         public let targetText: [String]
-        
-        public init (srcText: String, targetText: [String]) {
+
+        public init(srcText: String, targetText: [String]) {
             self.srcText = srcText
             self.targetText = targetText
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case srcText = "SrcText"
             case targetText = "TargetText"
         }
     }
-    
+
     /// TextSimilarity返回参数结构体
     public struct TextSimilarityResponse: TCResponseModel {
         /// 每个目标句子与源句子的相似度分值，按照分值降序排列
         public let similarity: [Similarity]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case similarity = "Similarity"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 句子相似度
     ///
     /// 句子相似度接口能够基于深度学习技术来计算一个源句子和多个目标句子的相似度，相似度分值越大的两个句子在语义上越相似。目前仅支持短文本（不超过500字符）的相似度计算，长文本的相似度计算也即将推出。
@@ -57,7 +57,7 @@ extension Nlp {
     public func textSimilarity(_ input: TextSimilarityRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < TextSimilarityResponse > {
         self.client.execute(action: "TextSimilarity", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 句子相似度
     ///
     /// 句子相似度接口能够基于深度学习技术来计算一个源句子和多个目标句子的相似度，相似度分值越大的两个句子在语义上越相似。目前仅支持短文本（不超过500字符）的相似度计算，长文本的相似度计算也即将推出。
@@ -67,7 +67,7 @@ extension Nlp {
     public func textSimilarity(_ input: TextSimilarityRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TextSimilarityResponse {
         try await self.client.execute(action: "TextSimilarity", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 句子相似度
     ///
     /// 句子相似度接口能够基于深度学习技术来计算一个源句子和多个目标句子的相似度，相似度分值越大的两个句子在语义上越相似。目前仅支持短文本（不超过500字符）的相似度计算，长文本的相似度计算也即将推出。
@@ -77,7 +77,7 @@ extension Nlp {
     public func textSimilarity(srcText: String, targetText: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < TextSimilarityResponse > {
         self.textSimilarity(TextSimilarityRequest(srcText: srcText, targetText: targetText), logger: logger, on: eventLoop)
     }
-    
+
     /// 句子相似度
     ///
     /// 句子相似度接口能够基于深度学习技术来计算一个源句子和多个目标句子的相似度，相似度分值越大的两个句子在语义上越相似。目前仅支持短文本（不超过500字符）的相似度计算，长文本的相似度计算也即将推出。

@@ -19,35 +19,35 @@ extension As {
     public struct DetachInstancesRequest: TCRequestModel {
         /// 伸缩组ID
         public let autoScalingGroupId: String
-        
+
         /// CVM实例ID列表
         public let instanceIds: [String]
-        
-        public init (autoScalingGroupId: String, instanceIds: [String]) {
+
+        public init(autoScalingGroupId: String, instanceIds: [String]) {
             self.autoScalingGroupId = autoScalingGroupId
             self.instanceIds = instanceIds
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case autoScalingGroupId = "AutoScalingGroupId"
             case instanceIds = "InstanceIds"
         }
     }
-    
+
     /// DetachInstances返回参数结构体
     public struct DetachInstancesResponse: TCResponseModel {
         /// 伸缩活动ID
         public let activityId: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case activityId = "ActivityId"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 从伸缩组移出 CVM 实例
     ///
     /// 本接口（DetachInstances）用于从伸缩组移出 CVM 实例，本接口不会销毁实例。
@@ -58,7 +58,7 @@ extension As {
     public func detachInstances(_ input: DetachInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DetachInstancesResponse > {
         self.client.execute(action: "DetachInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 从伸缩组移出 CVM 实例
     ///
     /// 本接口（DetachInstances）用于从伸缩组移出 CVM 实例，本接口不会销毁实例。
@@ -69,7 +69,7 @@ extension As {
     public func detachInstances(_ input: DetachInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DetachInstancesResponse {
         try await self.client.execute(action: "DetachInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 从伸缩组移出 CVM 实例
     ///
     /// 本接口（DetachInstances）用于从伸缩组移出 CVM 实例，本接口不会销毁实例。
@@ -80,7 +80,7 @@ extension As {
     public func detachInstances(autoScalingGroupId: String, instanceIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DetachInstancesResponse > {
         self.detachInstances(DetachInstancesRequest(autoScalingGroupId: autoScalingGroupId, instanceIds: instanceIds), logger: logger, on: eventLoop)
     }
-    
+
     /// 从伸缩组移出 CVM 实例
     ///
     /// 本接口（DetachInstances）用于从伸缩组移出 CVM 实例，本接口不会销毁实例。

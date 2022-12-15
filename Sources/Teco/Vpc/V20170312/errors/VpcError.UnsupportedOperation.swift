@@ -126,556 +126,556 @@ extension TCVpcError {
             case zoneMismatch = "UnsupportedOperation.ZoneMismatch"
             case other = "UnsupportedOperation"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 接口不存在。
         public static var actionNotFound: UnsupportedOperation {
             UnsupportedOperation(.actionNotFound)
         }
-        
+
         /// 欠费状态不支持该操作。
         public static var addressIpInArrear: UnsupportedOperation {
             UnsupportedOperation(.addressIpInArrear)
         }
-        
+
         /// 此付费模式的IP地址不支持该操作。
         public static var addressIpInternetChargeTypeNotPermit: UnsupportedOperation {
             UnsupportedOperation(.addressIpInternetChargeTypeNotPermit)
         }
-        
+
         /// 绑定此实例的IP地址不支持该操作。
         public static var addressIpNotSupportInstance: UnsupportedOperation {
             UnsupportedOperation(.addressIpNotSupportInstance)
         }
-        
+
         /// 此IP地址状态不支持该操作。
         public static var addressIpStatusNotPermit: UnsupportedOperation {
             UnsupportedOperation(.addressIpStatusNotPermit)
         }
-        
+
         /// 该地址状态不支持此操作。
         public static var addressStatusNotPermit: UnsupportedOperation {
             UnsupportedOperation(.addressStatusNotPermit)
         }
-        
+
         /// 资源不在指定的AppId下。
         public static var appIdMismatch: UnsupportedOperation {
             UnsupportedOperation(.appIdMismatch)
         }
-        
+
         /// APPId不存在。
         public static var appIdNotFound: UnsupportedOperation {
             UnsupportedOperation(.appIdNotFound)
         }
-        
+
         /// 绑定关系已存在。
         public static var attachmentAlreadyExists: UnsupportedOperation {
             UnsupportedOperation(.attachmentAlreadyExists)
         }
-        
+
         /// 绑定关系不存在。
         public static var attachmentNotFound: UnsupportedOperation {
             UnsupportedOperation(.attachmentNotFound)
         }
-        
+
         /// 当前云联网还有预付费带宽未到期，不支持主动删除。
         public static var bandwidthNotExpired: UnsupportedOperation {
             UnsupportedOperation(.bandwidthNotExpired)
         }
-        
+
         /// 该带宽包不支持此操作。
         public static var bandwidthPackageIdNotSupported: UnsupportedOperation {
             UnsupportedOperation(.bandwidthPackageIdNotSupported)
         }
-        
+
         /// 已绑定EIP。
         public static var bindEIP: UnsupportedOperation {
             UnsupportedOperation(.bindEIP)
         }
-        
+
         /// 实例已关联CCN。
         public static var ccnAttached: UnsupportedOperation {
             UnsupportedOperation(.ccnAttached)
         }
-        
+
         /// 当前云联网有流日志，不支持删除。
         public static var ccnHasFlowLog: UnsupportedOperation {
             UnsupportedOperation(.ccnHasFlowLog)
         }
-        
+
         public static var ccnInstanceAccountNotApprovedByUnicom: UnsupportedOperation {
             UnsupportedOperation(.ccnInstanceAccountNotApprovedByUnicom)
         }
-        
+
         /// 实例未关联CCN。
         public static var ccnNotAttached: UnsupportedOperation {
             UnsupportedOperation(.ccnNotAttached)
         }
-        
+
         /// 跨账号场景下不支持自驾云账号实例 关联普通账号云联网。
         public static var ccnOrdinaryAccountRefuseAttach: UnsupportedOperation {
             UnsupportedOperation(.ccnOrdinaryAccountRefuseAttach)
         }
-        
+
         /// 指定的路由表不存在。
         public static var ccnRouteTableNotExist: UnsupportedOperation {
             UnsupportedOperation(.ccnRouteTableNotExist)
         }
-        
+
         /// CDC子网不支持创建非本地网关类型的路由。
         public static var cdcSubnetNotSupportUnLocalGateway: UnsupportedOperation {
             UnsupportedOperation(.cdcSubnetNotSupportUnLocalGateway)
         }
-        
+
         /// 指定VPC CIDR范围不支持私有网络和基础网络设备互通。
         public static var cidrUnSupportedClassicLink: UnsupportedOperation {
             UnsupportedOperation(.cidrUnSupportedClassicLink)
         }
-        
+
         /// 实例已经和VPC绑定。
         public static var classicInstanceIdAlreadyExists: UnsupportedOperation {
             UnsupportedOperation(.classicInstanceIdAlreadyExists)
         }
-        
+
         /// 公网Clb不支持该规则。
         public static var clbPolicyLimit: UnsupportedOperation {
             UnsupportedOperation(.clbPolicyLimit)
         }
-        
+
         /// 与该VPC下的TKE容器的网段重叠。
         public static var conflictWithDockerRoute: UnsupportedOperation {
             UnsupportedOperation(.conflictWithDockerRoute)
         }
-        
+
         public static var currentAccountIsNotUnicomAccount: UnsupportedOperation {
             UnsupportedOperation(.currentAccountIsNotUnicomAccount)
         }
-        
+
         public static var currentQueryRegionIsNotCrossBorder: UnsupportedOperation {
             UnsupportedOperation(.currentQueryRegionIsNotCrossBorder)
         }
-        
+
         public static var dcGatewayNatRuleExists: UnsupportedOperation {
             UnsupportedOperation(.dcGatewayNatRuleExists)
         }
-        
+
         /// 指定的VPC未发现专线网关。
         public static var dcGatewaysNotFoundInVpc: UnsupportedOperation {
             UnsupportedOperation(.dcGatewaysNotFoundInVpc)
         }
-        
+
         /// 禁止删除默认路由表。
         public static var delDefaultRoute: UnsupportedOperation {
             UnsupportedOperation(.delDefaultRoute)
         }
-        
+
         /// 禁止删除已关联子网的路由表。
         public static var delRouteWithSubnet: UnsupportedOperation {
             UnsupportedOperation(.delRouteWithSubnet)
         }
-        
+
         /// 专线网关正在更新BGP Community属性。
         public static var directConnectGatewayIsUpdatingCommunity: UnsupportedOperation {
             UnsupportedOperation(.directConnectGatewayIsUpdatingCommunity)
         }
-        
+
         /// 指定的路由策略已发布至云联网，请先撤销。
         public static var disabledNotifyCcn: UnsupportedOperation {
             UnsupportedOperation(.disabledNotifyCcn)
         }
-        
+
         /// 安全组规则重复。
         public static var duplicatePolicy: UnsupportedOperation {
             UnsupportedOperation(.duplicatePolicy)
         }
-        
+
         /// 不支持ECMP。
         public static var ecmp: UnsupportedOperation {
             UnsupportedOperation(.ecmp)
         }
-        
+
         /// 和云联网的路由形成ECMP。
         public static var ecmpWithCcnRoute: UnsupportedOperation {
             UnsupportedOperation(.ecmpWithCcnRoute)
         }
-        
+
         /// 和用户自定义的路由形成ECMP。
         public static var ecmpWithUserRoute: UnsupportedOperation {
             UnsupportedOperation(.ecmpWithUserRoute)
         }
-        
+
         /// 终端节点服务本身不能是终端节点。
         public static var endPointService: UnsupportedOperation {
             UnsupportedOperation(.endPointService)
         }
-        
+
         /// 不支持创建流日志：当前弹性网卡绑定的是KO机型。
         public static var flowLogsNotSupportKoInstanceEni: UnsupportedOperation {
             UnsupportedOperation(.flowLogsNotSupportKoInstanceEni)
         }
-        
+
         /// 不支持创建流日志：当前弹性网卡未绑定实例。
         public static var flowLogsNotSupportNullInstanceEni: UnsupportedOperation {
             UnsupportedOperation(.flowLogsNotSupportNullInstanceEni)
         }
-        
+
         /// 该种类型地址不支持此操作。
         public static var incorrectAddressResourceType: UnsupportedOperation {
             UnsupportedOperation(.incorrectAddressResourceType)
         }
-        
+
         /// 用户配置的实例和路由表不匹配。
         public static var instanceAndRtbNotMatch: UnsupportedOperation {
             UnsupportedOperation(.instanceAndRtbNotMatch)
         }
-        
+
         public static var instanceMismatch: UnsupportedOperation {
             UnsupportedOperation(.instanceMismatch)
         }
-        
+
         /// 跨账号场景下不支持普通账号实例关联自驾云账号云联网。
         public static var instanceOrdinaryAccountRefuseAttach: UnsupportedOperation {
             UnsupportedOperation(.instanceOrdinaryAccountRefuseAttach)
         }
-        
+
         /// 该地址绑定的实例状态不支持此操作。
         public static var instanceStateNotSupported: UnsupportedOperation {
             UnsupportedOperation(.instanceStateNotSupported)
         }
-        
+
         /// 账户余额不足。
         public static var insufficientFunds: UnsupportedOperation {
             UnsupportedOperation(.insufficientFunds)
         }
-        
+
         /// 不支持该操作。
         public static var invalidAction: UnsupportedOperation {
             UnsupportedOperation(.invalidAction)
         }
-        
+
         /// 该地址的网络付费方式不支持此操作。
         public static var invalidAddressInternetChargeType: UnsupportedOperation {
             UnsupportedOperation(.invalidAddressInternetChargeType)
         }
-        
+
         /// 该地址状态不支持此操作。
         public static var invalidAddressState: UnsupportedOperation {
             UnsupportedOperation(.invalidAddressState)
         }
-        
+
         /// 无效的实例状态。
         ///
         /// 请确保实例状态正常，再进行操作。
         public static var invalidInstanceState: UnsupportedOperation {
             UnsupportedOperation(.invalidInstanceState)
         }
-        
+
         /// 该计费方式不支持此操作。
         public static var invalidResourceInternetChargeType: UnsupportedOperation {
             UnsupportedOperation(.invalidResourceInternetChargeType)
         }
-        
+
         /// 不支持加入此协议的带宽包。
         public static var invalidResourceProtocol: UnsupportedOperation {
             UnsupportedOperation(.invalidResourceProtocol)
         }
-        
+
         /// 资源状态不合法。
         public static var invalidState: UnsupportedOperation {
             UnsupportedOperation(.invalidState)
         }
-        
+
         /// 当前状态不支持发布至云联网，请重试。
         public static var invalidStatusNotifyCcn: UnsupportedOperation {
             UnsupportedOperation(.invalidStatusNotifyCcn)
         }
-        
+
         /// 关联当前云联网的实例的账号存在不是金融云账号。
         public static var isNotFinanceAccount: UnsupportedOperation {
             UnsupportedOperation(.isNotFinanceAccount)
         }
-        
+
         /// 该ISP不支持此操作。
         public static var ispNotSupported: UnsupportedOperation {
             UnsupportedOperation(.ispNotSupported)
         }
-        
+
         /// 指定的CDC已存在本地网关。
         public static var localGatewayAlreadyExists: UnsupportedOperation {
             UnsupportedOperation(.localGatewayAlreadyExists)
         }
-        
+
         public static var modifyAddressAttribute: UnsupportedOperation {
             UnsupportedOperation(.modifyAddressAttribute)
         }
-        
+
         /// 资源互斥操作任务正在执行。
         public static var mutexOperationTaskRunning: UnsupportedOperation {
             UnsupportedOperation(.mutexOperationTaskRunning)
         }
-        
+
         /// NAT网关的公网IP不存在。
         public static var natGatewayEipNotExists: UnsupportedOperation {
             UnsupportedOperation(.natGatewayEipNotExists)
         }
-        
+
         /// SNAT/DNAT转换规则所指定的内网IP已绑定了其他的规则，无法重复绑定。
         public static var natGatewayRulePipExists: UnsupportedOperation {
             UnsupportedOperation(.natGatewayRulePipExists)
         }
-        
+
         /// SNAT转换规则的内网IP需为虚拟机上网卡所用的IP。
         public static var natGatewaySnatPipNeedVm: UnsupportedOperation {
             UnsupportedOperation(.natGatewaySnatPipNeedVm)
         }
-        
+
         /// NAT网关类型不支持SNAT规则。
         public static var natGatewayTypeNotSupportSNAT: UnsupportedOperation {
             UnsupportedOperation(.natGatewayTypeNotSupportSNAT)
         }
-        
+
         /// NAT实例不支持该操作。
         public static var natNotSupported: UnsupportedOperation {
             UnsupportedOperation(.natNotSupported)
         }
-        
+
         /// 指定的子网不支持创建本地网关类型的路由。
         public static var normalSubnetNotSupportLocalGateway: UnsupportedOperation {
             UnsupportedOperation(.normalSubnetNotSupportLocalGateway)
         }
-        
+
         /// 当前实例已被封禁，无法进行此操作。
         public static var notLockedInstanceOperation: UnsupportedOperation {
             UnsupportedOperation(.notLockedInstanceOperation)
         }
-        
+
         /// 当前云联网实例未处于申请中状态，无法进行操作。
         public static var notPendingCcnInstance: UnsupportedOperation {
             UnsupportedOperation(.notPendingCcnInstance)
         }
-        
+
         /// 当前云联网为非后付费类型，无法进行此操作。
         public static var notPostpaidCcnOperation: UnsupportedOperation {
             UnsupportedOperation(.notPostpaidCcnOperation)
         }
-        
+
         public static var notSupportAttachEdgeAndCrossBorderInstance: UnsupportedOperation {
             UnsupportedOperation(.notSupportAttachEdgeAndCrossBorderInstance)
         }
-        
+
         public static var notSupportDeleteDefaultRouteTable: UnsupportedOperation {
             UnsupportedOperation(.notSupportDeleteDefaultRouteTable)
         }
-        
+
         /// 确认云联网是否开启了路由重叠选项。
         public static var notSupportedUpdateCcnRoutePublish: UnsupportedOperation {
             UnsupportedOperation(.notSupportedUpdateCcnRoutePublish)
         }
-        
+
         /// 指定的路由策略不支持发布或撤销至云联网。
         public static var notifyCcn: UnsupportedOperation {
             UnsupportedOperation(.notifyCcn)
         }
-        
+
         /// 此产品计费方式已下线，请尝试其他计费方式。
         public static var offlineChargeType: UnsupportedOperation {
             UnsupportedOperation(.offlineChargeType)
         }
-        
+
         /// 仅支持专业版Ckafka。
         public static var onlySupportProfessionKafka: UnsupportedOperation {
             UnsupportedOperation(.onlySupportProfessionKafka)
         }
-        
+
         /// 预付费云联网只支持地域间限速。
         public static var prepaidCcnOnlySupportInterRegionLimit: UnsupportedOperation {
             UnsupportedOperation(.prepaidCcnOnlySupportInterRegionLimit)
         }
-        
+
         /// 指定的值是主IP。
         public static var primaryIp: UnsupportedOperation {
             UnsupportedOperation(.primaryIp)
         }
-        
+
         /// Nat网关至少存在一个弹性IP，弹性IP不能解绑。
         public static var publicIpAddressDisassociate: UnsupportedOperation {
             UnsupportedOperation(.publicIpAddressDisassociate)
         }
-        
+
         /// 绑定NAT网关的弹性IP不是BGP性质的IP。
         public static var publicIpAddressIsNotBGPIp: UnsupportedOperation {
             UnsupportedOperation(.publicIpAddressIsNotBGPIp)
         }
-        
+
         /// 绑定NAT网关的弹性IP不存在。
         public static var publicIpAddressIsNotExisted: UnsupportedOperation {
             UnsupportedOperation(.publicIpAddressIsNotExisted)
         }
-        
+
         /// 绑定NAT网关的弹性IP不是按流量计费的。
         public static var publicIpAddressNotBilledByTraffic: UnsupportedOperation {
             UnsupportedOperation(.publicIpAddressNotBilledByTraffic)
         }
-        
+
         /// 当前账号不能在该地域使用产品。
         public static var purchaseLimit: UnsupportedOperation {
             UnsupportedOperation(.purchaseLimit)
         }
-        
+
         public static var recordExists: UnsupportedOperation {
             UnsupportedOperation(.recordExists)
         }
-        
+
         public static var recordNotExists: UnsupportedOperation {
             UnsupportedOperation(.recordNotExists)
         }
-        
+
         /// 输入的资源ID与IP绑定的资源不匹配，请检查。
         public static var resourceMismatch: UnsupportedOperation {
             UnsupportedOperation(.resourceMismatch)
         }
-        
+
         /// 未找到相关角色，请确认角色是否授权。
         ///
         /// 进行角色授权
         public static var roleNotFound: UnsupportedOperation {
             UnsupportedOperation(.roleNotFound)
         }
-        
+
         /// 请解除该路由表和子网的绑定后重试。
         public static var routeTableHasSubnetRule: UnsupportedOperation {
             UnsupportedOperation(.routeTableHasSubnetRule)
         }
-        
+
         public static var snatSubnet: UnsupportedOperation {
             UnsupportedOperation(.snatSubnet)
         }
-        
+
         /// 指定的终端节点服务所创建的终端节点不支持绑定安全组。
         public static var specialEndPointService: UnsupportedOperation {
             UnsupportedOperation(.specialEndPointService)
         }
-        
+
         public static var sslVpnClientIdNotFound: UnsupportedOperation {
             UnsupportedOperation(.sslVpnClientIdNotFound)
         }
-        
+
         /// 中继网卡不支持该操作。
         public static var subEniNotSupportTrunking: UnsupportedOperation {
             UnsupportedOperation(.subEniNotSupportTrunking)
         }
-        
+
         /// 系统路由，禁止操作。
         public static var systemRoute: UnsupportedOperation {
             UnsupportedOperation(.systemRoute)
         }
-        
+
         public static var tagAllocate: UnsupportedOperation {
             UnsupportedOperation(.tagAllocate)
         }
-        
+
         public static var tagFree: UnsupportedOperation {
             UnsupportedOperation(.tagFree)
         }
-        
+
         public static var tagNotPermit: UnsupportedOperation {
             UnsupportedOperation(.tagNotPermit)
         }
-        
+
         public static var tagSystemReservedTagKey: UnsupportedOperation {
             UnsupportedOperation(.tagSystemReservedTagKey)
         }
-        
+
         /// 账号ID不存在。
         public static var uinNotFound: UnsupportedOperation {
             UnsupportedOperation(.uinNotFound)
         }
-        
+
         /// 不支持跨境。
         public static var unableCrossBorder: UnsupportedOperation {
             UnsupportedOperation(.unableCrossBorder)
         }
-        
+
         /// 当前云联网无法关联金融云实例。
         public static var unableCrossFinance: UnsupportedOperation {
             UnsupportedOperation(.unableCrossFinance)
         }
-        
+
         /// 未分配IPv6网段。
         public static var unassignCidrBlock: UnsupportedOperation {
             UnsupportedOperation(.unassignCidrBlock)
         }
-        
+
         /// 未绑定EIP。
         public static var unbindEIP: UnsupportedOperation {
             UnsupportedOperation(.unbindEIP)
         }
-        
+
         /// 账户还有未支付订单，请先完成付款。
         public static var unpaidOrderAlreadyExists: UnsupportedOperation {
             UnsupportedOperation(.unpaidOrderAlreadyExists)
         }
-        
+
         public static var unsupportedBindLocalZoneEIP: UnsupportedOperation {
             UnsupportedOperation(.unsupportedBindLocalZoneEIP)
         }
-        
+
         /// 指定机型不支持弹性网卡。
         public static var unsupportedInstanceFamily: UnsupportedOperation {
             UnsupportedOperation(.unsupportedInstanceFamily)
         }
-        
+
         /// 暂无法在此国家/地区提供该服务。
         public static var unsupportedRegion: UnsupportedOperation {
             UnsupportedOperation(.unsupportedRegion)
         }
-        
+
         /// 当前用户付费类型不支持创建所选付费类型的云联网。
         public static var userAndCcnChargeTypeNotMatch: UnsupportedOperation {
             UnsupportedOperation(.userAndCcnChargeTypeNotMatch)
         }
-        
+
         /// 指定安全组规则版本号和当前最新版本不一致。
         public static var versionMismatch: UnsupportedOperation {
             UnsupportedOperation(.versionMismatch)
         }
-        
+
         /// 资源不属于同一个VPC。
         public static var vpcMismatch: UnsupportedOperation {
             UnsupportedOperation(.vpcMismatch)
         }
-        
+
         /// 指定资源在不同的可用区。
         public static var zoneMismatch: UnsupportedOperation {
             UnsupportedOperation(.zoneMismatch)
         }
-        
+
         /// 操作不支持。
         public static var other: UnsupportedOperation {
             UnsupportedOperation(.other)
         }
-        
+
         public func asVpcError() -> TCVpcError {
             let code: TCVpcError.Code
             switch self.error {

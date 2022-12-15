@@ -19,30 +19,30 @@ extension Tsf {
     public struct BindPluginRequest: TCRequestModel {
         /// 分组/API绑定插件列表
         public let pluginInstanceList: [GatewayPluginBoundParam]
-        
-        public init (pluginInstanceList: [GatewayPluginBoundParam]) {
+
+        public init(pluginInstanceList: [GatewayPluginBoundParam]) {
             self.pluginInstanceList = pluginInstanceList
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case pluginInstanceList = "PluginInstanceList"
         }
     }
-    
+
     /// BindPlugin返回参数结构体
     public struct BindPluginResponse: TCResponseModel {
         /// 返回结果，成功失败
         public let result: Bool
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case result = "Result"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 批量绑定插件
     ///
     /// 插件与网关分组/API批量绑定
@@ -50,7 +50,7 @@ extension Tsf {
     public func bindPlugin(_ input: BindPluginRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BindPluginResponse > {
         self.client.execute(action: "BindPlugin", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 批量绑定插件
     ///
     /// 插件与网关分组/API批量绑定
@@ -58,7 +58,7 @@ extension Tsf {
     public func bindPlugin(_ input: BindPluginRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindPluginResponse {
         try await self.client.execute(action: "BindPlugin", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 批量绑定插件
     ///
     /// 插件与网关分组/API批量绑定
@@ -66,7 +66,7 @@ extension Tsf {
     public func bindPlugin(pluginInstanceList: [GatewayPluginBoundParam], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BindPluginResponse > {
         self.bindPlugin(BindPluginRequest(pluginInstanceList: pluginInstanceList), logger: logger, on: eventLoop)
     }
-    
+
     /// 批量绑定插件
     ///
     /// 插件与网关分组/API批量绑定

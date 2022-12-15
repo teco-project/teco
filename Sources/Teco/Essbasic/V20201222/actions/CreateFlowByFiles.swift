@@ -19,23 +19,23 @@ extension Essbasic {
     public struct CreateFlowByFilesRequest: TCRequestModel {
         /// 调用方信息
         public let caller: Caller
-        
+
         /// 流程创建信息
         public let flowInfo: FlowInfo
-        
+
         /// 文件资源列表 (支持多文件)
         public let fileIds: [String]
-        
+
         /// 自定义流程id
         public let customId: String?
-        
-        public init (caller: Caller, flowInfo: FlowInfo, fileIds: [String], customId: String? = nil) {
+
+        public init(caller: Caller, flowInfo: FlowInfo, fileIds: [String], customId: String? = nil) {
             self.caller = caller
             self.flowInfo = flowInfo
             self.fileIds = fileIds
             self.customId = customId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case caller = "Caller"
             case flowInfo = "FlowInfo"
@@ -43,21 +43,21 @@ extension Essbasic {
             case customId = "CustomId"
         }
     }
-    
+
     /// CreateFlowByFiles返回参数结构体
     public struct CreateFlowByFilesResponse: TCResponseModel {
         /// 流程ID
         public let flowId: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case flowId = "FlowId"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 用PDF文件创建流程
     ///
     /// 此接口（CreateFlowByFiles）用于通过PDF文件创建签署流程。
@@ -66,7 +66,7 @@ extension Essbasic {
     public func createFlowByFiles(_ input: CreateFlowByFilesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateFlowByFilesResponse > {
         self.client.execute(action: "CreateFlowByFiles", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 用PDF文件创建流程
     ///
     /// 此接口（CreateFlowByFiles）用于通过PDF文件创建签署流程。
@@ -75,7 +75,7 @@ extension Essbasic {
     public func createFlowByFiles(_ input: CreateFlowByFilesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateFlowByFilesResponse {
         try await self.client.execute(action: "CreateFlowByFiles", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 用PDF文件创建流程
     ///
     /// 此接口（CreateFlowByFiles）用于通过PDF文件创建签署流程。
@@ -84,7 +84,7 @@ extension Essbasic {
     public func createFlowByFiles(caller: Caller, flowInfo: FlowInfo, fileIds: [String], customId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateFlowByFilesResponse > {
         self.createFlowByFiles(CreateFlowByFilesRequest(caller: caller, flowInfo: flowInfo, fileIds: fileIds, customId: customId), logger: logger, on: eventLoop)
     }
-    
+
     /// 用PDF文件创建流程
     ///
     /// 此接口（CreateFlowByFiles）用于通过PDF文件创建签署流程。

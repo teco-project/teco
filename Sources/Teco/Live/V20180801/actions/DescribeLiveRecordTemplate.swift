@@ -19,30 +19,30 @@ extension Live {
     public struct DescribeLiveRecordTemplateRequest: TCRequestModel {
         /// [DescribeLiveRecordTemplates](/document/product/267/32609)接口获取到的模板 ID。
         public let templateId: Int64
-        
-        public init (templateId: Int64) {
+
+        public init(templateId: Int64) {
             self.templateId = templateId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case templateId = "TemplateId"
         }
     }
-    
+
     /// DescribeLiveRecordTemplate返回参数结构体
     public struct DescribeLiveRecordTemplateResponse: TCResponseModel {
         /// 录制模板信息。
         public let template: RecordTemplateInfo
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case template = "Template"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 获取单个录制模板
     ///
     /// 获取单个录制模板。
@@ -50,7 +50,7 @@ extension Live {
     public func describeLiveRecordTemplate(_ input: DescribeLiveRecordTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLiveRecordTemplateResponse > {
         self.client.execute(action: "DescribeLiveRecordTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 获取单个录制模板
     ///
     /// 获取单个录制模板。
@@ -58,7 +58,7 @@ extension Live {
     public func describeLiveRecordTemplate(_ input: DescribeLiveRecordTemplateRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeLiveRecordTemplateResponse {
         try await self.client.execute(action: "DescribeLiveRecordTemplate", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 获取单个录制模板
     ///
     /// 获取单个录制模板。
@@ -66,7 +66,7 @@ extension Live {
     public func describeLiveRecordTemplate(templateId: Int64, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeLiveRecordTemplateResponse > {
         self.describeLiveRecordTemplate(DescribeLiveRecordTemplateRequest(templateId: templateId), logger: logger, on: eventLoop)
     }
-    
+
     /// 获取单个录制模板
     ///
     /// 获取单个录制模板。

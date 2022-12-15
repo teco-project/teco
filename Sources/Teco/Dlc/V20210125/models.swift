@@ -23,40 +23,40 @@ extension Dlc {
         /// 主键
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let id: Int64?
-        
+
         /// 名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let name: String?
-        
+
         /// 对象GUID值
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let guid: String?
-        
+
         /// 数据目录
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let catalog: String?
-        
+
         /// 描述信息
         public let description: String?
-        
+
         /// 对象owner
         public let owner: String?
-        
+
         /// 对象owner账户
         public let ownerAccount: String?
-        
+
         /// 权限
         public let permValues: [KVPair]?
-        
+
         /// 附加属性
         public let params: [KVPair]?
-        
+
         /// 附加业务属性
         public let bizParams: [KVPair]?
-        
+
         /// 数据版本
         public let dataVersion: Int64?
-        
+
         /// 创建时间
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -64,7 +64,7 @@ extension Dlc {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampISO8601Encoding public var createTime: Date?
-        
+
         /// 修改时间
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -72,11 +72,11 @@ extension Dlc {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampISO8601Encoding public var modifiedTime: Date?
-        
+
         /// 数据源主键
         public let datasourceId: Int64?
-        
-        public init (id: Int64? = nil, name: String? = nil, guid: String? = nil, catalog: String? = nil, description: String? = nil, owner: String? = nil, ownerAccount: String? = nil, permValues: [KVPair]? = nil, params: [KVPair]? = nil, bizParams: [KVPair]? = nil, dataVersion: Int64? = nil, createTime: Date? = nil, modifiedTime: Date? = nil, datasourceId: Int64? = nil) {
+
+        public init(id: Int64? = nil, name: String? = nil, guid: String? = nil, catalog: String? = nil, description: String? = nil, owner: String? = nil, ownerAccount: String? = nil, permValues: [KVPair]? = nil, params: [KVPair]? = nil, bizParams: [KVPair]? = nil, dataVersion: Int64? = nil, createTime: Date? = nil, modifiedTime: Date? = nil, datasourceId: Int64? = nil) {
             self.id = id
             self.name = name
             self.guid = guid
@@ -92,7 +92,7 @@ extension Dlc {
             self.modifiedTime = modifiedTime
             self.datasourceId = datasourceId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case id = "Id"
             case name = "Name"
@@ -110,30 +110,30 @@ extension Dlc {
             case datasourceId = "DatasourceId"
         }
     }
-    
+
     /// CSV类型数据格式
     public struct CSV: TCInputModel {
         /// 压缩格式，["Snappy", "Gzip", "None"选一]。
         public let codeCompress: String?
-        
+
         /// CSV序列化及反序列化数据结构。
         public let csvSerde: CSVSerde?
-        
+
         /// 标题行，默认为0。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let headLines: Int64?
-        
+
         /// 格式，默认值为CSV
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let format: String?
-        
-        public init (codeCompress: String? = nil, csvSerde: CSVSerde? = nil, headLines: Int64? = nil, format: String? = nil) {
+
+        public init(codeCompress: String? = nil, csvSerde: CSVSerde? = nil, headLines: Int64? = nil, format: String? = nil) {
             self.codeCompress = codeCompress
             self.csvSerde = csvSerde
             self.headLines = headLines
             self.format = format
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case codeCompress = "CodeCompress"
             case csvSerde = "CSVSerde"
@@ -141,73 +141,73 @@ extension Dlc {
             case format = "Format"
         }
     }
-    
+
     /// CSV序列化及反序列化数据结构
     public struct CSVSerde: TCInputModel {
         /// CSV序列化转义符，默认为"\\"，最长8个字符，如 Escape: "/\"
         public let escape: String?
-        
+
         /// CSV序列化字段域符，默认为"'"，最长8个字符, 如 Quote: "\""
         public let quote: String?
-        
+
         /// CSV序列化分隔符，默认为"\t"，最长8个字符, 如 Separator: "\t"
         public let separator: String?
-        
-        public init (escape: String? = nil, quote: String? = nil, separator: String? = nil) {
+
+        public init(escape: String? = nil, quote: String? = nil, separator: String? = nil) {
             self.escape = escape
             self.quote = quote
             self.separator = separator
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case escape = "Escape"
             case quote = "Quote"
             case separator = "Separator"
         }
     }
-    
+
     /// 数据表列信息。
     public struct Column: TCInputModel, TCOutputModel {
         /// 列名称，不区分大小写，最大支持25个字符。
         public let name: String
-        
+
         /// 列类型，支持如下类型定义:
         /// string|tinyint|smallint|int|bigint|boolean|float|double|decimal|timestamp|date|binary|array<data_type>|map<primitive_type, data_type>|struct<col_name : data_type [COMMENT col_comment], ...>|uniontype<data_type, data_type, ...>。
         public let type: String
-        
+
         /// 对该类的注释。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let comment: String?
-        
+
         /// 表示整个 numeric 的长度
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let precision: Int64?
-        
+
         /// 表示小数部分的长度
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let scale: Int64?
-        
+
         /// 是否为null
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let nullable: String?
-        
+
         /// 字段位置，小的在前
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let position: Int64?
-        
+
         /// 字段创建时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let createTime: String?
-        
+
         /// 字段修改时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let modifiedTime: String?
-        
+
         /// 是否为分区字段
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let isPartition: Bool?
-        
-        public init (name: String, type: String, comment: String? = nil, precision: Int64? = nil, scale: Int64? = nil, nullable: String? = nil, position: Int64? = nil, createTime: String? = nil, modifiedTime: String? = nil, isPartition: Bool? = nil) {
+
+        public init(name: String, type: String, comment: String? = nil, precision: Int64? = nil, scale: Int64? = nil, nullable: String? = nil, position: Int64? = nil, createTime: String? = nil, modifiedTime: String? = nil, isPartition: Bool? = nil) {
             self.name = name
             self.type = type
             self.comment = comment
@@ -219,7 +219,7 @@ extension Dlc {
             self.modifiedTime = modifiedTime
             self.isPartition = isPartition
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case name = "Name"
             case type = "Type"
@@ -233,38 +233,38 @@ extension Dlc {
             case isPartition = "IsPartition"
         }
     }
-    
+
     /// 迁移列对象
     public struct DMSColumn: TCInputModel, TCOutputModel {
         /// 名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let name: String?
-        
+
         /// 描述
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let description: String?
-        
+
         /// 类型
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let type: String?
-        
+
         /// 排序
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let position: Int64?
-        
+
         /// 附加参数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let params: [KVPair]?
-        
+
         /// 业务参数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let bizParams: [KVPair]?
-        
+
         /// 是否分区
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let isPartition: Bool?
-        
-        public init (name: String? = nil, description: String? = nil, type: String? = nil, position: Int64? = nil, params: [KVPair]? = nil, bizParams: [KVPair]? = nil, isPartition: Bool? = nil) {
+
+        public init(name: String? = nil, description: String? = nil, type: String? = nil, position: Int64? = nil, params: [KVPair]? = nil, bizParams: [KVPair]? = nil, isPartition: Bool? = nil) {
             self.name = name
             self.description = description
             self.type = type
@@ -273,7 +273,7 @@ extension Dlc {
             self.bizParams = bizParams
             self.isPartition = isPartition
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case name = "Name"
             case description = "Description"
@@ -284,54 +284,54 @@ extension Dlc {
             case isPartition = "IsPartition"
         }
     }
-    
+
     /// 列排序对象
     public struct DMSColumnOrder: TCInputModel, TCOutputModel {
         /// 列名
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let col: String?
-        
+
         /// 排序
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let order: Int64?
-        
-        public init (col: String? = nil, order: Int64? = nil) {
+
+        public init(col: String? = nil, order: Int64? = nil) {
             self.col = col
             self.order = order
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case col = "Col"
             case order = "Order"
         }
     }
-    
+
     /// 迁移元数据分区对象
     public struct DMSPartition: TCInputModel, TCOutputModel {
         /// 数据库名称
         public let databaseName: String?
-        
+
         /// 数据目录名称
         public let schemaName: String?
-        
+
         /// 表名称
         public let tableName: String?
-        
+
         /// 数据版本
         public let dataVersion: Int64?
-        
+
         /// 分区名称
         public let name: String?
-        
+
         /// 值列表
         public let values: [String]?
-        
+
         /// 存储大小
         public let storageSize: Int64?
-        
+
         /// 记录数量
         public let recordCount: Int64?
-        
+
         /// 创建时间
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -339,7 +339,7 @@ extension Dlc {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampISO8601Encoding public var createTime: Date?
-        
+
         /// 修改时间
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -347,7 +347,7 @@ extension Dlc {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampISO8601Encoding public var modifiedTime: Date?
-        
+
         /// 最后访问时间
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -355,14 +355,14 @@ extension Dlc {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampISO8601Encoding public var lastAccessTime: Date?
-        
+
         /// 附件属性
         public let params: [KVPair]?
-        
+
         /// 存储对象
         public let sds: DMSSds?
-        
-        public init (databaseName: String? = nil, schemaName: String? = nil, tableName: String? = nil, dataVersion: Int64? = nil, name: String? = nil, values: [String]? = nil, storageSize: Int64? = nil, recordCount: Int64? = nil, createTime: Date? = nil, modifiedTime: Date? = nil, lastAccessTime: Date? = nil, params: [KVPair]? = nil, sds: DMSSds? = nil) {
+
+        public init(databaseName: String? = nil, schemaName: String? = nil, tableName: String? = nil, dataVersion: Int64? = nil, name: String? = nil, values: [String]? = nil, storageSize: Int64? = nil, recordCount: Int64? = nil, createTime: Date? = nil, modifiedTime: Date? = nil, lastAccessTime: Date? = nil, params: [KVPair]? = nil, sds: DMSSds? = nil) {
             self.databaseName = databaseName
             self.schemaName = schemaName
             self.tableName = tableName
@@ -377,7 +377,7 @@ extension Dlc {
             self.params = params
             self.sds = sds
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case databaseName = "DatabaseName"
             case schemaName = "SchemaName"
@@ -394,66 +394,66 @@ extension Dlc {
             case sds = "Sds"
         }
     }
-    
+
     /// 元数据存储描述属性
     public struct DMSSds: TCInputModel, TCOutputModel {
         /// 存储地址
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let location: String?
-        
+
         /// 输入格式
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let inputFormat: String?
-        
+
         /// 输出格式
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let outputFormat: String?
-        
+
         /// bucket数量
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let numBuckets: Int64?
-        
+
         /// 是是否压缩
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let compressed: Bool?
-        
+
         /// 是否有子目录
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let storedAsSubDirectories: Bool?
-        
+
         /// 序列化lib
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let serdeLib: String?
-        
+
         /// 序列化名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let serdeName: String?
-        
+
         /// 桶名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let bucketCols: [String]?
-        
+
         /// 序列化参数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let serdeParams: [KVPair]?
-        
+
         /// 附加参数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let params: [KVPair]?
-        
+
         /// 列排序(Expired)
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let sortCols: DMSColumnOrder?
-        
+
         /// 列
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let cols: [DMSColumn]?
-        
+
         /// 列排序字段
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let sortColumns: [DMSColumnOrder]?
-        
-        public init (location: String? = nil, inputFormat: String? = nil, outputFormat: String? = nil, numBuckets: Int64? = nil, compressed: Bool? = nil, storedAsSubDirectories: Bool? = nil, serdeLib: String? = nil, serdeName: String? = nil, bucketCols: [String]? = nil, serdeParams: [KVPair]? = nil, params: [KVPair]? = nil, sortCols: DMSColumnOrder? = nil, cols: [DMSColumn]? = nil, sortColumns: [DMSColumnOrder]? = nil) {
+
+        public init(location: String? = nil, inputFormat: String? = nil, outputFormat: String? = nil, numBuckets: Int64? = nil, compressed: Bool? = nil, storedAsSubDirectories: Bool? = nil, serdeLib: String? = nil, serdeName: String? = nil, bucketCols: [String]? = nil, serdeParams: [KVPair]? = nil, params: [KVPair]? = nil, sortCols: DMSColumnOrder? = nil, cols: [DMSColumn]? = nil, sortColumns: [DMSColumnOrder]? = nil) {
             self.location = location
             self.inputFormat = inputFormat
             self.outputFormat = outputFormat
@@ -469,7 +469,7 @@ extension Dlc {
             self.cols = cols
             self.sortColumns = sortColumns
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case location = "Location"
             case inputFormat = "InputFormat"
@@ -487,57 +487,57 @@ extension Dlc {
             case sortColumns = "SortColumns"
         }
     }
-    
+
     /// DMSTable基本信息
     public struct DMSTable: TCInputModel, TCOutputModel {
         /// 视图文本
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let viewOriginalText: String?
-        
+
         /// 视图文本
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let viewExpandedText: String?
-        
+
         /// hive维护版本
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let retention: Int64?
-        
+
         /// 存储对象
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let sds: DMSSds?
-        
+
         /// 分区列
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let partitionKeys: [DMSColumn]?
-        
+
         /// 分区
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let partitions: [DMSPartition]?
-        
+
         /// 表类型
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let type: String?
-        
+
         /// 数据库名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let dbName: String?
-        
+
         /// Schema名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let schemaName: String?
-        
+
         /// 存储大小
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let storageSize: Int64?
-        
+
         /// 记录数量
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let recordCount: Int64?
-        
+
         /// 生命周期
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let lifeTime: Int64?
-        
+
         /// 最后访问时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         ///
@@ -546,7 +546,7 @@ extension Dlc {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampISO8601Encoding public var lastAccessTime: Date?
-        
+
         /// 数据更新时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         ///
@@ -555,7 +555,7 @@ extension Dlc {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampISO8601Encoding public var dataUpdateTime: Date?
-        
+
         /// 结构更新时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         ///
@@ -564,16 +564,16 @@ extension Dlc {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampISO8601Encoding public var structUpdateTime: Date?
-        
+
         /// 列
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let columns: [DMSColumn]?
-        
+
         /// 表名
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let name: String?
-        
-        public init (viewOriginalText: String? = nil, viewExpandedText: String? = nil, retention: Int64? = nil, sds: DMSSds? = nil, partitionKeys: [DMSColumn]? = nil, partitions: [DMSPartition]? = nil, type: String? = nil, dbName: String? = nil, schemaName: String? = nil, storageSize: Int64? = nil, recordCount: Int64? = nil, lifeTime: Int64? = nil, lastAccessTime: Date? = nil, dataUpdateTime: Date? = nil, structUpdateTime: Date? = nil, columns: [DMSColumn]? = nil, name: String? = nil) {
+
+        public init(viewOriginalText: String? = nil, viewExpandedText: String? = nil, retention: Int64? = nil, sds: DMSSds? = nil, partitionKeys: [DMSColumn]? = nil, partitions: [DMSPartition]? = nil, type: String? = nil, dbName: String? = nil, schemaName: String? = nil, storageSize: Int64? = nil, recordCount: Int64? = nil, lifeTime: Int64? = nil, lastAccessTime: Date? = nil, dataUpdateTime: Date? = nil, structUpdateTime: Date? = nil, columns: [DMSColumn]? = nil, name: String? = nil) {
             self.viewOriginalText = viewOriginalText
             self.viewExpandedText = viewExpandedText
             self.retention = retention
@@ -592,7 +592,7 @@ extension Dlc {
             self.columns = columns
             self.name = name
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case viewOriginalText = "ViewOriginalText"
             case viewExpandedText = "ViewExpandedText"
@@ -613,49 +613,49 @@ extension Dlc {
             case name = "Name"
         }
     }
-    
+
     /// DMSTable信息
     public struct DMSTableInfo: TCOutputModel {
         /// DMS表信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let table: DMSTable?
-        
+
         /// 基础对象信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let asset: Asset?
-        
+
         enum CodingKeys: String, CodingKey {
             case table = "Table"
             case asset = "Asset"
         }
     }
-    
+
     /// 数据表数据格式。
     public struct DataFormat: TCOutputModel {
         /// 文本格式，TextFile。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let textFile: TextFile?
-        
+
         /// 文本格式，CSV。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let csv: CSV?
-        
+
         /// 文本格式，Json。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let json: Other?
-        
+
         /// Parquet格式
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let parquet: Other?
-        
+
         /// ORC格式
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let orc: Other?
-        
+
         /// AVRO格式
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let avro: Other?
-        
+
         enum CodingKeys: String, CodingKey {
             case textFile = "TextFile"
             case csv = "CSV"
@@ -665,37 +665,37 @@ extension Dlc {
             case avro = "AVRO"
         }
     }
-    
+
     /// 数据治理规则
     public struct DataGovernPolicy: TCInputModel, TCOutputModel {
-        public init () {
+        public init() {
         }
     }
-    
+
     /// 数据库对象
     public struct DatabaseInfo: TCInputModel, TCOutputModel {
         /// 数据库名称，长度0~128，支持数字、字母下划线，不允许数字大头，统一转换为小写。
         public let databaseName: String
-        
+
         /// 数据库描述信息，长度 0~500。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let comment: String?
-        
+
         /// 数据库属性列表。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let properties: [Property]?
-        
+
         /// 数据库cos路径
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let location: String?
-        
-        public init (databaseName: String, comment: String? = nil, properties: [Property]? = nil, location: String? = nil) {
+
+        public init(databaseName: String, comment: String? = nil, properties: [Property]? = nil, location: String? = nil) {
             self.databaseName = databaseName
             self.comment = comment
             self.properties = properties
             self.location = location
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case databaseName = "DatabaseName"
             case comment = "Comment"
@@ -703,48 +703,48 @@ extension Dlc {
             case location = "Location"
         }
     }
-    
+
     /// 数据库对象
     public struct DatabaseResponseInfo: TCOutputModel {
         /// 数据库名称。
         public let databaseName: String
-        
+
         /// 数据库描述信息，长度 0~256。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let comment: String?
-        
+
         /// 允许针对数据库的属性元数据信息进行指定。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let properties: [Property]?
-        
+
         /// 数据库创建时间戳，单位：s。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let createTime: String?
-        
+
         /// 数据库更新时间戳，单位：s。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let modifiedTime: String?
-        
+
         /// cos存储路径
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let location: String?
-        
+
         /// 建库用户昵称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let userAlias: String?
-        
+
         /// 建库用户ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let userSubUin: String?
-        
+
         /// 数据治理配置项
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let governPolicy: DataGovernPolicy?
-        
+
         /// 数据库ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let databaseId: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case databaseName = "DatabaseName"
             case comment = "Comment"
@@ -758,54 +758,54 @@ extension Dlc {
             case databaseId = "DatabaseId"
         }
     }
-    
+
     /// SQL语句对象
     public struct Execution: TCOutputModel {
         /// 自动生成SQL语句。
         public let sql: String
-        
+
         enum CodingKeys: String, CodingKey {
             case sql = "SQL"
         }
     }
-    
+
     /// 查询列表过滤条件参数
     public struct Filter: TCInputModel {
         /// 属性名称, 若存在多个Filter时，Filter间的关系为逻辑或（OR）关系。
         public let name: String
-        
+
         /// 属性值, 若同一个Filter存在多个Values，同一Filter下Values间的关系为逻辑或（OR）关系。
         public let values: [String]
-        
-        public init (name: String, values: [String]) {
+
+        public init(name: String, values: [String]) {
             self.name = name
             self.values = values
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case name = "Name"
             case values = "Values"
         }
     }
-    
+
     /// 日志详情
     public struct JobLogResult: TCOutputModel {
         /// 日志时间戳，毫秒
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let time: Int64?
-        
+
         /// 日志topic id
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let topicId: String?
-        
+
         /// 日志topic name
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let topicName: String?
-        
+
         /// 日志内容，json字符串
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let logJson: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case time = "Time"
             case topicId = "TopicId"
@@ -813,55 +813,55 @@ extension Dlc {
             case logJson = "LogJson"
         }
     }
-    
+
     /// 配置格式
     public struct KVPair: TCInputModel {
         /// 配置的key值
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let key: String?
-        
+
         /// 配置的value值
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let value: String?
-        
-        public init (key: String, value: String) {
+
+        public init(key: String, value: String) {
             self.key = key
             self.value = value
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case key = "Key"
             case value = "Value"
         }
     }
-    
+
     /// 元数据加锁内容
     public struct LockComponentInfo: TCInputModel {
         /// 数据库名称
         public let dbName: String
-        
+
         /// 表名称
         public let tableName: String?
-        
+
         /// 分区
         public let partition: String?
-        
+
         /// 锁类型：SHARED_READ、SHARED_WRITE、EXCLUSIVE
         public let lockType: String?
-        
+
         /// 锁级别：DB、TABLE、PARTITION
         public let lockLevel: String?
-        
+
         /// 锁操作：SELECT,INSERT,UPDATE,DELETE,UNSET,NO_TXN
         public let dataOperationType: String?
-        
+
         /// 是否保持Acid
         public let isAcid: Bool?
-        
+
         /// 是否动态分区写
         public let isDynamicPartitionWrite: Bool?
-        
-        public init (dbName: String, tableName: String? = nil, partition: String? = nil, lockType: String? = nil, lockLevel: String? = nil, dataOperationType: String? = nil, isAcid: Bool? = nil, isDynamicPartitionWrite: Bool? = nil) {
+
+        public init(dbName: String, tableName: String? = nil, partition: String? = nil, lockType: String? = nil, lockLevel: String? = nil, dataOperationType: String? = nil, isAcid: Bool? = nil, isDynamicPartitionWrite: Bool? = nil) {
             self.dbName = dbName
             self.tableName = tableName
             self.partition = partition
@@ -871,7 +871,7 @@ extension Dlc {
             self.isAcid = isAcid
             self.isDynamicPartitionWrite = isDynamicPartitionWrite
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case dbName = "DbName"
             case tableName = "TableName"
@@ -883,40 +883,40 @@ extension Dlc {
             case isDynamicPartitionWrite = "IsDynamicPartitionWrite"
         }
     }
-    
+
     /// 数据格式其它类型。
     public struct Other: TCOutputModel {
         /// 枚举类型，默认值为Json，可选值为[Json, Parquet, ORC, AVRD]之一。
         public let format: String
-        
+
         enum CodingKeys: String, CodingKey {
             case format = "Format"
         }
     }
-    
+
     /// 数据表分块信息。
     public struct Partition: TCOutputModel {
         /// 分区列名。
         public let name: String
-        
+
         /// 分区类型。
         public let type: String
-        
+
         /// 对分区的描述。
         public let comment: String
-        
+
         /// 隐式分区转换策略
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let transform: String?
-        
+
         /// 转换策略参数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let transformArgs: [String]?
-        
+
         /// 创建时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let createTime: Int64?
-        
+
         enum CodingKeys: String, CodingKey {
             case name = "Name"
             case type = "Type"
@@ -926,69 +926,69 @@ extension Dlc {
             case createTime = "CreateTime"
         }
     }
-    
+
     /// 权限对象
     public struct Policy: TCInputModel, TCOutputModel {
         /// 需要授权的数据库名，填*代表当前Catalog下所有数据库。当授权类型为管理员级别时，只允许填“*”，当授权类型为数据连接级别时只允许填空，其他类型下可以任意指定数据库。
         public let database: String
-        
+
         /// 需要授权的数据源名称，管理员级别下只支持填*（代表该级别全部资源）；数据源级别和数据库级别鉴权的情况下，只支持填COSDataCatalog或者*；在数据表级别鉴权下可以填写用户自定义数据源。不填情况下默认为DataLakeCatalog。注意：如果是对用户自定义数据源进行鉴权，DLC能够管理的权限是用户接入数据源的时候提供的账户的子集。
         public let catalog: String
-        
+
         /// 需要授权的表名，填*代表当前Database下所有表。当授权类型为管理员级别时，只允许填“*”，当授权类型为数据连接级别、数据库级别时只允许填空，其他类型下可以任意指定数据表。
         public let table: String
-        
+
         /// 授权的权限操作，对于不同级别的鉴权提供不同操作。管理员权限：ALL，不填默认为ALL；数据连接级鉴权：CREATE；数据库级别鉴权：ALL、CREATE、ALTER、DROP；数据表权限：ALL、SELECT、INSERT、ALTER、DELETE、DROP、UPDATE。注意：在数据表权限下，指定的数据源不为COSDataCatalog的时候，只支持SELECT操作。
         public let operation: String
-        
+
         /// 授权类型，现在支持八种授权类型：ADMIN:管理员级别鉴权 DATASOURCE：数据连接级别鉴权 DATABASE：数据库级别鉴权 TABLE：表级别鉴权 VIEW：视图级别鉴权 FUNCTION：函数级别鉴权 COLUMN：列级别鉴权 ENGINE：数据引擎鉴权。不填默认为管理员级别鉴权。
         public let policyType: String?
-        
+
         /// 需要授权的函数名，填*代表当前Catalog下所有函数。当授权类型为管理员级别时，只允许填“*”，当授权类型为数据连接级别时只允许填空，其他类型下可以任意指定函数。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let function: String?
-        
+
         /// 需要授权的视图，填*代表当前Database下所有视图。当授权类型为管理员级别时，只允许填“*”，当授权类型为数据连接级别、数据库级别时只允许填空，其他类型下可以任意指定视图。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let view: String?
-        
+
         /// 需要授权的列，填*代表当前所有列。当授权类型为管理员级别时，只允许填“*”
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let column: String?
-        
+
         /// 需要授权的数据引擎，填*代表当前所有引擎。当授权类型为管理员级别时，只允许填“*”
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let dataEngine: String?
-        
+
         /// 用户是否可以进行二次授权。当为true的时候，被授权的用户可以将本次获取的权限再次授权给其他子用户。默认为false
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let reAuth: Bool?
-        
+
         /// 权限来源，入参不填。USER：权限来自用户本身；WORKGROUP：权限来自绑定的工作组
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let source: String?
-        
+
         /// 授权模式，入参不填。COMMON：普通模式；SENIOR：高级模式。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let mode: String?
-        
+
         /// 操作者，入参不填。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let `operator`: String?
-        
+
         /// 权限创建的时间，入参不填
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let createTime: String?
-        
+
         /// 权限所属工作组的ID，只有当该权限的来源为工作组时才会有值。即仅当Source字段的值为WORKGROUP时该字段才有值。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let sourceId: Int64?
-        
+
         /// 权限所属工作组的名称，只有当该权限的来源为工作组时才会有值。即仅当Source字段的值为WORKGROUP时该字段才有值。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let sourceName: String?
-        
-        public init (database: String, catalog: String, table: String, operation: String, policyType: String? = nil, function: String? = nil, view: String? = nil, column: String? = nil, dataEngine: String? = nil, reAuth: Bool? = nil, source: String? = nil, mode: String? = nil, operator: String? = nil, createTime: String? = nil, sourceId: Int64? = nil, sourceName: String? = nil) {
+
+        public init(database: String, catalog: String, table: String, operation: String, policyType: String? = nil, function: String? = nil, view: String? = nil, column: String? = nil, dataEngine: String? = nil, reAuth: Bool? = nil, source: String? = nil, mode: String? = nil, operator: String? = nil, createTime: String? = nil, sourceId: Int64? = nil, sourceName: String? = nil) {
             self.database = database
             self.catalog = catalog
             self.table = table
@@ -1006,7 +1006,7 @@ extension Dlc {
             self.sourceId = sourceId
             self.sourceName = sourceName
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case database = "Database"
             case catalog = "Catalog"
@@ -1026,71 +1026,71 @@ extension Dlc {
             case sourceName = "SourceName"
         }
     }
-    
+
     /// 数据库和数据表属性信息
     public struct Property: TCInputModel, TCOutputModel {
         /// 属性key名称。
         public let key: String
-        
+
         /// 属性key对应的value。
         public let value: String
-        
-        public init (key: String, value: String) {
+
+        public init(key: String, value: String) {
             self.key = key
             self.value = value
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case key = "Key"
             case value = "Value"
         }
     }
-    
+
     ///  SQL查询任务
     public struct SQLTask: TCInputModel {
         /// base64加密后的SQL语句
         public let sql: String
-        
+
         /// 任务的配置信息
         public let config: [KVPair]?
-        
-        public init (sql: String, config: [KVPair]? = nil) {
+
+        public init(sql: String, config: [KVPair]? = nil) {
             self.sql = sql
             self.config = config
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case sql = "SQL"
             case config = "Config"
         }
     }
-    
+
     /// script实例。
     public struct Script: TCOutputModel {
         /// 脚本Id，长度36字节。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let scriptId: String?
-        
+
         /// 脚本名称，长度0-25。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let scriptName: String?
-        
+
         /// 脚本描述，长度0-50。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let scriptDesc: String?
-        
+
         /// 默认关联数据库。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let databaseName: String?
-        
+
         /// SQL描述，长度0-10000。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let sqlStatement: String?
-        
+
         /// 更新时间戳， 单位：ms。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let updateTime: Int64?
-        
+
         enum CodingKeys: String, CodingKey {
             case scriptId = "ScriptId"
             case scriptName = "ScriptName"
@@ -1100,117 +1100,117 @@ extension Dlc {
             case updateTime = "UpdateTime"
         }
     }
-    
+
     /// spark作业详情
     public struct SparkJobInfo: TCOutputModel {
         /// spark作业ID
         public let jobId: String
-        
+
         /// spark作业名
         public let jobName: String
-        
+
         /// spark作业类型，可去1或者2，1表示batch作业， 2表示streaming作业
         public let jobType: Int64
-        
+
         /// 引擎名
         public let dataEngine: String
-        
+
         /// 该字段已下线，请使用字段Datasource
         public let eni: String
-        
+
         /// 程序包是否本地上传，cos或者lakefs
         public let isLocal: String
-        
+
         /// 程序包路径
         public let jobFile: String
-        
+
         /// 角色ID
         public let roleArn: Int64
-        
+
         /// spark作业运行主类
         public let mainClass: String
-        
+
         /// 命令行参数，spark作业命令行参数，空格分隔
         public let cmdArgs: String
-        
+
         /// spark原生配置，换行符分隔
         public let jobConf: String
-        
+
         /// 依赖jars是否本地上传，cos或者lakefs
         public let isLocalJars: String
-        
+
         /// spark作业依赖jars，逗号分隔
         public let jobJars: String
-        
+
         /// 依赖文件是否本地上传，cos或者lakefs
         public let isLocalFiles: String
-        
+
         /// spark作业依赖文件，逗号分隔
         public let jobFiles: String
-        
+
         /// spark作业driver资源大小
         public let jobDriverSize: String
-        
+
         /// spark作业executor资源大小
         public let jobExecutorSize: String
-        
+
         /// spark作业executor个数
         public let jobExecutorNums: Int64
-        
+
         /// spark流任务最大重试次数
         public let jobMaxAttempts: Int64
-        
+
         /// spark作业创建者
         public let jobCreator: String
-        
+
         /// spark作业创建时间
         public let jobCreateTime: Int64
-        
+
         /// spark作业更新时间
         public let jobUpdateTime: UInt64
-        
+
         /// spark作业最近任务ID
         public let currentTaskId: String
-        
+
         /// spark作业最近运行状态
         public let jobStatus: Int64
-        
+
         /// spark流作业统计
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let streamingStat: StreamingStatistics?
-        
+
         /// 数据源名
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let dataSource: String?
-        
+
         /// pyspark：依赖上传方式，1、cos；2、lakefs（控制台使用，该方式不支持直接接口调用）
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let isLocalPythonFiles: String?
-        
+
         /// 注：该返回值已废弃
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let appPythonFiles: String?
-        
+
         /// archives：依赖上传方式，1、cos；2、lakefs（控制台使用，该方式不支持直接接口调用）
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let isLocalArchives: String?
-        
+
         /// archives：依赖资源
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let jobArchives: String?
-        
+
         /// pyspark：python依赖, 除py文件外，还支持zip/egg等归档格式，多文件以逗号分隔
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let jobPythonFiles: String?
-        
+
         /// 当前job正在运行或准备运行的任务个数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let taskNum: Int64?
-        
+
         /// 引擎状态：-100（默认：未知状态），-2~11：引擎正常状态；
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let dataEngineStatus: Int64?
-        
+
         enum CodingKeys: String, CodingKey {
             case jobId = "JobId"
             case jobName = "JobName"
@@ -1247,42 +1247,42 @@ extension Dlc {
             case dataEngineStatus = "DataEngineStatus"
         }
     }
-    
+
     /// spark流任务统计信息
     public struct StreamingStatistics: TCOutputModel {
         /// 任务开始时间
         public let startTime: String
-        
+
         /// 数据接收器数
         public let receivers: Int64
-        
+
         /// 运行中的接收器数
         public let numActiveReceivers: Int64
-        
+
         /// 不活跃的接收器数
         public let numInactiveReceivers: Int64
-        
+
         /// 运行中的批数
         public let numActiveBatches: Int64
-        
+
         /// 待处理的批数
         public let numRetainedCompletedBatches: Int64
-        
+
         /// 已完成的批数
         public let numTotalCompletedBatches: Int64
-        
+
         /// 平均输入速率
         public let averageInputRate: Float
-        
+
         /// 平均等待时长
         public let averageSchedulingDelay: Float
-        
+
         /// 平均处理时长
         public let averageProcessingTime: Float
-        
+
         /// 平均延时
         public let averageTotalDelay: Float
-        
+
         enum CodingKeys: String, CodingKey {
             case startTime = "StartTime"
             case receivers = "Receivers"
@@ -1297,44 +1297,44 @@ extension Dlc {
             case averageTotalDelay = "AverageTotalDelay"
         }
     }
-    
+
     /// 数据表配置信息
     public struct TableBaseInfo: TCInputModel, TCOutputModel {
         /// 该数据表所属数据库名字
         public let databaseName: String
-        
+
         /// 数据表名字
         public let tableName: String
-        
+
         /// 该数据表所属数据源名字
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let datasourceConnectionName: String?
-        
+
         /// 该数据表备注
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tableComment: String?
-        
+
         /// 具体类型，表or视图
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let type: String?
-        
+
         /// 数据格式类型，hive，iceberg等
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tableFormat: String?
-        
+
         /// 建表用户昵称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let userAlias: String?
-        
+
         /// 建表用户ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let userSubUin: String?
-        
+
         /// 数据治理配置项
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let governPolicy: DataGovernPolicy?
-        
-        public init (databaseName: String, tableName: String, datasourceConnectionName: String? = nil, tableComment: String? = nil, type: String? = nil, tableFormat: String? = nil, userAlias: String? = nil, userSubUin: String? = nil, governPolicy: DataGovernPolicy? = nil) {
+
+        public init(databaseName: String, tableName: String, datasourceConnectionName: String? = nil, tableComment: String? = nil, type: String? = nil, tableFormat: String? = nil, userAlias: String? = nil, userSubUin: String? = nil, governPolicy: DataGovernPolicy? = nil) {
             self.databaseName = databaseName
             self.tableName = tableName
             self.datasourceConnectionName = datasourceConnectionName
@@ -1345,7 +1345,7 @@ extension Dlc {
             self.userSubUin = userSubUin
             self.governPolicy = governPolicy
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case databaseName = "DatabaseName"
             case tableName = "TableName"
@@ -1358,32 +1358,32 @@ extension Dlc {
             case governPolicy = "GovernPolicy"
         }
     }
-    
+
     /// 返回数据表的相关信息。
     public struct TableInfo: TCInputModel, TCOutputModel {
         /// 数据表配置信息。
         public let tableBaseInfo: TableBaseInfo
-        
+
         /// 数据表格式。每次入参可选如下其一的KV结构，[TextFile，CSV，Json, Parquet, ORC, AVRD]。
         public let dataFormat: DataFormat
-        
+
         /// 数据表列信息。
         public let columns: [Column]
-        
+
         /// 数据表分块信息。
         public let partitions: [Partition]
-        
+
         /// 数据存储路径。当前仅支持cos路径，格式如下：cosn://bucket-name/filepath。
         public let location: String
-        
-        public init (tableBaseInfo: TableBaseInfo, dataFormat: DataFormat, columns: [Column], partitions: [Partition], location: String) {
+
+        public init(tableBaseInfo: TableBaseInfo, dataFormat: DataFormat, columns: [Column], partitions: [Partition], location: String) {
             self.tableBaseInfo = tableBaseInfo
             self.dataFormat = dataFormat
             self.columns = columns
             self.partitions = partitions
             self.location = location
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case tableBaseInfo = "TableBaseInfo"
             case dataFormat = "DataFormat"
@@ -1392,48 +1392,48 @@ extension Dlc {
             case location = "Location"
         }
     }
-    
+
     /// 查询表信息对象
     public struct TableResponseInfo: TCOutputModel {
         /// 数据表基本信息。
         public let tableBaseInfo: TableBaseInfo
-        
+
         /// 数据表列信息。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let columns: [Column]?
-        
+
         /// 数据表分块信息。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let partitions: [Partition]?
-        
+
         /// 数据存储路径。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let location: String?
-        
+
         /// 数据表属性信息。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let properties: [Property]?
-        
+
         /// 数据表更新时间, 单位: ms。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let modifiedTime: String?
-        
+
         /// 数据表创建时间,单位: ms。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let createTime: String?
-        
+
         /// 数据格式。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let inputFormat: String?
-        
+
         /// 数据表存储大小（单位：Byte）
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let storageSize: Int64?
-        
+
         /// 数据表行数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let recordCount: Int64?
-        
+
         enum CodingKeys: String, CodingKey {
             case tableBaseInfo = "TableBaseInfo"
             case columns = "Columns"
@@ -1447,141 +1447,141 @@ extension Dlc {
             case recordCount = "RecordCount"
         }
     }
-    
+
     /// 任务类型，任务如SQL查询等。
     public struct Task: TCInputModel {
         /// SQL查询任务
         public let sqlTask: SQLTask?
-        
+
         /// Spark SQL查询任务
         public let sparkSQLTask: SQLTask?
-        
-        public init (sqlTask: SQLTask? = nil, sparkSQLTask: SQLTask? = nil) {
+
+        public init(sqlTask: SQLTask? = nil, sparkSQLTask: SQLTask? = nil) {
             self.sqlTask = sqlTask
             self.sparkSQLTask = sparkSQLTask
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case sqlTask = "SQLTask"
             case sparkSQLTask = "SparkSQLTask"
         }
     }
-    
+
     /// 任务实例。
     public struct TaskResponseInfo: TCOutputModel {
         /// 任务所属Database的名称。
         public let databaseName: String
-        
+
         /// 任务数据量。
         public let dataAmount: Int64
-        
+
         /// 任务Id。
         public let id: String
-        
+
         /// 计算耗时，单位： ms
         public let usedTime: Int64
-        
+
         /// 任务输出路径。
         public let outputPath: String
-        
+
         /// 任务创建时间。
         public let createTime: String
-        
+
         /// 任务状态：0 初始化， 1 执行中， 2 执行成功，-1 执行失败，-3 已取消。
         public let state: Int64
-        
+
         /// 任务SQL类型，DDL|DML等
         public let sqlType: String
-        
+
         /// 任务SQL语句
         public let sql: String
-        
+
         /// 结果是否过期。
         public let resultExpired: Bool
-        
+
         /// 数据影响统计信息。
         public let rowAffectInfo: String
-        
+
         /// 任务结果数据表。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let dataSet: String?
-        
+
         /// 失败信息, 例如：errorMessage。该字段已废弃。
         public let error: String
-        
+
         /// 任务执行进度num/100(%)
         public let percentage: Int64
-        
+
         /// 任务执行输出信息。
         public let outputMessage: String
-        
+
         /// 执行SQL的引擎类型
         public let taskType: String
-        
+
         /// 任务进度明细
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let progressDetail: String?
-        
+
         /// 任务结束时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let updateTime: String?
-        
+
         /// 计算资源id
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let dataEngineId: String?
-        
+
         /// 执行sql的子uin
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let operateUin: String?
-        
+
         /// 计算资源名字
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let dataEngineName: String?
-        
+
         /// 导入类型是本地导入还是cos
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let inputType: String?
-        
+
         /// 导入配置
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let inputConf: String?
-        
+
         /// 数据条数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let dataNumber: Int64?
-        
+
         /// 查询数据能不能下载
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let canDownload: Bool?
-        
+
         /// 用户别名
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let userAlias: String?
-        
+
         /// spark应用作业名
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let sparkJobName: String?
-        
+
         /// spark应用作业Id
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let sparkJobId: String?
-        
+
         /// spark应用入口jar文件
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let sparkJobFile: String?
-        
+
         /// spark ui url
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let uiUrl: String?
-        
+
         /// 任务耗时，单位： ms
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let totalTime: Int64?
-        
+
         /// spark app job执行task的程序入口参数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let cmdArgs: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case databaseName = "DatabaseName"
             case dataAmount = "DataAmount"
@@ -1617,70 +1617,70 @@ extension Dlc {
             case cmdArgs = "CmdArgs"
         }
     }
-    
+
     /// 任务结果信息。
     public struct TaskResultInfo: TCOutputModel {
         /// 任务唯一ID
         public let taskId: String
-        
+
         /// 数据源名称，当前任务执行时候选中的默认数据源
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let datasourceConnectionName: String?
-        
+
         /// 数据库名称，当前任务执行时候选中的默认数据库
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let databaseName: String?
-        
+
         /// 当前执行的SQL，一个任务包含一个SQL
         public let sql: String
-        
+
         /// 执行任务的类型，现在分为DDL、DML、DQL
         public let sqlType: String
-        
+
         /// 任务当前的状态，0：初始化 1：任务运行中 2：任务执行成功 -1：任务执行失败 -3：用户手动终止。只有任务执行成功的情况下，才会返回任务执行的结果
         public let state: Int64
-        
+
         /// 扫描的数据量，单位byte
         public let dataAmount: Int64
-        
+
         /// 计算耗时，单位： ms
         public let usedTime: Int64
-        
+
         /// 任务结果输出的COS桶地址
         public let outputPath: String
-        
+
         /// 任务创建时间，时间戳
         public let createTime: String
-        
+
         /// 任务执行信息，成功时返回success，失败时返回失败原因
         public let outputMessage: String
-        
+
         /// 被影响的行数
         public let rowAffectInfo: String
-        
+
         /// 结果的schema信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let resultSchema: [Column]?
-        
+
         /// 结果信息，反转义后，外层数组的每个元素为一行数据
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let resultSet: String?
-        
+
         /// 分页信息，如果没有更多结果数据，nextToken为空
         public let nextToken: String
-        
+
         /// 任务执行进度num/100(%)
         public let percentage: Int64
-        
+
         /// 任务进度明细
         public let progressDetail: String
-        
+
         /// 控制台展示格式。table：表格展示 text：文本展示
         public let displayFormat: String
-        
+
         /// 任务耗时，单位： ms
         public let totalTime: Int64
-        
+
         enum CodingKeys: String, CodingKey {
             case taskId = "TaskId"
             case datasourceConnectionName = "DatasourceConnectionName"
@@ -1703,32 +1703,32 @@ extension Dlc {
             case totalTime = "TotalTime"
         }
     }
-    
+
     /// 批量顺序执行任务集合
     public struct TasksInfo: TCInputModel {
         /// 任务类型，SQLTask：SQL查询任务。SparkSQLTask：Spark SQL查询任务
         public let taskType: String
-        
+
         /// 容错策略。Proceed：前面任务出错/取消后继续执行后面的任务。Terminate：前面的任务出错/取消之后终止后面任务的执行，后面的任务全部标记为已取消。
         public let failureTolerance: String
-        
+
         /// base64加密后的SQL语句，用";"号分隔每个SQL语句，一次最多提交50个任务。严格按照前后顺序执行
         public let sql: String
-        
+
         /// 任务的配置信息，当前仅支持SparkSQLTask任务。
         public let config: [KVPair]?
-        
+
         /// 任务的用户自定义参数信息
         public let params: [KVPair]?
-        
-        public init (taskType: String, failureTolerance: String, sql: String, config: [KVPair]? = nil, params: [KVPair]? = nil) {
+
+        public init(taskType: String, failureTolerance: String, sql: String, config: [KVPair]? = nil, params: [KVPair]? = nil) {
             self.taskType = taskType
             self.failureTolerance = failureTolerance
             self.sql = sql
             self.config = config
             self.params = params
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case taskType = "TaskType"
             case failureTolerance = "FailureTolerance"
@@ -1737,21 +1737,21 @@ extension Dlc {
             case params = "Params"
         }
     }
-    
+
     /// 任务概览
     public struct TasksOverview: TCOutputModel {
         /// 正在排队的任务个数
         public let taskQueuedCount: Int64
-        
+
         /// 初始化的任务个数
         public let taskInitCount: Int64
-        
+
         /// 正在执行的任务个数
         public let taskRunningCount: Int64
-        
+
         /// 当前时间范围的总任务个数
         public let totalTaskCount: Int64
-        
+
         enum CodingKeys: String, CodingKey {
             case taskQueuedCount = "TaskQueuedCount"
             case taskInitCount = "TaskInitCount"
@@ -1759,76 +1759,76 @@ extension Dlc {
             case totalTaskCount = "TotalTaskCount"
         }
     }
-    
+
     /// 文本格式
     public struct TextFile: TCOutputModel {
         /// 文本类型，本参数取值为TextFile。
         public let format: String
-        
+
         /// 处理文本用的正则表达式。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let regex: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case format = "Format"
             case regex = "Regex"
         }
     }
-    
+
     /// 绑定到同一个工作组的用户Id的集合
     public struct UserIdSetOfWorkGroupId: TCInputModel {
         /// 工作组Id
         public let workGroupId: Int64
-        
+
         /// 用户Id集合，和CAM侧Uin匹配
         public let userIds: [String]
-        
-        public init (workGroupId: Int64, userIds: [String]) {
+
+        public init(workGroupId: Int64, userIds: [String]) {
             self.workGroupId = workGroupId
             self.userIds = userIds
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case workGroupId = "WorkGroupId"
             case userIds = "UserIds"
         }
     }
-    
+
     /// 授权用户信息
     public struct UserInfo: TCOutputModel {
         /// 用户Id，和子用户uin相同
         public let userId: String
-        
+
         /// 用户描述信息，方便区分不同用户
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let userDescription: String?
-        
+
         /// 单独给用户绑定的权限集合
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let policySet: [Policy]?
-        
+
         /// 当前用户的创建者
         public let creator: String
-        
+
         /// 创建时间，格式如2021-07-28 16:19:32
         public let createTime: String
-        
+
         /// 关联的工作组集合
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let workGroupSet: [WorkGroupMessage]?
-        
+
         /// 是否是主账号
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let isOwner: Bool?
-        
+
         /// 用户类型。ADMIN：管理员 COMMON：普通用户。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let userType: String?
-        
+
         /// 用户别名
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let userAlias: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case userId = "UserId"
             case userDescription = "UserDescription"
@@ -1841,25 +1841,25 @@ extension Dlc {
             case userAlias = "UserAlias"
         }
     }
-    
+
     /// 用户部分信息
     public struct UserMessage: TCOutputModel {
         /// 用户Id，和CAM侧子用户Uin匹配
         public let userId: String
-        
+
         /// 用户描述
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let userDescription: String?
-        
+
         /// 当前用户的创建者
         public let creator: String
-        
+
         /// 当前用户的创建时间，形如2021-07-28 16:19:32
         public let createTime: String
-        
+
         /// 用户别名
         public let userAlias: String
-        
+
         enum CodingKeys: String, CodingKey {
             case userId = "UserId"
             case userDescription = "UserDescription"
@@ -1868,28 +1868,28 @@ extension Dlc {
             case userAlias = "UserAlias"
         }
     }
-    
+
     /// 视图基本配置信息
     public struct ViewBaseInfo: TCInputModel, TCOutputModel {
         /// 该视图所属数据库名字
         public let databaseName: String
-        
+
         /// 视图名称
         public let viewName: String
-        
+
         /// 视图创建人昵称
         public let userAlias: String?
-        
+
         /// 视图创建人ID
         public let userSubUin: String?
-        
-        public init (databaseName: String, viewName: String, userAlias: String? = nil, userSubUin: String? = nil) {
+
+        public init(databaseName: String, viewName: String, userAlias: String? = nil, userSubUin: String? = nil) {
             self.databaseName = databaseName
             self.viewName = viewName
             self.userAlias = userAlias
             self.userSubUin = userSubUin
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case databaseName = "DatabaseName"
             case viewName = "ViewName"
@@ -1897,26 +1897,26 @@ extension Dlc {
             case userSubUin = "UserSubUin"
         }
     }
-    
+
     /// 查询视图信息对象
     public struct ViewResponseInfo: TCOutputModel {
         /// 视图基本信息。
         public let viewBaseInfo: ViewBaseInfo
-        
+
         /// 视图列信息。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let columns: [Column]?
-        
+
         /// 视图属性信息。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let properties: [Property]?
-        
+
         /// 视图创建时间。
         public let createTime: String
-        
+
         /// 视图更新时间。
         public let modifiedTime: String
-        
+
         enum CodingKeys: String, CodingKey {
             case viewBaseInfo = "ViewBaseInfo"
             case columns = "Columns"
@@ -1925,55 +1925,55 @@ extension Dlc {
             case modifiedTime = "ModifiedTime"
         }
     }
-    
+
     /// 同一个用户绑定的工作组集合
     public struct WorkGroupIdSetOfUserId: TCInputModel {
         /// 用户Id，和CAM侧Uin匹配
         public let userId: String
-        
+
         /// 工作组Id集合
         public let workGroupIds: [Int64]
-        
-        public init (userId: String, workGroupIds: [Int64]) {
+
+        public init(userId: String, workGroupIds: [Int64]) {
             self.userId = userId
             self.workGroupIds = workGroupIds
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case userId = "UserId"
             case workGroupIds = "WorkGroupIds"
         }
     }
-    
+
     /// 工作组信息
     public struct WorkGroupInfo: TCOutputModel {
         /// 查询到的工作组唯一Id
         public let workGroupId: Int64
-        
+
         /// 工作组名称
         public let workGroupName: String
-        
+
         /// 工作组描述
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let workGroupDescription: String?
-        
+
         /// 工作组关联的用户数量
         public let userNum: Int64
-        
+
         /// 工作组关联的用户集合
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let userSet: [UserMessage]?
-        
+
         /// 工作组绑定的权限集合
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let policySet: [Policy]?
-        
+
         /// 工作组的创建人
         public let creator: String
-        
+
         /// 工作组的创建时间，形如2021-07-28 16:19:32
         public let createTime: String
-        
+
         enum CodingKeys: String, CodingKey {
             case workGroupId = "WorkGroupId"
             case workGroupName = "WorkGroupName"
@@ -1985,25 +1985,25 @@ extension Dlc {
             case createTime = "CreateTime"
         }
     }
-    
+
     /// 工作组部分信息
     public struct WorkGroupMessage: TCOutputModel {
         /// 工作组唯一Id
         public let workGroupId: Int64
-        
+
         /// 工作组名称
         public let workGroupName: String
-        
+
         /// 工作组描述
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let workGroupDescription: String?
-        
+
         /// 创建者
         public let creator: String
-        
+
         /// 工作组创建的时间，形如2021-07-28 16:19:32
         public let createTime: String
-        
+
         enum CodingKeys: String, CodingKey {
             case workGroupId = "WorkGroupId"
             case workGroupName = "WorkGroupName"

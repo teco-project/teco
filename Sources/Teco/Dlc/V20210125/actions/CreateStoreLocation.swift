@@ -19,26 +19,26 @@ extension Dlc {
     public struct CreateStoreLocationRequest: TCRequestModel {
         /// 计算结果存储cos路径，如：cosn://bucketname/
         public let storeLocation: String
-        
-        public init (storeLocation: String) {
+
+        public init(storeLocation: String) {
             self.storeLocation = storeLocation
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case storeLocation = "StoreLocation"
         }
     }
-    
+
     /// CreateStoreLocation返回参数结构体
     public struct CreateStoreLocationResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 修改结果存储位置
     ///
     /// 该接口（CreateStoreLocation）新增或覆盖计算结果存储位置。
@@ -46,7 +46,7 @@ extension Dlc {
     public func createStoreLocation(_ input: CreateStoreLocationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateStoreLocationResponse > {
         self.client.execute(action: "CreateStoreLocation", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 修改结果存储位置
     ///
     /// 该接口（CreateStoreLocation）新增或覆盖计算结果存储位置。
@@ -54,7 +54,7 @@ extension Dlc {
     public func createStoreLocation(_ input: CreateStoreLocationRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateStoreLocationResponse {
         try await self.client.execute(action: "CreateStoreLocation", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 修改结果存储位置
     ///
     /// 该接口（CreateStoreLocation）新增或覆盖计算结果存储位置。
@@ -62,7 +62,7 @@ extension Dlc {
     public func createStoreLocation(storeLocation: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateStoreLocationResponse > {
         self.createStoreLocation(CreateStoreLocationRequest(storeLocation: storeLocation), logger: logger, on: eventLoop)
     }
-    
+
     /// 修改结果存储位置
     ///
     /// 该接口（CreateStoreLocation）新增或覆盖计算结果存储位置。

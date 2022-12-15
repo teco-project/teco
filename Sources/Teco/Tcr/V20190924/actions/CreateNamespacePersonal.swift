@@ -19,26 +19,26 @@ extension Tcr {
     public struct CreateNamespacePersonalRequest: TCRequestModel {
         /// 命名空间名称
         public let namespace: String
-        
-        public init (namespace: String) {
+
+        public init(namespace: String) {
             self.namespace = namespace
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case namespace = "Namespace"
         }
     }
-    
+
     /// CreateNamespacePersonal返回参数结构体
     public struct CreateNamespacePersonalResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 创建个人版命名空间
     ///
     /// 创建个人版镜像仓库命名空间，此命名空间全局唯一
@@ -46,7 +46,7 @@ extension Tcr {
     public func createNamespacePersonal(_ input: CreateNamespacePersonalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateNamespacePersonalResponse > {
         self.client.execute(action: "CreateNamespacePersonal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 创建个人版命名空间
     ///
     /// 创建个人版镜像仓库命名空间，此命名空间全局唯一
@@ -54,7 +54,7 @@ extension Tcr {
     public func createNamespacePersonal(_ input: CreateNamespacePersonalRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateNamespacePersonalResponse {
         try await self.client.execute(action: "CreateNamespacePersonal", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 创建个人版命名空间
     ///
     /// 创建个人版镜像仓库命名空间，此命名空间全局唯一
@@ -62,7 +62,7 @@ extension Tcr {
     public func createNamespacePersonal(namespace: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateNamespacePersonalResponse > {
         self.createNamespacePersonal(CreateNamespacePersonalRequest(namespace: namespace), logger: logger, on: eventLoop)
     }
-    
+
     /// 创建个人版命名空间
     ///
     /// 创建个人版镜像仓库命名空间，此命名空间全局唯一

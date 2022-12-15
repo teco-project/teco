@@ -19,26 +19,26 @@ extension Clb {
     public struct ModifyTargetWeightRequest: TCRequestModel {
         /// 负载均衡实例ID。
         public let loadBalancerId: String
-        
+
         /// 负载均衡监听器ID。
         public let listenerId: String
-        
+
         /// 转发规则的ID，当绑定机器到七层转发规则时，必须提供此参数或Domain+Url两者之一。
         public let locationId: String?
-        
+
         /// 目标规则的域名，提供LocationId参数时本参数不生效。
         public let domain: String?
-        
+
         /// 目标规则的URL，提供LocationId参数时本参数不生效。
         public let url: String?
-        
+
         /// 要修改权重的后端服务列表。
         public let targets: [Target]?
-        
+
         /// 后端服务新的转发权重，取值范围：0~100，默认值10。如果设置了 Targets.Weight 参数，则此参数不生效。
         public let weight: Int64?
-        
-        public init (loadBalancerId: String, listenerId: String, locationId: String? = nil, domain: String? = nil, url: String? = nil, targets: [Target]? = nil, weight: Int64? = nil) {
+
+        public init(loadBalancerId: String, listenerId: String, locationId: String? = nil, domain: String? = nil, url: String? = nil, targets: [Target]? = nil, weight: Int64? = nil) {
             self.loadBalancerId = loadBalancerId
             self.listenerId = listenerId
             self.locationId = locationId
@@ -47,7 +47,7 @@ extension Clb {
             self.targets = targets
             self.weight = weight
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case loadBalancerId = "LoadBalancerId"
             case listenerId = "ListenerId"
@@ -58,17 +58,17 @@ extension Clb {
             case weight = "Weight"
         }
     }
-    
+
     /// ModifyTargetWeight返回参数结构体
     public struct ModifyTargetWeightResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 修改监听器绑定的后端机器的转发权重
     ///
     /// ModifyTargetWeight 接口用于修改负载均衡绑定的后端服务的转发权重。
@@ -77,7 +77,7 @@ extension Clb {
     public func modifyTargetWeight(_ input: ModifyTargetWeightRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyTargetWeightResponse > {
         self.client.execute(action: "ModifyTargetWeight", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 修改监听器绑定的后端机器的转发权重
     ///
     /// ModifyTargetWeight 接口用于修改负载均衡绑定的后端服务的转发权重。
@@ -86,7 +86,7 @@ extension Clb {
     public func modifyTargetWeight(_ input: ModifyTargetWeightRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyTargetWeightResponse {
         try await self.client.execute(action: "ModifyTargetWeight", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 修改监听器绑定的后端机器的转发权重
     ///
     /// ModifyTargetWeight 接口用于修改负载均衡绑定的后端服务的转发权重。
@@ -95,7 +95,7 @@ extension Clb {
     public func modifyTargetWeight(loadBalancerId: String, listenerId: String, locationId: String? = nil, domain: String? = nil, url: String? = nil, targets: [Target]? = nil, weight: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyTargetWeightResponse > {
         self.modifyTargetWeight(ModifyTargetWeightRequest(loadBalancerId: loadBalancerId, listenerId: listenerId, locationId: locationId, domain: domain, url: url, targets: targets, weight: weight), logger: logger, on: eventLoop)
     }
-    
+
     /// 修改监听器绑定的后端机器的转发权重
     ///
     /// ModifyTargetWeight 接口用于修改负载均衡绑定的后端服务的转发权重。

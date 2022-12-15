@@ -65,226 +65,226 @@ extension TCEssError {
             case whiteListForbid = "OperationDenied.WhiteListForbid"
             case other = "OperationDenied"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         public static var approverNoMatchTemplate: OperationDenied {
             OperationDenied(.approverNoMatchTemplate)
         }
-        
+
         public static var approverRepeat: OperationDenied {
             OperationDenied(.approverRepeat)
         }
-        
+
         public static var authCodeInvalid: OperationDenied {
             OperationDenied(.authCodeInvalid)
         }
-        
+
         public static var batchCancelForbid: OperationDenied {
             OperationDenied(.batchCancelForbid)
         }
-        
+
         public static var branchSendFlowToParentNotAllow: OperationDenied {
             OperationDenied(.branchSendFlowToParentNotAllow)
         }
-        
+
         public static var ccForbid: OperationDenied {
             OperationDenied(.ccForbid)
         }
-        
+
         public static var ccUserRepeat: OperationDenied {
             OperationDenied(.ccUserRepeat)
         }
-        
+
         public static var documentNoAvailable: OperationDenied {
             OperationDenied(.documentNoAvailable)
         }
-        
+
         public static var errNoResourceAccess: OperationDenied {
             OperationDenied(.errNoResourceAccess)
         }
-        
+
         public static var errNoSupportIndividualHasOrganizationName: OperationDenied {
             OperationDenied(.errNoSupportIndividualHasOrganizationName)
         }
-        
+
         public static var fileDeleted: OperationDenied {
             OperationDenied(.fileDeleted)
         }
-        
+
         public static var fileNoMatchResource: OperationDenied {
             OperationDenied(.fileNoMatchResource)
         }
-        
+
         public static var flowCancelForbid: OperationDenied {
             OperationDenied(.flowCancelForbid)
         }
-        
+
         public static var flowHasStarted: OperationDenied {
             OperationDenied(.flowHasStarted)
         }
-        
+
         public static var flowHasTerminated: OperationDenied {
             OperationDenied(.flowHasTerminated)
         }
-        
+
         public static var flowNoNeedReview: OperationDenied {
             OperationDenied(.flowNoNeedReview)
         }
-        
+
         public static var flowStatusForbid: OperationDenied {
             OperationDenied(.flowStatusForbid)
         }
-        
+
         /// 禁止此项操作。
         public static var forbid: OperationDenied {
             OperationDenied(.forbid)
         }
-        
+
         public static var invalidApproverAge: OperationDenied {
             OperationDenied(.invalidApproverAge)
         }
-        
+
         public static var manyResourceId: OperationDenied {
             OperationDenied(.manyResourceId)
         }
-        
+
         public static var noFlowPermission: OperationDenied {
             OperationDenied(.noFlowPermission)
         }
-        
+
         /// 未通过个人实名认证。
         public static var noIdentityVerify: OperationDenied {
             OperationDenied(.noIdentityVerify)
         }
-        
+
         /// 用户未登录,请先登录后再操作。
         public static var noLogin: OperationDenied {
             OperationDenied(.noLogin)
         }
-        
+
         public static var noOpenServerSign: OperationDenied {
             OperationDenied(.noOpenServerSign)
         }
-        
+
         public static var noPermissionUseResource: OperationDenied {
             OperationDenied(.noPermissionUseResource)
         }
-        
+
         public static var noPermissionUseServerSignSeal: OperationDenied {
             OperationDenied(.noPermissionUseServerSignSeal)
         }
-        
+
         /// 流程配额不足。
         public static var noQuota: OperationDenied {
             OperationDenied(.noQuota)
         }
-        
+
         public static var noSupportComponentType: OperationDenied {
             OperationDenied(.noSupportComponentType)
         }
-        
+
         public static var noSupportJumpPage: OperationDenied {
             OperationDenied(.noSupportJumpPage)
         }
-        
+
         /// 未在腾讯云实名。
         public static var noVerify: OperationDenied {
             OperationDenied(.noVerify)
         }
-        
+
         /// 使用超管/法人进行接口调用。
         public static var notBelongSuperAdminOrLegalPerson: OperationDenied {
             OperationDenied(.notBelongSuperAdminOrLegalPerson)
         }
-        
+
         /// 联系管理员获取权限。
         public static var operatorHasNoPermission: OperationDenied {
             OperationDenied(.operatorHasNoPermission)
         }
-        
+
         public static var orgUniformSocialCreditCodeErr: OperationDenied {
             OperationDenied(.orgUniformSocialCreditCodeErr)
         }
-        
+
         /// 企业未激活。
         public static var organizationNotActivated: OperationDenied {
             OperationDenied(.organizationNotActivated)
         }
-        
+
         public static var outQueryLimit: OperationDenied {
             OperationDenied(.outQueryLimit)
         }
-        
+
         public static var overSeaForbid: OperationDenied {
             OperationDenied(.overSeaForbid)
         }
-        
+
         public static var personHasNoSignature: OperationDenied {
             OperationDenied(.personHasNoSignature)
         }
-        
+
         public static var personNoOpenServerSign: OperationDenied {
             OperationDenied(.personNoOpenServerSign)
         }
-        
+
         public static var personServerSignForbid: OperationDenied {
             OperationDenied(.personServerSignForbid)
         }
-        
+
         public static var qrHasExpire: OperationDenied {
             OperationDenied(.qrHasExpire)
         }
-        
+
         public static var qrInvalid: OperationDenied {
             OperationDenied(.qrInvalid)
         }
-        
+
         public static var requiredComponentNotFill: OperationDenied {
             OperationDenied(.requiredComponentNotFill)
         }
-        
+
         public static var serverSignNoAllowComponent: OperationDenied {
             OperationDenied(.serverSignNoAllowComponent)
         }
-        
+
         public static var serverSignNoSupportSignature: OperationDenied {
             OperationDenied(.serverSignNoSupportSignature)
         }
-        
+
         public static var userNotInOrganization: OperationDenied {
             OperationDenied(.userNotInOrganization)
         }
-        
+
         public static var whiteListForbid: OperationDenied {
             OperationDenied(.whiteListForbid)
         }
-        
+
         /// 操作被拒绝。
         public static var other: OperationDenied {
             OperationDenied(.other)
         }
-        
+
         public func asEssError() -> TCEssError {
             let code: TCEssError.Code
             switch self.error {

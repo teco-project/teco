@@ -19,27 +19,27 @@ extension Cloudaudit {
     public struct AttributeKeyDetail: TCInputModel {
         /// 输入框类型
         public let labelType: String
-        
+
         /// 初始化展示
         public let starter: String
-        
+
         /// 展示排序
         public let order: Int64
-        
+
         /// AttributeKey值
         public let value: String
-        
+
         /// 中文标签
         public let label: String
-        
-        public init (labelType: String, starter: String, order: Int64, value: String, label: String) {
+
+        public init(labelType: String, starter: String, order: Int64, value: String, label: String) {
             self.labelType = labelType
             self.starter = starter
             self.order = order
             self.value = value
             self.label = label
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case labelType = "LabelType"
             case starter = "Starter"
@@ -48,28 +48,28 @@ extension Cloudaudit {
             case label = "Label"
         }
     }
-    
+
     /// 跟踪集概览
     public struct AuditSummary: TCInputModel {
         /// 跟踪集状态，1：开启，0：关闭
         public let auditStatus: Int64?
-        
+
         /// COS存储桶名称
         public let cosBucketName: String?
-        
+
         /// 跟踪集名称
         public let auditName: String?
-        
+
         /// 日志前缀
         public let logFilePrefix: String?
-        
-        public init (auditStatus: Int64? = nil, cosBucketName: String? = nil, auditName: String? = nil, logFilePrefix: String? = nil) {
+
+        public init(auditStatus: Int64? = nil, cosBucketName: String? = nil, auditName: String? = nil, logFilePrefix: String? = nil) {
             self.auditStatus = auditStatus
             self.cosBucketName = cosBucketName
             self.auditName = auditName
             self.logFilePrefix = logFilePrefix
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case auditStatus = "AuditStatus"
             case cosBucketName = "CosBucketName"
@@ -77,101 +77,101 @@ extension Cloudaudit {
             case logFilePrefix = "LogFilePrefix"
         }
     }
-    
+
     /// cmq地域信息
     public struct CmqRegionInfo: TCInputModel {
         /// 地域描述
         public let cmqRegionName: String?
-        
+
         /// cmq地域
         public let cmqRegion: String?
-        
-        public init (cmqRegionName: String? = nil, cmqRegion: String? = nil) {
+
+        public init(cmqRegionName: String? = nil, cmqRegion: String? = nil) {
             self.cmqRegionName = cmqRegionName
             self.cmqRegion = cmqRegion
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case cmqRegionName = "CmqRegionName"
             case cmqRegion = "CmqRegion"
         }
     }
-    
+
     /// cos地域信息
     public struct CosRegionInfo: TCInputModel {
         /// cos地域
         public let cosRegion: String?
-        
+
         /// 地域描述
         public let cosRegionName: String?
-        
-        public init (cosRegion: String? = nil, cosRegionName: String? = nil) {
+
+        public init(cosRegion: String? = nil, cosRegionName: String? = nil) {
             self.cosRegion = cosRegion
             self.cosRegionName = cosRegionName
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case cosRegion = "CosRegion"
             case cosRegionName = "CosRegionName"
         }
     }
-    
+
     /// 日志详情
     public struct Event: TCInputModel, TCOutputModel {
         /// 日志ID
         public let eventId: String?
-        
+
         /// 用户名
         public let username: String?
-        
+
         /// 事件时间
         public let eventTime: String?
-        
+
         /// 日志详情
         public let cloudAuditEvent: String?
-        
+
         /// 资源类型中文描述（此字段请按需使用，如果您是其他语言使用者，可以忽略该字段描述）
         public let resourceTypeCn: String?
-        
+
         /// 鉴权错误码
         public let errorCode: Int64?
-        
+
         /// 事件名称
         public let eventName: String?
-        
+
         /// 证书ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let secretId: String?
-        
+
         /// 请求来源
         public let eventSource: String?
-        
+
         /// 请求ID
         public let requestID: String?
-        
+
         /// 资源地域
         public let resourceRegion: String?
-        
+
         /// 主账号ID
         public let accountID: Int64?
-        
+
         /// 源IP
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let sourceIPAddress: String?
-        
+
         /// 事件名称中文描述（此字段请按需使用，如果您是其他语言使用者，可以忽略该字段描述）
         public let eventNameCn: String?
-        
+
         /// 资源对
         public let resources: Resource?
-        
+
         /// 事件地域
         public let eventRegion: String?
-        
+
         /// IP 归属地
         public let location: String?
-        
-        public init (eventId: String? = nil, username: String? = nil, eventTime: String? = nil, cloudAuditEvent: String? = nil, resourceTypeCn: String? = nil, errorCode: Int64? = nil, eventName: String? = nil, secretId: String? = nil, eventSource: String? = nil, requestID: String? = nil, resourceRegion: String? = nil, accountID: Int64? = nil, sourceIPAddress: String? = nil, eventNameCn: String? = nil, resources: Resource? = nil, eventRegion: String? = nil, location: String? = nil) {
+
+        public init(eventId: String? = nil, username: String? = nil, eventTime: String? = nil, cloudAuditEvent: String? = nil, resourceTypeCn: String? = nil, errorCode: Int64? = nil, eventName: String? = nil, secretId: String? = nil, eventSource: String? = nil, requestID: String? = nil, resourceRegion: String? = nil, accountID: Int64? = nil, sourceIPAddress: String? = nil, eventNameCn: String? = nil, resources: Resource? = nil, eventRegion: String? = nil, location: String? = nil) {
             self.eventId = eventId
             self.username = username
             self.eventTime = eventTime
@@ -190,7 +190,7 @@ extension Cloudaudit {
             self.eventRegion = eventRegion
             self.location = location
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case eventId = "EventId"
             case username = "Username"
@@ -211,88 +211,88 @@ extension Cloudaudit {
             case location = "Location"
         }
     }
-    
+
     /// CMK属性
     public struct KeyMetadata: TCInputModel {
         /// 作为密钥更容易辨识，更容易被人看懂的别名
         public let alias: String?
-        
+
         /// CMK的全局唯一标识
         public let keyId: String?
-        
-        public init (alias: String? = nil, keyId: String? = nil) {
+
+        public init(alias: String? = nil, keyId: String? = nil) {
             self.alias = alias
             self.keyId = keyId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case alias = "Alias"
             case keyId = "KeyId"
         }
     }
-    
+
     /// 检索条件
     public struct LookupAttribute: TCInputModel {
         /// AttributeKey的有效取值范围是:RequestId、EventName、ReadOnly、Username、ResourceType、ResourceName和AccessKeyId，EventId
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let attributeKey: String?
-        
+
         /// AttributeValue的值
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let attributeValue: String?
-        
-        public init (attributeKey: String, attributeValue: String? = nil) {
+
+        public init(attributeKey: String, attributeValue: String? = nil) {
             self.attributeKey = attributeKey
             self.attributeValue = attributeValue
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case attributeKey = "AttributeKey"
             case attributeValue = "AttributeValue"
         }
     }
-    
+
     /// 资源类型
     public struct Resource: TCInputModel {
         /// 资源类型
         public let resourceType: String?
-        
+
         /// 资源名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let resourceName: String?
-        
-        public init (resourceType: String? = nil, resourceName: String? = nil) {
+
+        public init(resourceType: String? = nil, resourceName: String? = nil) {
             self.resourceType = resourceType
             self.resourceName = resourceName
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case resourceType = "ResourceType"
             case resourceName = "ResourceName"
         }
     }
-    
+
     /// 跟踪集存储信息
     public struct Storage: TCInputModel, TCOutputModel {
         /// 存储类型（目前支持 cos、cls）
         public let storageType: String
-        
+
         /// 存储所在地域
         public let storageRegion: String
-        
+
         /// 存储名称(cos：存储名称为用户自定义的存储桶名称，不包含"-APPID"，仅支持小写字母、数字以及中划线"-"的组合，不能超过50字符，且不支持中划线"-"开头或结尾； cls：存储名称为日志主题id，字符长度为1-50个字符)
         public let storageName: String
-        
+
         /// 存储目录前缀，cos日志文件前缀仅支持字母和数字的组合，3-40个字符
         public let storagePrefix: String
-        
-        public init (storageType: String, storageRegion: String, storageName: String, storagePrefix: String) {
+
+        public init(storageType: String, storageRegion: String, storageName: String, storagePrefix: String) {
             self.storageType = storageType
             self.storageRegion = storageRegion
             self.storageName = storageName
             self.storagePrefix = storagePrefix
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case storageType = "StorageType"
             case storageRegion = "StorageRegion"
@@ -300,33 +300,33 @@ extension Cloudaudit {
             case storagePrefix = "StoragePrefix"
         }
     }
-    
+
     /// 跟踪集列表
     public struct Tracks: TCOutputModel {
         /// 跟踪集名称
         public let name: String
-        
+
         /// 跟踪事件类型（读：Read；写：Write；全部：*）
         public let actionType: String
-        
+
         /// 跟踪事件所属产品（如：cos，全部：*）
         public let resourceType: String
-        
+
         /// 跟踪集状态（未开启：0；开启：1）
         public let status: UInt64
-        
+
         /// 跟踪事件接口名列表（全部：[*]）
         public let eventNames: [String]
-        
+
         /// 数据投递存储（目前支持 cos、cls）
         public let storage: Storage
-        
+
         /// 跟踪集创建时间
         public let createTime: String
-        
+
         /// 跟踪集 ID
         public let trackId: UInt64
-        
+
         enum CodingKeys: String, CodingKey {
             case name = "Name"
             case actionType = "ActionType"

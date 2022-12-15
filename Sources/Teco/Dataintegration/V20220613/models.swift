@@ -19,15 +19,15 @@ extension Dataintegration {
     public struct BatchContent: TCInputModel {
         /// 消息体
         public let body: String
-        
+
         /// 消息的键名
         public let key: String?
-        
-        public init (body: String, key: String? = nil) {
+
+        public init(body: String, key: String? = nil) {
             self.body = body
             self.key = key
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case body = "Body"
             case key = "Key"

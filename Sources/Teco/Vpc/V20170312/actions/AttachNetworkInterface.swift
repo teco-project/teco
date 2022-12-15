@@ -19,36 +19,36 @@ extension Vpc {
     public struct AttachNetworkInterfaceRequest: TCRequestModel {
         /// 弹性网卡实例ID，例如：eni-m6dyj72l。
         public let networkInterfaceId: String
-        
+
         /// CVM实例ID。形如：ins-r8hr2upy。
         public let instanceId: String
-        
+
         /// 网卡的挂载类型：0 标准型，1扩展型，默认值0。
         public let attachType: UInt64?
-        
-        public init (networkInterfaceId: String, instanceId: String, attachType: UInt64? = nil) {
+
+        public init(networkInterfaceId: String, instanceId: String, attachType: UInt64? = nil) {
             self.networkInterfaceId = networkInterfaceId
             self.instanceId = instanceId
             self.attachType = attachType
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case networkInterfaceId = "NetworkInterfaceId"
             case instanceId = "InstanceId"
             case attachType = "AttachType"
         }
     }
-    
+
     /// AttachNetworkInterface返回参数结构体
     public struct AttachNetworkInterfaceResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 弹性网卡绑定云服务器
     ///
     /// 本接口（AttachNetworkInterface）用于弹性网卡绑定云服务器。
@@ -62,7 +62,7 @@ extension Vpc {
     public func attachNetworkInterface(_ input: AttachNetworkInterfaceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AttachNetworkInterfaceResponse > {
         self.client.execute(action: "AttachNetworkInterface", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 弹性网卡绑定云服务器
     ///
     /// 本接口（AttachNetworkInterface）用于弹性网卡绑定云服务器。
@@ -76,7 +76,7 @@ extension Vpc {
     public func attachNetworkInterface(_ input: AttachNetworkInterfaceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AttachNetworkInterfaceResponse {
         try await self.client.execute(action: "AttachNetworkInterface", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 弹性网卡绑定云服务器
     ///
     /// 本接口（AttachNetworkInterface）用于弹性网卡绑定云服务器。
@@ -90,7 +90,7 @@ extension Vpc {
     public func attachNetworkInterface(networkInterfaceId: String, instanceId: String, attachType: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < AttachNetworkInterfaceResponse > {
         self.attachNetworkInterface(AttachNetworkInterfaceRequest(networkInterfaceId: networkInterfaceId, instanceId: instanceId, attachType: attachType), logger: logger, on: eventLoop)
     }
-    
+
     /// 弹性网卡绑定云服务器
     ///
     /// 本接口（AttachNetworkInterface）用于弹性网卡绑定云服务器。

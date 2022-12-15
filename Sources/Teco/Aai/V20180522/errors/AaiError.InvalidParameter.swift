@@ -25,64 +25,64 @@ extension TCAaiError {
             case errorParsequest = "InvalidParameter.ErrorParsequest"
             case invalidText = "InvalidParameter.InvalidText"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 错误的聊天输入文本。
         public static var errorChatText: InvalidParameter {
             InvalidParameter(.errorChatText)
         }
-        
+
         /// 错误的User参数。
         public static var errorChatUser: InvalidParameter {
             InvalidParameter(.errorChatUser)
         }
-        
+
         /// 请求数据长度无效。
         public static var errorContentlength: InvalidParameter {
             InvalidParameter(.errorContentlength)
         }
-        
+
         /// 没有body数据。
         public static var errorNoBodydata: InvalidParameter {
             InvalidParameter(.errorNoBodydata)
         }
-        
+
         /// 参数不全。
         public static var errorParamsMissing: InvalidParameter {
             InvalidParameter(.errorParamsMissing)
         }
-        
+
         /// 解析请求数据失败。
         public static var errorParsequest: InvalidParameter {
             InvalidParameter(.errorParsequest)
         }
-        
+
         /// 非法文本。
         public static var invalidText: InvalidParameter {
             InvalidParameter(.invalidText)
         }
-        
+
         public func asAaiError() -> TCAaiError {
             let code: TCAaiError.Code
             switch self.error {

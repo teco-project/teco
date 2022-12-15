@@ -45,164 +45,164 @@ extension TCCynosdbError {
             case vpcNotFound = "InvalidParameterValue.VpcNotFound"
             case other = "InvalidParameterValue"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 账号已存在。
         public static var accountAlreadyExistError: InvalidParameterValue {
             InvalidParameterValue(.accountAlreadyExistError)
         }
-        
+
         /// 账号已存在。
         public static var accountExist: InvalidParameterValue {
             InvalidParameterValue(.accountExist)
         }
-        
+
         /// 实例不存在账号。
         public static var accountNotExistError: InvalidParameterValue {
             InvalidParameterValue(.accountNotExistError)
         }
-        
+
         /// 未查询到集群。
         public static var clusterNotFound: InvalidParameterValue {
             InvalidParameterValue(.clusterNotFound)
         }
-        
+
         /// 集群类型必须为serverless。
         public static var dbModeNotServerlessError: InvalidParameterValue {
             InvalidParameterValue(.dbModeNotServerlessError)
         }
-        
+
         /// 不支持的实例类型。
         public static var dbTypeNotFound: InvalidParameterValue {
             InvalidParameterValue(.dbTypeNotFound)
         }
-        
+
         /// 未查询到订单id。
         public static var dealNameNotFound: InvalidParameterValue {
             InvalidParameterValue(.dealNameNotFound)
         }
-        
+
         /// 任务流ID不存在。
         public static var flowNotFound: InvalidParameterValue {
             InvalidParameterValue(.flowNotFound)
         }
-        
+
         /// 实例名称字符非法。
         public static var illegalInstanceName: InvalidParameterValue {
             InvalidParameterValue(.illegalInstanceName)
         }
-        
+
         /// 无效的排序字段。
         public static var illegalOrderBy: InvalidParameterValue {
             InvalidParameterValue(.illegalOrderBy)
         }
-        
+
         /// 密码不符合要求。
         public static var illegalPassword: InvalidParameterValue {
             InvalidParameterValue(.illegalPassword)
         }
-        
+
         /// 实例不存在。
         public static var instanceNotFound: InvalidParameterValue {
             InvalidParameterValue(.instanceNotFound)
         }
-        
+
         /// 内置账号不允许操作。
         public static var internalAccount: InvalidParameterValue {
             InvalidParameterValue(.internalAccount)
         }
-        
+
         /// 实例版本非法。
         public static var invalidDBVersion: InvalidParameterValue {
             InvalidParameterValue(.invalidDBVersion)
         }
-        
+
         /// 参数值无效。
         public static var invalidParameterValueError: InvalidParameterValue {
             InvalidParameterValue(.invalidParameterValueError)
         }
-        
+
         /// 无效的地域。
         public static var invalidRegionIdError: InvalidParameterValue {
             InvalidParameterValue(.invalidRegionIdError)
         }
-        
+
         /// 实例规格非法。
         public static var invalidSpec: InvalidParameterValue {
             InvalidParameterValue(.invalidSpec)
         }
-        
+
         /// 无效的可用区。
         public static var invalidZoneIdError: InvalidParameterValue {
             InvalidParameterValue(.invalidZoneIdError)
         }
-        
+
         /// 该两个参数不可以同时设定。
         public static var paramBothSetError: InvalidParameterValue {
             InvalidParameterValue(.paramBothSetError)
         }
-        
+
         /// 参数错误。
         public static var paramError: InvalidParameterValue {
             InvalidParameterValue(.paramError)
         }
-        
+
         /// 参数值无效，超过允许范围。
         public static var parameterOutRangeError: InvalidParameterValue {
             InvalidParameterValue(.parameterOutRangeError)
         }
-        
+
         /// 预付费类型不允许该操作。
         public static var prePayPayModeError: InvalidParameterValue {
             InvalidParameterValue(.prePayPayModeError)
         }
-        
+
         /// 所选地域和可用区不可用。
         public static var regionZoneUnavailable: InvalidParameterValue {
             InvalidParameterValue(.regionZoneUnavailable)
         }
-        
+
         /// 未找到相关存储pool。
         public static var storagePoolNotFound: InvalidParameterValue {
             InvalidParameterValue(.storagePoolNotFound)
         }
-        
+
         /// 找不到所选子网。
         public static var subnetNotFound: InvalidParameterValue {
             InvalidParameterValue(.subnetNotFound)
         }
-        
+
         /// 找不到所选VPC网络。
         public static var vpcNotFound: InvalidParameterValue {
             InvalidParameterValue(.vpcNotFound)
         }
-        
+
         /// 参数取值错误。
         public static var other: InvalidParameterValue {
             InvalidParameterValue(.other)
         }
-        
+
         public func asCynosdbError() -> TCCynosdbError {
             let code: TCCynosdbError.Code
             switch self.error {

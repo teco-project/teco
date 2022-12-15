@@ -19,36 +19,36 @@ extension Batch {
     public struct Activity: TCOutputModel {
         /// 活动ID
         public let activityId: String
-        
+
         /// 计算节点ID
         public let computeNodeId: String
-        
+
         /// 计算节点活动类型，创建或者销毁
         public let computeNodeActivityType: String
-        
+
         /// 计算环境ID
         public let envId: String
-        
+
         /// 起因
         public let cause: String
-        
+
         /// 活动状态
         public let activityState: String
-        
+
         /// 状态原因
         public let stateReason: String
-        
+
         /// 活动开始时间
         public let startTime: String
-        
+
         /// 活动结束时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let endTime: String?
-        
+
         /// 云服务器实例ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let instanceId: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case activityId = "ActivityId"
             case computeNodeId = "ComputeNodeId"
@@ -62,52 +62,52 @@ extension Batch {
             case instanceId = "InstanceId"
         }
     }
-    
+
     /// agent运行模式
     public struct AgentRunningMode: TCInputModel, TCOutputModel {
         /// 场景类型，支持WINDOWS
         public let scene: String
-        
+
         /// 运行Agent的User
         public let user: String
-        
+
         /// 运行Agent的Session
         public let session: String
-        
-        public init (scene: String, user: String, session: String) {
+
+        public init(scene: String, user: String, session: String) {
             self.scene = scene
             self.user = user
             self.session = session
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case scene = "Scene"
             case user = "User"
             case session = "Session"
         }
     }
-    
+
     /// 计算环境
     public struct AnonymousComputeEnv: TCInputModel, TCOutputModel {
         /// 计算环境管理类型
         public let envType: String?
-        
+
         /// 计算环境具体参数
         public let envData: EnvData?
-        
+
         /// 数据盘挂载选项
         public let mountDataDisks: [MountDataDisk]?
-        
+
         /// agent运行模式，适用于Windows系统
         public let agentRunningMode: AgentRunningMode?
-        
-        public init (envType: String? = nil, envData: EnvData? = nil, mountDataDisks: [MountDataDisk]? = nil, agentRunningMode: AgentRunningMode? = nil) {
+
+        public init(envType: String? = nil, envData: EnvData? = nil, mountDataDisks: [MountDataDisk]? = nil, agentRunningMode: AgentRunningMode? = nil) {
             self.envType = envType
             self.envData = envData
             self.mountDataDisks = mountDataDisks
             self.agentRunningMode = agentRunningMode
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case envType = "EnvType"
             case envData = "EnvData"
@@ -115,28 +115,28 @@ extension Batch {
             case agentRunningMode = "AgentRunningMode"
         }
     }
-    
+
     /// 应用程序信息
     public struct Application: TCInputModel, TCOutputModel {
         /// 任务执行命令
         public let command: String
-        
+
         /// 应用程序的交付方式，包括PACKAGE、LOCAL 两种取值，分别指远程存储的软件包、计算环境本地。
         public let deliveryForm: String
-        
+
         /// 应用程序软件包的远程存储路径
         public let packagePath: String?
-        
+
         /// 应用使用Docker的相关配置。在使用Docker配置的情况下，DeliveryForm 为 LOCAL 表示直接使用Docker镜像内部的应用软件，通过Docker方式运行；DeliveryForm 为 PACKAGE，表示将远程应用包注入到Docker镜像后，通过Docker方式运行。为避免Docker不同版本的兼容性问题，Docker安装包及相关依赖由Batch统一负责，对于已安装Docker的自定义镜像，请卸载后再使用Docker特性。
         public let docker: Docker?
-        
-        public init (command: String, deliveryForm: String, packagePath: String? = nil, docker: Docker? = nil) {
+
+        public init(command: String, deliveryForm: String, packagePath: String? = nil, docker: Docker? = nil) {
             self.command = command
             self.deliveryForm = deliveryForm
             self.packagePath = packagePath
             self.docker = docker
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case command = "Command"
             case deliveryForm = "DeliveryForm"
@@ -144,73 +144,73 @@ extension Batch {
             case docker = "Docker"
         }
     }
-    
+
     /// 授权认证信息
     public struct Authentication: TCInputModel, TCOutputModel {
         /// 授权场景，例如COS
         public let scene: String
-        
+
         /// SecretId
         public let secretId: String
-        
+
         /// SecretKey
         public let secretKey: String
-        
-        public init (scene: String, secretId: String, secretKey: String) {
+
+        public init(scene: String, secretId: String, secretKey: String) {
             self.scene = scene
             self.secretId = secretId
             self.secretKey = secretKey
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case scene = "Scene"
             case secretId = "SecretId"
             case secretKey = "SecretKey"
         }
     }
-    
+
     /// 计算环境创建信息。
     public struct ComputeEnvCreateInfo: TCOutputModel {
         /// 计算环境 ID
         public let envId: String
-        
+
         /// 计算环境名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let envName: String?
-        
+
         /// 计算环境描述
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let envDescription: String?
-        
+
         /// 计算环境类型，仅支持“MANAGED”类型
         public let envType: String
-        
+
         /// 计算环境参数
         public let envData: EnvData
-        
+
         /// 数据盘挂载选项
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let mountDataDisks: [MountDataDisk]?
-        
+
         /// 输入映射
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let inputMappings: [InputMapping]?
-        
+
         /// 授权信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let authentications: [Authentication]?
-        
+
         /// 通知信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let notifications: [Notification]?
-        
+
         /// 计算节点期望个数
         public let desiredComputeNodeCount: UInt64
-        
+
         /// 计算环境标签列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tags: [Tag]?
-        
+
         enum CodingKeys: String, CodingKey {
             case envId = "EnvId"
             case envName = "EnvName"
@@ -225,57 +225,57 @@ extension Batch {
             case tags = "Tags"
         }
     }
-    
+
     /// 计算环境属性数据
     public struct ComputeEnvData: TCInputModel {
         /// CVM实例类型列表
         public let instanceTypes: [String]
-        
-        public init (instanceTypes: [String]) {
+
+        public init(instanceTypes: [String]) {
             self.instanceTypes = instanceTypes
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceTypes = "InstanceTypes"
         }
     }
-    
+
     /// 计算环境信息
     public struct ComputeEnvView: TCOutputModel {
         /// 计算环境ID
         public let envId: String
-        
+
         /// 计算环境名称
         public let envName: String
-        
+
         /// 位置信息
         public let placement: Placement
-        
+
         /// 创建时间
         public let createTime: String
-        
+
         /// 计算节点统计指标
         public let computeNodeMetrics: ComputeNodeMetrics
-        
+
         /// 计算环境类型
         public let envType: String
-        
+
         /// 计算节点期望个数
         public let desiredComputeNodeCount: UInt64
-        
+
         /// 计算环境资源类型，当前为CVM和CPM（黑石）
         public let resourceType: String
-        
+
         /// 下一步动作
         public let nextAction: String
-        
+
         /// 用户添加到计算环境中的计算节点个数
         public let attachedComputeNodeCount: UInt64
-        
+
         /// 计算环境绑定的标签列表。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tags: [Tag]?
-        
+
         enum CodingKeys: String, CodingKey {
             case envId = "EnvId"
             case envName = "EnvName"
@@ -290,46 +290,46 @@ extension Batch {
             case tags = "Tags"
         }
     }
-    
+
     /// 计算节点
     public struct ComputeNode: TCOutputModel {
         /// 计算节点ID
         public let computeNodeId: String
-        
+
         /// 计算节点实例ID，对于CVM场景，即为CVM的InstanceId
         public let computeNodeInstanceId: String?
-        
+
         /// 计算节点状态
         public let computeNodeState: String
-        
+
         /// CPU核数
         public let cpu: UInt64
-        
+
         /// 内存容量，单位GiB
         public let mem: UInt64
-        
+
         /// 资源创建完成时间
         public let resourceCreatedTime: String?
-        
+
         /// 计算节点运行  TaskInstance 可用容量。0表示计算节点忙碌。
         public let taskInstanceNumAvailable: UInt64
-        
+
         /// Batch Agent 版本
         public let agentVersion: String?
-        
+
         /// 实例内网IP
         public let privateIpAddresses: [String]
-        
+
         /// 实例公网IP
         public let publicIpAddresses: [String]
-        
+
         /// 计算环境资源类型，当前为CVM和CPM（黑石）
         public let resourceType: String
-        
+
         /// 计算环境资源来源。<br>BATCH_CREATED：由批量计算创建的实例资源。<br>
         /// USER_ATTACHED：用户添加到计算环境中的实例资源。
         public let resourceOrigin: String
-        
+
         enum CodingKeys: String, CodingKey {
             case computeNodeId = "ComputeNodeId"
             case computeNodeInstanceId = "ComputeNodeInstanceId"
@@ -345,30 +345,30 @@ extension Batch {
             case resourceOrigin = "ResourceOrigin"
         }
     }
-    
+
     /// 计算节点统计指标
     public struct ComputeNodeMetrics: TCOutputModel {
         /// 已经完成提交的计算节点数量
         public let submittedCount: UInt64
-        
+
         /// 创建中的计算节点数量
         public let creatingCount: UInt64
-        
+
         /// 创建失败的计算节点数量
         public let creationFailedCount: UInt64
-        
+
         /// 完成创建的计算节点数量
         public let createdCount: UInt64
-        
+
         /// 运行中的计算节点数量
         public let runningCount: UInt64
-        
+
         /// 销毁中的计算节点数量
         public let deletingCount: UInt64
-        
+
         /// 异常的计算节点数量
         public let abnormalCount: UInt64
-        
+
         enum CodingKeys: String, CodingKey {
             case submittedCount = "SubmittedCount"
             case creatingCount = "CreatingCount"
@@ -379,38 +379,38 @@ extension Batch {
             case abnormalCount = "AbnormalCount"
         }
     }
-    
+
     /// 黑石私有网络
     public struct CpmVirtualPrivateCloud: TCInputModel {
         /// 黑石私有网络ID
         public let vpcId: String
-        
+
         /// 黑石子网ID
         public let subnetId: String
-        
-        public init (vpcId: String, subnetId: String) {
+
+        public init(vpcId: String, subnetId: String) {
             self.vpcId = vpcId
             self.subnetId = subnetId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case vpcId = "VpcId"
             case subnetId = "SubnetId"
         }
     }
-    
+
     /// 描述了数据盘的信息
     public struct DataDisk: TCInputModel, TCOutputModel {
         /// 数据盘大小，单位：GB。最小调整步长为10G，不同数据盘类型取值范围不同，具体限制详见：[存储概述](https://cloud.tencent.com/document/product/213/4952)。默认值为0，表示不购买数据盘。更多限制详见产品文档。
         public let diskSize: Int64
-        
+
         /// 数据盘类型。数据盘类型限制详见[存储概述](https://cloud.tencent.com/document/product/213/4952)。取值范围：<br><li>LOCAL_BASIC：本地硬盘<br><li>LOCAL_SSD：本地SSD硬盘<br><li>LOCAL_NVME：本地NVME硬盘，与InstanceType强相关，不支持指定<br><li>LOCAL_PRO：本地HDD硬盘，与InstanceType强相关，不支持指定<br><li>CLOUD_BASIC：普通云硬盘<br><li>CLOUD_PREMIUM：高性能云硬盘<br><li>CLOUD_SSD：SSD云硬盘<br><li>CLOUD_HSSD：增强型SSD云硬盘<br><li>CLOUD_TSSD：极速型SSD云硬盘<br><li>CLOUD_BSSD：通用型SSD云硬盘<br><br>默认取值：LOCAL_BASIC。<br><br>该参数对`ResizeInstanceDisk`接口无效。
         public let diskType: String?
-        
+
         /// 数据盘ID。LOCAL_BASIC 和 LOCAL_SSD 类型没有ID，暂时不支持该参数。
         /// 该参数目前仅用于`DescribeInstances`等查询类接口的返回参数，不可用于`RunInstances`等写接口的入参。
         public let diskId: String?
-        
+
         /// 数据盘是否随子机销毁。取值范围：
         /// <li>TRUE：子机销毁时，销毁数据盘，只支持按小时后付费云盘
         /// <li>FALSE：子机销毁时，保留数据盘<br>
@@ -418,11 +418,11 @@ extension Batch {
         /// 该参数目前仅用于 `RunInstances` 接口。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let deleteWithInstance: Bool?
-        
+
         /// 数据盘快照ID。选择的数据盘快照大小需小于数据盘大小。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let snapshotId: String?
-        
+
         /// 数据盘是加密。取值范围：
         /// <li>TRUE：加密
         /// <li>FALSE：不加密<br>
@@ -430,21 +430,21 @@ extension Batch {
         /// 该参数目前仅用于 `RunInstances` 接口。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let encrypt: Bool?
-        
+
         /// 自定义CMK对应的ID，取值为UUID或者类似kms-abcd1234。用于加密云盘。
         /// 该参数目前仅用于 `RunInstances` 接口。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let kmsKeyId: String?
-        
+
         /// 云硬盘性能，单位：MB/s
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let throughputPerformance: Int64?
-        
+
         /// 所属的独享集群ID。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let cdcId: String?
-        
-        public init (diskSize: Int64, diskType: String? = nil, diskId: String? = nil, deleteWithInstance: Bool? = nil, snapshotId: String? = nil, encrypt: Bool? = nil, kmsKeyId: String? = nil, throughputPerformance: Int64? = nil, cdcId: String? = nil) {
+
+        public init(diskSize: Int64, diskType: String? = nil, diskId: String? = nil, deleteWithInstance: Bool? = nil, snapshotId: String? = nil, encrypt: Bool? = nil, kmsKeyId: String? = nil, throughputPerformance: Int64? = nil, cdcId: String? = nil) {
             self.diskSize = diskSize
             self.diskType = diskType
             self.diskId = diskId
@@ -455,7 +455,7 @@ extension Batch {
             self.throughputPerformance = throughputPerformance
             self.cdcId = cdcId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case diskSize = "DiskSize"
             case diskType = "DiskType"
@@ -468,51 +468,51 @@ extension Batch {
             case cdcId = "CdcId"
         }
     }
-    
+
     /// 依赖关系
     public struct Dependence: TCInputModel, TCOutputModel {
         /// 依赖关系的起点任务名称
         public let startTask: String
-        
+
         /// 依赖关系的终点任务名称
         public let endTask: String
-        
-        public init (startTask: String, endTask: String) {
+
+        public init(startTask: String, endTask: String) {
             self.startTask = startTask
             self.endTask = endTask
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case startTask = "StartTask"
             case endTask = "EndTask"
         }
     }
-    
+
     /// Docker容器信息
     public struct Docker: TCInputModel, TCOutputModel {
         /// Docker Hub 用户名或 Tencent Registry 用户名
         public let user: String
-        
+
         /// Docker Hub 密码或 Tencent Registry 密码
         public let password: String
-        
+
         /// Docker Hub填写“[user/repo]:[tag]”，Tencent Registry填写“ccr.ccs.tencentyun.com/[namespace/repo]:[tag]”
         public let image: String
-        
+
         /// Docker Hub 可以不填，但确保具有公网访问能力。或者是 Tencent Registry 服务地址“ccr.ccs.tencentyun.com”
         public let server: String?
-        
+
         /// 拉取Docker镜像重试次数。默认值：0。
         public let maxRetryCount: UInt64?
-        
+
         /// 拉取Docker镜像失败时延迟时间。单位：秒。
         public let delayOnRetry: UInt64?
-        
+
         /// Docker命令运行参数。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let dockerRunOption: String?
-        
-        public init (user: String, password: String, image: String, server: String? = nil, maxRetryCount: UInt64? = nil, delayOnRetry: UInt64? = nil, dockerRunOption: String? = nil) {
+
+        public init(user: String, password: String, image: String, server: String? = nil, maxRetryCount: UInt64? = nil, delayOnRetry: UInt64? = nil, dockerRunOption: String? = nil) {
             self.user = user
             self.password = password
             self.image = image
@@ -521,7 +521,7 @@ extension Batch {
             self.delayOnRetry = delayOnRetry
             self.dockerRunOption = dockerRunOption
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case user = "User"
             case password = "Password"
@@ -532,82 +532,82 @@ extension Batch {
             case dockerRunOption = "DockerRunOption"
         }
     }
-    
+
     /// 描述了实例的增强服务启用情况与其设置，如云安全，云监控等实例 Agent
     public struct EnhancedService: TCInputModel, TCOutputModel {
         /// 开启云安全服务。若不指定该参数，则默认开启云安全服务。
         public let securityService: RunSecurityServiceEnabled?
-        
+
         /// 开启云监控服务。若不指定该参数，则默认开启云监控服务。
         public let monitorService: RunMonitorServiceEnabled?
-        
+
         /// 开启云自动化助手服务（TencentCloud Automation Tools，TAT）。若不指定该参数，则公共镜像默认开启云自动化助手服务，其他镜像默认不开启云自动化助手服务。
         public let automationService: RunAutomationServiceEnabled?
-        
-        public init (securityService: RunSecurityServiceEnabled? = nil, monitorService: RunMonitorServiceEnabled? = nil, automationService: RunAutomationServiceEnabled? = nil) {
+
+        public init(securityService: RunSecurityServiceEnabled? = nil, monitorService: RunMonitorServiceEnabled? = nil, automationService: RunAutomationServiceEnabled? = nil) {
             self.securityService = securityService
             self.monitorService = monitorService
             self.automationService = automationService
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case securityService = "SecurityService"
             case monitorService = "MonitorService"
             case automationService = "AutomationService"
         }
     }
-    
+
     /// 计算环境数据
     public struct EnvData: TCInputModel, TCOutputModel {
         /// CVM实例类型，不能与InstanceTypes和InstanceTypeOptions同时出现。
         public let instanceType: String?
-        
+
         /// CVM镜像ID
         public let imageId: String?
-        
+
         /// 实例系统盘配置信息
         public let systemDisk: SystemDisk?
-        
+
         /// 实例数据盘配置信息
         public let dataDisks: [DataDisk]?
-        
+
         /// 私有网络相关信息配置，与Zones和VirtualPrivateClouds不能同时指定。
         public let virtualPrivateCloud: VirtualPrivateCloud?
-        
+
         /// 公网带宽相关信息设置
         public let internetAccessible: InternetAccessible?
-        
+
         /// CVM实例显示名称
         public let instanceName: String?
-        
+
         /// 实例登录设置
         public let loginSettings: LoginSettings?
-        
+
         /// 实例所属安全组
         public let securityGroupIds: [String]?
-        
+
         /// 增强服务。通过该参数可以指定是否开启云安全、云监控等服务。若不指定该参数，则默认开启云监控、云安全服务。
         public let enhancedService: EnhancedService?
-        
+
         /// CVM实例计费类型<br><li>POSTPAID_BY_HOUR：按小时后付费<br><li>SPOTPAID：竞价付费<br>默认值：POSTPAID_BY_HOUR。
         public let instanceChargeType: String?
-        
+
         /// 实例的市场相关选项，如竞价实例相关参数
         public let instanceMarketOptions: InstanceMarketOptionsRequest?
-        
+
         /// CVM实例类型列表，不能与InstanceType和InstanceTypeOptions同时出现。指定该字段后，计算节点按照机型先后顺序依次尝试创建，直到实例创建成功，结束遍历过程。最多支持10个机型。
         public let instanceTypes: [String]?
-        
+
         /// CVM实例机型配置。不能与InstanceType和InstanceTypes同时出现。
         public let instanceTypeOptions: InstanceTypeOptions?
-        
+
         /// 可用区列表，支持跨可用区创建CVM实例。与VirtualPrivateCloud和VirtualPrivateClouds不能同时指定。
         public let zones: [String]?
-        
+
         /// 私有网络列表，支持跨私有网络创建CVM实例。与VirtualPrivateCloud和Zones不能同时指定。
         public let virtualPrivateClouds: [VirtualPrivateCloud]?
-        
-        public init (instanceType: String? = nil, imageId: String? = nil, systemDisk: SystemDisk? = nil, dataDisks: [DataDisk]? = nil, virtualPrivateCloud: VirtualPrivateCloud? = nil, internetAccessible: InternetAccessible? = nil, instanceName: String? = nil, loginSettings: LoginSettings? = nil, securityGroupIds: [String]? = nil, enhancedService: EnhancedService? = nil, instanceChargeType: String? = nil, instanceMarketOptions: InstanceMarketOptionsRequest? = nil, instanceTypes: [String]? = nil, instanceTypeOptions: InstanceTypeOptions? = nil, zones: [String]? = nil, virtualPrivateClouds: [VirtualPrivateCloud]? = nil) {
+
+        public init(instanceType: String? = nil, imageId: String? = nil, systemDisk: SystemDisk? = nil, dataDisks: [DataDisk]? = nil, virtualPrivateCloud: VirtualPrivateCloud? = nil, internetAccessible: InternetAccessible? = nil, instanceName: String? = nil, loginSettings: LoginSettings? = nil, securityGroupIds: [String]? = nil, enhancedService: EnhancedService? = nil, instanceChargeType: String? = nil, instanceMarketOptions: InstanceMarketOptionsRequest? = nil, instanceTypes: [String]? = nil, instanceTypeOptions: InstanceTypeOptions? = nil, zones: [String]? = nil, virtualPrivateClouds: [VirtualPrivateCloud]? = nil) {
             self.instanceType = instanceType
             self.imageId = imageId
             self.systemDisk = systemDisk
@@ -625,7 +625,7 @@ extension Batch {
             self.zones = zones
             self.virtualPrivateClouds = virtualPrivateClouds
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceType = "InstanceType"
             case imageId = "ImageId"
@@ -645,73 +645,73 @@ extension Batch {
             case virtualPrivateClouds = "VirtualPrivateClouds"
         }
     }
-    
+
     /// 黑石计算环境数据
     public struct EnvDataCpm: TCInputModel {
         /// 黑石可用区名称列表。如ap-guangzhou-bls-1, 可通过黑石接口[DescribeRegions]( https://cloud.tencent.com/document/api/386/33564)接口获取。不是Batch可用区名称。目前仅支持一个可用区名称。
         public let zones: [String]
-        
+
         /// 购买的机型ID。通过黑石接口[DescribeDeviceClass]( https://cloud.tencent.com/document/api/386/32911)查询设备型号，获取机型信息。
         public let instanceTypes: [String]
-        
+
         /// 购买时长单位，取值：m(月)。
         public let timeUnit: String
-        
+
         /// 购买时长。
         public let timeSpan: UInt64
-        
+
         /// RAID类型ID。通过黑石接口[DescribeDeviceClassPartition]( https://cloud.tencent.com/document/api/386/32910)查询机型RAID方式以及系统盘大小，获取RAID信息。
         public let raidId: Int64
-        
+
         /// 部署服务器的操作系统ID。通过批量计算接口DescribeCpmOsInfo查询操作系统信息。
         public let osTypeId: Int64
-        
+
         /// 黑石VPC列表，目前仅支持一个VPC。
         public let virtualPrivateClouds: [CpmVirtualPrivateCloud]
-        
+
         /// 是否安装安全Agent，取值：1(安装) 0(不安装)，默认取值0。
         public let needSecurityAgent: Int64?
-        
+
         /// 是否安装监控Agent，取值：1(安装) 0(不安装)，默认取值0。
         public let needMonitorAgent: Int64?
-        
+
         /// 自动续费标志位，取值：1(自动续费) 0(不自动续费)，默认取值0。
         public let autoRenewFlag: Int64?
-        
+
         /// 数据盘是否格式化，取值：1(格式化) 0(不格式化)，默认取值为1。
         public let isZoning: Int64?
-        
+
         /// 指定数据盘的文件系统格式，当前支持 ext4和xfs选项， 默认为ext4。 参数适用于数据盘和Linux， 且在IsZoning为1时生效。
         public let fileSystem: String?
-        
+
         /// 设置Linux root或Windows Administrator的密码。若不设置此参数，默认情况下会随机生成密码，并以站内信方式通知到用户。
         public let password: String?
-        
+
         /// 是否分配弹性公网IP，取值：1(分配) 0(不分配)，默认取值0。
         public let applyEip: Int64?
-        
+
         /// 弹性公网IP计费模式，取值：flow(按流量计费) bandwidth(按带宽计费)，默认取值flow。
         public let eipPayMode: String?
-        
+
         /// 弹性公网IP带宽限制，单位Mb。
         public let eipBandwidth: Int64?
-        
+
         /// 自定义镜像ID，取值生效时用自定义镜像部署物理机。
         public let imageId: String?
-        
+
         /// 系统盘根分区大小，单位为G，默认取值10G。通过黑石接口[DescribeDeviceClassPartition]( https://cloud.tencent.com/document/api/386/32910)查询机型RAID方式以及系统盘大小，获取根分区信息。
         public let sysRootSpace: Int64?
-        
+
         /// /data分区大小，单位为G。如果系统盘还有剩余大小，会分配给/data分区。（特殊情况：如果剩余空间不足10G，并且没有指定/data分区，则剩余空间会分配给Root分区）。
         public let sysDataSpace: Int64?
-        
+
         /// 是否开启超线程，取值：1(开启) 0(关闭)，默认取值1。
         public let hyperThreading: Int64?
-        
+
         /// 指定的内网IP列表，不指定时自动分配。
         public let lanIps: [String]?
-        
-        public init (zones: [String], instanceTypes: [String], timeUnit: String, timeSpan: UInt64, raidId: Int64, osTypeId: Int64, virtualPrivateClouds: [CpmVirtualPrivateCloud], needSecurityAgent: Int64? = nil, needMonitorAgent: Int64? = nil, autoRenewFlag: Int64? = nil, isZoning: Int64? = nil, fileSystem: String? = nil, password: String? = nil, applyEip: Int64? = nil, eipPayMode: String? = nil, eipBandwidth: Int64? = nil, imageId: String? = nil, sysRootSpace: Int64? = nil, sysDataSpace: Int64? = nil, hyperThreading: Int64? = nil, lanIps: [String]? = nil) {
+
+        public init(zones: [String], instanceTypes: [String], timeUnit: String, timeSpan: UInt64, raidId: Int64, osTypeId: Int64, virtualPrivateClouds: [CpmVirtualPrivateCloud], needSecurityAgent: Int64? = nil, needMonitorAgent: Int64? = nil, autoRenewFlag: Int64? = nil, isZoning: Int64? = nil, fileSystem: String? = nil, password: String? = nil, applyEip: Int64? = nil, eipPayMode: String? = nil, eipBandwidth: Int64? = nil, imageId: String? = nil, sysRootSpace: Int64? = nil, sysDataSpace: Int64? = nil, hyperThreading: Int64? = nil, lanIps: [String]? = nil) {
             self.zones = zones
             self.instanceTypes = instanceTypes
             self.timeUnit = timeUnit
@@ -734,7 +734,7 @@ extension Batch {
             self.hyperThreading = hyperThreading
             self.lanIps = lanIps
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case zones = "Zones"
             case instanceTypes = "InstanceTypes"
@@ -759,91 +759,91 @@ extension Batch {
             case lanIps = "LanIps"
         }
     }
-    
+
     /// 环境变量
     public struct EnvVar: TCInputModel, TCOutputModel {
         /// 环境变量名称
         public let name: String
-        
+
         /// 环境变量取值
         public let value: String
-        
-        public init (name: String, value: String) {
+
+        public init(name: String, value: String) {
             self.name = name
             self.value = value
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case name = "Name"
             case value = "Value"
         }
     }
-    
+
     /// 事件配置
     public struct EventConfig: TCInputModel, TCOutputModel {
         /// 事件类型，包括：<br/><li>“JOB_RUNNING”：作业运行，适用于"SubmitJob"。</li><li>“JOB_SUCCEED”：作业成功，适用于"SubmitJob"。</li><li>“JOB_FAILED”：作业失败，适用于"SubmitJob"。</li><li>“JOB_FAILED_INTERRUPTED”：作业失败，保留实例，适用于"SubmitJob"。</li><li>“TASK_RUNNING”：任务运行，适用于"SubmitJob"。</li><li>“TASK_SUCCEED”：任务成功，适用于"SubmitJob"。</li><li>“TASK_FAILED”：任务失败，适用于"SubmitJob"。</li><li>“TASK_FAILED_INTERRUPTED”：任务失败，保留实例，适用于"SubmitJob"。</li><li>“TASK_INSTANCE_RUNNING”：任务实例运行，适用于"SubmitJob"。</li><li>“TASK_INSTANCE_SUCCEED”：任务实例成功，适用于"SubmitJob"。</li><li>“TASK_INSTANCE_FAILED”：任务实例失败，适用于"SubmitJob"。</li><li>“TASK_INSTANCE_FAILED_INTERRUPTED”：任务实例失败，保留实例，适用于"SubmitJob"。</li><li>“COMPUTE_ENV_CREATED”：计算环境已创建，适用于"CreateComputeEnv"。</li><li>“COMPUTE_ENV_DELETED”：计算环境已删除，适用于"CreateComputeEnv"。</li><li>“COMPUTE_NODE_CREATED”：计算节点已创建，适用于"CreateComputeEnv"和"SubmitJob"。</li><li>“COMPUTE_NODE_CREATION_FAILED”：计算节点创建失败，适用于"CreateComputeEnv"和"SubmitJob"。</li><li>“COMPUTE_NODE_RUNNING”：计算节点运行中，适用于"CreateComputeEnv"和"SubmitJob"。</li><li>“COMPUTE_NODE_ABNORMAL”：计算节点异常，适用于"CreateComputeEnv"和"SubmitJob"。</li><li>“COMPUTE_NODE_DELETING”：计算节点已删除，适用于"CreateComputeEnv"和"SubmitJob"。</li>
         public let eventName: String
-        
+
         /// 自定义键值对
         public let eventVars: [EventVar]
-        
-        public init (eventName: String, eventVars: [EventVar]) {
+
+        public init(eventName: String, eventVars: [EventVar]) {
             self.eventName = eventName
             self.eventVars = eventVars
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case eventName = "EventName"
             case eventVars = "EventVars"
         }
     }
-    
+
     /// 自定义键值对
     public struct EventVar: TCInputModel, TCOutputModel {
         /// 自定义键
         public let name: String
-        
+
         /// 自定义值
         public let value: String
-        
-        public init (name: String, value: String) {
+
+        public init(name: String, value: String) {
             self.name = name
             self.value = value
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case name = "Name"
             case value = "Value"
         }
     }
-    
+
     /// 扩展数据
     public struct Externals: TCInputModel, TCOutputModel {
         /// 释放地址
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let releaseAddress: Bool?
-        
+
         /// 不支持的网络类型，取值范围：<br><li>BASIC：基础网络<br><li>VPC1.0：私有网络VPC1.0
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let unsupportNetworks: [String]?
-        
+
         /// HDD本地存储属性
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let storageBlockAttr: StorageBlock?
-        
-        public init (releaseAddress: Bool? = nil, unsupportNetworks: [String]? = nil, storageBlockAttr: StorageBlock? = nil) {
+
+        public init(releaseAddress: Bool? = nil, unsupportNetworks: [String]? = nil, storageBlockAttr: StorageBlock? = nil) {
             self.releaseAddress = releaseAddress
             self.unsupportNetworks = unsupportNetworks
             self.storageBlockAttr = storageBlockAttr
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case releaseAddress = "ReleaseAddress"
             case unsupportNetworks = "UnsupportNetworks"
             case storageBlockAttr = "StorageBlockAttr"
         }
     }
-    
+
     /// >描述键值对过滤器，用于条件过滤查询。例如过滤ID、名称、状态等
     /// > * 若存在多个`Filter`时，`Filter`间的关系为逻辑与（`AND`）关系。
     /// > * 若同一个`Filter`存在多个`Values`，同一`Filter`下`Values`间的关系为逻辑或（`OR`）关系。
@@ -859,119 +859,119 @@ extension Batch {
     public struct Filter: TCInputModel {
         /// 需要过滤的字段。
         public let name: String
-        
+
         /// 字段的过滤值。
         public let values: [String]
-        
-        public init (name: String, values: [String]) {
+
+        public init(name: String, values: [String]) {
             self.name = name
             self.values = values
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case name = "Name"
             case values = "Values"
         }
     }
-    
+
     /// 输入映射
     public struct InputMapping: TCInputModel, TCOutputModel {
         /// 源端路径
         public let sourcePath: String
-        
+
         /// 目的端路径
         public let destinationPath: String
-        
+
         /// 挂载配置项参数
         public let mountOptionParameter: String?
-        
-        public init (sourcePath: String, destinationPath: String, mountOptionParameter: String? = nil) {
+
+        public init(sourcePath: String, destinationPath: String, mountOptionParameter: String? = nil) {
             self.sourcePath = sourcePath
             self.destinationPath = destinationPath
             self.mountOptionParameter = mountOptionParameter
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case sourcePath = "SourcePath"
             case destinationPath = "DestinationPath"
             case mountOptionParameter = "MountOptionParameter"
         }
     }
-    
+
     /// 描述实例的信息
     public struct Instance: TCInputModel {
         /// 实例ID
         public let instanceId: String
-        
+
         /// 镜像ID
         public let imageId: String?
-        
+
         /// 实例登录设置。
         public let loginSettings: LoginSettings?
-        
-        public init (instanceId: String, imageId: String? = nil, loginSettings: LoginSettings? = nil) {
+
+        public init(instanceId: String, imageId: String? = nil, loginSettings: LoginSettings? = nil) {
             self.instanceId = instanceId
             self.imageId = imageId
             self.loginSettings = loginSettings
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
             case imageId = "ImageId"
             case loginSettings = "LoginSettings"
         }
     }
-    
+
     /// 实例分类列表
     public struct InstanceCategoryItem: TCOutputModel {
         /// 实例类型名
         public let instanceCategory: String
-        
+
         /// 实例族列表
         public let instanceFamilySet: [String]
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceCategory = "InstanceCategory"
             case instanceFamilySet = "InstanceFamilySet"
         }
     }
-    
+
     /// 竞价请求相关选项
     public struct InstanceMarketOptionsRequest: TCInputModel {
         /// 竞价相关选项
         public let spotOptions: SpotMarketOptions
-        
+
         /// 市场选项类型，当前只支持取值：spot
         public let marketType: String?
-        
-        public init (spotOptions: SpotMarketOptions, marketType: String? = nil) {
+
+        public init(spotOptions: SpotMarketOptions, marketType: String? = nil) {
             self.spotOptions = spotOptions
             self.marketType = marketType
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case spotOptions = "SpotOptions"
             case marketType = "MarketType"
         }
     }
-    
+
     /// 批量计算可用的InstanceTypeConfig信息
     public struct InstanceTypeConfig: TCOutputModel {
         /// 内存容量，单位：`GB`。
         public let mem: Int64
-        
+
         /// CPU核数，单位：核。
         public let cpu: Int64
-        
+
         /// 实例机型。
         public let instanceType: String
-        
+
         /// 可用区。
         public let zone: String
-        
+
         /// 实例机型系列。
         public let instanceFamily: String
-        
+
         enum CodingKeys: String, CodingKey {
             case mem = "Mem"
             case cpu = "Cpu"
@@ -980,101 +980,101 @@ extension Batch {
             case instanceFamily = "InstanceFamily"
         }
     }
-    
+
     /// 实例机型配置。
     public struct InstanceTypeOptions: TCInputModel, TCOutputModel {
         /// CPU核数。
         public let cpu: UInt64
-        
+
         /// 内存值，单位GB。
         public let memory: UInt64
-        
+
         /// 实例机型类别，可选参数：“ALL”、“GENERAL”、“GENERAL_2”、“GENERAL_3”、“COMPUTE”、“COMPUTE_2”和“COMPUTE_3”。默认值“ALL”。
         public let instanceCategories: [String]?
-        
-        public init (cpu: UInt64, memory: UInt64, instanceCategories: [String]? = nil) {
+
+        public init(cpu: UInt64, memory: UInt64, instanceCategories: [String]? = nil) {
             self.cpu = cpu
             self.memory = memory
             self.instanceCategories = instanceCategories
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case cpu = "CPU"
             case memory = "Memory"
             case instanceCategories = "InstanceCategories"
         }
     }
-    
+
     /// 描述实例机型配额信息。
     public struct InstanceTypeQuotaItem: TCOutputModel {
         /// 可用区。
         public let zone: String
-        
+
         /// 实例机型。
         public let instanceType: String
-        
+
         /// 实例计费模式。取值范围： <br><li>PREPAID：表示预付费，即包年包月<br><li>POSTPAID_BY_HOUR：表示后付费，即按量计费<br><li>CDHPAID：表示[专用宿主机](https://cloud.tencent.com/document/product/416)付费，即只对`专用宿主机`计费，不对`专用宿主机`上的实例计费。<br><li>`SPOTPAID`：表示竞价实例付费。
         public let instanceChargeType: String
-        
+
         /// 网卡类型，例如：25代表25G网卡
         public let networkCard: Int64
-        
+
         /// 扩展属性。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let externals: Externals?
-        
+
         /// 实例的CPU核数，单位：核。
         public let cpu: Int64
-        
+
         /// 实例内存容量，单位：`GB`。
         public let memory: Int64
-        
+
         /// 实例机型系列。
         public let instanceFamily: String
-        
+
         /// 机型名称。
         public let typeName: String
-        
+
         /// 本地磁盘规格列表。当该参数返回为空值时，表示当前情况下无法创建本地盘。
         public let localDiskTypeList: [LocalDiskType]
-        
+
         /// 实例是否售卖。取值范围： <br><li>SELL：表示实例可购买<br><li>SOLD_OUT：表示实例已售罄。
         public let status: String
-        
+
         /// 实例的售卖价格。
         public let price: ItemPrice
-        
+
         /// 售罄原因。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let soldOutReason: String?
-        
+
         /// 内网带宽，单位Gbps。
         public let instanceBandwidth: Float
-        
+
         /// 网络收发包能力，单位万PPS。
         public let instancePps: Int64
-        
+
         /// 本地存储块数量。
         public let storageBlockAmount: Int64
-        
+
         /// 处理器型号。
         public let cpuType: String
-        
+
         /// 实例的GPU数量。
         public let gpu: Int64
-        
+
         /// 实例的FPGA数量。
         public let fpga: Int64
-        
+
         /// 实例备注信息。
         public let remark: String
-        
+
         /// 实例机型映射的物理GPU卡数，单位：卡。vGPU卡型小于1，直通卡型大于等于1。vGPU是通过分片虚拟化技术，将物理GPU卡重新划分，同一块GPU卡经虚拟化分割后可分配至不同的实例使用。直通卡型会将GPU设备直接挂载给实例使用。
         public let gpuCount: Float
-        
+
         /// 实例的CPU主频信息
         public let frequency: String
-        
+
         enum CodingKeys: String, CodingKey {
             case zone = "Zone"
             case instanceType = "InstanceType"
@@ -1100,28 +1100,28 @@ extension Batch {
             case frequency = "Frequency"
         }
     }
-    
+
     /// 描述了实例的公网可访问性，声明了实例的公网使用计费模式，最大带宽等
     public struct InternetAccessible: TCInputModel, TCOutputModel {
         /// 网络计费类型。取值范围：<br><li>BANDWIDTH_PREPAID：预付费按带宽结算<br><li>TRAFFIC_POSTPAID_BY_HOUR：流量按小时后付费<br><li>BANDWIDTH_POSTPAID_BY_HOUR：带宽按小时后付费<br><li>BANDWIDTH_PACKAGE：带宽包用户<br>默认取值：非带宽包用户默认与子机付费类型保持一致。
         public let internetChargeType: String?
-        
+
         /// 公网出带宽上限，单位：Mbps。默认值：0Mbps。不同机型带宽上限范围不一致，具体限制详见[购买网络带宽](https://cloud.tencent.com/document/product/213/12523)。
         public let internetMaxBandwidthOut: Int64?
-        
+
         /// 是否分配公网IP。取值范围：<br><li>TRUE：表示分配公网IP<br><li>FALSE：表示不分配公网IP<br><br>当公网带宽大于0Mbps时，可自由选择开通与否，默认开通公网IP；当公网带宽为0，则不允许分配公网IP。该参数仅在RunInstances接口中作为入参使用。
         public let publicIpAssigned: Bool?
-        
+
         /// 带宽包ID。可通过[`DescribeBandwidthPackages`](https://cloud.tencent.com/document/api/215/19209)接口返回值中的`BandwidthPackageId`获取。该参数仅在RunInstances接口中作为入参使用。
         public let bandwidthPackageId: String?
-        
-        public init (internetChargeType: String? = nil, internetMaxBandwidthOut: Int64? = nil, publicIpAssigned: Bool? = nil, bandwidthPackageId: String? = nil) {
+
+        public init(internetChargeType: String? = nil, internetMaxBandwidthOut: Int64? = nil, publicIpAssigned: Bool? = nil, bandwidthPackageId: String? = nil) {
             self.internetChargeType = internetChargeType
             self.internetMaxBandwidthOut = internetMaxBandwidthOut
             self.publicIpAssigned = publicIpAssigned
             self.bandwidthPackageId = bandwidthPackageId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case internetChargeType = "InternetChargeType"
             case internetMaxBandwidthOut = "InternetMaxBandwidthOut"
@@ -1129,94 +1129,94 @@ extension Batch {
             case bandwidthPackageId = "BandwidthPackageId"
         }
     }
-    
+
     /// 描述了单项的价格信息
     public struct ItemPrice: TCOutputModel {
         /// 后续合计费用的原价，后付费模式使用，单位：元。<br><li>如返回了其他时间区间项，如UnitPriceSecondStep，则本项代表时间区间在(0, 96)小时；若未返回其他时间区间项，则本项代表全时段，即(0, ∞)小时
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let unitPrice: Float?
-        
+
         /// 后续计价单元，后付费模式使用，可取值范围： <br><li>HOUR：表示计价单元是按每小时来计算。当前涉及该计价单元的场景有：实例按小时后付费（POSTPAID_BY_HOUR）、带宽按小时后付费（BANDWIDTH_POSTPAID_BY_HOUR）：<br><li>GB：表示计价单元是按每GB来计算。当前涉及该计价单元的场景有：流量按小时后付费（TRAFFIC_POSTPAID_BY_HOUR）。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let chargeUnit: String?
-        
+
         /// 预支合计费用的原价，预付费模式使用，单位：元。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let originalPrice: Float?
-        
+
         /// 预支合计费用的折扣价，预付费模式使用，单位：元。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let discountPrice: Float?
-        
+
         /// 折扣，如20.0代表2折。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let discount: Float?
-        
+
         /// 后续合计费用的折扣价，后付费模式使用，单位：元<br><li>如返回了其他时间区间项，如UnitPriceDiscountSecondStep，则本项代表时间区间在(0, 96)小时；若未返回其他时间区间项，则本项代表全时段，即(0, ∞)小时
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let unitPriceDiscount: Float?
-        
+
         /// 使用时间区间在(96, 360)小时的后续合计费用的原价，后付费模式使用，单位：元。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let unitPriceSecondStep: Float?
-        
+
         /// 使用时间区间在(96, 360)小时的后续合计费用的折扣价，后付费模式使用，单位：元
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let unitPriceDiscountSecondStep: Float?
-        
+
         /// 使用时间区间在(360, ∞)小时的后续合计费用的原价，后付费模式使用，单位：元。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let unitPriceThirdStep: Float?
-        
+
         /// 使用时间区间在(360, ∞)小时的后续合计费用的折扣价，后付费模式使用，单位：元
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let unitPriceDiscountThirdStep: Float?
-        
+
         /// 预支三年合计费用的原价，预付费模式使用，单位：元。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let originalPriceThreeYear: Float?
-        
+
         /// 预支三年合计费用的折扣价，预付费模式使用，单位：元。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let discountPriceThreeYear: Float?
-        
+
         /// 预支三年应用的折扣，如20.0代表2折。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let discountThreeYear: Float?
-        
+
         /// 预支五年合计费用的原价，预付费模式使用，单位：元。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let originalPriceFiveYear: Float?
-        
+
         /// 预支五年合计费用的折扣价，预付费模式使用，单位：元。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let discountPriceFiveYear: Float?
-        
+
         /// 预支五年应用的折扣，如20.0代表2折。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let discountFiveYear: Float?
-        
+
         /// 预支一年合计费用的原价，预付费模式使用，单位：元。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let originalPriceOneYear: Float?
-        
+
         /// 预支一年合计费用的折扣价，预付费模式使用，单位：元。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let discountPriceOneYear: Float?
-        
+
         /// 预支一年应用的折扣，如20.0代表2折。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let discountOneYear: Float?
-        
+
         enum CodingKeys: String, CodingKey {
             case unitPrice = "UnitPrice"
             case chargeUnit = "ChargeUnit"
@@ -1239,43 +1239,43 @@ extension Batch {
             case discountOneYear = "DiscountOneYear"
         }
     }
-    
+
     /// 作业
     public struct Job: TCInputModel {
         /// 任务信息
         public let tasks: [Task]
-        
+
         /// 作业名称
         public let jobName: String?
-        
+
         /// 作业描述
         public let jobDescription: String?
-        
+
         /// 作业优先级，任务（Task）和任务实例（TaskInstance）会继承作业优先级
         public let priority: UInt64?
-        
+
         /// 依赖信息
         public let dependences: [Dependence]?
-        
+
         /// 通知信息
         public let notifications: [Notification]?
-        
+
         /// 对于存在依赖关系的任务中，后序任务执行对于前序任务的依赖条件。取值范围包括 PRE_TASK_SUCCEED，PRE_TASK_AT_LEAST_PARTLY_SUCCEED，PRE_TASK_FINISHED，默认值为PRE_TASK_SUCCEED。
         public let taskExecutionDependOn: String?
-        
+
         /// 表示创建 CVM 失败按照何种策略处理。取值范围包括 FAILED，RUNNABLE。FAILED 表示创建 CVM 失败按照一次执行失败处理，RUNNABLE 表示创建 CVM 失败按照继续等待处理。默认值为FAILED。StateIfCreateCvmFailed对于提交的指定计算环境的作业无效。
         public let stateIfCreateCvmFailed: String?
-        
+
         /// 标签列表。通过指定该参数可以支持绑定标签到作业。每个作业最多绑定10个标签。
         public let tags: [Tag]?
-        
+
         /// 表示通知信息的通知目标类型。
         /// 取值范围：CMQ，TDMQ_CMQ。
         /// CMQ:表示向腾讯云CMQ发送消息。
         /// TDMQ_CMQ：表示向腾讯云TDMQ_CMQ发送消息。<br/>默认值为CMQ。<br/>注：腾讯云计划于2022年6月前正式下线消息队列 CMQ，建议使用TDMQ_CMQ。参考文档：[CMQ迁移到TDMQ_CMQ](https://cloud.tencent.com/document/product/406/60860)
         public let notificationTarget: String?
-        
-        public init (tasks: [Task], jobName: String? = nil, jobDescription: String? = nil, priority: UInt64? = nil, dependences: [Dependence]? = nil, notifications: [Notification]? = nil, taskExecutionDependOn: String? = nil, stateIfCreateCvmFailed: String? = nil, tags: [Tag]? = nil, notificationTarget: String? = nil) {
+
+        public init(tasks: [Task], jobName: String? = nil, jobDescription: String? = nil, priority: UInt64? = nil, dependences: [Dependence]? = nil, notifications: [Notification]? = nil, taskExecutionDependOn: String? = nil, stateIfCreateCvmFailed: String? = nil, tags: [Tag]? = nil, notificationTarget: String? = nil) {
             self.tasks = tasks
             self.jobName = jobName
             self.jobDescription = jobDescription
@@ -1287,7 +1287,7 @@ extension Batch {
             self.tags = tags
             self.notificationTarget = notificationTarget
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case tasks = "Tasks"
             case jobName = "JobName"
@@ -1301,39 +1301,39 @@ extension Batch {
             case notificationTarget = "NotificationTarget"
         }
     }
-    
+
     /// 作业信息
     public struct JobView: TCOutputModel {
         /// 作业ID
         public let jobId: String
-        
+
         /// 作业名称
         public let jobName: String
-        
+
         /// 作业状态
         public let jobState: String
-        
+
         /// 作业优先级
         public let priority: Int64
-        
+
         /// 位置信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let placement: Placement?
-        
+
         /// 创建时间
         public let createTime: String
-        
+
         /// 结束时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let endTime: String?
-        
+
         /// 任务统计指标
         public let taskMetrics: TaskMetrics
-        
+
         /// 作业绑定的标签列表。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tags: [Tag]?
-        
+
         enum CodingKeys: String, CodingKey {
             case jobId = "JobId"
             case jobName = "JobName"
@@ -1346,24 +1346,24 @@ extension Batch {
             case tags = "Tags"
         }
     }
-    
+
     /// 本地磁盘规格
     public struct LocalDiskType: TCOutputModel {
         /// 本地磁盘类型。
         public let type: String
-        
+
         /// 本地磁盘属性。
         public let partitionType: String
-        
+
         /// 本地磁盘最小值。
         public let minSize: Int64
-        
+
         /// 本地磁盘最大值。
         public let maxSize: Int64
-        
+
         /// 购买时本地盘是否为必选。取值范围：<br><li>REQUIRED：表示必选<br><li>OPTIONAL：表示可选。
         public let required: String
-        
+
         enum CodingKeys: String, CodingKey {
             case type = "Type"
             case partitionType = "PartitionType"
@@ -1372,98 +1372,98 @@ extension Batch {
             case required = "Required"
         }
     }
-    
+
     /// 描述了实例登录相关配置与信息。
     public struct LoginSettings: TCInputModel {
         /// 实例登录密码。不同操作系统类型密码复杂度限制不一样，具体如下：<br><li>Linux实例密码必须8到16位，至少包括两项[a-z，A-Z]、[0-9] 和 [( ) ` ~ ! @ # $ % ^ & * - + = | { } [ ] : ; ' , . ? \/ ]中的特殊符号。<br><li>Windows实例密码必须12到16位，至少包括三项[a-z]，[A-Z]，[0-9] 和 [( ) ` ~ ! @ # $ % ^ & * - + = { } [ ] : ; ' , . ? \/]中的特殊符号。<br><br>若不指定该参数，则由系统随机生成密码，并通过站内信方式通知到用户。
         public let password: String?
-        
+
         /// 密钥ID列表。关联密钥后，就可以通过对应的私钥来访问实例；KeyId可通过接口DescribeKeyPairs获取，密钥与密码不能同时指定，同时Windows操作系统不支持指定密钥。当前仅支持购买的时候指定一个密钥。
         public let keyIds: [String]?
-        
+
         /// 保持镜像的原始设置。该参数与Password或KeyIds.N不能同时指定。只有使用自定义镜像、共享镜像或外部导入镜像创建实例时才能指定该参数为TRUE。取值范围：<br><li>TRUE：表示保持镜像的登录设置<br><li>FALSE：表示不保持镜像的登录设置<br><br>默认取值：FALSE。
         public let keepImageLogin: String?
-        
-        public init (password: String? = nil, keyIds: [String]? = nil, keepImageLogin: String? = nil) {
+
+        public init(password: String? = nil, keyIds: [String]? = nil, keepImageLogin: String? = nil) {
             self.password = password
             self.keyIds = keyIds
             self.keepImageLogin = keepImageLogin
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case password = "Password"
             case keyIds = "KeyIds"
             case keepImageLogin = "KeepImageLogin"
         }
     }
-    
+
     /// 数据盘挂载选项
     public struct MountDataDisk: TCInputModel, TCOutputModel {
         /// 挂载点，Linux系统合法路径，或Windows系统盘符,比如"H:\\"
         public let localPath: String
-        
+
         /// 文件系统类型，Linux系统下支持"EXT3"和"EXT4"两种，默认"EXT3"；Windows系统下仅支持"NTFS"
         public let fileSystemType: String?
-        
-        public init (localPath: String, fileSystemType: String? = nil) {
+
+        public init(localPath: String, fileSystemType: String? = nil) {
             self.localPath = localPath
             self.fileSystemType = fileSystemType
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case localPath = "LocalPath"
             case fileSystemType = "FileSystemType"
         }
     }
-    
+
     /// 计算环境
     public struct NamedComputeEnv: TCInputModel {
         /// 计算环境名称
         public let envName: String
-        
+
         /// 计算节点期望个数
         public let desiredComputeNodeCount: Int64
-        
+
         /// 计算环境描述
         public let envDescription: String?
-        
+
         /// 计算环境管理类型
         public let envType: String?
-        
+
         /// 计算环境具体参数
         public let envData: EnvData?
-        
+
         /// 数据盘挂载选项
         public let mountDataDisks: [MountDataDisk]?
-        
+
         /// 授权信息
         public let authentications: [Authentication]?
-        
+
         /// 输入映射信息
         public let inputMappings: [InputMapping]?
-        
+
         /// agent运行模式，适用于Windows系统
         public let agentRunningMode: AgentRunningMode?
-        
+
         /// 通知信息
         public let notifications: [Notification]?
-        
+
         /// 非活跃节点处理策略，默认“RECREATE”，即对于实例创建失败或异常退还的计算节点，定期重新创建实例资源。
         public let actionIfComputeNodeInactive: String?
-        
+
         /// 对于实例创建失败或异常退还的计算节点，定期重新创建实例资源的最大重试次数，最大值100，如果不设置的话，系统会设置一个默认值，当前为7
         public let resourceMaxRetryCount: Int64?
-        
+
         /// 标签列表。通过指定该参数可以支持绑定标签到计算环境。每个计算环境最多绑定10个标签。
         public let tags: [Tag]?
-        
+
         /// 表示通知信息的通知目标类型。
         /// 取值范围：CMQ，TDMQ_CMQ。
         /// CMQ:表示向腾讯云CMQ发送消息。
         /// TDMQ_CMQ：表示向腾讯云TDMQ_CMQ发送消息。<br/>默认值为CMQ。<br/>注：腾讯云计划于2022年6月前正式下线消息队列 CMQ，建议使用TDMQ_CMQ。参考文档：[CMQ迁移到TDMQ_CMQ](https://cloud.tencent.com/document/product/406/60860)
         public let notificationTarget: String?
-        
-        public init (envName: String, desiredComputeNodeCount: Int64, envDescription: String? = nil, envType: String? = nil, envData: EnvData? = nil, mountDataDisks: [MountDataDisk]? = nil, authentications: [Authentication]? = nil, inputMappings: [InputMapping]? = nil, agentRunningMode: AgentRunningMode? = nil, notifications: [Notification]? = nil, actionIfComputeNodeInactive: String? = nil, resourceMaxRetryCount: Int64? = nil, tags: [Tag]? = nil, notificationTarget: String? = nil) {
+
+        public init(envName: String, desiredComputeNodeCount: Int64, envDescription: String? = nil, envType: String? = nil, envData: EnvData? = nil, mountDataDisks: [MountDataDisk]? = nil, authentications: [Authentication]? = nil, inputMappings: [InputMapping]? = nil, agentRunningMode: AgentRunningMode? = nil, notifications: [Notification]? = nil, actionIfComputeNodeInactive: String? = nil, resourceMaxRetryCount: Int64? = nil, tags: [Tag]? = nil, notificationTarget: String? = nil) {
             self.envName = envName
             self.desiredComputeNodeCount = desiredComputeNodeCount
             self.envDescription = envDescription
@@ -1479,7 +1479,7 @@ extension Batch {
             self.tags = tags
             self.notificationTarget = notificationTarget
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case envName = "EnvName"
             case desiredComputeNodeCount = "DesiredComputeNodeCount"
@@ -1497,49 +1497,49 @@ extension Batch {
             case notificationTarget = "NotificationTarget"
         }
     }
-    
+
     /// 黑石计算环境
     public struct NamedCpmComputeEnv: TCInputModel {
         /// 计算环境名称
         public let envName: String
-        
+
         /// 计算环境具体参数
         public let envData: EnvDataCpm
-        
+
         /// 计算节点期望个数
         public let desiredComputeNodeCount: Int64
-        
+
         /// 计算环境描述
         public let envDescription: String?
-        
+
         /// 计算环境管理类型， 取值MANAGED。
         public let envType: String?
-        
+
         /// 授权信息
         public let authentications: [Authentication]?
-        
+
         /// 输入映射信息
         public let inputMappings: [InputMapping]?
-        
+
         /// 通知信息
         public let notifications: Notification?
-        
+
         /// 非活跃节点处理策略，默认“RECREATE”，即对于实例创建失败或异常退还的计算节点，定期重新创建实例资源。
         public let actionIfComputeNodeInactive: String?
-        
+
         /// 对于实例创建失败或异常退还的计算节点，定期重新创建实例资源的最大重试次数，最大值100，如果不设置的话，系统会设置一个默认值，当前为7。
         public let resourceMaxRetryCount: Int64?
-        
+
         /// 标签列表。通过指定该参数可以支持绑定标签到黑石计算环境。每个黑石计算环境最多绑定10个标签。
         public let tags: [Tag]?
-        
+
         /// 表示通知信息的通知目标类型。
         /// 取值范围：CMQ，TDMQ_CMQ。
         /// CMQ:表示向腾讯云CMQ发送消息。
         /// TDMQ_CMQ：表示向腾讯云TDMQ_CMQ发送消息。<br/>默认值为CMQ。<br/>注：腾讯云计划于2022年6月前正式下线消息队列 CMQ，建议使用TDMQ_CMQ。参考文档：[CMQ迁移到TDMQ_CMQ](https://cloud.tencent.com/document/product/406/60860)
         public let notificationTarget: String?
-        
-        public init (envName: String, envData: EnvDataCpm, desiredComputeNodeCount: Int64, envDescription: String? = nil, envType: String? = nil, authentications: [Authentication]? = nil, inputMappings: [InputMapping]? = nil, notifications: Notification? = nil, actionIfComputeNodeInactive: String? = nil, resourceMaxRetryCount: Int64? = nil, tags: [Tag]? = nil, notificationTarget: String? = nil) {
+
+        public init(envName: String, envData: EnvDataCpm, desiredComputeNodeCount: Int64, envDescription: String? = nil, envType: String? = nil, authentications: [Authentication]? = nil, inputMappings: [InputMapping]? = nil, notifications: Notification? = nil, actionIfComputeNodeInactive: String? = nil, resourceMaxRetryCount: Int64? = nil, tags: [Tag]? = nil, notificationTarget: String? = nil) {
             self.envName = envName
             self.envData = envData
             self.desiredComputeNodeCount = desiredComputeNodeCount
@@ -1553,7 +1553,7 @@ extension Batch {
             self.tags = tags
             self.notificationTarget = notificationTarget
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case envName = "EnvName"
             case envData = "EnvData"
@@ -1569,49 +1569,49 @@ extension Batch {
             case notificationTarget = "NotificationTarget"
         }
     }
-    
+
     /// 通知信息
     public struct Notification: TCInputModel, TCOutputModel {
         /// CMQ主题名字，要求主题名有效且关联订阅
         public let topicName: String
-        
+
         /// 事件配置
         public let eventConfigs: [EventConfig]
-        
-        public init (topicName: String, eventConfigs: [EventConfig]) {
+
+        public init(topicName: String, eventConfigs: [EventConfig]) {
             self.topicName = topicName
             self.eventConfigs = eventConfigs
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case topicName = "TopicName"
             case eventConfigs = "EventConfigs"
         }
     }
-    
+
     /// 操作系统类型
     public struct OsInfo: TCOutputModel {
         /// 操作系统ID。
         public let osTypeId: UInt64
-        
+
         /// 操作系统名称。
         public let osName: String
-        
+
         /// 操作系统名称描述。
         public let osDescription: String
-        
+
         /// 操作系统英文名称。
         public let osEnglishDescription: String
-        
+
         /// 操作系统的分类，如CentOs Debian。
         public let osClass: String
-        
+
         /// 标识镜像分类。public:公共镜像; private: 专属镜像。
         public let imageTag: String
-        
+
         /// 操作系统，ext4文件下所支持的最大的磁盘大小。单位为T。
         public let maxPartitionSize: UInt64
-        
+
         enum CodingKeys: String, CodingKey {
             case osTypeId = "OsTypeId"
             case osName = "OsName"
@@ -1622,56 +1622,56 @@ extension Batch {
             case maxPartitionSize = "MaxPartitionSize"
         }
     }
-    
+
     /// 输出映射
     public struct OutputMapping: TCInputModel, TCOutputModel {
         /// 源端路径
         public let sourcePath: String
-        
+
         /// 目的端路径
         public let destinationPath: String
-        
+
         /// 输出映射选项
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let outputMappingOption: OutputMappingOption?
-        
-        public init (sourcePath: String, destinationPath: String, outputMappingOption: OutputMappingOption? = nil) {
+
+        public init(sourcePath: String, destinationPath: String, outputMappingOption: OutputMappingOption? = nil) {
             self.sourcePath = sourcePath
             self.destinationPath = destinationPath
             self.outputMappingOption = outputMappingOption
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case sourcePath = "SourcePath"
             case destinationPath = "DestinationPath"
             case outputMappingOption = "OutputMappingOption"
         }
     }
-    
+
     /// 输出映射配置
     public struct OutputMappingConfig: TCInputModel, TCOutputModel {
         /// 存储类型，仅支持COS
         public let scene: String
-        
+
         /// 并行worker数量
         public let workerNum: Int64
-        
+
         /// worker分块大小，单位MB
         public let workerPartSize: Int64
-        
-        public init (scene: String, workerNum: Int64, workerPartSize: Int64) {
+
+        public init(scene: String, workerNum: Int64, workerPartSize: Int64) {
             self.scene = scene
             self.workerNum = workerNum
             self.workerPartSize = workerPartSize
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case scene = "Scene"
             case workerNum = "WorkerNum"
             case workerPartSize = "WorkerPartSize"
         }
     }
-    
+
     /// 输出映射选项
     public struct OutputMappingOption: TCInputModel, TCOutputModel {
         /// 容器场景下,输出选项从实例映射到容器内的实例侧的工作空间。
@@ -1679,41 +1679,41 @@ extension Batch {
         /// GLOBAL_WORKSPACE: 工作空间为实例操作系统空间。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let workspace: String?
-        
-        public init (workspace: String? = nil) {
+
+        public init(workspace: String? = nil) {
             self.workspace = workspace
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case workspace = "Workspace"
         }
     }
-    
+
     /// 描述了实例的抽象位置，包括其所在的可用区，所属的项目，宿主机（仅专用宿主机产品可用），母机IP等
     public struct Placement: TCInputModel, TCOutputModel {
         /// 实例所属的可用区ID。该参数可以通过调用  [DescribeZones](https://cloud.tencent.com/document/product/213/15707) 的返回值中的Zone字段来获取。
         public let zone: String
-        
+
         /// 实例所属项目ID。该参数可以通过调用 [DescribeProject](https://cloud.tencent.com/document/api/651/78725) 的返回值中的 projectId 字段来获取。不填为默认项目。
         public let projectId: Int64?
-        
+
         /// 实例所属的专用宿主机ID列表，仅用于入参。如果您有购买专用宿主机并且指定了该参数，则您购买的实例就会随机的部署在这些专用宿主机上。
         public let hostIds: [String]?
-        
+
         /// 指定母机IP生产子机
         public let hostIps: [String]?
-        
+
         /// 实例所属的专用宿主机ID，仅用于出参。
         public let hostId: String?
-        
-        public init (zone: String, projectId: Int64? = nil, hostIds: [String]? = nil, hostIps: [String]? = nil, hostId: String? = nil) {
+
+        public init(zone: String, projectId: Int64? = nil, hostIds: [String]? = nil, hostIps: [String]? = nil, hostId: String? = nil) {
             self.zone = zone
             self.projectId = projectId
             self.hostIds = hostIds
             self.hostIps = hostIps
             self.hostId = hostId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case zone = "Zone"
             case projectId = "ProjectId"
@@ -1722,28 +1722,28 @@ extension Batch {
             case hostId = "HostId"
         }
     }
-    
+
     /// 重定向信息
     public struct RedirectInfo: TCInputModel, TCOutputModel {
         /// 标准输出重定向路径
         public let stdoutRedirectPath: String?
-        
+
         /// 标准错误重定向路径
         public let stderrRedirectPath: String?
-        
+
         /// 标准输出重定向文件名，支持三个占位符${BATCH_JOB_ID}、${BATCH_TASK_NAME}、${BATCH_TASK_INSTANCE_INDEX}
         public let stdoutRedirectFileName: String?
-        
+
         /// 标准错误重定向文件名，支持三个占位符${BATCH_JOB_ID}、${BATCH_TASK_NAME}、${BATCH_TASK_INSTANCE_INDEX}
         public let stderrRedirectFileName: String?
-        
-        public init (stdoutRedirectPath: String? = nil, stderrRedirectPath: String? = nil, stdoutRedirectFileName: String? = nil, stderrRedirectFileName: String? = nil) {
+
+        public init(stdoutRedirectPath: String? = nil, stderrRedirectPath: String? = nil, stdoutRedirectFileName: String? = nil, stderrRedirectFileName: String? = nil) {
             self.stdoutRedirectPath = stdoutRedirectPath
             self.stderrRedirectPath = stderrRedirectPath
             self.stdoutRedirectFileName = stdoutRedirectFileName
             self.stderrRedirectFileName = stderrRedirectFileName
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case stdoutRedirectPath = "StdoutRedirectPath"
             case stderrRedirectPath = "StderrRedirectPath"
@@ -1751,28 +1751,28 @@ extension Batch {
             case stderrRedirectFileName = "StderrRedirectFileName"
         }
     }
-    
+
     /// 本地重定向信息
     public struct RedirectLocalInfo: TCInputModel, TCOutputModel {
         /// 标准输出重定向本地路径
         public let stdoutLocalPath: String?
-        
+
         /// 标准错误重定向本地路径
         public let stderrLocalPath: String?
-        
+
         /// 标准输出重定向本地文件名，支持三个占位符${BATCH_JOB_ID}、${BATCH_TASK_NAME}、${BATCH_TASK_INSTANCE_INDEX}
         public let stdoutLocalFileName: String?
-        
+
         /// 标准错误重定向本地文件名，支持三个占位符${BATCH_JOB_ID}、${BATCH_TASK_NAME}、${BATCH_TASK_INSTANCE_INDEX}
         public let stderrLocalFileName: String?
-        
-        public init (stdoutLocalPath: String? = nil, stderrLocalPath: String? = nil, stdoutLocalFileName: String? = nil, stderrLocalFileName: String? = nil) {
+
+        public init(stdoutLocalPath: String? = nil, stderrLocalPath: String? = nil, stdoutLocalFileName: String? = nil, stderrLocalFileName: String? = nil) {
             self.stdoutLocalPath = stdoutLocalPath
             self.stderrLocalPath = stderrLocalPath
             self.stdoutLocalFileName = stdoutLocalFileName
             self.stderrLocalFileName = stderrLocalFileName
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case stdoutLocalPath = "StdoutLocalPath"
             case stderrLocalPath = "StderrLocalPath"
@@ -1780,111 +1780,111 @@ extension Batch {
             case stderrLocalFileName = "StderrLocalFileName"
         }
     }
-    
+
     /// 描述了 “云自动化助手” 服务相关的信息
     public struct RunAutomationServiceEnabled: TCInputModel, TCOutputModel {
         /// 是否开启云自动化助手。取值范围：<br><li>TRUE：表示开启云自动化助手服务<br><li>FALSE：表示不开启云自动化助手服务<br><br>默认取值：FALSE。
         public let enabled: Bool?
-        
-        public init (enabled: Bool? = nil) {
+
+        public init(enabled: Bool? = nil) {
             self.enabled = enabled
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case enabled = "Enabled"
         }
     }
-    
+
     /// 描述了 “云监控” 服务相关的信息
     public struct RunMonitorServiceEnabled: TCInputModel, TCOutputModel {
         /// 是否开启[云监控](/document/product/248)服务。取值范围：<br><li>TRUE：表示开启云监控服务<br><li>FALSE：表示不开启云监控服务<br><br>默认取值：TRUE。
         public let enabled: Bool?
-        
-        public init (enabled: Bool? = nil) {
+
+        public init(enabled: Bool? = nil) {
             self.enabled = enabled
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case enabled = "Enabled"
         }
     }
-    
+
     /// 描述了 “云安全” 服务相关的信息
     public struct RunSecurityServiceEnabled: TCInputModel, TCOutputModel {
         /// 是否开启[云安全](/document/product/296)服务。取值范围：<br><li>TRUE：表示开启云安全服务<br><li>FALSE：表示不开启云安全服务<br><br>默认取值：TRUE。
         public let enabled: Bool?
-        
-        public init (enabled: Bool? = nil) {
+
+        public init(enabled: Bool? = nil) {
             self.enabled = enabled
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case enabled = "Enabled"
         }
     }
-    
+
     /// 竞价相关选项
     public struct SpotMarketOptions: TCInputModel {
         /// 竞价出价
         public let maxPrice: String
-        
+
         /// 竞价请求类型，当前仅支持类型：one-time
         public let spotInstanceType: String?
-        
-        public init (maxPrice: String = "one-time", spotInstanceType: String? = nil) {
+
+        public init(maxPrice: String = "one-time", spotInstanceType: String? = nil) {
             self.maxPrice = maxPrice
             self.spotInstanceType = spotInstanceType
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case maxPrice = "MaxPrice"
             case spotInstanceType = "SpotInstanceType"
         }
     }
-    
+
     /// HDD的本地存储信息
     public struct StorageBlock: TCOutputModel {
         /// HDD本地存储类型，值为：LOCAL_PRO.
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let type: String?
-        
+
         /// HDD本地存储的最小容量
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let minSize: Int64?
-        
+
         /// HDD本地存储的最大容量
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let maxSize: Int64?
-        
+
         enum CodingKeys: String, CodingKey {
             case type = "Type"
             case minSize = "MinSize"
             case maxSize = "MaxSize"
         }
     }
-    
+
     /// 描述了操作系统所在块设备即系统盘的信息
     public struct SystemDisk: TCInputModel, TCOutputModel {
         /// 系统盘类型。系统盘类型限制详见[存储概述](https://cloud.tencent.com/document/product/213/4952)。取值范围：<br><li>LOCAL_BASIC：本地硬盘<br><li>LOCAL_SSD：本地SSD硬盘<br><li>CLOUD_BASIC：普通云硬盘<br><li>CLOUD_SSD：SSD云硬盘<br><li>CLOUD_PREMIUM：高性能云硬盘<br><li>CLOUD_BSSD：通用性SSD云硬盘<br><br>默认取值：当前有库存的硬盘类型。
         public let diskType: String?
-        
+
         /// 系统盘ID。LOCAL_BASIC 和 LOCAL_SSD 类型没有ID。暂时不支持该参数。
         /// 该参数目前仅用于`DescribeInstances`等查询类接口的返回参数，不可用于`RunInstances`等写接口的入参。
         public let diskId: String?
-        
+
         /// 系统盘大小，单位：GB。默认值为 50
         public let diskSize: Int64?
-        
+
         /// 所属的独享集群ID。
         public let cdcId: String?
-        
-        public init (diskType: String? = nil, diskId: String? = nil, diskSize: Int64? = nil, cdcId: String? = nil) {
+
+        public init(diskType: String? = nil, diskId: String? = nil, diskSize: Int64? = nil, cdcId: String? = nil) {
             self.diskType = diskType
             self.diskId = diskId
             self.diskSize = diskSize
             self.cdcId = cdcId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case diskType = "DiskType"
             case diskId = "DiskId"
@@ -1892,85 +1892,85 @@ extension Batch {
             case cdcId = "CdcId"
         }
     }
-    
+
     /// 标签。
     public struct Tag: TCInputModel, TCOutputModel {
         /// 标签键。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let key: String?
-        
+
         /// 标签值。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let value: String?
-        
-        public init (key: String, value: String) {
+
+        public init(key: String, value: String) {
             self.key = key
             self.value = value
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case key = "Key"
             case value = "Value"
         }
     }
-    
+
     /// 任务
     public struct Task: TCInputModel, TCOutputModel {
         /// 应用程序信息
         public let application: Application
-        
+
         /// 任务名称，在一个作业内部唯一
         public let taskName: String?
-        
+
         /// 任务实例运行个数
         public let taskInstanceNum: UInt64?
-        
+
         /// 运行环境信息，ComputeEnv 和 EnvId 必须指定一个（且只有一个）参数。
         public let computeEnv: AnonymousComputeEnv?
-        
+
         /// 计算环境ID，ComputeEnv 和 EnvId 必须指定一个（且只有一个）参数。
         public let envId: String?
-        
+
         /// 重定向信息
         public let redirectInfo: RedirectInfo?
-        
+
         /// 重定向本地信息
         public let redirectLocalInfo: RedirectLocalInfo?
-        
+
         /// 输入映射
         public let inputMappings: [InputMapping]?
-        
+
         /// 输出映射
         public let outputMappings: [OutputMapping]?
-        
+
         /// 输出映射配置
         public let outputMappingConfigs: [OutputMappingConfig]?
-        
+
         /// 自定义环境变量
         public let envVars: [EnvVar]?
-        
+
         /// 授权信息
         public let authentications: [Authentication]?
-        
+
         /// TaskInstance失败后处理方式，取值包括TERMINATE（默认）、INTERRUPT、FAST_INTERRUPT。
         public let failedAction: String?
-        
+
         /// 任务失败后的最大重试次数，默认为0
         public let maxRetryCount: UInt64?
-        
+
         /// 任务启动后的超时时间，单位秒，默认为86400秒
         public let timeout: UInt64?
-        
+
         /// 任务最大并发数限制，默认没有限制。
         public let maxConcurrentNum: UInt64?
-        
+
         /// 任务完成后，重启计算节点。适用于指定计算环境执行任务。
         public let restartComputeNode: Bool?
-        
+
         /// 启动任务过程中，创建计算资源如CVM失败后的最大重试次数，默认为0。最大值100。
         public let resourceMaxRetryCount: UInt64?
-        
-        public init (application: Application, taskName: String? = nil, taskInstanceNum: UInt64? = nil, computeEnv: AnonymousComputeEnv? = nil, envId: String? = nil, redirectInfo: RedirectInfo? = nil, redirectLocalInfo: RedirectLocalInfo? = nil, inputMappings: [InputMapping]? = nil, outputMappings: [OutputMapping]? = nil, outputMappingConfigs: [OutputMappingConfig]? = nil, envVars: [EnvVar]? = nil, authentications: [Authentication]? = nil, failedAction: String? = nil, maxRetryCount: UInt64? = nil, timeout: UInt64? = nil, maxConcurrentNum: UInt64? = nil, restartComputeNode: Bool? = nil, resourceMaxRetryCount: UInt64? = nil) {
+
+        public init(application: Application, taskName: String? = nil, taskInstanceNum: UInt64? = nil, computeEnv: AnonymousComputeEnv? = nil, envId: String? = nil, redirectInfo: RedirectInfo? = nil, redirectLocalInfo: RedirectLocalInfo? = nil, inputMappings: [InputMapping]? = nil, outputMappings: [OutputMapping]? = nil, outputMappingConfigs: [OutputMappingConfig]? = nil, envVars: [EnvVar]? = nil, authentications: [Authentication]? = nil, failedAction: String? = nil, maxRetryCount: UInt64? = nil, timeout: UInt64? = nil, maxConcurrentNum: UInt64? = nil, restartComputeNode: Bool? = nil, resourceMaxRetryCount: UInt64? = nil) {
             self.application = application
             self.taskName = taskName
             self.taskInstanceNum = taskInstanceNum
@@ -1990,7 +1990,7 @@ extension Batch {
             self.restartComputeNode = restartComputeNode
             self.resourceMaxRetryCount = resourceMaxRetryCount
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case application = "Application"
             case taskName = "TaskName"
@@ -2012,36 +2012,36 @@ extension Batch {
             case resourceMaxRetryCount = "ResourceMaxRetryCount"
         }
     }
-    
+
     /// 任务实例日志详情。
     public struct TaskInstanceLog: TCOutputModel {
         /// 任务实例
         public let taskInstanceIndex: UInt64
-        
+
         /// 标准输出日志（Base64编码，解码后最大日志长度2048字节）
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let stdoutLog: String?
-        
+
         /// 标准错误日志（Base64编码，解码后最大日志长度2048字节）
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let stderrLog: String?
-        
+
         /// 标准输出重定向路径
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let stdoutRedirectPath: String?
-        
+
         /// 标准错误重定向路径
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let stderrRedirectPath: String?
-        
+
         /// 标准输出重定向文件名
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let stdoutRedirectFileName: String?
-        
+
         /// 标准错误重定向文件名
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let stderrRedirectFileName: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case taskInstanceIndex = "TaskInstanceIndex"
             case stdoutLog = "StdoutLog"
@@ -2052,33 +2052,33 @@ extension Batch {
             case stderrRedirectFileName = "StderrRedirectFileName"
         }
     }
-    
+
     /// 任务实例统计指标
     public struct TaskInstanceMetrics: TCOutputModel {
         /// Submitted个数
         public let submittedCount: Int64
-        
+
         /// Pending个数
         public let pendingCount: Int64
-        
+
         /// Runnable个数
         public let runnableCount: Int64
-        
+
         /// Starting个数
         public let startingCount: Int64
-        
+
         /// Running个数
         public let runningCount: Int64
-        
+
         /// Succeed个数
         public let succeedCount: Int64
-        
+
         /// FailedInterrupted个数
         public let failedInterruptedCount: Int64
-        
+
         /// Failed个数
         public let failedCount: Int64
-        
+
         enum CodingKeys: String, CodingKey {
             case submittedCount = "SubmittedCount"
             case pendingCount = "PendingCount"
@@ -2090,47 +2090,47 @@ extension Batch {
             case failedCount = "FailedCount"
         }
     }
-    
+
     /// 任务实例视图信息
     public struct TaskInstanceView: TCOutputModel {
         /// 任务实例索引
         public let taskInstanceIndex: Int64
-        
+
         /// 任务实例状态
         public let taskInstanceState: String
-        
+
         /// 应用程序执行结束的exit code
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let exitCode: Int64?
-        
+
         /// 任务实例状态原因，任务实例失败时，会记录失败原因
         public let stateReason: String
-        
+
         /// 任务实例运行时所在计算节点（例如CVM）的InstanceId。任务实例未运行或者完结时，本字段为空。任务实例重试时，本字段会随之变化
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let computeNodeInstanceId: String?
-        
+
         /// 创建时间
         public let createTime: String
-        
+
         /// 启动时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let launchTime: String?
-        
+
         /// 开始运行时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let runningTime: String?
-        
+
         /// 结束时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let endTime: String?
-        
+
         /// 重定向信息
         public let redirectInfo: RedirectInfo
-        
+
         /// 任务实例状态原因详情，任务实例失败时，会记录失败原因
         public let stateDetailedReason: String
-        
+
         enum CodingKeys: String, CodingKey {
             case taskInstanceIndex = "TaskInstanceIndex"
             case taskInstanceState = "TaskInstanceState"
@@ -2145,33 +2145,33 @@ extension Batch {
             case stateDetailedReason = "StateDetailedReason"
         }
     }
-    
+
     /// 任务统计指标
     public struct TaskMetrics: TCOutputModel {
         /// Submitted个数
         public let submittedCount: Int64
-        
+
         /// Pending个数
         public let pendingCount: Int64
-        
+
         /// Runnable个数
         public let runnableCount: Int64
-        
+
         /// Starting个数
         public let startingCount: Int64
-        
+
         /// Running个数
         public let runningCount: Int64
-        
+
         /// Succeed个数
         public let succeedCount: Int64
-        
+
         /// FailedInterrupted个数
         public let failedInterruptedCount: Int64
-        
+
         /// Failed个数
         public let failedCount: Int64
-        
+
         enum CodingKeys: String, CodingKey {
             case submittedCount = "SubmittedCount"
             case pendingCount = "PendingCount"
@@ -2183,28 +2183,28 @@ extension Batch {
             case failedCount = "FailedCount"
         }
     }
-    
+
     /// 任务模板信息
     public struct TaskTemplateView: TCOutputModel {
         /// 任务模板ID
         public let taskTemplateId: String
-        
+
         /// 任务模板名称
         public let taskTemplateName: String
-        
+
         /// 任务模板描述
         public let taskTemplateDescription: String
-        
+
         /// 任务模板信息
         public let taskTemplateInfo: Task
-        
+
         /// 创建时间
         public let createTime: String
-        
+
         /// 任务模板绑定的标签列表。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tags: [Tag]?
-        
+
         enum CodingKeys: String, CodingKey {
             case taskTemplateId = "TaskTemplateId"
             case taskTemplateName = "TaskTemplateName"
@@ -2214,22 +2214,22 @@ extension Batch {
             case tags = "Tags"
         }
     }
-    
+
     /// 任务视图信息
     public struct TaskView: TCOutputModel {
         /// 任务名称
         public let taskName: String
-        
+
         /// 任务状态
         public let taskState: String
-        
+
         /// 开始时间
         public let createTime: String
-        
+
         /// 结束时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let endTime: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case taskName = "TaskName"
             case taskState = "TaskState"
@@ -2237,32 +2237,32 @@ extension Batch {
             case endTime = "EndTime"
         }
     }
-    
+
     /// 描述了VPC相关信息，包括子网，IP信息等
     public struct VirtualPrivateCloud: TCInputModel, TCOutputModel {
         /// 私有网络ID，形如`vpc-xxx`。有效的VpcId可通过登录[控制台](https://console.cloud.tencent.com/vpc/vpc?rid=1)查询；也可以调用接口 [DescribeVpcEx](/document/api/215/1372) ，从接口返回中的`unVpcId`字段获取。若在创建子机时VpcId与SubnetId同时传入`DEFAULT`，则强制使用默认vpc网络。
         public let vpcId: String
-        
+
         /// 私有网络子网ID，形如`subnet-xxx`。有效的私有网络子网ID可通过登录[控制台](https://console.cloud.tencent.com/vpc/subnet?rid=1)查询；也可以调用接口  [DescribeSubnets](/document/api/215/15784) ，从接口返回中的`unSubnetId`字段获取。若在创建子机时SubnetId与VpcId同时传入`DEFAULT`，则强制使用默认vpc网络。
         public let subnetId: String
-        
+
         /// 是否用作公网网关。公网网关只有在实例拥有公网IP以及处于私有网络下时才能正常使用。取值范围：<br><li>TRUE：表示用作公网网关<br><li>FALSE：表示不作为公网网关<br><br>默认取值：FALSE。
         public let asVpcGateway: Bool?
-        
+
         /// 私有网络子网 IP 数组，在创建实例、修改实例vpc属性操作中可使用此参数。当前仅批量创建多台实例时支持传入相同子网的多个 IP。
         public let privateIpAddresses: [String]?
-        
+
         /// 为弹性网卡指定随机生成的 IPv6 地址数量。
         public let ipv6AddressCount: UInt64?
-        
-        public init (vpcId: String, subnetId: String, asVpcGateway: Bool? = nil, privateIpAddresses: [String]? = nil, ipv6AddressCount: UInt64? = nil) {
+
+        public init(vpcId: String, subnetId: String, asVpcGateway: Bool? = nil, privateIpAddresses: [String]? = nil, ipv6AddressCount: UInt64? = nil) {
             self.vpcId = vpcId
             self.subnetId = subnetId
             self.asVpcGateway = asVpcGateway
             self.privateIpAddresses = privateIpAddresses
             self.ipv6AddressCount = ipv6AddressCount
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case vpcId = "VpcId"
             case subnetId = "SubnetId"

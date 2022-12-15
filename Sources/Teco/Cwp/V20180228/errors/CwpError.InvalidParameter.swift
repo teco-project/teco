@@ -29,84 +29,84 @@ extension TCCwpError {
             case ruleHostipErr = "InvalidParameter.RuleHostipErr"
             case other = "InvalidParameter"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 时间区间格式错误。
         public static var dateRange: InvalidParameter {
             InvalidParameter(.dateRange)
         }
-        
+
         /// 非法请求。
         public static var illegalRequest: InvalidParameter {
             InvalidParameter(.illegalRequest)
         }
-        
+
         /// 参数格式错误。
         public static var invalidFormat: InvalidParameter {
             InvalidParameter(.invalidFormat)
         }
-        
+
         /// IP格式不合法。
         public static var ipNoValid: InvalidParameter {
             InvalidParameter(.ipNoValid)
         }
-        
+
         /// 参数缺失。
         public static var missingParameter: InvalidParameter {
             InvalidParameter(.missingParameter)
         }
-        
+
         /// 名字已重复。
         public static var nameHasRepetition: InvalidParameter {
             InvalidParameter(.nameHasRepetition)
         }
-        
+
         /// 参数解析错误。
         public static var parsingError: InvalidParameter {
             InvalidParameter(.parsingError)
         }
-        
+
         /// 正则参数格式错误。
         public static var regexRuleError: InvalidParameter {
             InvalidParameter(.regexRuleError)
         }
-        
+
         /// 进程名/目标IP/目标端口，不能同时为空。
         public static var reverShellKeyFieldAllEmpty: InvalidParameter {
             InvalidParameter(.reverShellKeyFieldAllEmpty)
         }
-        
+
         /// 规则类接口，主机IP不正确。
         public static var ruleHostipErr: InvalidParameter {
             InvalidParameter(.ruleHostipErr)
         }
-        
+
         /// 参数错误。
         public static var other: InvalidParameter {
             InvalidParameter(.other)
         }
-        
+
         public func asCwpError() -> TCCwpError {
             let code: TCCwpError.Code
             switch self.error {

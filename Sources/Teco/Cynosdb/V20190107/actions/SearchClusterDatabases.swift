@@ -19,43 +19,43 @@ extension Cynosdb {
     public struct SearchClusterDatabasesRequest: TCRequestModel {
         /// 集群id
         public let clusterId: String
-        
+
         /// 数据库名
         public let database: String?
-        
+
         /// 是否精确搜索。
         /// 0: 模糊搜索 1:精确搜索 
         /// 默认为0
         public let matchType: Int64?
-        
-        public init (clusterId: String, database: String? = nil, matchType: Int64? = nil) {
+
+        public init(clusterId: String, database: String? = nil, matchType: Int64? = nil) {
             self.clusterId = clusterId
             self.database = database
             self.matchType = matchType
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case clusterId = "ClusterId"
             case database = "Database"
             case matchType = "MatchType"
         }
     }
-    
+
     /// SearchClusterDatabases返回参数结构体
     public struct SearchClusterDatabasesResponse: TCResponseModel {
         /// 数据库列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let databases: [String]?
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case databases = "Databases"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 搜索集群database列表
     ///
     /// 本接口(SearchClusterDatabases)搜索集群database列表
@@ -63,7 +63,7 @@ extension Cynosdb {
     public func searchClusterDatabases(_ input: SearchClusterDatabasesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SearchClusterDatabasesResponse > {
         self.client.execute(action: "SearchClusterDatabases", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 搜索集群database列表
     ///
     /// 本接口(SearchClusterDatabases)搜索集群database列表
@@ -71,7 +71,7 @@ extension Cynosdb {
     public func searchClusterDatabases(_ input: SearchClusterDatabasesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SearchClusterDatabasesResponse {
         try await self.client.execute(action: "SearchClusterDatabases", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 搜索集群database列表
     ///
     /// 本接口(SearchClusterDatabases)搜索集群database列表
@@ -79,7 +79,7 @@ extension Cynosdb {
     public func searchClusterDatabases(clusterId: String, database: String? = nil, matchType: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SearchClusterDatabasesResponse > {
         self.searchClusterDatabases(SearchClusterDatabasesRequest(clusterId: clusterId, database: database, matchType: matchType), logger: logger, on: eventLoop)
     }
-    
+
     /// 搜索集群database列表
     ///
     /// 本接口(SearchClusterDatabases)搜索集群database列表

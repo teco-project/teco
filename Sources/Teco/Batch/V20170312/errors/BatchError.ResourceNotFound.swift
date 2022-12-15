@@ -24,59 +24,59 @@ extension TCBatchError {
             case taskInstance = "ResourceNotFound.TaskInstance"
             case taskTemplate = "ResourceNotFound.TaskTemplate"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 指定计算环境不存在。
         public static var computeEnv: ResourceNotFound {
             ResourceNotFound(.computeEnv)
         }
-        
+
         /// 指定计算节点不存在。
         public static var computeNode: ResourceNotFound {
             ResourceNotFound(.computeNode)
         }
-        
+
         /// 指定作业不存在。
         public static var job: ResourceNotFound {
             ResourceNotFound(.job)
         }
-        
+
         /// 指定作业任务不存在。
         public static var task: ResourceNotFound {
             ResourceNotFound(.task)
         }
-        
+
         /// 指定任务实例不存在。
         public static var taskInstance: ResourceNotFound {
             ResourceNotFound(.taskInstance)
         }
-        
+
         /// 指定任务模板ID不存在。
         public static var taskTemplate: ResourceNotFound {
             ResourceNotFound(.taskTemplate)
         }
-        
+
         public func asBatchError() -> TCBatchError {
             let code: TCBatchError.Code
             switch self.error {

@@ -35,113 +35,113 @@ extension TCPostgresError {
             case versionNotSupportError = "OperationDenied.VersionNotSupportError"
             case vpcDeniedError = "OperationDenied.VpcDeniedError"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 当前操作被限制。
         public static var camDeniedError: OperationDenied {
             OperationDenied(.camDeniedError)
         }
-        
+
         /// 目标实例状态检查不通过。
         public static var dtsInstanceStatusError: OperationDenied {
             OperationDenied(.dtsInstanceStatusError)
         }
-        
+
         /// 您没有权限操作当前资源。
         public static var instanceAccessDeniedError: OperationDenied {
             OperationDenied(.instanceAccessDeniedError)
         }
-        
+
         /// 不支持ipv6。
         public static var instanceIpv6NotSupportedError: OperationDenied {
             OperationDenied(.instanceIpv6NotSupportedError)
         }
-        
+
         /// 实例状态限制当前操作。
         public static var instanceStatusDeniedError: OperationDenied {
             OperationDenied(.instanceStatusDeniedError)
         }
-        
+
         /// 实例当前状态限制本次操作。
         public static var instanceStatusLimitError: OperationDenied {
             OperationDenied(.instanceStatusLimitError)
         }
-        
+
         /// 实例状态限制当前操作。
         public static var instanceStatusLimitOpError: OperationDenied {
             OperationDenied(.instanceStatusLimitOpError)
         }
-        
+
         /// Serverless不支持当前可用区。
         public static var notSupportZoneError: OperationDenied {
             OperationDenied(.notSupportZoneError)
         }
-        
+
         /// 不支持的付费类型。
         public static var payModeError: OperationDenied {
             OperationDenied(.payModeError)
         }
-        
+
         /// 按量付费实例不支持续费。
         public static var postPaidPayModeError: OperationDenied {
             OperationDenied(.postPaidPayModeError)
         }
-        
+
         /// 只读组状态限制当前操作。
         public static var roGroupStatusError: OperationDenied {
             OperationDenied(.roGroupStatusError)
         }
-        
+
         /// 只读节点总数不能超过上限值。
         public static var roInstanceCountExeedError: OperationDenied {
             OperationDenied(.roInstanceCountExeedError)
         }
-        
+
         /// 只读实例不支持ipv6。
         public static var roInstanceIpv6NotSupportedError: OperationDenied {
             OperationDenied(.roInstanceIpv6NotSupportedError)
         }
-        
+
         public static var roInstanceStatusLimitOpError: OperationDenied {
             OperationDenied(.roInstanceStatusLimitOpError)
         }
-        
+
         /// 用户未进行实名认证，请先进行实名认证才可购买。
         public static var userNotAuthenticatedError: OperationDenied {
             OperationDenied(.userNotAuthenticatedError)
         }
-        
+
         /// Serverless不支持该版本。
         public static var versionNotSupportError: OperationDenied {
             OperationDenied(.versionNotSupportError)
         }
-        
+
         /// 您没有权限操作该VPC网络。
         public static var vpcDeniedError: OperationDenied {
             OperationDenied(.vpcDeniedError)
         }
-        
+
         public func asPostgresError() -> TCPostgresError {
             let code: TCPostgresError.Code
             switch self.error {

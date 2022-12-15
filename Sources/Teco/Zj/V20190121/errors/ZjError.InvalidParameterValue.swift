@@ -22,48 +22,48 @@ extension TCZjError {
             case invalidSign = "InvalidParameterValue.InvalidSign"
             case other = "InvalidParameterValue"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 素材审核未通过。
         public static var invalidInstance: InvalidParameterValue {
             InvalidParameterValue(.invalidInstance)
         }
-        
+
         /// 素材内容不合法。
         public static var invalidMmsContents: InvalidParameterValue {
             InvalidParameterValue(.invalidMmsContents)
         }
-        
+
         public static var invalidSign: InvalidParameterValue {
             InvalidParameterValue(.invalidSign)
         }
-        
+
         /// 参数取值错误。
         public static var other: InvalidParameterValue {
             InvalidParameterValue(.other)
         }
-        
+
         public func asZjError() -> TCZjError {
             let code: TCZjError.Code
             switch self.error {

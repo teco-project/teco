@@ -19,26 +19,26 @@ extension Vpc {
     public struct HaVipDisassociateAddressIpRequest: TCRequestModel {
         /// `HAVIP`唯一`ID`，形如：`havip-9o233uri`。必须是已绑定`EIP`的`HAVIP`。
         public let haVipId: String
-        
-        public init (haVipId: String) {
+
+        public init(haVipId: String) {
             self.haVipId = haVipId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case haVipId = "HaVipId"
         }
     }
-    
+
     /// HaVipDisassociateAddressIp返回参数结构体
     public struct HaVipDisassociateAddressIpResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// HAVIP解绑EIP
     ///
     /// 本接口（HaVipDisassociateAddressIp）用于将高可用虚拟IP（HAVIP）已绑定的弹性公网IP（EIP）解除绑定。<br />
@@ -47,7 +47,7 @@ extension Vpc {
     public func haVipDisassociateAddressIp(_ input: HaVipDisassociateAddressIpRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < HaVipDisassociateAddressIpResponse > {
         self.client.execute(action: "HaVipDisassociateAddressIp", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// HAVIP解绑EIP
     ///
     /// 本接口（HaVipDisassociateAddressIp）用于将高可用虚拟IP（HAVIP）已绑定的弹性公网IP（EIP）解除绑定。<br />
@@ -56,7 +56,7 @@ extension Vpc {
     public func haVipDisassociateAddressIp(_ input: HaVipDisassociateAddressIpRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> HaVipDisassociateAddressIpResponse {
         try await self.client.execute(action: "HaVipDisassociateAddressIp", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// HAVIP解绑EIP
     ///
     /// 本接口（HaVipDisassociateAddressIp）用于将高可用虚拟IP（HAVIP）已绑定的弹性公网IP（EIP）解除绑定。<br />
@@ -65,7 +65,7 @@ extension Vpc {
     public func haVipDisassociateAddressIp(haVipId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < HaVipDisassociateAddressIpResponse > {
         self.haVipDisassociateAddressIp(HaVipDisassociateAddressIpRequest(haVipId: haVipId), logger: logger, on: eventLoop)
     }
-    
+
     /// HAVIP解绑EIP
     ///
     /// 本接口（HaVipDisassociateAddressIp）用于将高可用虚拟IP（HAVIP）已绑定的弹性公网IP（EIP）解除绑定。<br />

@@ -19,26 +19,26 @@ extension Ecdn {
     public struct DeleteEcdnDomainRequest: TCRequestModel {
         /// 待删除域名。
         public let domain: String
-        
-        public init (domain: String) {
+
+        public init(domain: String) {
             self.domain = domain
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case domain = "Domain"
         }
     }
-    
+
     /// DeleteEcdnDomain返回参数结构体
     public struct DeleteEcdnDomainResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除加速域名
     ///
     /// 本接口（DeleteEcdnDomain）用于删除指定加速域名。待删除域名必须处于已停用状态。
@@ -47,7 +47,7 @@ extension Ecdn {
     public func deleteEcdnDomain(_ input: DeleteEcdnDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteEcdnDomainResponse > {
         self.client.execute(action: "DeleteEcdnDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除加速域名
     ///
     /// 本接口（DeleteEcdnDomain）用于删除指定加速域名。待删除域名必须处于已停用状态。
@@ -56,7 +56,7 @@ extension Ecdn {
     public func deleteEcdnDomain(_ input: DeleteEcdnDomainRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteEcdnDomainResponse {
         try await self.client.execute(action: "DeleteEcdnDomain", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除加速域名
     ///
     /// 本接口（DeleteEcdnDomain）用于删除指定加速域名。待删除域名必须处于已停用状态。
@@ -65,7 +65,7 @@ extension Ecdn {
     public func deleteEcdnDomain(domain: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteEcdnDomainResponse > {
         self.deleteEcdnDomain(DeleteEcdnDomainRequest(domain: domain), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除加速域名
     ///
     /// 本接口（DeleteEcdnDomain）用于删除指定加速域名。待删除域名必须处于已停用状态。

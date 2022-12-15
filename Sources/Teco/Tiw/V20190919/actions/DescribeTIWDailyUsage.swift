@@ -22,7 +22,7 @@ extension Tiw {
     public struct DescribeTIWDailyUsageRequest: TCRequestModel {
         /// 互动白板应用SdkAppId
         public let sdkAppId: Int64
-        
+
         /// 需要查询的子产品用量，支持传入以下值
         /// - sp_tiw_board: 互动白板时长，单位为分钟
         /// - sp_tiw_dt: 动态转码页数，单位页
@@ -30,7 +30,7 @@ extension Tiw {
         /// - sp_tiw_ric: 实时录制时长，单位分钟
         /// 注意：动态转码以1:8的比例计算文档转码页数，静态转码以1:1的比例计算文档转码页数
         public let subProduct: String
-        
+
         /// 开始时间，格式YYYY-MM-DD，查询结果里包括该天数据
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -38,7 +38,7 @@ extension Tiw {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCDateEncoding public var startTime: Date
-        
+
         /// 结束时间，格式YYYY-MM-DD，查询结果里包括该天数据，单次查询统计区间最多不能超过31天。
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -46,14 +46,14 @@ extension Tiw {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCDateEncoding public var endTime: Date
-        
-        public init (sdkAppId: Int64, subProduct: String, startTime: Date, endTime: Date) {
+
+        public init(sdkAppId: Int64, subProduct: String, startTime: Date, endTime: Date) {
             self.sdkAppId = sdkAppId
             self.subProduct = subProduct
             self.startTime = startTime
             self.endTime = endTime
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case sdkAppId = "SdkAppId"
             case subProduct = "SubProduct"
@@ -61,21 +61,21 @@ extension Tiw {
             case endTime = "EndTime"
         }
     }
-    
+
     /// DescribeTIWDailyUsage返回参数结构体
     public struct DescribeTIWDailyUsageResponse: TCResponseModel {
         /// 指定区间指定产品的用量汇总
         public let usages: [UsageDataItem]
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case usages = "Usages"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询天维度计费用量
     ///
     /// 查询互动白板天维度计费用量。
@@ -85,7 +85,7 @@ extension Tiw {
     public func describeTIWDailyUsage(_ input: DescribeTIWDailyUsageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTIWDailyUsageResponse > {
         self.client.execute(action: "DescribeTIWDailyUsage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询天维度计费用量
     ///
     /// 查询互动白板天维度计费用量。
@@ -95,7 +95,7 @@ extension Tiw {
     public func describeTIWDailyUsage(_ input: DescribeTIWDailyUsageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeTIWDailyUsageResponse {
         try await self.client.execute(action: "DescribeTIWDailyUsage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询天维度计费用量
     ///
     /// 查询互动白板天维度计费用量。
@@ -105,7 +105,7 @@ extension Tiw {
     public func describeTIWDailyUsage(sdkAppId: Int64, subProduct: String, startTime: Date, endTime: Date, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeTIWDailyUsageResponse > {
         self.describeTIWDailyUsage(DescribeTIWDailyUsageRequest(sdkAppId: sdkAppId, subProduct: subProduct, startTime: startTime, endTime: endTime), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询天维度计费用量
     ///
     /// 查询互动白板天维度计费用量。

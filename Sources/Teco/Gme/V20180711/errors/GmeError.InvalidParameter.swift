@@ -23,54 +23,54 @@ extension TCGmeError {
             case timeRangeError = "InvalidParameter.TimeRangeError"
             case other = "InvalidParameter"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 回调地址不正确
         public static var callbackAddress: InvalidParameter {
             InvalidParameter(.callbackAddress)
         }
-        
+
         /// 日期无效。
         public static var dateInvalid: InvalidParameter {
             InvalidParameter(.dateInvalid)
         }
-        
+
         /// 标签不正确
         public static var tagKey: InvalidParameter {
             InvalidParameter(.tagKey)
         }
-        
+
         /// 查询时间范围错误。
         public static var timeRangeError: InvalidParameter {
             InvalidParameter(.timeRangeError)
         }
-        
+
         /// 参数错误。
         public static var other: InvalidParameter {
             InvalidParameter(.other)
         }
-        
+
         public func asGmeError() -> TCGmeError {
             let code: TCGmeError.Code
             switch self.error {

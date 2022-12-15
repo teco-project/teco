@@ -31,94 +31,94 @@ extension TCBriError {
             case wechat = "InvalidParameter.Wechat"
             case other = "InvalidParameter"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// CertMd5参数错误
         public static var certMd5: InvalidParameter {
             InvalidParameter(.certMd5)
         }
-        
+
         /// FileMd5参数错误
         public static var fileMd5: InvalidParameter {
             InvalidParameter(.fileMd5)
         }
-        
+
         /// FileSize参数错误
         public static var fileSize: InvalidParameter {
             InvalidParameter(.fileSize)
         }
-        
+
         /// Imei参数错误
         public static var imei: InvalidParameter {
             InvalidParameter(.imei)
         }
-        
+
         /// 接口不存在
         public static var invalidAction: InvalidParameter {
             InvalidParameter(.invalidAction)
         }
-        
+
         /// IP参数错误
         public static var ip: InvalidParameter {
             InvalidParameter(.ip)
         }
-        
+
         /// 包名填写错误
         public static var packageName: InvalidParameter {
             InvalidParameter(.packageName)
         }
-        
+
         /// PhoneNumber参数错误
         public static var phoneNumber: InvalidParameter {
             InvalidParameter(.phoneNumber)
         }
-        
+
         /// QQ参数错误
         public static var qq: InvalidParameter {
             InvalidParameter(.qq)
         }
-        
+
         /// Service参数错误
         public static var service: InvalidParameter {
             InvalidParameter(.service)
         }
-        
+
         /// Url参数错误
         public static var url: InvalidParameter {
             InvalidParameter(.url)
         }
-        
+
         /// Wechat参数错误
         public static var wechat: InvalidParameter {
             InvalidParameter(.wechat)
         }
-        
+
         /// 参数错误。
         public static var other: InvalidParameter {
             InvalidParameter(.other)
         }
-        
+
         public func asBriError() -> TCBriError {
             let code: TCBriError.Code
             switch self.error {

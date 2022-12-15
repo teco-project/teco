@@ -29,45 +29,45 @@ extension Dayu {
         /// inpkg表示入包速率；
         /// outpkg表示出包速率；）
         public let metricName: String
-        
+
         /// 值数组
         public let data: [Float]
-        
+
         /// 值数组的大小
         public let count: UInt64
-        
+
         enum CodingKeys: String, CodingKey {
             case metricName = "MetricName"
             case data = "Data"
             case count = "Count"
         }
     }
-    
+
     /// 高防包绑定IP对象
     public struct BoundIpInfo: TCInputModel, TCOutputModel {
         /// IP地址
         public let ip: String
-        
+
         /// 绑定的产品分类，取值[public（CVM、CLB产品），bm（黑石产品），eni（弹性网卡），vpngw（VPN网关）， natgw（NAT网关），waf（Web应用安全产品），fpc（金融产品），gaap（GAAP产品）, other(托管IP)]
         public let bizType: String?
-        
+
         /// 产品分类下的子类型，取值[cvm（CVM），lb（负载均衡器），eni（弹性网卡），vpngw（VPN），natgw（NAT），waf（WAF），fpc（金融），gaap（GAAP），other（托管IP），eip（黑石弹性IP）]
         public let deviceType: String?
-        
+
         /// IP所属的资源实例ID，当绑定新IP时必须填写此字段；例如是弹性网卡的IP，则InstanceId填写弹性网卡的ID(eni-*); 如果绑定的是托管IP没有对应的资源实例ID，请填写"none";
         public let instanceId: String?
-        
+
         /// 运营商，0：电信；1：联通；2：移动；5：BGP
         public let ispCode: UInt64?
-        
-        public init (ip: String, bizType: String? = nil, deviceType: String? = nil, instanceId: String? = nil, ispCode: UInt64? = nil) {
+
+        public init(ip: String, bizType: String? = nil, deviceType: String? = nil, instanceId: String? = nil, ispCode: UInt64? = nil) {
             self.ip = ip
             self.bizType = bizType
             self.deviceType = deviceType
             self.instanceId = instanceId
             self.ispCode = ispCode
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case ip = "Ip"
             case bizType = "BizType"
@@ -76,28 +76,28 @@ extension Dayu {
             case ispCode = "IspCode"
         }
     }
-    
+
     /// CC告警阈值
     public struct CCAlarmThreshold: TCOutputModel {
         /// CC告警阈值
         public let alarmThreshold: UInt64
-        
+
         enum CodingKeys: String, CodingKey {
             case alarmThreshold = "AlarmThreshold"
         }
     }
-    
+
     /// CC攻击事件记录
     public struct CCEventRecord: TCOutputModel {
         /// 大禹子产品代号（bgpip表示高防IP；bgp表示独享包；bgp-multip表示共享包；net表示高防IP专业版；basic表示DDoS基础防护）
         public let business: String
-        
+
         /// 资源ID
         public let id: String
-        
+
         /// 资源的IP
         public let vip: String
-        
+
         /// 攻击开始时间
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -105,7 +105,7 @@ extension Dayu {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var startTime: Date
-        
+
         /// 攻击结束时间
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -113,32 +113,32 @@ extension Dayu {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var endTime: Date
-        
+
         /// 总请求QPS峰值
         public let reqQps: UInt64
-        
+
         /// 攻击QPS峰值
         public let dropQps: UInt64
-        
+
         /// 攻击状态，取值[0（攻击中）, 1（攻击结束）]
         public let attackStatus: UInt64
-        
+
         /// 资源名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let resourceName: String?
-        
+
         /// 域名列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let domainList: String?
-        
+
         /// uri列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let uriList: String?
-        
+
         /// 攻击源列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let attackipList: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case business = "Business"
             case id = "Id"
@@ -154,36 +154,36 @@ extension Dayu {
             case attackipList = "AttackipList"
         }
     }
-    
+
     /// CC的访问频率控制规则
     public struct CCFrequencyRule: TCOutputModel {
         /// CC的访问频率控制规则ID
         public let ccFrequencyRuleId: String
-        
+
         /// URI字符串，必须以/开头，例如/abc/a.php，长度不超过31；当URI=/时，匹配模式只能选择前缀匹配；
         public let uri: String
-        
+
         /// User-Agent字符串，长度不超过80
         public let userAgent: String
-        
+
         /// Cookie字符串，长度不超过40
         public let cookie: String
-        
+
         /// 匹配规则，取值["include"(前缀匹配)，"equal"(完全匹配)]
         public let mode: String
-        
+
         /// 统计周期，单位秒，取值[10, 30, 60]
         public let period: UInt64
-        
+
         /// 访问次数，取值[1-10000]
         public let reqNumber: UInt64
-        
+
         /// 执行动作，取值["alg"（人机识别）, "drop"（拦截）]
         public let act: String
-        
+
         /// 执行时间，单位秒，取值[1-900]
         public let exeDuration: UInt64
-        
+
         enum CodingKeys: String, CodingKey {
             case ccFrequencyRuleId = "CCFrequencyRuleId"
             case uri = "Uri"
@@ -196,46 +196,46 @@ extension Dayu {
             case exeDuration = "ExeDuration"
         }
     }
-    
+
     /// cc自定义规则
     public struct CCPolicy: TCInputModel, TCOutputModel {
         /// 策略名称
         public let name: String
-        
+
         /// 匹配模式，取值[matching(匹配模式), speedlimit(限速模式)]
         public let smode: String
-        
+
         /// 策略id
         public let setId: String?
-        
+
         /// 每分钟限制的次数
         public let frequency: UInt64?
-        
+
         /// 执行策略模式，拦截或者验证码，取值[alg（验证码）, drop（拦截）]
         public let exeMode: String?
-        
+
         /// 生效开关
         public let `switch`: UInt64?
-        
+
         /// 创建时间
         public let createTime: String?
-        
+
         /// 规则列表
         public let ruleList: [CCRule]?
-        
+
         /// IP列表，如果不填时，请传空数组但不能为null；
         public let ipList: [String]?
-        
+
         /// cc防护类型，取值[http，https]
         public let `protocol`: String?
-        
+
         /// 可选字段，表示HTTPS的CC防护域名对应的转发规则ID;
         public let ruleId: String?
-        
+
         /// HTTPS的CC防护域名
         public let domain: String?
-        
-        public init (name: String, smode: String, setId: String? = nil, frequency: UInt64? = nil, exeMode: String? = nil, switch: UInt64? = nil, createTime: String? = nil, ruleList: [CCRule]? = nil, ipList: [String]? = nil, protocol: String? = nil, ruleId: String? = nil, domain: String? = nil) {
+
+        public init(name: String, smode: String, setId: String? = nil, frequency: UInt64? = nil, exeMode: String? = nil, switch: UInt64? = nil, createTime: String? = nil, ruleList: [CCRule]? = nil, ipList: [String]? = nil, protocol: String? = nil, ruleId: String? = nil, domain: String? = nil) {
             self.name = name
             self.smode = smode
             self.setId = setId
@@ -249,7 +249,7 @@ extension Dayu {
             self.ruleId = ruleId
             self.domain = domain
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case name = "Name"
             case smode = "Smode"
@@ -265,52 +265,52 @@ extension Dayu {
             case domain = "Domain"
         }
     }
-    
+
     /// cc自定义策略配置的规则
     public struct CCRule: TCInputModel, TCOutputModel {
         /// 规则的key, 可以为host、cgi、ua、referer
         public let skey: String
-        
+
         /// 规则的条件，可以为include、not_include、equal
         public let `operator`: String
-        
+
         /// 规则的值，长度小于31字节
         public let value: String
-        
-        public init (skey: String, operator: String, value: String) {
+
+        public init(skey: String, operator: String, value: String) {
             self.skey = skey
             self.`operator` = `operator`
             self.value = value
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case skey = "Skey"
             case `operator` = "Operator"
             case value = "Value"
         }
     }
-    
+
     /// 7层CC自定义规则
     public struct CCRuleConfig: TCInputModel, TCOutputModel {
         /// 统计周期，单位秒，取值[10, 30, 60]
         public let period: UInt64
-        
+
         /// 访问次数，取值[1-10000]
         public let reqNumber: UInt64
-        
+
         /// 执行动作，取值["alg"（人机识别）, "drop"（拦截）]
         public let action: String
-        
+
         /// 执行时间，单位秒，取值[1-900]
         public let exeDuration: UInt64
-        
-        public init (period: UInt64, reqNumber: UInt64, action: String, exeDuration: UInt64) {
+
+        public init(period: UInt64, reqNumber: UInt64, action: String, exeDuration: UInt64) {
             self.period = period
             self.reqNumber = reqNumber
             self.action = action
             self.exeDuration = exeDuration
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case period = "Period"
             case reqNumber = "ReqNumber"
@@ -318,38 +318,38 @@ extension Dayu {
             case exeDuration = "ExeDuration"
         }
     }
-    
+
     /// DDoS告警阈值
     public struct DDoSAlarmThreshold: TCOutputModel {
         /// 告警阈值类型，1-入流量，2-清洗流量
         public let alarmType: UInt64
-        
+
         /// 告警阈值，大于0（目前排定的值）
         public let alarmThreshold: UInt64
-        
+
         enum CodingKeys: String, CodingKey {
             case alarmType = "AlarmType"
             case alarmThreshold = "AlarmThreshold"
         }
     }
-    
+
     /// 攻击源信息
     public struct DDoSAttackSourceRecord: TCOutputModel {
         /// 攻击源ip
         public let srcIp: String
-        
+
         /// 省份（国内有效，不包含港澳台）
         public let province: String
-        
+
         /// 国家
         public let nation: String
-        
+
         /// 累计攻击包量
         public let packetSum: UInt64
-        
+
         /// 累计攻击流量
         public let packetLen: UInt64
-        
+
         enum CodingKeys: String, CodingKey {
             case srcIp = "SrcIp"
             case province = "Province"
@@ -358,18 +358,18 @@ extension Dayu {
             case packetLen = "PacketLen"
         }
     }
-    
+
     /// DDoS攻击事件记录
     public struct DDoSEventRecord: TCOutputModel {
         /// 大禹子产品代号（bgpip表示高防IP；bgp表示独享包；bgp-multip表示共享包；net表示高防IP专业版；basic表示DDoS基础防护）
         public let business: String
-        
+
         /// 资源ID
         public let id: String
-        
+
         /// 资源的IP
         public let vip: String
-        
+
         /// 攻击开始时间
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -377,7 +377,7 @@ extension Dayu {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var startTime: Date
-        
+
         /// 攻击结束时间
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -385,33 +385,33 @@ extension Dayu {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var endTime: Date
-        
+
         /// 攻击最大带宽
         public let mbps: UInt64
-        
+
         /// 攻击最大包速率
         public let pps: UInt64
-        
+
         /// 攻击类型
         public let attackType: String
-        
+
         /// 是否被封堵，取值[1（是），0（否），2（无效值）]
         public let blockFlag: UInt64
-        
+
         /// 是否超过弹性防护峰值，取值取值[yes(是)，no(否)，空字符串（未知值）]
         public let overLoad: String
-        
+
         /// 攻击状态，取值[0（攻击中）, 1（攻击结束）]
         public let attackStatus: UInt64
-        
+
         /// 资源名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let resourceName: String?
-        
+
         /// 攻击事件Id
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let eventId: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case business = "Business"
             case id = "Id"
@@ -428,67 +428,67 @@ extension Dayu {
             case eventId = "EventId"
         }
     }
-    
+
     /// DDoS高级策略的禁用协议选项
     public struct DDoSPolicyDropOption: TCInputModel, TCOutputModel {
         /// 禁用TCP协议，取值范围[0,1]
         public let dropTcp: UInt64
-        
+
         /// 禁用UDP协议，取值范围[0,1]
         public let dropUdp: UInt64
-        
+
         /// 禁用ICMP协议，取值范围[0,1]
         public let dropIcmp: UInt64
-        
+
         /// 禁用其他协议，取值范围[0,1]
         public let dropOther: UInt64
-        
+
         /// 拒绝海外流量，取值范围[0,1]
         public let dropAbroad: UInt64
-        
+
         /// 空连接防护，取值范围[0,1]
         public let checkSyncConn: UInt64
-        
+
         /// 基于来源IP及目的IP的新建连接抑制，取值范围[0,4294967295]
         public let sdNewLimit: UInt64?
-        
+
         /// 基于目的IP的新建连接抑制，取值范围[0,4294967295]
         public let dstNewLimit: UInt64?
-        
+
         /// 基于来源IP及目的IP的并发连接抑制，取值范围[0,4294967295]
         public let sdConnLimit: UInt64?
-        
+
         /// 基于目的IP的并发连接抑制，取值范围[0,4294967295]
         public let dstConnLimit: UInt64?
-        
+
         /// 基于连接抑制触发阈值，取值范围[0,4294967295]
         public let badConnThreshold: UInt64?
-        
+
         /// 异常连接检测条件，空连接防护开关，，取值范围[0,1]
         public let nullConnEnable: UInt64?
-        
+
         /// 异常连接检测条件，连接超时，，取值范围[0,65535]
         public let connTimeout: UInt64?
-        
+
         /// 异常连接检测条件，syn占比ack百分比，，取值范围[0,100]
         public let synRate: UInt64?
-        
+
         /// 异常连接检测条件，syn阈值，取值范围[0,100]
         public let synLimit: UInt64?
-        
+
         /// tcp限速，取值范围[0,4294967295]
         public let dTcpMbpsLimit: UInt64?
-        
+
         /// udp限速，取值范围[0,4294967295]
         public let dUdpMbpsLimit: UInt64?
-        
+
         /// icmp限速，取值范围[0,4294967295]
         public let dIcmpMbpsLimit: UInt64?
-        
+
         /// other协议限速，取值范围[0,4294967295]
         public let dOtherMbpsLimit: UInt64?
-        
-        public init (dropTcp: UInt64, dropUdp: UInt64, dropIcmp: UInt64, dropOther: UInt64, dropAbroad: UInt64, checkSyncConn: UInt64, sdNewLimit: UInt64? = nil, dstNewLimit: UInt64? = nil, sdConnLimit: UInt64? = nil, dstConnLimit: UInt64? = nil, badConnThreshold: UInt64? = nil, nullConnEnable: UInt64? = nil, connTimeout: UInt64? = nil, synRate: UInt64? = nil, synLimit: UInt64? = nil, dTcpMbpsLimit: UInt64? = nil, dUdpMbpsLimit: UInt64? = nil, dIcmpMbpsLimit: UInt64? = nil, dOtherMbpsLimit: UInt64? = nil) {
+
+        public init(dropTcp: UInt64, dropUdp: UInt64, dropIcmp: UInt64, dropOther: UInt64, dropAbroad: UInt64, checkSyncConn: UInt64, sdNewLimit: UInt64? = nil, dstNewLimit: UInt64? = nil, sdConnLimit: UInt64? = nil, dstConnLimit: UInt64? = nil, badConnThreshold: UInt64? = nil, nullConnEnable: UInt64? = nil, connTimeout: UInt64? = nil, synRate: UInt64? = nil, synLimit: UInt64? = nil, dTcpMbpsLimit: UInt64? = nil, dUdpMbpsLimit: UInt64? = nil, dIcmpMbpsLimit: UInt64? = nil, dOtherMbpsLimit: UInt64? = nil) {
             self.dropTcp = dropTcp
             self.dropUdp = dropUdp
             self.dropIcmp = dropIcmp
@@ -509,7 +509,7 @@ extension Dayu {
             self.dIcmpMbpsLimit = dIcmpMbpsLimit
             self.dOtherMbpsLimit = dOtherMbpsLimit
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case dropTcp = "DropTcp"
             case dropUdp = "DropUdp"
@@ -532,30 +532,30 @@ extension Dayu {
             case dOtherMbpsLimit = "DOtherMbpsLimit"
         }
     }
-    
+
     /// DDoS高级策略的报文过滤项
     public struct DDoSPolicyPacketFilter: TCInputModel, TCOutputModel {
         /// 协议，取值范围[tcp,udp,icmp,all]
         public let `protocol`: String
-        
+
         /// 开始源端口，取值范围[0,65535]
         public let sportStart: UInt64
-        
+
         /// 结束源端口，取值范围[0,65535]
         public let sportEnd: UInt64
-        
+
         /// 开始目的端口，取值范围[0,65535]
         public let dportStart: UInt64
-        
+
         /// 结束目的端口，取值范围[0,65535]
         public let dportEnd: UInt64
-        
+
         /// 最小包长，取值范围[0,1500]
         public let pktlenMin: UInt64
-        
+
         /// 最大包长，取值范围[0,1500]
         public let pktlenMax: UInt64
-        
+
         /// 是否检测载荷，取值范围[
         /// begin_l3(IP头)
         /// begin_l4(TCP头)
@@ -563,26 +563,26 @@ extension Dayu {
         /// no_match(不检测)
         /// ]
         public let matchBegin: String
-        
+
         /// 是否是正则表达式，取值范围[sunday(表示关键字),pcre(表示正则表达式)]
         public let matchType: String
-        
+
         /// 关键字或正则表达式
         public let str: String
-        
+
         /// 检测深度，取值范围[0,1500]
         public let depth: UInt64
-        
+
         /// 检测偏移量，取值范围[0,1500]
         public let offset: UInt64
-        
+
         /// 是否包括，取值范围[0(表示不包含),1(表示包含)]
         public let isNot: UInt64
-        
+
         /// 策略动作，取值范围[drop，drop_black，drop_rst，drop_black_rst，transmit]
         public let action: String
-        
-        public init (protocol: String, sportStart: UInt64, sportEnd: UInt64, dportStart: UInt64, dportEnd: UInt64, pktlenMin: UInt64, pktlenMax: UInt64, matchBegin: String, matchType: String, str: String, depth: UInt64, offset: UInt64, isNot: UInt64, action: String) {
+
+        public init(protocol: String, sportStart: UInt64, sportEnd: UInt64, dportStart: UInt64, dportEnd: UInt64, pktlenMin: UInt64, pktlenMax: UInt64, matchBegin: String, matchType: String, str: String, depth: UInt64, offset: UInt64, isNot: UInt64, action: String) {
             self.`protocol` = `protocol`
             self.sportStart = sportStart
             self.sportEnd = sportEnd
@@ -598,7 +598,7 @@ extension Dayu {
             self.isNot = isNot
             self.action = action
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case `protocol` = "Protocol"
             case sportStart = "SportStart"
@@ -616,35 +616,35 @@ extension Dayu {
             case action = "Action"
         }
     }
-    
+
     /// DDoS高级策略的禁用端口
     public struct DDoSPolicyPortLimit: TCInputModel, TCOutputModel {
         /// 协议，取值范围[tcp,udp,all]
         public let `protocol`: String
-        
+
         /// 开始目的端口，取值范围[0,65535]
         public let dPortStart: UInt64
-        
+
         /// 结束目的端口，取值范围[0,65535]，要求大于等于开始目的端口
         public let dPortEnd: UInt64
-        
+
         /// 开始源端口，取值范围[0,65535]
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let sPortStart: UInt64?
-        
+
         /// 结束源端口，取值范围[0,65535]，要求大于等于开始源端口
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let sPortEnd: UInt64?
-        
+
         /// 执行动作，取值[drop(丢弃) ，transmit(转发)]
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let action: String?
-        
+
         /// 禁用端口类型，取值[0（目的端口范围禁用）， 1（源端口范围禁用）， 2（目的和源端口范围同时禁用）]
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let kind: UInt64?
-        
-        public init (protocol: String, dPortStart: UInt64, dPortEnd: UInt64, sPortStart: UInt64? = nil, sPortEnd: UInt64? = nil, action: String? = nil, kind: UInt64? = nil) {
+
+        public init(protocol: String, dPortStart: UInt64, dPortEnd: UInt64, sPortStart: UInt64? = nil, sPortEnd: UInt64? = nil, action: String? = nil, kind: UInt64? = nil) {
             self.`protocol` = `protocol`
             self.dPortStart = dPortStart
             self.dPortEnd = dPortEnd
@@ -653,7 +653,7 @@ extension Dayu {
             self.action = action
             self.kind = kind
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case `protocol` = "Protocol"
             case dPortStart = "DPortStart"
@@ -664,47 +664,47 @@ extension Dayu {
             case kind = "Kind"
         }
     }
-    
+
     /// DDoS高级策略
     public struct DDosPolicy: TCOutputModel {
         /// 策略绑定的资源
         public let resources: [ResourceIp]
-        
+
         /// 禁用协议
         public let dropOptions: DDoSPolicyDropOption
-        
+
         /// 禁用端口
         public let portLimits: [DDoSPolicyPortLimit]
-        
+
         /// 报文过滤
         public let packetFilters: [DDoSPolicyPacketFilter]
-        
+
         /// 黑白IP名单
         public let ipBlackWhiteLists: [IpBlackWhite]
-        
+
         /// 策略ID
         public let policyId: String
-        
+
         /// 策略名称
         public let policyName: String
-        
+
         /// 策略创建时间
         public let createTime: String
-        
+
         /// 水印策略参数，最多只有一个，当没有水印策略时数组为空
         public let waterPrint: [WaterPrintPolicy]
-        
+
         /// 水印密钥，最多只有2个，当没有水印策略时数组为空
         public let waterKey: [WaterPrintKey]
-        
+
         /// 策略绑定的资源实例
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let boundResources: [String]?
-        
+
         /// 策略所属的策略场景
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let sceneId: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case resources = "Resources"
             case dropOptions = "DropOptions"
@@ -720,39 +720,39 @@ extension Dayu {
             case sceneId = "SceneId"
         }
     }
-    
+
     /// 业务流量的http状态码聚合数据
     public struct HttpStatusMap: TCOutputModel {
         /// http2xx状态码
         public let http2xx: [Float]
-        
+
         /// http3xx状态码
         public let http3xx: [Float]
-        
+
         /// http404状态码
         public let http404: [Float]
-        
+
         /// http4xx状态码
         public let http4xx: [Float]
-        
+
         /// http5xx状态码
         public let http5xx: [Float]
-        
+
         /// http2xx回源状态码
         public let sourceHttp2xx: [Float]
-        
+
         /// http3xx回源状态码
         public let sourceHttp3xx: [Float]
-        
+
         /// http404回源状态码
         public let sourceHttp404: [Float]
-        
+
         /// http4xx回源状态码
         public let sourceHttp4xx: [Float]
-        
+
         /// http5xx回源状态码
         public let sourceHttp5xx: [Float]
-        
+
         enum CodingKeys: String, CodingKey {
             case http2xx = "Http2xx"
             case http3xx = "Http3xx"
@@ -766,34 +766,34 @@ extension Dayu {
             case sourceHttp5xx = "SourceHttp5xx"
         }
     }
-    
+
     /// 黑白IP
     public struct IpBlackWhite: TCInputModel, TCOutputModel {
         /// IP地址
         public let ip: String
-        
+
         /// 黑白类型，取值范围[black，white]
         public let type: String
-        
-        public init (ip: String, type: String) {
+
+        public init(ip: String, type: String) {
             self.ip = ip
             self.type = type
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case ip = "Ip"
             case type = "Type"
         }
     }
-    
+
     /// IP封堵记录
     public struct IpBlockData: TCOutputModel {
         /// IP
         public let ip: String
-        
+
         /// 状态（Blocked：被封堵；UnBlocking：解封中；UnBlockFailed：解封失败）
         public let status: String
-        
+
         /// 封堵时间
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -801,7 +801,7 @@ extension Dayu {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var blockTime: Date
-        
+
         /// 解封时间（预计解封时间）
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -809,10 +809,10 @@ extension Dayu {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var unBlockTime: Date
-        
+
         /// 解封类型（user：自助解封；auto：自动解封； update：升级解封；bind：绑定高防包解封）
         public let actionType: String
-        
+
         enum CodingKeys: String, CodingKey {
             case ip = "Ip"
             case status = "Status"
@@ -821,12 +821,12 @@ extension Dayu {
             case actionType = "ActionType"
         }
     }
-    
+
     /// IP解封记录
     public struct IpUnBlockData: TCOutputModel {
         /// IP
         public let ip: String
-        
+
         /// 封堵时间
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -834,7 +834,7 @@ extension Dayu {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var blockTime: Date
-        
+
         /// 解封时间（实际解封时间）
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -842,10 +842,10 @@ extension Dayu {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var unBlockTime: Date
-        
+
         /// 解封类型（user：自助解封；auto：自动解封； update：升级解封；bind：绑定高防包解封）
         public let actionType: String
-        
+
         enum CodingKeys: String, CodingKey {
             case ip = "Ip"
             case blockTime = "BlockTime"
@@ -853,82 +853,82 @@ extension Dayu {
             case actionType = "ActionType"
         }
     }
-    
+
     /// 字段值，K-V形式
     public struct KeyValue: TCOutputModel {
         /// 字段名称
         public let key: String
-        
+
         /// 字段取值
         public let value: String
-        
+
         enum CodingKeys: String, CodingKey {
             case key = "Key"
             case value = "Value"
         }
     }
-    
+
     /// KeyValue记录
     public struct KeyValueRecord: TCOutputModel {
         /// 一条记录的Key-Value数组
         public let record: [KeyValue]
-        
+
         enum CodingKeys: String, CodingKey {
             case record = "Record"
         }
     }
-    
+
     /// 删除l4规则接口
     public struct L4DelRule: TCInputModel {
         /// 资源Id
         public let id: String
-        
+
         /// 资源IP
         public let ip: String
-        
+
         /// 规则Id
         public let ruleIdList: [String]
-        
-        public init (id: String, ip: String, ruleIdList: [String]) {
+
+        public init(id: String, ip: String, ruleIdList: [String]) {
             self.id = id
             self.ip = ip
             self.ruleIdList = ruleIdList
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case id = "Id"
             case ip = "Ip"
             case ruleIdList = "RuleIdList"
         }
     }
-    
+
     /// 四层健康检查配置
     public struct L4HealthConfig: TCInputModel, TCOutputModel {
         /// 转发协议，取值[TCP, UDP]
         public let `protocol`: String
-        
+
         /// 转发端口
         public let virtualPort: UInt64
-        
+
         /// =1表示开启；=0表示关闭
         public let enable: UInt64
-        
+
         /// 响应超时时间，单位秒
         public let timeOut: UInt64
-        
+
         /// 检测间隔时间，单位秒
         public let interval: UInt64
-        
+
         /// 不健康阈值，单位次
         public let kickNum: UInt64
-        
+
         /// 健康阈值，单位次
         public let aliveNum: UInt64
-        
+
         /// 会话保持时间，单位秒
         public let keepTime: UInt64
-        
-        public init (protocol: String, virtualPort: UInt64, enable: UInt64, timeOut: UInt64, interval: UInt64, kickNum: UInt64, aliveNum: UInt64, keepTime: UInt64) {
+
+        public init(protocol: String, virtualPort: UInt64, enable: UInt64, timeOut: UInt64, interval: UInt64, kickNum: UInt64, aliveNum: UInt64, keepTime: UInt64) {
             self.`protocol` = `protocol`
             self.virtualPort = virtualPort
             self.enable = enable
@@ -938,7 +938,7 @@ extension Dayu {
             self.aliveNum = aliveNum
             self.keepTime = keepTime
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case `protocol` = "Protocol"
             case virtualPort = "VirtualPort"
@@ -950,43 +950,43 @@ extension Dayu {
             case keepTime = "KeepTime"
         }
     }
-    
+
     /// L4规则
     public struct L4RuleEntry: TCInputModel, TCOutputModel {
         /// 转发协议，取值[TCP, UDP]
         public let `protocol`: String
-        
+
         /// 转发端口
         public let virtualPort: UInt64
-        
+
         /// 源站端口
         public let sourcePort: UInt64
-        
+
         /// 回源方式，取值[1(域名回源)，2(IP回源)]
         public let sourceType: UInt64
-        
+
         /// 会话保持时间，单位秒
         public let keepTime: UInt64
-        
+
         /// 回源列表
         public let sourceList: [L4RuleSource]
-        
+
         /// 负载均衡方式，取值[1(加权轮询)，2(源IP hash)]
         public let lbType: UInt64
-        
+
         /// 会话保持开关，取值[0(会话保持关闭)，1(会话保持开启)]；
         public let keepEnable: UInt64
-        
+
         /// 规则ID
         public let ruleId: String?
-        
+
         /// 规则描述
         public let ruleName: String?
-        
+
         /// 移除水印状态，取值[0(关闭)，1(开启)]
         public let removeSwitch: UInt64?
-        
-        public init (protocol: String, virtualPort: UInt64, sourcePort: UInt64, sourceType: UInt64, keepTime: UInt64, sourceList: [L4RuleSource], lbType: UInt64, keepEnable: UInt64, ruleId: String? = nil, ruleName: String? = nil, removeSwitch: UInt64? = nil) {
+
+        public init(protocol: String, virtualPort: UInt64, sourcePort: UInt64, sourceType: UInt64, keepTime: UInt64, sourceList: [L4RuleSource], lbType: UInt64, keepEnable: UInt64, ruleId: String? = nil, ruleName: String? = nil, removeSwitch: UInt64? = nil) {
             self.`protocol` = `protocol`
             self.virtualPort = virtualPort
             self.sourcePort = sourcePort
@@ -999,7 +999,7 @@ extension Dayu {
             self.ruleName = ruleName
             self.removeSwitch = removeSwitch
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case `protocol` = "Protocol"
             case virtualPort = "VirtualPort"
@@ -1014,28 +1014,28 @@ extension Dayu {
             case removeSwitch = "RemoveSwitch"
         }
     }
-    
+
     /// 规则健康检查参数
     public struct L4RuleHealth: TCInputModel, TCOutputModel {
         /// 规则ID
         public let ruleId: String
-        
+
         /// =1表示开启；=0表示关闭
         public let enable: UInt64
-        
+
         /// 响应超时时间，单位秒
         public let timeOut: UInt64
-        
+
         /// 检测间隔时间，单位秒，必须要大于响应超时时间
         public let interval: UInt64
-        
+
         /// 不健康阈值，单位次
         public let kickNum: UInt64
-        
+
         /// 健康阈值，单位次
         public let aliveNum: UInt64
-        
-        public init (ruleId: String, enable: UInt64, timeOut: UInt64, interval: UInt64, kickNum: UInt64, aliveNum: UInt64) {
+
+        public init(ruleId: String, enable: UInt64, timeOut: UInt64, interval: UInt64, kickNum: UInt64, aliveNum: UInt64) {
             self.ruleId = ruleId
             self.enable = enable
             self.timeOut = timeOut
@@ -1043,7 +1043,7 @@ extension Dayu {
             self.kickNum = kickNum
             self.aliveNum = aliveNum
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case ruleId = "RuleId"
             case enable = "Enable"
@@ -1053,56 +1053,56 @@ extension Dayu {
             case aliveNum = "AliveNum"
         }
     }
-    
+
     /// L4规则回源列表
     public struct L4RuleSource: TCInputModel, TCOutputModel {
         /// 回源IP或域名
         public let source: String
-        
+
         /// 权重值，取值[0,100]
         public let weight: UInt64
-        
-        public init (source: String, weight: UInt64) {
+
+        public init(source: String, weight: UInt64) {
             self.source = source
             self.weight = weight
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case source = "Source"
             case weight = "Weight"
         }
     }
-    
+
     /// 七层健康检查配置
     public struct L7HealthConfig: TCInputModel, TCOutputModel {
         /// 转发协议，取值[http, https, http/https]
         public let `protocol`: String
-        
+
         /// 转发域名
         public let domain: String
-        
+
         /// =1表示开启；=0表示关闭
         public let enable: UInt64
-        
+
         /// 检测间隔时间，单位秒
         public let interval: UInt64
-        
+
         /// 异常判定次数，单位次
         public let kickNum: UInt64
-        
+
         /// 健康判定次数，单位次
         public let aliveNum: UInt64
-        
+
         /// 健康检查探测方法，可选HEAD或GET，默认为HEAD
         public let method: String
-        
+
         /// 健康检查判定正常状态码，1xx =1, 2xx=2, 3xx=4, 4xx=8,5xx=16，多个状态码值加和
         public let statusCode: UInt64
-        
+
         /// 检查目录的URL，默认为/
         public let url: String
-        
-        public init (protocol: String, domain: String, enable: UInt64, interval: UInt64, kickNum: UInt64, aliveNum: UInt64, method: String, statusCode: UInt64, url: String) {
+
+        public init(protocol: String, domain: String, enable: UInt64, interval: UInt64, kickNum: UInt64, aliveNum: UInt64, method: String, statusCode: UInt64, url: String) {
             self.`protocol` = `protocol`
             self.domain = domain
             self.enable = enable
@@ -1113,7 +1113,7 @@ extension Dayu {
             self.statusCode = statusCode
             self.url = url
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case `protocol` = "Protocol"
             case domain = "Domain"
@@ -1126,72 +1126,72 @@ extension Dayu {
             case url = "Url"
         }
     }
-    
+
     /// L7规则
     public struct L7RuleEntry: TCInputModel, TCOutputModel {
         /// 转发协议，取值[http, https]
         public let `protocol`: String
-        
+
         /// 转发域名
         public let domain: String
-        
+
         /// 回源方式，取值[1(域名回源)，2(IP回源)]
         public let sourceType: UInt64
-        
+
         /// 会话保持时间，单位秒
         public let keepTime: UInt64
-        
+
         /// 回源列表
         public let sourceList: [L4RuleSource]
-        
+
         /// 负载均衡方式，取值[1(加权轮询)]
         public let lbType: UInt64
-        
+
         /// 会话保持开关，取值[0(会话保持关闭)，1(会话保持开启)]
         public let keepEnable: UInt64
-        
+
         /// 规则ID，当添加新规则时可以不用填写此字段；当修改或者删除规则时需要填写此字段；
         public let ruleId: String?
-        
+
         /// 证书来源，当转发协议为https时必须填，取值[2(腾讯云托管证书)]，当转发协议为http时也可以填0
         public let certType: UInt64?
-        
+
         /// 当证书来源为腾讯云托管证书时，此字段必须填写托管证书ID
         public let sslId: String?
-        
+
         /// 当证书来源为自有证书时，此字段必须填写证书内容；(因已不再支持自有证书，此字段已弃用，请不用填写此字段)
         public let cert: String?
-        
+
         /// 当证书来源为自有证书时，此字段必须填写证书密钥；(因已不再支持自有证书，此字段已弃用，请不用填写此字段)
         public let privateKey: String?
-        
+
         /// 规则描述
         public let ruleName: String?
-        
+
         /// 规则状态，取值[0(规则配置成功)，1(规则配置生效中)，2(规则配置失败)，3(规则删除生效中)，5(规则删除失败)，6(规则等待配置)，7(规则等待删除)，8(规则待配置证书)]
         public let status: UInt64?
-        
+
         /// cc防护状态，取值[0(关闭), 1(开启)]
         public let ccStatus: UInt64?
-        
+
         /// HTTPS协议的CC防护状态，取值[0(关闭), 1(开启)]
         public let ccEnable: UInt64?
-        
+
         /// HTTPS协议的CC防护阈值
         public let ccThreshold: UInt64?
-        
+
         /// HTTPS协议的CC防护等级
         public let ccLevel: String?
-        
+
         /// 是否开启Https协议使用Http回源，取值[0(关闭), 1(开启)]，不填写默认是关闭
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let httpsToHttpEnable: UInt64?
-        
+
         /// 接入端口值
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let virtualPort: UInt64?
-        
-        public init (protocol: String, domain: String, sourceType: UInt64, keepTime: UInt64, sourceList: [L4RuleSource], lbType: UInt64, keepEnable: UInt64, ruleId: String? = nil, certType: UInt64? = nil, sslId: String? = nil, cert: String? = nil, privateKey: String? = nil, ruleName: String? = nil, status: UInt64? = nil, ccStatus: UInt64? = nil, ccEnable: UInt64? = nil, ccThreshold: UInt64? = nil, ccLevel: String? = nil, httpsToHttpEnable: UInt64? = nil, virtualPort: UInt64? = nil) {
+
+        public init(protocol: String, domain: String, sourceType: UInt64, keepTime: UInt64, sourceList: [L4RuleSource], lbType: UInt64, keepEnable: UInt64, ruleId: String? = nil, certType: UInt64? = nil, sslId: String? = nil, cert: String? = nil, privateKey: String? = nil, ruleName: String? = nil, status: UInt64? = nil, ccStatus: UInt64? = nil, ccEnable: UInt64? = nil, ccThreshold: UInt64? = nil, ccLevel: String? = nil, httpsToHttpEnable: UInt64? = nil, virtualPort: UInt64? = nil) {
             self.`protocol` = `protocol`
             self.domain = domain
             self.sourceType = sourceType
@@ -1213,7 +1213,7 @@ extension Dayu {
             self.httpsToHttpEnable = httpsToHttpEnable
             self.virtualPort = virtualPort
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case `protocol` = "Protocol"
             case domain = "Domain"
@@ -1237,37 +1237,37 @@ extension Dayu {
             case virtualPort = "VirtualPort"
         }
     }
-    
+
     /// L7规则健康检查参数
     public struct L7RuleHealth: TCInputModel, TCOutputModel {
         /// 规则ID
         public let ruleId: String
-        
+
         /// =1表示开启；=0表示关闭
         public let enable: UInt64
-        
+
         /// 检测间隔时间，单位秒
         public let interval: UInt64
-        
+
         /// 不健康阈值，单位次
         public let kickNum: UInt64
-        
+
         /// 健康阈值，单位次
         public let aliveNum: UInt64
-        
+
         /// HTTP请求方式，取值[HEAD,GET]
         public let method: String
-        
+
         /// 健康检查判定正常状态码，1xx =1, 2xx=2, 3xx=4, 4xx=8,5xx=16，多个状态码值加和
         public let statusCode: UInt64
-        
+
         /// 检查目录的URL，默认为/
         public let url: String
-        
+
         /// 配置状态，0： 正常，1：配置中，2：配置失败
         public let status: UInt64
-        
-        public init (ruleId: String, enable: UInt64, interval: UInt64, kickNum: UInt64, aliveNum: UInt64, method: String, statusCode: UInt64, url: String, status: UInt64) {
+
+        public init(ruleId: String, enable: UInt64, interval: UInt64, kickNum: UInt64, aliveNum: UInt64, method: String, statusCode: UInt64, url: String, status: UInt64) {
             self.ruleId = ruleId
             self.enable = enable
             self.interval = interval
@@ -1278,7 +1278,7 @@ extension Dayu {
             self.url = url
             self.status = status
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case ruleId = "RuleId"
             case enable = "Enable"
@@ -1291,42 +1291,42 @@ extension Dayu {
             case status = "Status"
         }
     }
-    
+
     /// 四层规则结构体
     public struct NewL4RuleEntry: TCInputModel, TCOutputModel {
         /// 转发协议，取值[TCP, UDP]
         public let `protocol`: String
-        
+
         /// 转发端口
         public let virtualPort: UInt64
-        
+
         /// 源站端口
         public let sourcePort: UInt64
-        
+
         /// 会话保持时间，单位秒
         public let keepTime: UInt64
-        
+
         /// 回源列表
         public let sourceList: [L4RuleSource]
-        
+
         /// 负载均衡方式，取值[1(加权轮询)，2(源IP hash)]
         public let lbType: UInt64
-        
+
         /// 会话保持开关，取值[0(会话保持关闭)，1(会话保持开启)]；
         public let keepEnable: UInt64
-        
+
         /// 回源方式，取值[1(域名回源)，2(IP回源)]
         public let sourceType: UInt64
-        
+
         /// 规则ID
         public let ruleId: String?
-        
+
         /// 规则描述
         public let ruleName: String?
-        
+
         /// 移除水印状态，取值[0(关闭)，1(开启)]
         public let removeSwitch: UInt64?
-        
+
         /// 规则修改时间
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -1334,17 +1334,17 @@ extension Dayu {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var modifyTime: Date?
-        
+
         /// 对应地区信息
         public let region: UInt64?
-        
+
         /// 绑定资源IP信息
         public let ip: String?
-        
+
         /// 绑定资源Id信息
         public let id: String?
-        
-        public init (protocol: String, virtualPort: UInt64, sourcePort: UInt64, keepTime: UInt64, sourceList: [L4RuleSource], lbType: UInt64, keepEnable: UInt64, sourceType: UInt64, ruleId: String? = nil, ruleName: String? = nil, removeSwitch: UInt64? = nil, modifyTime: Date? = nil, region: UInt64? = nil, ip: String? = nil, id: String? = nil) {
+
+        public init(protocol: String, virtualPort: UInt64, sourcePort: UInt64, keepTime: UInt64, sourceList: [L4RuleSource], lbType: UInt64, keepEnable: UInt64, sourceType: UInt64, ruleId: String? = nil, ruleName: String? = nil, removeSwitch: UInt64? = nil, modifyTime: Date? = nil, region: UInt64? = nil, ip: String? = nil, id: String? = nil) {
             self.`protocol` = `protocol`
             self.virtualPort = virtualPort
             self.sourcePort = sourcePort
@@ -1361,7 +1361,7 @@ extension Dayu {
             self.ip = ip
             self.id = id
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case `protocol` = "Protocol"
             case virtualPort = "VirtualPort"
@@ -1380,72 +1380,72 @@ extension Dayu {
             case id = "Id"
         }
     }
-    
+
     /// L7规则
     public struct NewL7RuleEntry: TCInputModel, TCOutputModel {
         /// 转发协议，取值[http, https]
         public let `protocol`: String
-        
+
         /// 转发域名
         public let domain: String
-        
+
         /// 回源方式，取值[1(域名回源)，2(IP回源)]
         public let sourceType: UInt64
-        
+
         /// 会话保持时间，单位秒
         public let keepTime: UInt64
-        
+
         /// 回源列表
         public let sourceList: [L4RuleSource]
-        
+
         /// 负载均衡方式，取值[1(加权轮询)]
         public let lbType: UInt64
-        
+
         /// 会话保持开关，取值[0(会话保持关闭)，1(会话保持开启)]
         public let keepEnable: UInt64
-        
+
         /// 规则ID，当添加新规则时可以不用填写此字段；当修改或者删除规则时需要填写此字段；
         public let ruleId: String?
-        
+
         /// 证书来源，当转发协议为https时必须填，取值[2(腾讯云托管证书)]，当转发协议为http时也可以填0
         public let certType: UInt64?
-        
+
         /// 当证书来源为腾讯云托管证书时，此字段必须填写托管证书ID
         public let sslId: String?
-        
+
         /// 当证书来源为自有证书时，此字段必须填写证书内容；(因已不再支持自有证书，此字段已弃用，请不用填写此字段)
         public let cert: String?
-        
+
         /// 当证书来源为自有证书时，此字段必须填写证书密钥；(因已不再支持自有证书，此字段已弃用，请不用填写此字段)
         public let privateKey: String?
-        
+
         /// 规则描述
         public let ruleName: String?
-        
+
         /// 规则状态，取值[0(规则配置成功)，1(规则配置生效中)，2(规则配置失败)，3(规则删除生效中)，5(规则删除失败)，6(规则等待配置)，7(规则等待删除)，8(规则待配置证书)]
         public let status: UInt64?
-        
+
         /// cc防护状态，取值[0(关闭), 1(开启)]
         public let ccStatus: UInt64?
-        
+
         /// HTTPS协议的CC防护状态，取值[0(关闭), 1(开启)]
         public let ccEnable: UInt64?
-        
+
         /// HTTPS协议的CC防护阈值
         public let ccThreshold: UInt64?
-        
+
         /// HTTPS协议的CC防护等级
         public let ccLevel: String?
-        
+
         /// 区域码
         public let region: UInt64?
-        
+
         /// 资源Id
         public let id: String?
-        
+
         /// 资源Ip
         public let ip: String?
-        
+
         /// 修改时间
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -1453,15 +1453,15 @@ extension Dayu {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var modifyTime: Date?
-        
+
         /// 是否开启Https协议使用Http回源，取值[0(关闭), 1(开启)]，不填写默认是关闭
         public let httpsToHttpEnable: UInt64?
-        
+
         /// 接入端口值
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let virtualPort: UInt64?
-        
-        public init (protocol: String, domain: String, sourceType: UInt64, keepTime: UInt64, sourceList: [L4RuleSource], lbType: UInt64, keepEnable: UInt64, ruleId: String? = nil, certType: UInt64? = nil, sslId: String? = nil, cert: String? = nil, privateKey: String? = nil, ruleName: String? = nil, status: UInt64? = nil, ccStatus: UInt64? = nil, ccEnable: UInt64? = nil, ccThreshold: UInt64? = nil, ccLevel: String? = nil, region: UInt64? = nil, id: String? = nil, ip: String? = nil, modifyTime: Date? = nil, httpsToHttpEnable: UInt64? = nil, virtualPort: UInt64? = nil) {
+
+        public init(protocol: String, domain: String, sourceType: UInt64, keepTime: UInt64, sourceList: [L4RuleSource], lbType: UInt64, keepEnable: UInt64, ruleId: String? = nil, certType: UInt64? = nil, sslId: String? = nil, cert: String? = nil, privateKey: String? = nil, ruleName: String? = nil, status: UInt64? = nil, ccStatus: UInt64? = nil, ccEnable: UInt64? = nil, ccThreshold: UInt64? = nil, ccLevel: String? = nil, region: UInt64? = nil, id: String? = nil, ip: String? = nil, modifyTime: Date? = nil, httpsToHttpEnable: UInt64? = nil, virtualPort: UInt64? = nil) {
             self.`protocol` = `protocol`
             self.domain = domain
             self.sourceType = sourceType
@@ -1487,7 +1487,7 @@ extension Dayu {
             self.httpsToHttpEnable = httpsToHttpEnable
             self.virtualPort = virtualPort
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case `protocol` = "Protocol"
             case domain = "Domain"
@@ -1515,7 +1515,7 @@ extension Dayu {
             case virtualPort = "VirtualPort"
         }
     }
-    
+
     /// 排序字段
     public struct OrderBy: TCInputModel {
         /// 排序字段名称，取值[
@@ -1523,119 +1523,119 @@ extension Dayu {
         /// overloadCount（超峰值次数）
         /// ]
         public let field: String
-        
+
         /// 升降序，取值为[asc（升序），（升序），desc（降序）， DESC（降序）]
         public let order: String
-        
-        public init (field: String, order: String) {
+
+        public init(field: String, order: String) {
             self.field = field
             self.order = order
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case field = "Field"
             case order = "Order"
         }
     }
-    
+
     /// 分页索引
     public struct Paging: TCInputModel {
         /// 起始位置
         public let offset: UInt64
-        
+
         /// 数量
         public let limit: UInt64
-        
-        public init (offset: UInt64, limit: UInt64) {
+
+        public init(offset: UInt64, limit: UInt64) {
             self.offset = offset
             self.limit = limit
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case offset = "Offset"
             case limit = "Limit"
         }
     }
-    
+
     /// Protocol、Port参数
     public struct ProtocolPort: TCInputModel {
         /// 协议（tcp；udp）
         public let `protocol`: String
-        
+
         /// 端口
         public let port: UInt64
-        
-        public init (protocol: String, port: UInt64) {
+
+        public init(protocol: String, port: UInt64) {
             self.`protocol` = `protocol`
             self.port = port
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case `protocol` = "Protocol"
             case port = "Port"
         }
     }
-    
+
     /// 地域资源实例数
     public struct RegionInstanceCount: TCOutputModel {
         /// 地域码
         public let region: String
-        
+
         /// 地域码（新规范）
         public let regionV3: String
-        
+
         /// 资源实例数
         public let count: UInt64
-        
+
         enum CodingKeys: String, CodingKey {
             case region = "Region"
             case regionV3 = "RegionV3"
             case count = "Count"
         }
     }
-    
+
     /// 资源的IP数组
     public struct ResourceIp: TCInputModel, TCOutputModel {
         /// 资源ID
         public let id: String
-        
+
         /// 资源的IP数组
         public let ipList: [String]?
-        
-        public init (id: String, ipList: [String]? = nil) {
+
+        public init(id: String, ipList: [String]? = nil) {
             self.id = id
             self.ipList = ipList
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case id = "Id"
             case ipList = "IpList"
         }
     }
-    
+
     /// 调度域名信息
     public struct SchedulingDomain: TCOutputModel {
         /// 调度域名
         public let domain: String
-        
+
         /// BGP线路IP列表
         public let bgpIpList: [String]
-        
+
         /// 电信线路IP列表
         public let ctccIpList: [String]
-        
+
         /// 联通线路IP列表
         public let cuccIpList: [String]
-        
+
         /// 移动线路IP列表
         public let cmccIpList: [String]
-        
+
         /// 海外线路IP列表
         public let overseaIpList: [String]
-        
+
         /// 调度方式，当前仅支持优先级, 取值为priority
         public let method: String
-        
+
         /// 创建时间
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -1643,14 +1643,14 @@ extension Dayu {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var createTime: Date
-        
+
         /// ttl
         public let ttl: UInt64
-        
+
         /// 状态
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let status: UInt64?
-        
+
         /// 修改时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         ///
@@ -1659,7 +1659,7 @@ extension Dayu {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var modifyTime: Date?
-        
+
         enum CodingKeys: String, CodingKey {
             case domain = "Domain"
             case bgpIpList = "BGPIpList"
@@ -1674,35 +1674,35 @@ extension Dayu {
             case modifyTime = "ModifyTime"
         }
     }
-    
+
     /// 操作返回码，只用于返回成功的情况
     public struct SuccessCode: TCOutputModel {
         /// 成功/错误码
         public let code: String
-        
+
         /// 描述
         public let message: String
-        
+
         enum CodingKeys: String, CodingKey {
             case code = "Code"
             case message = "Message"
         }
     }
-    
+
     /// 水印Key
     public struct WaterPrintKey: TCOutputModel {
         /// 水印KeyID
         public let keyId: String
-        
+
         /// 水印Key值
         public let keyContent: String
-        
+
         /// 水印Key的版本号
         public let keyVersion: String
-        
+
         /// 是否开启，取值[0（没有开启），1（已开启）]
         public let openStatus: UInt64
-        
+
         /// 密钥生成时间
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -1710,7 +1710,7 @@ extension Dayu {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var createTime: Date
-        
+
         enum CodingKeys: String, CodingKey {
             case keyId = "KeyId"
             case keyContent = "KeyContent"
@@ -1719,32 +1719,32 @@ extension Dayu {
             case createTime = "CreateTime"
         }
     }
-    
+
     /// 水印策略参数
     public struct WaterPrintPolicy: TCInputModel, TCOutputModel {
         /// TCP端口段，例如["2000-3000","3500-4000"]
         public let tcpPortList: [String]
-        
+
         /// UDP端口段，例如["2000-3000","3500-4000"]
         public let udpPortList: [String]
-        
+
         /// 水印偏移量，取值范围[0, 100)
         public let offset: UInt64
-        
+
         /// 是否自动剥离，取值[0（不自动剥离），1（自动剥离）]
         public let removeSwitch: UInt64
-        
+
         /// 是否开启，取值[0（没有开启），1（已开启）]
         public let openStatus: UInt64
-        
-        public init (tcpPortList: [String], udpPortList: [String], offset: UInt64, removeSwitch: UInt64, openStatus: UInt64) {
+
+        public init(tcpPortList: [String], udpPortList: [String], offset: UInt64, removeSwitch: UInt64, openStatus: UInt64) {
             self.tcpPortList = tcpPortList
             self.udpPortList = udpPortList
             self.offset = offset
             self.removeSwitch = removeSwitch
             self.openStatus = openStatus
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case tcpPortList = "TcpPortList"
             case udpPortList = "UdpPortList"

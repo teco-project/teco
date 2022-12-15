@@ -20,39 +20,39 @@ extension TCMsError {
             case itemIdNotFound = "ResourceNotFound.ItemIdNotFound"
             case planIdNotFound = "ResourceNotFound.PlanIdNotFound"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// ItemId不存在。
         public static var itemIdNotFound: ResourceNotFound {
             ResourceNotFound(.itemIdNotFound)
         }
-        
+
         /// 无法找到指定的加固策略。
         public static var planIdNotFound: ResourceNotFound {
             ResourceNotFound(.planIdNotFound)
         }
-        
+
         public func asMsError() -> TCMsError {
             let code: TCMsError.Code
             switch self.error {

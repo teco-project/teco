@@ -19,58 +19,58 @@ extension Icr {
     public struct GetIndustryV1HomeMembersReqPayload: TCInputModel {
         /// 用户ID
         public let id: String
-        
-        public init (id: String) {
+
+        public init(id: String) {
             self.id = id
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case id = "ID"
         }
     }
-    
+
     /// 获取成员列表回包DataList
     public struct GetIndustryV1HomeMembersRespData: TCOutputModel {
         /// 修改时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let editTime: Int64?
-        
+
         /// 功能列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let featureList: GetIndustryV1HomeMembersRespFeature?
-        
+
         /// 用户ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let id: String?
-        
+
         /// 用户行业分类
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let industryType: String?
-        
+
         /// 子用户数量
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let memberNum: Int64?
-        
+
         /// 机器人列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let productList: GetIndustryV1HomeMembersRespProduct?
-        
+
         /// 备注
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let remark: String?
-        
+
         /// 是否有效
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let status: Int64?
-        
+
         /// 功能列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let typeList: GetIndustryV1HomeMembersRespType?
-        
+
         /// 用户账号
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let userAccount: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case editTime = "EditTime"
             case featureList = "FeatureList"
@@ -84,61 +84,61 @@ extension Icr {
             case userAccount = "UserAccount"
         }
     }
-    
+
     /// 获取成员列表接口回包Feature
     public struct GetIndustryV1HomeMembersRespFeature: TCOutputModel {
         /// 功能名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let featureName: String?
-        
+
         /// 功能ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let id: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case featureName = "FeatureName"
             case id = "ID"
         }
     }
-    
+
     /// 获取成员列表回包Industry
     public struct GetIndustryV1HomeMembersRespIndustry: TCOutputModel {
         /// 行业ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let id: String?
-        
+
         /// 行业名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let industryName: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case id = "ID"
             case industryName = "IndustryName"
         }
     }
-    
+
     /// 获取成员列表回包Payload
     public struct GetIndustryV1HomeMembersRespPayload: TCOutputModel {
         /// 用户级别
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let accountLevel: String?
-        
+
         /// 用户列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let dataList: [GetIndustryV1HomeMembersRespData]?
-        
+
         /// 每页数量
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let limit: Int64?
-        
+
         /// 分页偏移量，从0开始
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let offset: Int64?
-        
+
         /// 用户总数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let total: Int64?
-        
+
         enum CodingKeys: String, CodingKey {
             case accountLevel = "AccountLevel"
             case dataList = "DataList"
@@ -147,45 +147,45 @@ extension Icr {
             case total = "Total"
         }
     }
-    
+
     /// 获取成员列表接口回包ProductList
     public struct GetIndustryV1HomeMembersRespProduct: TCOutputModel {
         /// 创建时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let createTime: String?
-        
+
         /// 编辑时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let editTime: String?
-        
+
         /// 机器人ID（AppKey信息）
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let appKey: String?
-        
+
         /// 机器人图标
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let image: String?
-        
+
         /// 行业信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let industry: [GetIndustryV1HomeMembersRespIndustry]?
-        
+
         /// 操作员列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let operatorList: String?
-        
+
         /// 机器人名字
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let productName: String?
-        
+
         /// 备注
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let remark: String?
-        
+
         /// 模板列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let templateList: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case createTime = "CreateTime"
             case editTime = "EditTime"
@@ -198,44 +198,44 @@ extension Icr {
             case templateList = "TemplateList"
         }
     }
-    
+
     /// 获取成员列表接口回包TypeList
     public struct GetIndustryV1HomeMembersRespType: TCOutputModel {
         /// 类型ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let type: String?
-        
+
         /// 类型名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let typeName: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case type = "Type"
             case typeName = "TypeName"
         }
     }
-    
+
     /// 请求的Metadata
     public struct ReqMetadata: TCInputModel {
         /// 渠道
         public let channelID: String?
-        
+
         /// 无
         public let businessName: String?
-        
+
         /// 无
         public let guid: String?
-        
+
         /// 无
         public let appKey: String?
-        
+
         /// 位置定位服务
         public let lbs: ReqMetadataLBS?
-        
+
         /// 透传字段
         public let vagrants: [ReqMetadataVagrant]?
-        
-        public init (channelID: String? = nil, businessName: String? = nil, guid: String? = nil, appKey: String? = nil, lbs: ReqMetadataLBS? = nil, vagrants: [ReqMetadataVagrant]? = nil) {
+
+        public init(channelID: String? = nil, businessName: String? = nil, guid: String? = nil, appKey: String? = nil, lbs: ReqMetadataLBS? = nil, vagrants: [ReqMetadataVagrant]? = nil) {
             self.channelID = channelID
             self.businessName = businessName
             self.guid = guid
@@ -243,7 +243,7 @@ extension Icr {
             self.lbs = lbs
             self.vagrants = vagrants
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case channelID = "ChannelID"
             case businessName = "BusinessName"
@@ -253,59 +253,59 @@ extension Icr {
             case vagrants = "Vagrants"
         }
     }
-    
+
     /// 请求参数的lbs
     public struct ReqMetadataLBS: TCInputModel {
         /// 纬度
         public let latitude: Float?
-        
+
         /// 经度
         public let longitude: Float?
-        
-        public init (latitude: Float? = nil, longitude: Float? = nil) {
+
+        public init(latitude: Float? = nil, longitude: Float? = nil) {
             self.latitude = latitude
             self.longitude = longitude
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case latitude = "Latitude"
             case longitude = "Longitude"
         }
     }
-    
+
     /// 请求参数Vagrant
     public struct ReqMetadataVagrant: TCInputModel {
         /// 无
         public let key: String?
-        
+
         /// 无
         public let value: String?
-        
-        public init (key: String? = nil, value: String? = nil) {
+
+        public init(key: String? = nil, value: String? = nil) {
             self.key = key
             self.value = value
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case key = "Key"
             case value = "Value"
         }
     }
-    
+
     /// 回包的meta data
     public struct RspMetadata: TCOutputModel {
         /// 无
         public let code: Int64
-        
+
         /// 无
         public let message: String
-        
+
         /// 无
         public let sessionID: String
-        
+
         /// 无
         public let sessionDelta: String
-        
+
         enum CodingKeys: String, CodingKey {
             case code = "Code"
             case message = "Message"

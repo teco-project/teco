@@ -19,34 +19,34 @@ extension Btoe {
     public struct GetDepositFileRequest: TCRequestModel {
         /// 存证编码
         public let evidenceId: String
-        
-        public init (evidenceId: String) {
+
+        public init(evidenceId: String) {
             self.evidenceId = evidenceId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case evidenceId = "EvidenceId"
         }
     }
-    
+
     /// GetDepositFile返回参数结构体
     public struct GetDepositFileResponse: TCResponseModel {
         /// 存证编号
         public let evidenceId: String
-        
+
         /// 存证文件临时链接
         public let evidenceFile: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case evidenceId = "EvidenceId"
             case evidenceFile = "EvidenceFile"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 存证文件查询
     ///
     /// 功能迭代，已上线更高版本的接口2021-05-14
@@ -56,7 +56,7 @@ extension Btoe {
     public func getDepositFile(_ input: GetDepositFileRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetDepositFileResponse > {
         self.client.execute(action: "GetDepositFile", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 存证文件查询
     ///
     /// 功能迭代，已上线更高版本的接口2021-05-14
@@ -66,7 +66,7 @@ extension Btoe {
     public func getDepositFile(_ input: GetDepositFileRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> GetDepositFileResponse {
         try await self.client.execute(action: "GetDepositFile", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 存证文件查询
     ///
     /// 功能迭代，已上线更高版本的接口2021-05-14
@@ -76,7 +76,7 @@ extension Btoe {
     public func getDepositFile(evidenceId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < GetDepositFileResponse > {
         self.getDepositFile(GetDepositFileRequest(evidenceId: evidenceId), logger: logger, on: eventLoop)
     }
-    
+
     /// 存证文件查询
     ///
     /// 功能迭代，已上线更高版本的接口2021-05-14

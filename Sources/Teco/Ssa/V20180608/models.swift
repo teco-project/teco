@@ -22,150 +22,150 @@ extension Ssa {
     public struct AggregationObj: TCOutputModel {
         /// 类型
         public let type: String
-        
+
         /// 数组
         public let bucket: [Bucket]
-        
+
         enum CodingKeys: String, CodingKey {
             case type = "Type"
             case bucket = "Bucket"
         }
     }
-    
+
     /// 告警详情
     public struct AlertDetail: TCOutputModel {
         /// 告警基础信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let baseInfo: AlertType?
-        
+
         /// 告警详情，json序列化
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let detail: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case baseInfo = "BaseInfo"
             case detail = "Detail"
         }
     }
-    
+
     /// 告警列表响应数据
     public struct AlertListData: TCOutputModel {
         /// 总数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let total: Int64?
-        
+
         /// 返回列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let alertList: [AlertType]?
-        
+
         enum CodingKeys: String, CodingKey {
             case total = "Total"
             case alertList = "AlertList"
         }
     }
-    
+
     /// 告警字段
     public struct AlertType: TCOutputModel {
         /// 标准时间格式
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let alertTime: String?
-        
+
         /// 唯一id
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let alertId: String?
-        
+
         /// 资产id
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let assetId: String?
-        
+
         /// 内网ip
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let assetPrivateIp: [String]?
-        
+
         /// 名字
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let alertName: String?
-        
+
         /// 告警级别  0:未知 1:低危 2:中危 3:高危 4:严重
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let level: Int64?
-        
+
         /// 类型
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let type: String?
-        
+
         /// 来源
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let source: String?
-        
+
         /// 攻击字段1
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let attackChain: String?
-        
+
         /// 攻击字段2
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let attackId: String?
-        
+
         /// 关注点
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let concerns: [ConcernInfo]?
-        
+
         /// 1：已防御，0,2：仅检测(0:告警类 1:拦截类 2:放行类 )
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let action: Int64?
-        
+
         /// 0/空：未知，1：未成功，2：成功
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let attackResult: Int64?
-        
+
         /// //调查状态  0/空：未启用，1：调查中，2：完成调查
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let eventStatus: Int64?
-        
+
         /// //关联事件ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let eventId: String?
-        
+
         /// //处置状态  0：未关闭，1：已关闭
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let status: Int64?
-        
+
         /// 资产名
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let assetName: String?
-        
+
         /// 恶意实体
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let concernMaliciousCount: Int64?
-        
+
         /// 受害者实体
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let concernVictimCount: Int64?
-        
+
         /// 资产类型
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let victimAssetType: String?
-        
+
         /// 告警子类
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let subType: String?
-        
+
         /// 攻击技术名字
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let attackName: String?
-        
+
         /// 外网ip
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let assetPublicIp: [String]?
-        
+
         /// 攻击战术名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let attackTactic: String?
-        
+
         /// 资产子网
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let victimAssetSub: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case alertTime = "AlertTime"
             case alertId = "AlertId"
@@ -194,116 +194,116 @@ extension Ssa {
             case victimAssetSub = "VictimAssetSub"
         }
     }
-    
+
     /// 资产类型
     public struct Asset: TCOutputModel {
         /// 资产类型
         public let assetType: String
-        
+
         /// 名字
         public let name: String
-        
+
         /// 区域
         public let assetRegionName: String
-        
+
         /// 所属网络
         public let assetVpcid: String
-        
+
         /// 主机类型
         public let instanceType: String
-        
+
         /// 主机状态
         public let instanceState: String
-        
+
         /// 引擎版本
         public let engineVersion: String
-        
+
         /// 数据库标识
         public let id: String
-        
+
         /// 标签
         public let tag: [Tag]
-        
+
         /// 配置风险统计数
         public let assetCspmRiskNum: Int64
-        
+
         /// 主机IP
         public let publicIpAddresses: [String]
-        
+
         /// 资产唯一标识
         public let assetUniqid: String
-        
+
         /// 付费类型
         public let chargeType: String
-        
+
         /// 安全事件统计数
         public let assetEventNum: Int64
-        
+
         /// 漏洞统计数
         public let assetVulNum: Int64
-        
+
         /// 主机IP内网
         public let privateIpAddresses: [String]
-        
+
         /// 所属分组
         public let groupName: String
-        
+
         /// 发现时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let ssaAssetDiscoverTime: String?
-        
+
         /// 下线时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let ssaAssetDeleteTime: String?
-        
+
         /// 是否是新增资产
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let isNew: Bool?
-        
+
         /// 所属子网
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let assetSubnetId: String?
-        
+
         /// 子网名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let assetSubnetName: String?
-        
+
         /// vpc名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let assetVpcName: String?
-        
+
         /// 集群类型
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let clusterType: Int64?
-        
+
         /// 命名空间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let nameSpace: String?
-        
+
         /// 负载均衡实例的网络类型
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let loadBalancerType: String?
-        
+
         /// 负载均衡实例的vip列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let loadBalancerVips: [String]?
-        
+
         /// ipv6信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let assetIpv6: [String]?
-        
+
         /// ssh端口暴露风险
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let sshRisk: String?
-        
+
         /// rdp端口暴露风险
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let rdpRisk: String?
-        
+
         /// 资产失陷事件风险
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let eventRisk: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case assetType = "AssetType"
             case name = "Name"
@@ -338,177 +338,177 @@ extension Ssa {
             case eventRisk = "EventRisk"
         }
     }
-    
+
     /// 资产详情信息
     public struct AssetDetail: TCOutputModel {
         /// 资产类型
         public let assetType: String
-        
+
         /// 名字
         public let name: String
-        
+
         /// 区域
         public let region: String
-        
+
         /// 所属网络
         public let vpcId: String
-        
+
         /// 主机类型
         public let instanceType: String
-        
+
         /// 主机状态
         public let instanceState: String
-        
+
         /// 主机IP-公网
         public let publicIpAddresses: [String]
-        
+
         /// 引擎版本
         public let engineVersion: String
-        
+
         /// 标识
         public let id: String
-        
+
         /// 标签
         public let tag: [Tag]
-        
+
         /// 内网IP地址
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let vip: String?
-        
+
         /// 状态
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let status: Int64?
-        
+
         /// 负载均衡示例的vip列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let loadBalancerVips: [String]?
-        
+
         /// 账号ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let uin: Int64?
-        
+
         /// 创建时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let creationDate: String?
-        
+
         /// 访问域名
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let domain: String?
-        
+
         /// 资产唯一id
         public let assetUniqid: String
-        
+
         /// 关联实例
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let instanceId: String?
-        
+
         /// 配置硬盘类型
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let diskType: String?
-        
+
         /// 配置硬盘大小
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let diskSize: Int64?
-        
+
         /// 云硬盘/证书状态
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let assetStatus: String?
-        
+
         /// 证书类型
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let certType: String?
-        
+
         /// 所属项目
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let projectName: String?
-        
+
         /// 到期时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let certEndTime: String?
-        
+
         /// nosql引擎/版本
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let productType: Int64?
-        
+
         /// 主机IP-内网
         public let privateIpAddresses: [String]
-        
+
         /// 证书有效期
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let validityPeriod: String?
-        
+
         /// 分组名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let groupName: String?
-        
+
         /// 端口服务数组
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let port: [String]?
-        
+
         /// 配置风险数组
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let riskConfig: [String]?
-        
+
         /// 相关待处理事件
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let event: String?
-        
+
         /// 相关待处理漏洞
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let vul: String?
-        
+
         /// 资产发现时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let ssaAssetDiscoverTime: String?
-        
+
         /// 所属子网
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let assetSubnetId: String?
-        
+
         /// 子网名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let assetSubnetName: String?
-        
+
         /// vpc名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let assetVpcName: String?
-        
+
         /// 集群类型
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let clusterType: Int64?
-        
+
         /// 命名空间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let nameSpace: String?
-        
+
         /// 创建时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let assetCreateTime: String?
-        
+
         /// 负载均衡网络类型
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let loadBalancerType: String?
-        
+
         /// ipv6信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let assetIpv6: [String]?
-        
+
         /// ssh风险
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let sshRisk: String?
-        
+
         /// rdp风险
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let rdpRisk: String?
-        
+
         /// 安全事件风险
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let eventRisk: String?
-        
+
         /// 漏洞数量
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let assetVulNum: Int64?
-        
+
         enum CodingKeys: String, CodingKey {
             case assetType = "AssetType"
             case name = "Name"
@@ -557,87 +557,87 @@ extension Ssa {
             case assetVulNum = "AssetVulNum"
         }
     }
-    
+
     /// 资产列表
     public struct AssetList: TCOutputModel {
         /// 总数
         public let total: Int64
-        
+
         /// 资产数组
         public let list: [Asset]
-        
+
         enum CodingKeys: String, CodingKey {
             case total = "Total"
             case list = "List"
         }
     }
-    
+
     /// 资产查询过滤参数
     public struct AssetQueryFilter: TCInputModel {
         /// 查询参数
         public let filter: [QueryFilter]?
-        
+
         /// 查询连接符，1 and  ，2 or
         public let logic: UInt64?
-        
-        public init (filter: [QueryFilter]? = nil, logic: UInt64? = nil) {
+
+        public init(filter: [QueryFilter]? = nil, logic: UInt64? = nil) {
             self.filter = filter
             self.logic = logic
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case filter = "Filter"
             case logic = "Logic"
         }
     }
-    
+
     /// 资产测绘结果统计
     public struct AssetTypeStatistic: TCOutputModel {
         /// 资产类型
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let assetType: String?
-        
+
         /// 统计计数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let assetCount: UInt64?
-        
+
         enum CodingKeys: String, CodingKey {
             case assetType = "AssetType"
             case assetCount = "AssetCount"
         }
     }
-    
+
     /// es聚合数据类型
     public struct Bucket: TCOutputModel {
         /// key
         public let key: String
-        
+
         /// 数量
         public let count: Int64
-        
+
         enum CodingKeys: String, CodingKey {
             case key = "Key"
             case count = "Count"
         }
     }
-    
+
     /// 检查项资产组每一项
     public struct CheckAssetItem: TCInputModel, TCOutputModel {
         /// 检查项下资产组ID
         public let id: Int64
-        
+
         /// 资产组实例id
         public let instid: String
-        
+
         /// 处置跳转URL
         public let url: String
-        
+
         /// 检查任务id
         public let taskid: String
-        
+
         /// 检查结果
         public let result: Int64
-        
+
         /// 更新时间
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -645,30 +645,30 @@ extension Ssa {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var updatetime: Date
-        
+
         /// 标签
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tag: String?
-        
+
         /// 是否忽略
         public let isIgnore: Int64
-        
+
         /// 检查状态
         public let isChecked: Int64
-        
+
         /// 资产组信息
         public let assetInfo: String
-        
+
         /// 资产组ES的_id
         public let assetId: String
-        
+
         /// 详情
         public let detail: String?
-        
+
         /// 备注内容
         public let remarks: String?
-        
-        public init (id: Int64, instid: String, url: String, taskid: String, result: Int64, updatetime: Date, tag: String, isIgnore: Int64, isChecked: Int64, assetInfo: String, assetId: String, detail: String? = nil, remarks: String? = nil) {
+
+        public init(id: Int64, instid: String, url: String, taskid: String, result: Int64, updatetime: Date, tag: String, isIgnore: Int64, isChecked: Int64, assetInfo: String, assetId: String, detail: String? = nil, remarks: String? = nil) {
             self.id = id
             self.instid = instid
             self.url = url
@@ -683,7 +683,7 @@ extension Ssa {
             self.detail = detail
             self.remarks = remarks
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case id = "Id"
             case instid = "Instid"
@@ -700,51 +700,51 @@ extension Ssa {
             case remarks = "Remarks"
         }
     }
-    
+
     /// 云安全配置检查项详情
     public struct CheckConfigDetail: TCOutputModel {
         /// 检查项Id
         public let id: String
-        
+
         /// 检查项名称
         public let checkName: String
-        
+
         /// 检查项内容
         public let content: String
-        
+
         /// 检查项处置方案
         public let method: String
-        
+
         /// 检查项帮助文档
         public let doc: String
-        
+
         /// 未通过总数
         public let errorCount: Int64
-        
+
         /// 是否通过检查
         public let isPass: Int64
-        
+
         /// 通过检查项
         public let safeCount: Int64
-        
+
         /// 忽略检查项
         public let ignoreCount: Int64
-        
+
         /// 风险检查项
         public let riskCount: Int64
-        
+
         /// 检查项英文
         public let nameEn: String
-        
+
         /// 检查项类型
         public let assetType: String
-        
+
         /// res_count
         public let resCount: Int64
-        
+
         /// 是否忽略
         public let isIgnore: Int64
-        
+
         enum CodingKeys: String, CodingKey {
             case id = "Id"
             case checkName = "CheckName"
@@ -762,48 +762,48 @@ extension Ssa {
             case isIgnore = "IsIgnore"
         }
     }
-    
+
     /// 等保资产组记录
     public struct ComplianceCheckDetail: TCInputModel, TCOutputModel {
         /// 检查项ID
         public let id: String
-        
+
         /// 检查项类别
         public let category: String
-        
+
         /// 检查项类型
         public let type: String
-        
+
         /// 不通过总数
         public let errorCount: Int64
-        
+
         /// 检查项英文名
         public let nameEn: String
-        
+
         /// 检查项名称
         public let checkName: String
-        
+
         /// 检查项处置方式
         public let method: String
-        
+
         /// 帮助文档
         public let doc: String
-        
+
         /// 通过总数
         public let safeCount: Int64
-        
+
         /// 检查项检查内容
         public let content: String
-        
+
         /// 是否通过检测
         public let isPass: Int64
-        
+
         /// 忽略总数
         public let ignoreCount: Int64
-        
+
         /// 风险总数
         public let riskCount: Int64
-        
+
         /// 最近一次检测时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         ///
@@ -812,41 +812,41 @@ extension Ssa {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var lastCheckTime: Date?
-        
+
         /// 资产组类型
         public let assetType: String
-        
+
         /// res_count
         public let resCount: Int64
-        
+
         /// 检查项UUID
         public let uuid: String
-        
+
         /// 标准项
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let standardItem: String?
-        
+
         /// 章节
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let chapter: String?
-        
+
         /// 资产类型描述
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let assetTypeDesc: String?
-        
+
         /// 是否忽略
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let isIgnore: UInt64?
-        
+
         /// 风险项
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let riskItem: String?
-        
+
         /// 合规检查项完整名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let title: String?
-        
-        public init (id: String, category: String, type: String, errorCount: Int64, nameEn: String, checkName: String, method: String, doc: String, safeCount: Int64, content: String, isPass: Int64, ignoreCount: Int64, riskCount: Int64, lastCheckTime: Date, assetType: String, resCount: Int64, uuid: String, standardItem: String, chapter: String, assetTypeDesc: String, isIgnore: UInt64? = nil, riskItem: String? = nil, title: String? = nil) {
+
+        public init(id: String, category: String, type: String, errorCount: Int64, nameEn: String, checkName: String, method: String, doc: String, safeCount: Int64, content: String, isPass: Int64, ignoreCount: Int64, riskCount: Int64, lastCheckTime: Date, assetType: String, resCount: Int64, uuid: String, standardItem: String, chapter: String, assetTypeDesc: String, isIgnore: UInt64? = nil, riskItem: String? = nil, title: String? = nil) {
             self.id = id
             self.category = category
             self.type = type
@@ -871,7 +871,7 @@ extension Ssa {
             self.riskItem = riskItem
             self.title = title
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case id = "Id"
             case category = "Category"
@@ -898,45 +898,45 @@ extension Ssa {
             case title = "Title"
         }
     }
-    
+
     /// 关注点类型
     public struct ConcernInfo: TCOutputModel {
         /// 关注点类型
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let concernType: Int64?
-        
+
         /// 实体类型
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let entityType: Int64?
-        
+
         /// 关注点
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let concern: String?
-        
+
         /// 最近数量
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let statisticsCount: Int64?
-        
+
         /// 可疑关注点字段
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let searchData: String?
-        
+
         /// 可疑关注点字段
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let ipCountryIso: String?
-        
+
         /// 可疑关注点字段
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let ipProvinceIso: String?
-        
+
         /// 可疑关注点字段
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let ipCity: String?
-        
+
         /// 可疑关注点字段
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let eventSubType: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case concernType = "ConcernType"
             case entityType = "EntityType"
@@ -949,53 +949,53 @@ extension Ssa {
             case eventSubType = "EventSubType"
         }
     }
-    
+
     /// 资产测绘对象
     public struct DataAssetMapping: TCOutputModel {
         /// 资产主IP地址(公网IP)
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let assetIp: String?
-        
+
         /// 资产名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let assetName: String?
-        
+
         /// 资产ID(各模块间通用)
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let instid: String?
-        
+
         /// 资产类型
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let assetType: String?
-        
+
         /// 资产可用区(英文)
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let assetRegionEn: String?
-        
+
         /// 资产可用区(中文)
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let assetRegionCn: String?
-        
+
         /// 资产所属网络
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let assetNetwork: String?
-        
+
         /// 资产运行状态(英文)
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let assetStatusEn: String?
-        
+
         /// 资产运行状态(中文)
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let assetStatusCn: String?
-        
+
         /// 是否白名单：“True”为白名单不测绘，默认“False”正常测绘
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let isWhite: String?
-        
+
         /// 资产测绘状态(“unstart”未开始/“running”测绘中/“finish”已完成/“abandoned”任务中止)
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let status: String?
-        
+
         /// 最近更新时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         ///
@@ -1004,31 +1004,31 @@ extension Ssa {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var time: Date?
-        
+
         /// 资产标签
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tag: [Tag]?
-        
+
         /// 资产组
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let group: [String]?
-        
+
         /// 端口和服务信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let port: String?
-        
+
         /// 组件信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let component: String?
-        
+
         /// 资产实例类型
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let assetInstanceType: String?
-        
+
         /// 资产是否是内网类型
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let isIntranet: UInt64?
-        
+
         enum CodingKeys: String, CodingKey {
             case assetIp = "AssetIp"
             case assetName = "AssetName"
@@ -1050,18 +1050,18 @@ extension Ssa {
             case isIntranet = "IsIntranet"
         }
     }
-    
+
     /// 检查项详情对象
     public struct DataCheck: TCOutputModel {
         /// 检查项唯一标识符uuid
         public let id: String
-        
+
         /// 检查项名称
         public let name: String
-        
+
         /// 检查项类型
         public let type: String
-        
+
         /// 最近一次检查时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         ///
@@ -1070,31 +1070,31 @@ extension Ssa {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var lastCheckTime: Date?
-        
+
         /// 初始未检测状态0, 已通过为1，未通过为2
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let status: UInt64?
-        
+
         /// 0-未忽略,1-已忽略
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let isIgnored: UInt64?
-        
+
         /// 有风险的资源总数，未通过数量
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let riskCount: UInt64?
-        
+
         /// 0-检测中,1-结束检测
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let isChecked: UInt64?
-        
+
         /// 总资产数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let assetTotal: Int64?
-        
+
         /// 备注内容
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let remarks: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case id = "Id"
             case name = "Name"
@@ -1108,33 +1108,33 @@ extension Ssa {
             case remarks = "Remarks"
         }
     }
-    
+
     /// 合规检查项详情对象
     public struct DataCompliance: TCOutputModel {
         /// 等保唯一标识符
         public let id: String
-        
+
         /// 检查项唯一标识符
         public let checkItemId: String
-        
+
         /// 检查项名称
         public let name: String
-        
+
         /// 检查项资产类型
         public let assetType: String
-        
+
         /// 检查项类型
         public let type: String
-        
+
         /// 检查项类别
         public let category: String
-        
+
         /// 检查项标准项
         public let standardItem: String
-        
+
         /// 检查项章节号
         public let chapter: String
-        
+
         /// 最近一次检查时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         ///
@@ -1143,39 +1143,39 @@ extension Ssa {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var lastCheckTime: Date?
-        
+
         /// 初始未检测状态0, 已通过为1，未通过为2
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let status: UInt64?
-        
+
         /// 有风险的资源总数，未通过数量
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let riskCount: UInt64?
-        
+
         /// 0-检测中,1-结束检测
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let isChecked: UInt64?
-        
+
         /// 检查项风险项
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let riskItem: String?
-        
+
         /// 0-未忽略,1-已忽略
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let isIgnored: UInt64?
-        
+
         /// 等保检查项完整名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let title: String?
-        
+
         /// 资产总数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let assetTotal: Int64?
-        
+
         /// 忽略内容
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let remarks: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case id = "Id"
             case checkItemId = "CheckItemId"
@@ -1196,41 +1196,41 @@ extension Ssa {
             case remarks = "Remarks"
         }
     }
-    
+
     /// 事件列表对象
     public struct DataEvent: TCOutputModel {
         /// Md5值
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let oldIdMd5: String?
-        
+
         /// 事件名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let eventName: String?
-        
+
         /// 事件类型一级分类
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let eventType1: Int64?
-        
+
         /// 事件类型二级分类
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let eventType2: Int64?
-        
+
         /// 事件等级
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let level: Int64?
-        
+
         /// 处理状态
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let status: Int64?
-        
+
         /// 源ip
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let srcIp: String?
-        
+
         /// 目的ip
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let dstIp: String?
-        
+
         /// 事件发生时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         ///
@@ -1239,109 +1239,109 @@ extension Ssa {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var time: Date?
-        
+
         /// 目的端口
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let dstport: Int64?
-        
+
         /// 资产ip
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let assetIp: String?
-        
+
         /// 资产名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let assetName: String?
-        
+
         /// 安全事件唯一标识符
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let ssaEventUniqid: String?
-        
+
         /// 资产id
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let assetId: String?
-        
+
         /// 事件来源
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let source: String?
-        
+
         /// 索引
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let index: String?
-        
+
         /// 索引中的唯一标识符
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let id: String?
-        
+
         /// 受影响资产是否已下线
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let isAssetDeleted: String?
-        
+
         /// 源ip所属地
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let ssaSrcCountry: String?
-        
+
         /// 目的ip所属地
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let ssaDstCountry: String?
-        
+
         /// 木马类型的描述信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let ssaDescription: String?
-        
+
         /// 供给链类型
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let ssaAttackChain: String?
-        
+
         /// 受影响组件
         public let ruleComponents: String
-        
+
         /// 资产ip
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let assetIpAll: [String]?
-        
+
         /// 资产类型
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let assetType: String?
-        
+
         /// cvm类型资产的公网ip
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let publicIpAddresses: [String]?
-        
+
         /// cvm类型资产的内网ip
         public let privateIpAddresses: [String]
-        
+
         /// 事件响应状态
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let soarResponseStatus: Int64?
-        
+
         /// 事件最近响应时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let soarResponseTime: Int64?
-        
+
         /// 事件建议处理状态
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let soarSuggestStatus: Int64?
-        
+
         /// 事件剧本类型
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let soarPlaybookType: String?
-        
+
         /// 剧本任务Id
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let soarRunId: String?
-        
+
         /// 事件Id
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let ssaEventId: String?
-        
+
         /// 是否新接入的云防事件
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let isNewCfwEvent: Bool?
-        
+
         /// 出入站方向
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let direction: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case oldIdMd5 = "OldIdMd5"
             case eventName = "EventName"
@@ -1380,43 +1380,43 @@ extension Ssa {
             case direction = "Direction"
         }
     }
-    
+
     /// 云安全配置检查项列表
     public struct DescribeSocCheckItemListRspRsp: TCOutputModel {
         /// 检查项详情列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let list: [SocCheckItemV1]?
-        
+
         /// 检查项总数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let total: Int64?
-        
+
         enum CodingKeys: String, CodingKey {
             case list = "List"
             case total = "Total"
         }
     }
-    
+
     /// 检查项结果详情列表
     public struct DescribeSocCheckResultListRspRsp: TCOutputModel {
         /// 具体检查项详情
         public let list: [SocCheckResult]
-        
+
         /// 检查结果总数
         public let total: Int64
-        
+
         /// 低危个数
         public let lowTotal: Int64
-        
+
         /// 中危个数
         public let middleTotal: Int64
-        
+
         /// 高危个数
         public let highTotal: Int64
-        
+
         /// 正常个数
         public let normalTotal: Int64
-        
+
         enum CodingKeys: String, CodingKey {
             case list = "List"
             case total = "Total"
@@ -1426,107 +1426,107 @@ extension Ssa {
             case normalTotal = "NormalTotal"
         }
     }
-    
+
     /// 描述键值对过滤器，用于条件过滤查询。例如过滤ID、名称、状态等
     /// 若存在多个Filter时，Filter间的关系为逻辑与（AND）关系。
     /// 若同一个Filter存在多个Values，同一Filter下Values间的关系为逻辑或（OR）关系。
     public struct Filter: TCInputModel {
         /// 过滤键的名称。
         public let name: String?
-        
+
         /// 一个或者多个过滤值。
         public let values: [String]?
-        
+
         /// 是否需要精确匹配
         public let exactMatch: Bool?
-        
-        public init (name: String? = nil, values: [String]? = nil, exactMatch: Bool? = nil) {
+
+        public init(name: String? = nil, values: [String]? = nil, exactMatch: Bool? = nil) {
             self.name = name
             self.values = values
             self.exactMatch = exactMatch
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case name = "Name"
             case values = "Values"
             case exactMatch = "ExactMatch"
         }
     }
-    
+
     /// 测绘记录
     public struct MappingResult: TCOutputModel {
         /// 资产名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let assetName: String?
-        
+
         /// 公网ip
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let assetIp: String?
-        
+
         /// 内网ip
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let privateIp: String?
-        
+
         /// 资产id
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let assetId: String?
-        
+
         /// 协议
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let `protocol`: String?
-        
+
         /// 端口
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let port: String?
-        
+
         /// 服务
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let service: String?
-        
+
         /// 组件
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let component: String?
-        
+
         /// 进程
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let process: String?
-        
+
         /// 操作系统
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let os: String?
-        
+
         /// 测绘时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let lastMappingTime: String?
-        
+
         /// 处置建议
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let disposalRecommendations: String?
-        
+
         /// 处置建议详情
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let disposalRecommendationDetails: String?
-        
+
         /// 资产类型
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let assetType: String?
-        
+
         /// 域名
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let domain: String?
-        
+
         /// 测绘状态
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let mappingStatus: UInt64?
-        
+
         /// 区域
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let region: String?
-        
+
         /// 安全防护状态
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let securityStatus: [SecurityStatus]?
-        
+
         enum CodingKeys: String, CodingKey {
             case assetName = "AssetName"
             case assetIp = "AssetIp"
@@ -1548,68 +1548,68 @@ extension Ssa {
             case securityStatus = "SecurityStatus"
         }
     }
-    
+
     /// 过滤条件
     public struct QueryFilter: TCInputModel {
         /// 过滤key
         public let filterKey: String?
-        
+
         /// 操作符(只支持32位)
         public let filterOperatorType: Int64?
-        
+
         /// 过滤value
         public let filterValue: String?
-        
-        public init (filterKey: String? = nil, filterOperatorType: Int64? = nil, filterValue: String? = nil) {
+
+        public init(filterKey: String? = nil, filterOperatorType: Int64? = nil, filterValue: String? = nil) {
             self.filterKey = filterKey
             self.filterOperatorType = filterOperatorType
             self.filterValue = filterValue
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case filterKey = "FilterKey"
             case filterOperatorType = "FilterOperatorType"
             case filterValue = "FilterValue"
         }
     }
-    
+
     /// 排序的字段
     public struct QuerySort: TCInputModel {
         /// 排序字段
         public let sortKey: String
-        
+
         /// 顺序，1升序2降序
         public let sortType: Int64
-        
-        public init (sortKey: String, sortType: Int64) {
+
+        public init(sortKey: String, sortType: Int64) {
             self.sortKey = sortKey
             self.sortType = sortType
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case sortKey = "SortKey"
             case sortType = "SortType"
         }
     }
-    
+
     /// 测绘结果
     public struct Results: TCOutputModel {
         /// 测绘类型统计
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let statistics: [AssetTypeStatistic]?
-        
+
         /// 测绘结果列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let result: [MappingResult]?
-        
+
         /// 测绘任务数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let taskCount: UInt64?
-        
+
         /// 最大测绘任务数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let taskMaxCount: UInt64?
-        
+
         enum CodingKeys: String, CodingKey {
             case statistics = "Statistics"
             case result = "Result"
@@ -1617,57 +1617,57 @@ extension Ssa {
             case taskMaxCount = "TaskMaxCount"
         }
     }
-    
+
     /// 查询_通用字段
     public struct SaDivulgeDataQueryPub: TCOutputModel {
         /// Id信息
         public let id: String
-        
+
         /// 用户Uin
         public let uin: String
-        
+
         /// 用户AppId
         public let appId: String
-        
+
         /// 事件名称
         public let eventName: String
-        
+
         /// 监控源 0:全部 1:GitHub 2:暗网 默认值1
         public let divulgeSoure: String
-        
+
         /// 受影响资产
         public let asset: String
-        
+
         /// 命中主题集下的规则topic名称
         public let ruleName: String
-        
+
         /// 命中主题集下的规则topic唯一id
         public let ruleId: String
-        
+
         /// 命中主题集下的自定义规则策略
         public let ruleWord: String
-        
+
         /// 扫描监测url
         public let scanUrl: String
-        
+
         /// 扫描监测命中次数
         public let scanCount: String
-        
+
         /// 风险等级 -1:未知 1:低危 2:中危 3:高危 4:严重
         public let level: String
-        
+
         /// 安全事件处理状态 -1:未知 1:待处理 2:已处理 3:误报 4:已忽略 5:已知晓 6:已信任
         public let status: String
-        
+
         /// 安全事件发生时间
         public let eventTime: String
-        
+
         /// 事件插入时间
         public let insertTime: String
-        
+
         /// 事件更新时间
         public let updateTime: String
-        
+
         enum CodingKeys: String, CodingKey {
             case id = "Id"
             case uin = "Uin"
@@ -1687,43 +1687,43 @@ extension Ssa {
             case updateTime = "UpdateTime"
         }
     }
-    
+
     /// 自定义泄露事件列表
     public struct SaDivulgeDataQueryPubList: TCOutputModel {
         /// 数据条数
         public let count: UInt64
-        
+
         /// 自定义泄露事件列表
         public let list: [SaDivulgeDataQueryPub]
-        
+
         enum CodingKeys: String, CodingKey {
             case count = "Count"
             case list = "List"
         }
     }
-    
+
     /// 安全放回状态
     public struct SecurityStatus: TCOutputModel {
     }
-    
+
     /// SocCheckItem类型
     public struct SocCheckItem: TCOutputModel {
         /// 名字
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let name: String?
-        
+
         /// 唯一id
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let levelId: String?
-        
+
         /// 成功数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let successCount: Int64?
-        
+
         /// 失败数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let failCount: Int64?
-        
+
         enum CodingKeys: String, CodingKey {
             case name = "Name"
             case levelId = "LevelId"
@@ -1731,38 +1731,38 @@ extension Ssa {
             case failCount = "FailCount"
         }
     }
-    
+
     /// 检查项相关信息
     public struct SocCheckItemV1: TCInputModel, TCOutputModel {
         /// 检查项id
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let checkId: String?
-        
+
         /// 配置要求
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let name: String?
-        
+
         /// 检查项类型
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let type: String?
-        
+
         /// 检查对象
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let assetType: String?
-        
+
         /// 默认风险等级 2:低危 3:中危 4:高危
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let level: Int64?
-        
+
         /// 相关规范
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let standard: String?
-        
+
         /// 检查项是否付费 1:免费 2:付费
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let isFree: Int64?
-        
-        public init (checkId: String, name: String, type: String, assetType: String, level: Int64, standard: String, isFree: Int64? = nil) {
+
+        public init(checkId: String, name: String, type: String, assetType: String, level: Int64, standard: String, isFree: Int64? = nil) {
             self.checkId = checkId
             self.name = name
             self.type = type
@@ -1771,7 +1771,7 @@ extension Ssa {
             self.standard = standard
             self.isFree = isFree
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case checkId = "CheckId"
             case name = "Name"
@@ -1782,39 +1782,39 @@ extension Ssa {
             case isFree = "IsFree"
         }
     }
-    
+
     /// 云安全配置检测结果
     public struct SocCheckResult: TCOutputModel {
         /// 检查项的uuid
         public let checkId: String
-        
+
         /// 配置要求
         public let name: String
-        
+
         /// 检查项的类型
         public let type: String
-        
+
         /// 检查对象
         public let assetType: String
-        
+
         /// 策略名
         public let ployName: String
-        
+
         /// 策略id
         public let ployId: Int64
-        
+
         /// 正常,低危,中危,高危
         public let result: String
-        
+
         /// 不符合数
         public let failAssetNum: Int64
-        
+
         /// 总数
         public let totalAssetNum: Int64
-        
+
         /// 处置建议url链接
         public let dealUrl: String
-        
+
         enum CodingKeys: String, CodingKey {
             case checkId = "CheckId"
             case name = "Name"
@@ -1828,52 +1828,52 @@ extension Ssa {
             case dealUrl = "DealUrl"
         }
     }
-    
+
     /// 返回结构
     public struct SocComplianceInfoResp: TCOutputModel {
         /// 合格项
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let items: [SocComplianceItem]?
-        
+
         enum CodingKeys: String, CodingKey {
             case items = "Items"
         }
     }
-    
+
     /// soc合规信息
     public struct SocComplianceItem: TCOutputModel {
         /// 唯一id
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let item: String?
-        
+
         /// 描述
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let description: String?
-        
+
         /// 分类
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let standardItem: String?
-        
+
         /// 结果
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let result: Int64?
-        
+
         /// 建议
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let suggestion: String?
-        
+
         /// 产品字符
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let proStr: String?
-        
+
         /// 产品数组
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let production: [SocProductionItem]?
-        
+
         /// 配置项数组
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let checkItems: [SocCheckItem]?
-        
+
         enum CodingKeys: String, CodingKey {
             case item = "Item"
             case description = "Description"
@@ -1885,156 +1885,156 @@ extension Ssa {
             case checkItems = "CheckItems"
         }
     }
-    
+
     /// soc产品购买信息
     public struct SocProductionItem: TCOutputModel {
         /// 名字
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let name: String?
-        
+
         /// 标识
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let index: Int64?
-        
+
         /// 状态
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let status: Int64?
-        
+
         enum CodingKeys: String, CodingKey {
             case name = "Name"
             case index = "Index"
             case status = "Status"
         }
     }
-    
+
     /// 标签
     public struct Tag: TCOutputModel {
         /// 数据库标识
         public let fid: Int64
-        
+
         /// 标签名称
         public let fname: String
-        
+
         enum CodingKeys: String, CodingKey {
             case fid = "Fid"
             case fname = "Fname"
         }
     }
-    
+
     /// 漏洞管理漏洞数据
     public struct VulItem: TCOutputModel {
         /// 标识
         public let id: String
-        
+
         /// 漏洞名称
         public let vulName: String
-        
+
         /// 漏洞类型
         public let type: Int64
-        
+
         /// 风险等级
         public let level: Int64
-        
+
         /// 处理状态
         public let status: Int64
-        
+
         /// 发现时间
         public let time: String
-        
+
         /// 影响资产数
         public let impactAssetNum: Int64
-        
+
         /// 影响资产id
         public let impactAsset: String
-        
+
         /// 影响资产名称
         public let impactAssetName: String
-        
+
         /// 漏洞描述
         public let vulDetail: String
-        
+
         /// 参考链接
         public let vulRefLink: String
-        
+
         /// Md5值
         public let oldIdMd5: String
-        
+
         /// 漏洞唯一标识
         public let uniqId: String
-        
+
         /// 忽略时间
         public let operateTime: String
-        
+
         /// 受影响资产是否下线
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let isAssetDeleted: String?
-        
+
         /// 漏洞首次发现时间
         public let discoverTime: String
-        
+
         /// 主机源信息标识符
         public let originId: UInt64
-        
+
         /// 资产区域
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let region: String?
-        
+
         /// 资产所属网络
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let vpcid: String?
-        
+
         /// 资产类型
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let assetType: String?
-        
+
         /// 资产子类型
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let assetSubType: String?
-        
+
         /// 资产IP
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let assetIpAll: [String]?
-        
+
         /// cvm类型的公网ip
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let publicIpAddresses: [String]?
-        
+
         /// cvm类型的内网ip
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let privateIpAddresses: [String]?
-        
+
         /// 漏洞来源
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let vulSource: String?
-        
+
         /// 影响URL
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let affectedUrl: String?
-        
+
         /// 资产归属
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let ssaAssetCategory: Int64?
-        
+
         /// 影响url
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let vulUrl: String?
-        
+
         /// 是否扫描
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let isOpen: Bool?
-        
+
         /// 御知主机id
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let yzHostId: UInt64?
-        
+
         /// 漏洞描述
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let vulRepairPlan: String?
-        
+
         /// 漏洞文件路径
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let vulPath: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case id = "Id"
             case vulName = "VulName"
@@ -2070,15 +2070,15 @@ extension Ssa {
             case vulPath = "VulPath"
         }
     }
-    
+
     /// 漏洞管理漏洞列表
     public struct VulList: TCOutputModel {
         /// 列表
         public let list: [VulItem]
-        
+
         /// 总数
         public let total: Int64
-        
+
         enum CodingKeys: String, CodingKey {
             case list = "List"
             case total = "Total"

@@ -19,38 +19,38 @@ extension Sslpod {
     public struct CertInfo: TCOutputModel {
         /// 证书sha1
         public let hash: String
-        
+
         /// 证书通用名称
         public let cn: String
-        
+
         /// 备用名称
         public let saNs: String
-        
+
         /// 公钥算法
         public let keyAlgo: String
-        
+
         /// 颁发者
         public let issuer: String
-        
+
         /// 有效期开始
         public let beginTime: String
-        
+
         /// 有效期结束
         public let endTime: String
-        
+
         /// 剩余天数
         public let days: Int64
-        
+
         /// 品牌
         public let brand: String
-        
+
         /// 信任状态
         public let trustStatus: String
-        
+
         /// 证书类型
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let certType: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case hash = "Hash"
             case cn = "CN"
@@ -65,55 +65,55 @@ extension Sslpod {
             case certType = "CertType"
         }
     }
-    
+
     /// 直方图数据结构
     public struct ChartHistogram: TCOutputModel {
         /// 项目名
         public let name: String
-        
+
         /// 项目值
         public let children: [ChartNameValue]
-        
+
         enum CodingKeys: String, CodingKey {
             case name = "Name"
             case children = "Children"
         }
     }
-    
+
     /// 通用图表键值对
     public struct ChartNameValue: TCOutputModel {
         /// 图表项名称
         public let name: String
-        
+
         /// 图表项值
         public let value: Int64
-        
+
         enum CodingKeys: String, CodingKey {
             case name = "Name"
             case value = "Value"
         }
     }
-    
+
     /// 面板数据
     public struct DashboardResult: TCOutputModel {
         /// 安全等级图表
         public let securityLevelPie: [ChartNameValue]
-        
+
         /// 证书品牌图表
         public let certBrandsPie: [ChartNameValue]
-        
+
         /// 证书有效时间图表
         public let certValidTimePie: [ChartNameValue]
-        
+
         /// 证书类型图表
         public let certTypePie: [ChartNameValue]
-        
+
         /// ssl bugs图表
         public let sslBugsLoopholeHistogram: [ChartHistogram]
-        
+
         /// 合规图表
         public let complianceHistogram: [ChartHistogram]
-        
+
         enum CodingKeys: String, CodingKey {
             case securityLevelPie = "SecurityLevelPie"
             case certBrandsPie = "CertBrandsPie"
@@ -123,28 +123,28 @@ extension Sslpod {
             case complianceHistogram = "ComplianceHistogram"
         }
     }
-    
+
     /// 监控域名列表
     public struct DescribeDomains: TCOutputModel {
         /// 列表数据
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let result: [DomainSiteInfo]?
-        
+
         /// 搜索出来的数量
         public let searchTotal: Int64
-        
+
         /// 总数
         public let total: Int64
-        
+
         /// 允许的监控数量
         public let allowMonitoringCount: Int64
-        
+
         /// 当前监控的数量
         public let currentMonitoringCount: Int64
-        
+
         /// 允许添加域名总数
         public let allowMaxAddDomain: Int64
-        
+
         enum CodingKeys: String, CodingKey {
             case result = "Result"
             case searchTotal = "SearchTotal"
@@ -154,21 +154,21 @@ extension Sslpod {
             case allowMaxAddDomain = "AllowMaxAddDomain"
         }
     }
-    
+
     /// 监控的域名站点信息
     public struct DomainSiteInfo: TCOutputModel {
         /// ID标识
         public let id: Int64
-        
+
         /// 域名
         public let domain: String
-        
+
         /// IP地址
         public let ip: String
-        
+
         /// 是否自动获取IP：true：是，false:否
         public let autoIP: Bool
-        
+
         /// 评级
         /// "A+"，
         ///  "A"，
@@ -180,17 +180,17 @@ extension Sslpod {
         ///  "F"，
         /// "T"，
         public let grade: String
-        
+
         /// 证书品牌
         public let brand: String
-        
+
         /// 监控服务类型
         /// 0 :Web
         /// 1: SMTP
         /// 2: IMAP
         /// 3: POP3
         public let serverType: Int64
-        
+
         /// 评级Code
         /// 0："unknown"，
         /// 1："A+"，
@@ -203,17 +203,17 @@ extension Sslpod {
         /// 8： "F"，
         /// 9："T"，
         public let gradeCode: Int64
-        
+
         /// 是否监控告警；true：是，false:否
         public let notice: Bool
-        
+
         /// 账号域名关系ID
         public let accountDomainId: Int64
-        
+
         /// 标签
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tags: [String]?
-        
+
         /// 域名状态:
         /// 连接异常，
         /// 证书已过期，
@@ -227,10 +227,10 @@ extension Sslpod {
         /// 正常，
         /// 部分异常
         public let status: String
-        
+
         /// 域名端口
         public let port: String
-        
+
         enum CodingKeys: String, CodingKey {
             case id = "Id"
             case domain = "Domain"
@@ -247,7 +247,7 @@ extension Sslpod {
             case port = "Port"
         }
     }
-    
+
     /// 通知额度限制信息
     public struct LimitInfo: TCOutputModel {
         /// 通知类型：
@@ -255,31 +255,31 @@ extension Sslpod {
         /// limit_wechat：微信
         /// limit_phone：手机
         public let type: String
-        
+
         /// 总量
         public let total: Int64
-        
+
         /// 已发送
         public let sent: Int64
-        
+
         enum CodingKeys: String, CodingKey {
             case type = "Type"
             case total = "Total"
             case sent = "Sent"
         }
     }
-    
+
     /// 通知信息结果
     public struct NoticeInfoResult: TCOutputModel {
         /// 通知ID
         public let id: Int64
-        
+
         /// 通知开关信息；0：关闭；15开启
         public let noticeType: Int64
-        
+
         /// 额度信息
         public let limitInfos: [LimitInfo]
-        
+
         enum CodingKeys: String, CodingKey {
             case id = "Id"
             case noticeType = "NoticeType"

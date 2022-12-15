@@ -31,94 +31,94 @@ extension TCIotexplorerError {
             case thingModelExceedLimit = "LimitExceeded.ThingModelExceedLimit"
             case topicPolicyExceedLimit = "LimitExceeded.TopicPolicyExceedLimit"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 应用数量超出限制。
         public static var applicationExceedLimit: LimitExceeded {
             LimitExceeded(.applicationExceedLimit)
         }
-        
+
         /// 量产超出限制。
         public static var batchProductionExceedLimit: LimitExceeded {
             LimitExceeded(.batchProductionExceedLimit)
         }
-        
+
         /// 量产为空。
         public static var batchProductionNull: LimitExceeded {
             LimitExceeded(.batchProductionNull)
         }
-        
+
         /// 绑定的产品数量超过限制。
         public static var bindProductsExceedLimit: LimitExceeded {
             LimitExceeded(.bindProductsExceedLimit)
         }
-        
+
         /// 设备数量超过限制。
         public static var deviceExceedLimit: LimitExceeded {
             LimitExceeded(.deviceExceedLimit)
         }
-        
+
         /// 固件数量超出限制。
         public static var firmwareExceedLimit: LimitExceeded {
             LimitExceeded(.firmwareExceedLimit)
         }
-        
+
         /// 消息数量超过限制。
         public static var messageSaved: LimitExceeded {
             LimitExceeded(.messageSaved)
         }
-        
+
         /// 超过产品数量限制。
         public static var productExceedLimit: LimitExceeded {
             LimitExceeded(.productExceedLimit)
         }
-        
+
         /// 项目数量超出限制。
         public static var projectExceedLimit: LimitExceeded {
             LimitExceeded(.projectExceedLimit)
         }
-        
+
         /// LoRa频点数量超出限制。
         public static var studioLoRaFreqExceedLimit: LimitExceeded {
             LimitExceeded(.studioLoRaFreqExceedLimit)
         }
-        
+
         /// 产品数量超出限制。
         public static var studioProductExceedLimit: LimitExceeded {
             LimitExceeded(.studioProductExceedLimit)
         }
-        
+
         /// 物模型超出限制。
         public static var thingModelExceedLimit: LimitExceeded {
             LimitExceeded(.thingModelExceedLimit)
         }
-        
+
         /// Topic数量超出限制。
         public static var topicPolicyExceedLimit: LimitExceeded {
             LimitExceeded(.topicPolicyExceedLimit)
         }
-        
+
         public func asIotexplorerError() -> TCIotexplorerError {
             let code: TCIotexplorerError.Code
             switch self.error {

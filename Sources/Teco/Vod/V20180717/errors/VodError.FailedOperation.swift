@@ -35,114 +35,114 @@ extension TCVodError {
             case userStatusInavlid = "FailedOperation.UserStatusInavlid"
             case other = "FailedOperation"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 操作失败：超过分类层数限制。
         public static var classLevelLimitExceeded: FailedOperation {
             FailedOperation(.classLevelLimitExceeded)
         }
-        
+
         /// 操作失败：分类名称重复。
         public static var classNameDuplicate: FailedOperation {
             FailedOperation(.classNameDuplicate)
         }
-        
+
         /// 操作失败：分类不存在。
         public static var classNoFound: FailedOperation {
             FailedOperation(.classNoFound)
         }
-        
+
         /// 操作失败：不支持的封面类型。
         public static var coverType: FailedOperation {
             FailedOperation(.coverType)
         }
-        
+
         /// 域名部署中，不能变更配置。
         public static var domainDeploying: FailedOperation {
             FailedOperation(.domainDeploying)
         }
-        
+
         /// 用户账户异常。
         public static var invalidAccount: FailedOperation {
             FailedOperation(.invalidAccount)
         }
-        
+
         /// 没有开通点播业务。
         public static var invalidVodUser: FailedOperation {
             FailedOperation(.invalidVodUser)
         }
-        
+
         /// 媒体被系统封禁。
         public static var mediaForbidedBySystem: FailedOperation {
             FailedOperation(.mediaForbidedBySystem)
         }
-        
+
         /// 操作失败：不支持的媒体类型。
         public static var mediaType: FailedOperation {
             FailedOperation(.mediaType)
         }
-        
+
         /// 网络错误。
         public static var netWorkError: FailedOperation {
             FailedOperation(.netWorkError)
         }
-        
+
         /// 没有开通该接口使用权限。
         public static var noPrivileges: FailedOperation {
             FailedOperation(.noPrivileges)
         }
-        
+
         /// 操作失败：父类 ID 不存在。
         public static var parentIdNoFound: FailedOperation {
             FailedOperation(.parentIdNoFound)
         }
-        
+
         /// 操作失败：子类数量超过限制。
         public static var subclassLimitExceeded: FailedOperation {
             FailedOperation(.subclassLimitExceeded)
         }
-        
+
         /// 操作失败：任务重复。
         public static var taskDuplicate: FailedOperation {
             FailedOperation(.taskDuplicate)
         }
-        
+
         /// 操作失败：上传文件到 cos 失败。
         public static var uploadCosFail: FailedOperation {
             FailedOperation(.uploadCosFail)
         }
-        
+
         /// 用户已经停服。
         public static var userStatusInavlid: FailedOperation {
             FailedOperation(.userStatusInavlid)
         }
-        
+
         /// 操作失败。
         public static var other: FailedOperation {
             FailedOperation(.other)
         }
-        
+
         public func asVodError() -> TCVodError {
             let code: TCVodError.Code
             switch self.error {

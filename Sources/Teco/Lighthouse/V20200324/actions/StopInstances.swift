@@ -19,26 +19,26 @@ extension Lighthouse {
     public struct StopInstancesRequest: TCRequestModel {
         /// 实例 ID 列表。每次请求批量实例的上限为 100。可通过[DescribeInstances](https://cloud.tencent.com/document/api/1207/47573)接口返回值中的InstanceId获取。
         public let instanceIds: [String]
-        
-        public init (instanceIds: [String]) {
+
+        public init(instanceIds: [String]) {
             self.instanceIds = instanceIds
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceIds = "InstanceIds"
         }
     }
-    
+
     /// StopInstances返回参数结构体
     public struct StopInstancesResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 关闭实例
     ///
     /// 本接口（StopInstances）用于关闭一个或多个实例。
@@ -50,7 +50,7 @@ extension Lighthouse {
     public func stopInstances(_ input: StopInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < StopInstancesResponse > {
         self.client.execute(action: "StopInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 关闭实例
     ///
     /// 本接口（StopInstances）用于关闭一个或多个实例。
@@ -62,7 +62,7 @@ extension Lighthouse {
     public func stopInstances(_ input: StopInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> StopInstancesResponse {
         try await self.client.execute(action: "StopInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 关闭实例
     ///
     /// 本接口（StopInstances）用于关闭一个或多个实例。
@@ -74,7 +74,7 @@ extension Lighthouse {
     public func stopInstances(instanceIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < StopInstancesResponse > {
         self.stopInstances(StopInstancesRequest(instanceIds: instanceIds), logger: logger, on: eventLoop)
     }
-    
+
     /// 关闭实例
     ///
     /// 本接口（StopInstances）用于关闭一个或多个实例。

@@ -19,27 +19,27 @@ extension Lcic {
     public struct AppCustomContent: TCInputModel {
         /// 场景参数，一个应用下可以设置多个不同场景。
         public let scene: String
-        
+
         /// logo地址。
         public let logoUrl: String?
-        
+
         /// 主页地址，可设置用于跳转。
         public let homeUrl: String?
-        
+
         /// 自定义的js。
         public let jsUrl: String?
-        
+
         /// 自定义的css。
         public let cssUrl: String?
-        
-        public init (scene: String, logoUrl: String? = nil, homeUrl: String? = nil, jsUrl: String? = nil, cssUrl: String? = nil) {
+
+        public init(scene: String, logoUrl: String? = nil, homeUrl: String? = nil, jsUrl: String? = nil, cssUrl: String? = nil) {
             self.scene = scene
             self.logoUrl = logoUrl
             self.homeUrl = homeUrl
             self.jsUrl = jsUrl
             self.cssUrl = cssUrl
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case scene = "Scene"
             case logoUrl = "LogoUrl"
@@ -48,42 +48,42 @@ extension Lcic {
             case cssUrl = "CssUrl"
         }
     }
-    
+
     /// 成员记录信息。
     public struct MemberRecord: TCOutputModel {
         /// 用户ID。
         public let userId: String
-        
+
         /// 用户名称。
         public let userName: String
-        
+
         /// 在线时长，单位秒。
         public let presentTime: UInt64
-        
+
         /// 是否开启摄像头。
         public let camera: UInt64
-        
+
         /// 是否开启麦克风。
         public let mic: UInt64
-        
+
         /// 是否禁言。
         public let silence: UInt64
-        
+
         /// 回答问题数量。
         public let answerQuestions: UInt64
-        
+
         /// 举手数量。
         public let handUps: UInt64
-        
+
         /// 首次进入房间的unix时间戳。
         public let firstJoinTimestamp: UInt64
-        
+
         /// 最后一次退出房间的unix时间戳。
         public let lastQuitTimestamp: UInt64
-        
+
         /// 奖励次数。
         public let rewords: UInt64
-        
+
         enum CodingKeys: String, CodingKey {
             case userId = "UserId"
             case userName = "UserName"

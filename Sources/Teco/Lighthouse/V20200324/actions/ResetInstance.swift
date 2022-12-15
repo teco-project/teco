@@ -19,31 +19,31 @@ extension Lighthouse {
     public struct ResetInstanceRequest: TCRequestModel {
         /// 实例 ID。可通过[DescribeInstances](https://cloud.tencent.com/document/api/1207/47573)接口返回值中的InstanceId获取。
         public let instanceId: String
-        
+
         /// 镜像 ID。可通过[DescribeBlueprints](https://cloud.tencent.com/document/product/1207/47689)接口返回值中的BlueprintId获取。
         public let blueprintId: String?
-        
-        public init (instanceId: String, blueprintId: String? = nil) {
+
+        public init(instanceId: String, blueprintId: String? = nil) {
             self.instanceId = instanceId
             self.blueprintId = blueprintId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
             case blueprintId = "BlueprintId"
         }
     }
-    
+
     /// ResetInstance返回参数结构体
     public struct ResetInstanceResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 重装系统
     ///
     /// 本接口（ResetInstance）用于重装指定实例上的镜像。
@@ -55,7 +55,7 @@ extension Lighthouse {
     public func resetInstance(_ input: ResetInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ResetInstanceResponse > {
         self.client.execute(action: "ResetInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 重装系统
     ///
     /// 本接口（ResetInstance）用于重装指定实例上的镜像。
@@ -67,7 +67,7 @@ extension Lighthouse {
     public func resetInstance(_ input: ResetInstanceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ResetInstanceResponse {
         try await self.client.execute(action: "ResetInstance", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 重装系统
     ///
     /// 本接口（ResetInstance）用于重装指定实例上的镜像。
@@ -79,7 +79,7 @@ extension Lighthouse {
     public func resetInstance(instanceId: String, blueprintId: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ResetInstanceResponse > {
         self.resetInstance(ResetInstanceRequest(instanceId: instanceId, blueprintId: blueprintId), logger: logger, on: eventLoop)
     }
-    
+
     /// 重装系统
     ///
     /// 本接口（ResetInstance）用于重装指定实例上的镜像。

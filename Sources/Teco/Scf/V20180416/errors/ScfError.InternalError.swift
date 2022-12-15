@@ -28,79 +28,79 @@ extension TCScfError {
             case systemError = "InternalError.SystemError"
             case other = "InternalError"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 创建apigw触发器内部错误。
         public static var apiGateway: InternalError {
             InternalError(.apiGateway)
         }
-        
+
         /// ckafka接口失败。
         public static var ckafka: InternalError {
             InternalError(.ckafka)
         }
-        
+
         /// 删除cmq触发器失败。
         public static var cmq: InternalError {
             InternalError(.cmq)
         }
-        
+
         /// 更新触发器失败。
         public static var cos: InternalError {
             InternalError(.cos)
         }
-        
+
         /// ES错误。
         public static var es: InternalError {
             InternalError(.es)
         }
-        
+
         /// 内部服务异常。
         public static var exception: InternalError {
             InternalError(.exception)
         }
-        
+
         /// 内部服务错误。
         public static var getRoleError: InternalError {
             InternalError(.getRoleError)
         }
-        
+
         /// 内部系统错误。
         public static var system: InternalError {
             InternalError(.system)
         }
-        
+
         /// 内部服务错误。
         public static var systemError: InternalError {
             InternalError(.systemError)
         }
-        
+
         /// 内部错误。
         public static var other: InternalError {
             InternalError(.other)
         }
-        
+
         public func asScfError() -> TCScfError {
             let code: TCScfError.Code
             switch self.error {

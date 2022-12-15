@@ -21,43 +21,43 @@ extension TCVpcError {
             case moduleError = "InternalError.ModuleError"
             case other = "InternalError"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 创建Ckafka路由失败，请稍后重试。
         public static var createCkafkaRouteError: InternalError {
             InternalError(.createCkafkaRouteError)
         }
-        
+
         public static var moduleError: InternalError {
             InternalError(.moduleError)
         }
-        
+
         /// 内部错误。
         public static var other: InternalError {
             InternalError(.other)
         }
-        
+
         public func asVpcError() -> TCVpcError {
             let code: TCVpcError.Code
             switch self.error {

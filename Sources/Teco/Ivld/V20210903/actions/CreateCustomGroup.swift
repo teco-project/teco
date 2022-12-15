@@ -19,26 +19,26 @@ extension Ivld {
     public struct CreateCustomGroupRequest: TCRequestModel {
         /// 人脸图片COS存储桶Host地址
         public let bucket: String
-        
-        public init (bucket: String) {
+
+        public init(bucket: String) {
             self.bucket = bucket
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case bucket = "Bucket"
         }
     }
-    
+
     /// CreateCustomGroup返回参数结构体
     public struct CreateCustomGroupResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 创建自定义人物库
     ///
     /// 创建自定义人物库
@@ -51,7 +51,7 @@ extension Ivld {
     public func createCustomGroup(_ input: CreateCustomGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateCustomGroupResponse > {
         self.client.execute(action: "CreateCustomGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 创建自定义人物库
     ///
     /// 创建自定义人物库
@@ -64,7 +64,7 @@ extension Ivld {
     public func createCustomGroup(_ input: CreateCustomGroupRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCustomGroupResponse {
         try await self.client.execute(action: "CreateCustomGroup", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 创建自定义人物库
     ///
     /// 创建自定义人物库
@@ -77,7 +77,7 @@ extension Ivld {
     public func createCustomGroup(bucket: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateCustomGroupResponse > {
         self.createCustomGroup(CreateCustomGroupRequest(bucket: bucket), logger: logger, on: eventLoop)
     }
-    
+
     /// 创建自定义人物库
     ///
     /// 创建自定义人物库

@@ -21,44 +21,44 @@ extension TCSslpodError {
             case invalidSearchType = "InvalidParameterValue.InvalidSearchType"
             case other = "InvalidParameterValue"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 无效的通知类型。
         public static var invalidNoticeType: InvalidParameterValue {
             InvalidParameterValue(.invalidNoticeType)
         }
-        
+
         /// 无效的搜索类型。
         public static var invalidSearchType: InvalidParameterValue {
             InvalidParameterValue(.invalidSearchType)
         }
-        
+
         /// 参数取值错误。
         public static var other: InvalidParameterValue {
             InvalidParameterValue(.other)
         }
-        
+
         public func asSslpodError() -> TCSslpodError {
             let code: TCSslpodError.Code
             switch self.error {

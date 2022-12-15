@@ -37,124 +37,124 @@ extension TCBatchError {
             case taskTemplateName = "InvalidParameter.TaskTemplateName"
             case taskTemplateNameTooLong = "InvalidParameter.TaskTemplateNameTooLong"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 非法的计算节点ID格式。
         public static var computeNodeIdMalformed: InvalidParameter {
             InvalidParameter(.computeNodeIdMalformed)
         }
-        
+
         /// 非法的CVM参数。
         public static var cvmParameters: InvalidParameter {
             InvalidParameter(.cvmParameters)
         }
-        
+
         /// 计算环境描述过长。
         public static var envDescriptionTooLong: InvalidParameter {
             InvalidParameter(.envDescriptionTooLong)
         }
-        
+
         /// 非法的计算环境ID格式。
         public static var envIdMalformed: InvalidParameter {
             InvalidParameter(.envIdMalformed)
         }
-        
+
         /// 计算环境名称过长。
         public static var envNameTooLong: InvalidParameter {
             InvalidParameter(.envNameTooLong)
         }
-        
+
         /// 镜像ID不正确。
         public static var imageIdMalformed: InvalidParameter {
             InvalidParameter(.imageIdMalformed)
         }
-        
+
         /// 非法的参数组合。
         public static var invalidParameterCombination: InvalidParameter {
             InvalidParameter(.invalidParameterCombination)
         }
-        
+
         /// 作业描述过长。
         public static var jobDescriptionTooLong: InvalidParameter {
             InvalidParameter(.jobDescriptionTooLong)
         }
-        
+
         /// 非法的作业ID格式。
         public static var jobIdMalformed: InvalidParameter {
             InvalidParameter(.jobIdMalformed)
         }
-        
+
         /// 作业名称过长。
         public static var jobNameTooLong: InvalidParameter {
             InvalidParameter(.jobNameTooLong)
         }
-        
+
         /// 重复的消息通知事件名称。
         public static var notificationEventNameDuplicate: InvalidParameter {
             InvalidParameter(.notificationEventNameDuplicate)
         }
-        
+
         /// 非法的主题名称。
         public static var notificationTopicName: InvalidParameter {
             InvalidParameter(.notificationTopicName)
         }
-        
+
         /// 主题名称过长。
         public static var notificationTopicNameTooLong: InvalidParameter {
             InvalidParameter(.notificationTopicNameTooLong)
         }
-        
+
         /// 非法的任务名称。
         public static var taskName: InvalidParameter {
             InvalidParameter(.taskName)
         }
-        
+
         /// 任务名称过长。
         public static var taskNameTooLong: InvalidParameter {
             InvalidParameter(.taskNameTooLong)
         }
-        
+
         /// 任务模板描述过长。
         public static var taskTemplateDescriptionTooLong: InvalidParameter {
             InvalidParameter(.taskTemplateDescriptionTooLong)
         }
-        
+
         /// 非法的任务模板ID格式。
         public static var taskTemplateIdMalformed: InvalidParameter {
             InvalidParameter(.taskTemplateIdMalformed)
         }
-        
+
         /// 非法的任务模板名称。
         public static var taskTemplateName: InvalidParameter {
             InvalidParameter(.taskTemplateName)
         }
-        
+
         /// 任务模板名称过长。
         public static var taskTemplateNameTooLong: InvalidParameter {
             InvalidParameter(.taskTemplateNameTooLong)
         }
-        
+
         public func asBatchError() -> TCBatchError {
             let code: TCBatchError.Code
             switch self.error {

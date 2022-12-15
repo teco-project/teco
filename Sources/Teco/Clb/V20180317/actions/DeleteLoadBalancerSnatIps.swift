@@ -19,31 +19,31 @@ extension Clb {
     public struct DeleteLoadBalancerSnatIpsRequest: TCRequestModel {
         /// 负载均衡唯一ID，例如：lb-12345678。
         public let loadBalancerId: String
-        
+
         /// 删除SnatIp地址数组。
         public let ips: [String]
-        
-        public init (loadBalancerId: String, ips: [String]) {
+
+        public init(loadBalancerId: String, ips: [String]) {
             self.loadBalancerId = loadBalancerId
             self.ips = ips
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case loadBalancerId = "LoadBalancerId"
             case ips = "Ips"
         }
     }
-    
+
     /// DeleteLoadBalancerSnatIps返回参数结构体
     public struct DeleteLoadBalancerSnatIpsResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除SnatIp
     ///
     /// 这个接口用于删除SnatPro的负载均衡的SnatIp。
@@ -52,7 +52,7 @@ extension Clb {
     public func deleteLoadBalancerSnatIps(_ input: DeleteLoadBalancerSnatIpsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteLoadBalancerSnatIpsResponse > {
         self.client.execute(action: "DeleteLoadBalancerSnatIps", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除SnatIp
     ///
     /// 这个接口用于删除SnatPro的负载均衡的SnatIp。
@@ -61,7 +61,7 @@ extension Clb {
     public func deleteLoadBalancerSnatIps(_ input: DeleteLoadBalancerSnatIpsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeleteLoadBalancerSnatIpsResponse {
         try await self.client.execute(action: "DeleteLoadBalancerSnatIps", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除SnatIp
     ///
     /// 这个接口用于删除SnatPro的负载均衡的SnatIp。
@@ -70,7 +70,7 @@ extension Clb {
     public func deleteLoadBalancerSnatIps(loadBalancerId: String, ips: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeleteLoadBalancerSnatIpsResponse > {
         self.deleteLoadBalancerSnatIps(DeleteLoadBalancerSnatIpsRequest(loadBalancerId: loadBalancerId, ips: ips), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除SnatIp
     ///
     /// 这个接口用于删除SnatPro的负载均衡的SnatIp。

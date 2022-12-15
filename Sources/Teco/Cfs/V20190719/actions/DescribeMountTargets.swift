@@ -19,34 +19,34 @@ extension Cfs {
     public struct DescribeMountTargetsRequest: TCRequestModel {
         /// 文件系统 ID
         public let fileSystemId: String
-        
-        public init (fileSystemId: String) {
+
+        public init(fileSystemId: String) {
             self.fileSystemId = fileSystemId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case fileSystemId = "FileSystemId"
         }
     }
-    
+
     /// DescribeMountTargets返回参数结构体
     public struct DescribeMountTargetsResponse: TCResponseModel {
         /// 挂载点详情
         public let mountTargets: [MountInfo]
-        
+
         /// 挂载点数量
         public let numberOfMountTargets: Int64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case mountTargets = "MountTargets"
             case numberOfMountTargets = "NumberOfMountTargets"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询文件系统挂载点
     ///
     /// 本接口（DescribeMountTargets）用于查询文件系统挂载点信息
@@ -54,7 +54,7 @@ extension Cfs {
     public func describeMountTargets(_ input: DescribeMountTargetsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeMountTargetsResponse > {
         self.client.execute(action: "DescribeMountTargets", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询文件系统挂载点
     ///
     /// 本接口（DescribeMountTargets）用于查询文件系统挂载点信息
@@ -62,7 +62,7 @@ extension Cfs {
     public func describeMountTargets(_ input: DescribeMountTargetsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeMountTargetsResponse {
         try await self.client.execute(action: "DescribeMountTargets", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询文件系统挂载点
     ///
     /// 本接口（DescribeMountTargets）用于查询文件系统挂载点信息
@@ -70,7 +70,7 @@ extension Cfs {
     public func describeMountTargets(fileSystemId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeMountTargetsResponse > {
         self.describeMountTargets(DescribeMountTargetsRequest(fileSystemId: fileSystemId), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询文件系统挂载点
     ///
     /// 本接口（DescribeMountTargets）用于查询文件系统挂载点信息

@@ -22,49 +22,49 @@ extension TCAsrError {
             case vocabFull = "LimitExceeded.VocabFull"
             case other = "LimitExceeded"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 自学习模型创建个数已到限制。
         public static var customizationFull: LimitExceeded {
             LimitExceeded(.customizationFull)
         }
-        
+
         /// 上线模型个数已到限制。
         public static var onlineFull: LimitExceeded {
             LimitExceeded(.onlineFull)
         }
-        
+
         /// 热词表数量已到账号限制。
         public static var vocabFull: LimitExceeded {
             LimitExceeded(.vocabFull)
         }
-        
+
         /// 超过配额限制。
         public static var other: LimitExceeded {
             LimitExceeded(.other)
         }
-        
+
         public func asAsrError() -> TCAsrError {
             let code: TCAsrError.Code
             switch self.error {

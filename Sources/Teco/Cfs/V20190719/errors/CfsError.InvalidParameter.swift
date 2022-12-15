@@ -29,84 +29,84 @@ extension TCCfsError {
             case snapshotPolicyNameLimitExceeded = "InvalidParameter.SnapshotPolicyNameLimitExceeded"
             case other = "InvalidParameter"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 快照策略未找到。
         public static var autoPolicyNotFound: InvalidParameter {
             InvalidParameter(.autoPolicyNotFound)
         }
-        
+
         /// 无效的快照保留时间。
         public static var invalidAlivedDays: InvalidParameter {
             InvalidParameter(.invalidAlivedDays)
         }
-        
+
         /// 定期星期参数无效。
         public static var invalidParamDayofWeek: InvalidParameter {
             InvalidParameter(.invalidParamDayofWeek)
         }
-        
+
         /// 定期小时 参数值错误。
         public static var invalidParamHour: InvalidParameter {
             InvalidParameter(.invalidParamHour)
         }
-        
+
         /// 无效的快照策略状态。
         public static var invalidSnapPolicyStatus: InvalidParameter {
             InvalidParameter(.invalidSnapPolicyStatus)
         }
-        
+
         /// 无效的文件系统快照参数名称 。
         public static var invalidSnapshotName: InvalidParameter {
             InvalidParameter(.invalidSnapshotName)
         }
-        
+
         /// 无效的文件系统快照策略名称。
         public static var invalidSnapshotPolicyName: InvalidParameter {
             InvalidParameter(.invalidSnapshotPolicyName)
         }
-        
+
         /// 缺少策略相关参数。
         public static var missingPolicyParam: InvalidParameter {
             InvalidParameter(.missingPolicyParam)
         }
-        
+
         /// 文件系统快照名称超出上限。
         public static var snapshotNameLimitExceeded: InvalidParameter {
             InvalidParameter(.snapshotNameLimitExceeded)
         }
-        
+
         /// 文件系统快照策略名称超过限制。
         public static var snapshotPolicyNameLimitExceeded: InvalidParameter {
             InvalidParameter(.snapshotPolicyNameLimitExceeded)
         }
-        
+
         /// 参数错误。
         public static var other: InvalidParameter {
             InvalidParameter(.other)
         }
-        
+
         public func asCfsError() -> TCCfsError {
             let code: TCCfsError.Code
             switch self.error {

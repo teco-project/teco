@@ -19,23 +19,23 @@ extension Tcex {
     public struct InvokeServiceRequest: TCRequestModel {
         /// 待调用的服务ID。
         public let serviceId: String
-        
+
         /// 要调用服务的状态：0表示调试版本，1表示上线版本
         public let serviceStatus: Int64
-        
+
         /// 用于测试的文档的URL。
         public let fileUrl: String?
-        
+
         /// 用于测试的文本，当此值不为空时，调用内容以此参数的值为准。
         public let input: String?
-        
-        public init (serviceId: String, serviceStatus: Int64, fileUrl: String? = nil, input: String? = nil) {
+
+        public init(serviceId: String, serviceStatus: Int64, fileUrl: String? = nil, input: String? = nil) {
             self.serviceId = serviceId
             self.serviceStatus = serviceStatus
             self.fileUrl = fileUrl
             self.input = input
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case serviceId = "ServiceId"
             case serviceStatus = "ServiceStatus"
@@ -43,17 +43,17 @@ extension Tcex {
             case input = "Input"
         }
     }
-    
+
     /// InvokeService返回参数结构体
     public struct InvokeServiceResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 调用服务
     ///
     /// 产品控制台已经下线
@@ -62,7 +62,7 @@ extension Tcex {
     public func invokeService(_ input: InvokeServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < InvokeServiceResponse > {
         self.client.execute(action: "InvokeService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 调用服务
     ///
     /// 产品控制台已经下线
@@ -71,7 +71,7 @@ extension Tcex {
     public func invokeService(_ input: InvokeServiceRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> InvokeServiceResponse {
         try await self.client.execute(action: "InvokeService", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 调用服务
     ///
     /// 产品控制台已经下线
@@ -80,7 +80,7 @@ extension Tcex {
     public func invokeService(serviceId: String, serviceStatus: Int64, fileUrl: String? = nil, input: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < InvokeServiceResponse > {
         self.invokeService(InvokeServiceRequest(serviceId: serviceId, serviceStatus: serviceStatus, fileUrl: fileUrl, input: input), logger: logger, on: eventLoop)
     }
-    
+
     /// 调用服务
     ///
     /// 产品控制台已经下线

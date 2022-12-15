@@ -19,31 +19,31 @@ extension Teo {
     public struct BindZoneToPlanRequest: TCRequestModel {
         /// 未绑定套餐的站点ID。
         public let zoneId: String
-        
+
         /// 待绑定的目标套餐ID。
         public let planId: String
-        
-        public init (zoneId: String, planId: String) {
+
+        public init(zoneId: String, planId: String) {
             self.zoneId = zoneId
             self.planId = planId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case zoneId = "ZoneId"
             case planId = "PlanId"
         }
     }
-    
+
     /// BindZoneToPlan返回参数结构体
     public struct BindZoneToPlanResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 为站点绑定套餐
     ///
     /// 将未绑定套餐的站点绑定到已有套餐
@@ -51,7 +51,7 @@ extension Teo {
     public func bindZoneToPlan(_ input: BindZoneToPlanRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BindZoneToPlanResponse > {
         self.client.execute(action: "BindZoneToPlan", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 为站点绑定套餐
     ///
     /// 将未绑定套餐的站点绑定到已有套餐
@@ -59,7 +59,7 @@ extension Teo {
     public func bindZoneToPlan(_ input: BindZoneToPlanRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> BindZoneToPlanResponse {
         try await self.client.execute(action: "BindZoneToPlan", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 为站点绑定套餐
     ///
     /// 将未绑定套餐的站点绑定到已有套餐
@@ -67,7 +67,7 @@ extension Teo {
     public func bindZoneToPlan(zoneId: String, planId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < BindZoneToPlanResponse > {
         self.bindZoneToPlan(BindZoneToPlanRequest(zoneId: zoneId, planId: planId), logger: logger, on: eventLoop)
     }
-    
+
     /// 为站点绑定套餐
     ///
     /// 将未绑定套餐的站点绑定到已有套餐

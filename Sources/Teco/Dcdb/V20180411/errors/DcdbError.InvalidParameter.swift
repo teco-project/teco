@@ -38,129 +38,129 @@ extension TCDcdbError {
             case zoneIdIllegal = "InvalidParameter.ZoneIdIllegal"
             case other = "InvalidParameter"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 密码包含了非法字符。
         public static var characterError: InvalidParameter {
             InvalidParameter(.characterError)
         }
-        
+
         /// 入参校验失败。
         public static var checkParamNotPass: InvalidParameter {
             InvalidParameter(.checkParamNotPass)
         }
-        
+
         /// 未指定需要查询的订单ID。
         public static var dealNameNotGiven: InvalidParameter {
             InvalidParameter(.dealNameNotGiven)
         }
-        
+
         /// 找不到指定的流程信息。
         public static var flowNotFound: InvalidParameter {
             InvalidParameter(.flowNotFound)
         }
-        
+
         /// 参数合法性校验错误。
         public static var genericParameterError: InvalidParameter {
             InvalidParameter(.genericParameterError)
         }
-        
+
         /// 非法参数。
         public static var illegalParameterError: InvalidParameter {
             InvalidParameter(.illegalParameterError)
         }
-        
+
         /// 错误的时间参数。
         public static var illegalTime: InvalidParameter {
             InvalidParameter(.illegalTime)
         }
-        
+
         /// 未找到请求的实例。
         public static var instanceNotFound: InvalidParameter {
             InvalidParameter(.instanceNotFound)
         }
-        
+
         /// 该接口不支持此付费类型的实例。
         public static var notSupportedPayMode: InvalidParameter {
             InvalidParameter(.notSupportedPayMode)
         }
-        
+
         /// 没有权限操作该接口或资源。
         public static var permissionDenied: InvalidParameter {
             InvalidParameter(.permissionDenied)
         }
-        
+
         /// 安全组合法性校验不通过。
         public static var sgCheckFail: InvalidParameter {
             InvalidParameter(.sgCheckFail)
         }
-        
+
         /// 找不到对应的售卖规格。
         public static var specNotFound: InvalidParameter {
             InvalidParameter(.specNotFound)
         }
-        
+
         /// 找不到指定的虚拟私有网络子网。
         public static var subnetNotFound: InvalidParameter {
             InvalidParameter(.subnetNotFound)
         }
-        
+
         /// snat子网不支持申请IP。
         public static var subnetUnavailable: InvalidParameter {
             InvalidParameter(.subnetUnavailable)
         }
-        
+
         /// Vip不在子网内。
         public static var vipNotInSubnet: InvalidParameter {
             InvalidParameter(.vipNotInSubnet)
         }
-        
+
         /// Vip被占用。
         public static var vipUsed: InvalidParameter {
             InvalidParameter(.vipUsed)
         }
-        
+
         /// 找不到指定的虚拟私有网络。
         public static var vpcNotFound: InvalidParameter {
             InvalidParameter(.vpcNotFound)
         }
-        
+
         /// Vport被占用。
         public static var vportUsed: InvalidParameter {
             InvalidParameter(.vportUsed)
         }
-        
+
         /// 可用区信息错误。
         public static var zoneIdIllegal: InvalidParameter {
             InvalidParameter(.zoneIdIllegal)
         }
-        
+
         /// 参数错误。
         public static var other: InvalidParameter {
             InvalidParameter(.other)
         }
-        
+
         public func asDcdbError() -> TCDcdbError {
             let code: TCDcdbError.Code
             switch self.error {

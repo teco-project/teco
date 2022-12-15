@@ -39,133 +39,133 @@ extension TCRedisError {
             case saleOut = "ResourceUnavailable.SaleOut"
             case securityGroupNotSupported = "ResourceUnavailable.SecurityGroupNotSupported"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 请求订单号不存在。
         public static var accountBalanceNotEnough: ResourceUnavailable {
             ResourceUnavailable(.accountBalanceNotEnough)
         }
-        
+
         /// 备份已被其它任务锁住，暂时不能执行该操作。
         public static var backupLockedError: ResourceUnavailable {
             ResourceUnavailable(.backupLockedError)
         }
-        
+
         /// 备份状态异常，暂不能执行该操作。备份可能已过期或已被删除。
         public static var backupStatusAbnormal: ResourceUnavailable {
             ResourceUnavailable(.backupStatusAbnormal)
         }
-        
+
         /// 备份状态无效，可能在其他流程中，也可能被删除。
         public static var backupStatusInvalid: ResourceUnavailable {
             ResourceUnavailable(.backupStatusInvalid)
         }
-        
+
         /// 调用后端接口失败。
         public static var callOssError: ResourceUnavailable {
             ResourceUnavailable(.callOssError)
         }
-        
+
         /// 获取安全组信息失败。
         public static var getSecurityError: ResourceUnavailable {
             ResourceUnavailable(.getSecurityError)
         }
-        
+
         /// 实例配置错误。
         public static var instanceConfError: ResourceUnavailable {
             ResourceUnavailable(.instanceConfError)
         }
-        
+
         /// 实例已经被回收了。
         public static var instanceDeleted: ResourceUnavailable {
             ResourceUnavailable(.instanceDeleted)
         }
-        
+
         /// 实例已过期。
         public static var instanceIsolated: ResourceUnavailable {
             ResourceUnavailable(.instanceIsolated)
         }
-        
+
         /// redis 已经被其它流程锁定。
         public static var instanceLockedError: ResourceUnavailable {
             ResourceUnavailable(.instanceLockedError)
         }
-        
+
         /// 订单不存在。
         public static var instanceNoDeal: ResourceUnavailable {
             ResourceUnavailable(.instanceNoDeal)
         }
-        
+
         /// 实例状态不支持操作。
         public static var instanceNotSupportOperation: ResourceUnavailable {
             ResourceUnavailable(.instanceNotSupportOperation)
         }
-        
+
         /// 实例状态错误。
         public static var instanceStateError: ResourceUnavailable {
             ResourceUnavailable(.instanceStateError)
         }
-        
+
         /// redis 状态异常，不能执行对应流程。
         public static var instanceStatusAbnormal: ResourceUnavailable {
             ResourceUnavailable(.instanceStatusAbnormal)
         }
-        
+
         /// 实例状态异常，不能执行对应操作。
         public static var instanceStatusError: ResourceUnavailable {
             ResourceUnavailable(.instanceStatusError)
         }
-        
+
         public static var instanceUnLockedError: ResourceUnavailable {
             ResourceUnavailable(.instanceUnLockedError)
         }
-        
+
         /// vpc网络IP资源不足。
         public static var noEnoughVipInVPC: ResourceUnavailable {
             ResourceUnavailable(.noEnoughVipInVPC)
         }
-        
+
         /// 请求的区域暂时不提供redis服务。
         public static var noRedisService: ResourceUnavailable {
             ResourceUnavailable(.noRedisService)
         }
-        
+
         /// 请求的区域暂时不提供请求类型的redis服务。
         public static var noTypeIdRedisService: ResourceUnavailable {
             ResourceUnavailable(.noTypeIdRedisService)
         }
-        
+
         /// 地域对应类型已售罄。
         public static var saleOut: ResourceUnavailable {
             ResourceUnavailable(.saleOut)
         }
-        
+
         /// 产品还没有接入安全组。
         public static var securityGroupNotSupported: ResourceUnavailable {
             ResourceUnavailable(.securityGroupNotSupported)
         }
-        
+
         public func asRedisError() -> TCRedisError {
             let code: TCRedisError.Code
             switch self.error {

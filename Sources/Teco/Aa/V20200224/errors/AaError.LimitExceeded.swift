@@ -22,49 +22,49 @@ extension TCAaError {
             case keyFreqCnt = "LimitExceeded.KeyFreqCnt"
             case replayAttack = "LimitExceeded.ReplayAttack"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 超过配额。
         public static var freqCnt: LimitExceeded {
             LimitExceeded(.freqCnt)
         }
-        
+
         /// 超过配额（用户IP）。
         public static var ipFreqCnt: LimitExceeded {
             LimitExceeded(.ipFreqCnt)
         }
-        
+
         /// 关键词频控限制。
         public static var keyFreqCnt: LimitExceeded {
             LimitExceeded(.keyFreqCnt)
         }
-        
+
         /// 重放攻击。
         public static var replayAttack: LimitExceeded {
             LimitExceeded(.replayAttack)
         }
-        
+
         public func asAaError() -> TCAaError {
             let code: TCAaError.Code
             switch self.error {

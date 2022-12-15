@@ -19,26 +19,26 @@ extension Cdb {
     public struct OfflineIsolatedInstancesRequest: TCRequestModel {
         /// 实例 ID，格式如：cdb-c1nl9rpv，与云数据库控制台页面中显示的实例 ID 相同。
         public let instanceIds: [String]
-        
-        public init (instanceIds: [String]) {
+
+        public init(instanceIds: [String]) {
             self.instanceIds = instanceIds
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceIds = "InstanceIds"
         }
     }
-    
+
     /// OfflineIsolatedInstances返回参数结构体
     public struct OfflineIsolatedInstancesResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 下线隔离状态的云数据库实例
     ///
     /// 本接口(OfflineIsolatedInstances)用于立即下线隔离状态的云数据库实例。进行操作的实例状态必须为隔离状态，即通过 [查询实例列表](https://cloud.tencent.com/document/api/236/15872) 接口查询到 Status 值为 5 的实例。
@@ -48,7 +48,7 @@ extension Cdb {
     public func offlineIsolatedInstances(_ input: OfflineIsolatedInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < OfflineIsolatedInstancesResponse > {
         self.client.execute(action: "OfflineIsolatedInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 下线隔离状态的云数据库实例
     ///
     /// 本接口(OfflineIsolatedInstances)用于立即下线隔离状态的云数据库实例。进行操作的实例状态必须为隔离状态，即通过 [查询实例列表](https://cloud.tencent.com/document/api/236/15872) 接口查询到 Status 值为 5 的实例。
@@ -58,7 +58,7 @@ extension Cdb {
     public func offlineIsolatedInstances(_ input: OfflineIsolatedInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> OfflineIsolatedInstancesResponse {
         try await self.client.execute(action: "OfflineIsolatedInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 下线隔离状态的云数据库实例
     ///
     /// 本接口(OfflineIsolatedInstances)用于立即下线隔离状态的云数据库实例。进行操作的实例状态必须为隔离状态，即通过 [查询实例列表](https://cloud.tencent.com/document/api/236/15872) 接口查询到 Status 值为 5 的实例。
@@ -68,7 +68,7 @@ extension Cdb {
     public func offlineIsolatedInstances(instanceIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < OfflineIsolatedInstancesResponse > {
         self.offlineIsolatedInstances(OfflineIsolatedInstancesRequest(instanceIds: instanceIds), logger: logger, on: eventLoop)
     }
-    
+
     /// 下线隔离状态的云数据库实例
     ///
     /// 本接口(OfflineIsolatedInstances)用于立即下线隔离状态的云数据库实例。进行操作的实例状态必须为隔离状态，即通过 [查询实例列表](https://cloud.tencent.com/document/api/236/15872) 接口查询到 Status 值为 5 的实例。

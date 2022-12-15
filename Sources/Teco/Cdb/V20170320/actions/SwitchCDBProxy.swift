@@ -19,31 +19,31 @@ extension Cdb {
     public struct SwitchCDBProxyRequest: TCRequestModel {
         /// 实例ID
         public let instanceId: String
-        
+
         /// 数据库代理ID
         public let proxyGroupId: String
-        
-        public init (instanceId: String, proxyGroupId: String) {
+
+        public init(instanceId: String, proxyGroupId: String) {
             self.instanceId = instanceId
             self.proxyGroupId = proxyGroupId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
             case proxyGroupId = "ProxyGroupId"
         }
     }
-    
+
     /// SwitchCDBProxy返回参数结构体
     public struct SwitchCDBProxyResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 切换数据库代理
     ///
     /// 数据库代理配置变更或则升级版本后手动发起立即切换
@@ -51,7 +51,7 @@ extension Cdb {
     public func switchCDBProxy(_ input: SwitchCDBProxyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SwitchCDBProxyResponse > {
         self.client.execute(action: "SwitchCDBProxy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 切换数据库代理
     ///
     /// 数据库代理配置变更或则升级版本后手动发起立即切换
@@ -59,7 +59,7 @@ extension Cdb {
     public func switchCDBProxy(_ input: SwitchCDBProxyRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> SwitchCDBProxyResponse {
         try await self.client.execute(action: "SwitchCDBProxy", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 切换数据库代理
     ///
     /// 数据库代理配置变更或则升级版本后手动发起立即切换
@@ -67,7 +67,7 @@ extension Cdb {
     public func switchCDBProxy(instanceId: String, proxyGroupId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < SwitchCDBProxyResponse > {
         self.switchCDBProxy(SwitchCDBProxyRequest(instanceId: instanceId, proxyGroupId: proxyGroupId), logger: logger, on: eventLoop)
     }
-    
+
     /// 切换数据库代理
     ///
     /// 数据库代理配置变更或则升级版本后手动发起立即切换

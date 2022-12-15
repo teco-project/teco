@@ -19,34 +19,34 @@ extension TCMrsError {
         enum Code: String {
             case permissionDeniedError = "UnauthorizedOperation.PermissionDeniedError"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 当前无权限，请检查BisinsessId。
         public static var permissionDeniedError: UnauthorizedOperation {
             UnauthorizedOperation(.permissionDeniedError)
         }
-        
+
         public func asMrsError() -> TCMrsError {
             let code: TCMrsError.Code
             switch self.error {

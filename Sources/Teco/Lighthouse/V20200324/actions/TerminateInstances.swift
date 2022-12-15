@@ -19,26 +19,26 @@ extension Lighthouse {
     public struct TerminateInstancesRequest: TCRequestModel {
         /// 实例ID列表。可通过[DescribeInstances](https://cloud.tencent.com/document/api/1207/47573)接口返回值中的InstanceId获取。
         public let instanceIds: [String]
-        
-        public init (instanceIds: [String]) {
+
+        public init(instanceIds: [String]) {
             self.instanceIds = instanceIds
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceIds = "InstanceIds"
         }
     }
-    
+
     /// TerminateInstances返回参数结构体
     public struct TerminateInstancesResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 销毁实例
     ///
     /// 本接口 (TerminateInstances) 用于销毁实例。
@@ -49,7 +49,7 @@ extension Lighthouse {
     public func terminateInstances(_ input: TerminateInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < TerminateInstancesResponse > {
         self.client.execute(action: "TerminateInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 销毁实例
     ///
     /// 本接口 (TerminateInstances) 用于销毁实例。
@@ -60,7 +60,7 @@ extension Lighthouse {
     public func terminateInstances(_ input: TerminateInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> TerminateInstancesResponse {
         try await self.client.execute(action: "TerminateInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 销毁实例
     ///
     /// 本接口 (TerminateInstances) 用于销毁实例。
@@ -71,7 +71,7 @@ extension Lighthouse {
     public func terminateInstances(instanceIds: [String], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < TerminateInstancesResponse > {
         self.terminateInstances(TerminateInstancesRequest(instanceIds: instanceIds), logger: logger, on: eventLoop)
     }
-    
+
     /// 销毁实例
     ///
     /// 本接口 (TerminateInstances) 用于销毁实例。

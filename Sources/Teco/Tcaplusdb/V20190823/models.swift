@@ -22,62 +22,62 @@ extension Tcaplusdb {
     public struct Application: TCOutputModel {
         /// 审批单号
         public let applicationId: String
-        
+
         /// 申请类型
         public let applicationType: Int64
-        
+
         /// 集群Id
         public let clusterId: String
-        
+
         /// 集群名称
         public let clusterName: String
-        
+
         /// 表格组名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tableGroupName: String?
-        
+
         /// 表格名称
         public let tableName: String
-        
+
         /// 申请人
         public let applicant: String
-        
+
         /// 建单时间
         public let createdTime: String
-        
+
         /// 处理状态 -1 撤回 0-待审核 1-已经审核并提交任务 2-已驳回
         public let applicationStatus: Int64
-        
+
         /// 表格组Id
         public let tableGroupId: String
-        
+
         /// 已提交的任务Id，未提交申请为0
         public let taskId: String
-        
+
         /// 腾讯云上table的唯一键
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tableInstanceId: String?
-        
+
         /// 更新时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let updateTime: String?
-        
+
         /// 审批人
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let executeUser: String?
-        
+
         /// 执行状态
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let executeStatus: String?
-        
+
         /// 该申请单是否可以被当前用户审批
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let canCensor: Bool?
-        
+
         /// 该申请单是否可以被当前用户撤回
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let canWithdrawal: Bool?
-        
+
         enum CodingKeys: String, CodingKey {
             case applicationId = "ApplicationId"
             case applicationType = "ApplicationType"
@@ -98,27 +98,27 @@ extension Tcaplusdb {
             case canWithdrawal = "CanWithdrawal"
         }
     }
-    
+
     /// 更新申请单结果
     public struct ApplyResult: TCOutputModel {
         /// 申请单id
         public let applicationId: String
-        
+
         /// 申请类型
         public let applicationType: Int64
-        
+
         /// 处理状态 0-待审核 1-已经审核并提交任务 2-已驳回
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let applicationStatus: Int64?
-        
+
         /// 已提交的任务Id
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let taskId: String?
-        
+
         /// 错误信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let error: ErrorInfo?
-        
+
         enum CodingKeys: String, CodingKey {
             case applicationId = "ApplicationId"
             case applicationType = "ApplicationType"
@@ -127,28 +127,28 @@ extension Tcaplusdb {
             case error = "Error"
         }
     }
-    
+
     /// 申请单id及其状态
     public struct ApplyStatus: TCInputModel {
         /// 集群id-申请单id
         public let applicationId: String
-        
+
         /// 处理状态-1-撤回 1-通过 2-驳回，非0状态的申请单不可改变状态。
         public let applicationStatus: Int64
-        
+
         /// 申请单类型
         public let applicationType: Int64
-        
+
         /// 集群Id
         public let clusterId: String
-        
-        public init (applicationId: String, applicationStatus: Int64, applicationType: Int64, clusterId: String) {
+
+        public init(applicationId: String, applicationStatus: Int64, applicationType: Int64, clusterId: String) {
             self.applicationId = applicationId
             self.applicationStatus = applicationStatus
             self.applicationType = applicationType
             self.clusterId = clusterId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case applicationId = "ApplicationId"
             case applicationStatus = "ApplicationStatus"
@@ -156,30 +156,30 @@ extension Tcaplusdb {
             case clusterId = "ClusterId"
         }
     }
-    
+
     /// 集群详细信息
     public struct ClusterInfo: TCOutputModel {
         /// 集群名称
         public let clusterName: String
-        
+
         /// 集群ID
         public let clusterId: String
-        
+
         /// 集群所在地域
         public let region: String
-        
+
         /// 集群数据描述语言类型，如：`PROTO`,`TDR`
         public let idlType: String
-        
+
         /// 网络类型
         public let networkType: String
-        
+
         /// 集群关联的用户私有网络实例ID
         public let vpcId: String
-        
+
         /// 集群关联的用户子网实例ID
         public let subnetId: String
-        
+
         /// 创建时间
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -187,85 +187,85 @@ extension Tcaplusdb {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var createdTime: Date
-        
+
         /// 集群密码
         public let password: String
-        
+
         /// 密码状态
         public let passwordStatus: String
-        
+
         /// TcaplusDB SDK连接参数，接入ID
         public let apiAccessId: String
-        
+
         /// TcaplusDB SDK连接参数，接入地址
         public let apiAccessIp: String
-        
+
         /// TcaplusDB SDK连接参数，接入端口
         public let apiAccessPort: Int64
-        
+
         /// 如果PasswordStatus是unmodifiable说明有旧密码还未过期，此字段将显示旧密码过期的时间，否则为空
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let oldPasswordExpireTime: String?
-        
+
         /// TcaplusDB SDK连接参数，接入ipv6地址
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let apiAccessIpv6: String?
-        
+
         /// 集群类型
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let clusterType: Int64?
-        
+
         /// 集群状态
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let clusterStatus: Int64?
-        
+
         /// 读CU
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let readCapacityUnit: Int64?
-        
+
         /// 写CU
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let writeCapacityUnit: Int64?
-        
+
         /// 磁盘容量
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let diskVolume: Int64?
-        
+
         /// 独占server机器信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let serverList: [ServerDetailInfo]?
-        
+
         /// 独占proxy机器信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let proxyList: [ProxyDetailInfo]?
-        
+
         /// 是否开启审核 0-不开启 1-开启
         public let censorship: Int64
-        
+
         /// 审批人uin列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let dbaUins: [String]?
-        
+
         /// 是否开启了数据订阅
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let dataFlowStatus: Int64?
-        
+
         /// 数据订阅的kafka信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let kafkaInfo: KafkaInfo?
-        
+
         /// 集群Txh备份文件多少天后过期删除
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let txhBackupExpireDay: UInt64?
-        
+
         /// 集群Ulog备份文件多少天后过期删除
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let ulogBackupExpireDay: UInt64?
-        
+
         /// 集群Ulog备份文件过期策略是否为只读， 0： UlogBackupExpire是只读，不可修改， 1： UlogBackupExpire可以修改（当前业务存在Svrid第二段等于clusterid的机器）
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let isReadOnlyUlogBackupExpireDay: UInt64?
-        
+
         enum CodingKeys: String, CodingKey {
             case clusterName = "ClusterName"
             case clusterId = "ClusterId"
@@ -298,34 +298,34 @@ extension Tcaplusdb {
             case isReadOnlyUlogBackupExpireDay = "IsReadOnlyUlogBackupExpireDay"
         }
     }
-    
+
     /// 比较表格的Meta信息
     public struct CompareTablesInfo: TCInputModel {
         /// 源表格的集群id
         public let srcTableClusterId: String
-        
+
         /// 源表格的表格组id
         public let srcTableGroupId: String
-        
+
         /// 源表格的表名
         public let srcTableName: String
-        
+
         /// 目标表格的集群id
         public let dstTableClusterId: String
-        
+
         /// 目标表格的表格组id
         public let dstTableGroupId: String
-        
+
         /// 目标表格的表名
         public let dstTableName: String
-        
+
         /// 源表格的实例id
         public let srcTableInstanceId: String
-        
+
         /// 目标表格的实例id
         public let dstTableInstanceId: String
-        
-        public init (srcTableClusterId: String, srcTableGroupId: String, srcTableName: String, dstTableClusterId: String, dstTableGroupId: String, dstTableName: String, srcTableInstanceId: String, dstTableInstanceId: String) {
+
+        public init(srcTableClusterId: String, srcTableGroupId: String, srcTableName: String, dstTableClusterId: String, dstTableGroupId: String, dstTableName: String, srcTableInstanceId: String, dstTableInstanceId: String) {
             self.srcTableClusterId = srcTableClusterId
             self.srcTableGroupId = srcTableGroupId
             self.srcTableName = srcTableName
@@ -335,7 +335,7 @@ extension Tcaplusdb {
             self.srcTableInstanceId = srcTableInstanceId
             self.dstTableInstanceId = dstTableInstanceId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case srcTableClusterId = "SrcTableClusterId"
             case srcTableGroupId = "SrcTableGroupId"
@@ -347,42 +347,42 @@ extension Tcaplusdb {
             case dstTableInstanceId = "DstTableInstanceId"
         }
     }
-    
+
     /// 描述每个实例（应用，大区或表）处理过程中可能出现的错误详情。
     public struct ErrorInfo: TCOutputModel {
         /// 错误码
         public let code: String
-        
+
         /// 错误信息
         public let message: String
-        
+
         enum CodingKeys: String, CodingKey {
             case code = "Code"
             case message = "Message"
         }
     }
-    
+
     /// 表格字段信息列表
     public struct FieldInfo: TCInputModel {
         /// 表格字段名称
         public let fieldName: String
-        
+
         /// 字段是否是主键字段
         public let isPrimaryKey: String
-        
+
         /// 字段类型
         public let fieldType: String?
-        
+
         /// 字段长度
         public let fieldSize: Int64?
-        
-        public init (fieldName: String, isPrimaryKey: String, fieldType: String? = nil, fieldSize: Int64? = nil) {
+
+        public init(fieldName: String, isPrimaryKey: String, fieldType: String? = nil, fieldSize: Int64? = nil) {
             self.fieldName = fieldName
             self.isPrimaryKey = isPrimaryKey
             self.fieldType = fieldType
             self.fieldSize = fieldSize
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case fieldName = "FieldName"
             case isPrimaryKey = "IsPrimaryKey"
@@ -390,54 +390,54 @@ extension Tcaplusdb {
             case fieldSize = "FieldSize"
         }
     }
-    
+
     /// 过滤条件
     public struct Filter: TCInputModel {
         /// 过滤字段名
         public let name: String
-        
+
         /// 过滤字段值
         public let value: String?
-        
+
         /// 过滤字段值
         public let values: [String]?
-        
-        public init (name: String, value: String? = nil, values: [String]? = nil) {
+
+        public init(name: String, value: String? = nil, values: [String]? = nil) {
             self.name = name
             self.value = value
             self.values = values
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case name = "Name"
             case value = "Value"
             case values = "Values"
         }
     }
-    
+
     /// 表定义描述文件详情，包含文件内容
     public struct IdlFileInfo: TCInputModel, TCOutputModel {
         /// 文件名称，不包含扩展名
         public let fileName: String
-        
+
         /// 数据描述语言（IDL）类型
         public let fileType: String
-        
+
         /// 文件扩展名
         public let fileExtType: String
-        
+
         /// 文件大小（Bytes）
         public let fileSize: Int64
-        
+
         /// 文件ID，对于已上传的文件有意义
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let fileId: Int64?
-        
+
         /// 文件内容，对于本次新上传的文件有意义
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let fileContent: String?
-        
-        public init (fileName: String, fileType: String, fileExtType: String, fileSize: Int64, fileId: Int64? = nil, fileContent: String? = nil) {
+
+        public init(fileName: String, fileType: String, fileExtType: String, fileSize: Int64, fileId: Int64? = nil, fileContent: String? = nil) {
             self.fileName = fileName
             self.fileType = fileType
             self.fileExtType = fileExtType
@@ -445,7 +445,7 @@ extension Tcaplusdb {
             self.fileId = fileId
             self.fileContent = fileContent
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case fileName = "FileName"
             case fileType = "FileType"
@@ -455,33 +455,33 @@ extension Tcaplusdb {
             case fileContent = "FileContent"
         }
     }
-    
+
     /// 表定义描述文件详情，不包含文件内容
     public struct IdlFileInfoWithoutContent: TCOutputModel {
         /// 文件名称，不包含扩展名
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let fileName: String?
-        
+
         /// 数据描述语言（IDL）类型
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let fileType: String?
-        
+
         /// 文件扩展名
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let fileExtType: String?
-        
+
         /// 文件大小（Bytes）
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let fileSize: Int64?
-        
+
         /// 文件ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let fileId: Int64?
-        
+
         /// 错误信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let error: ErrorInfo?
-        
+
         enum CodingKeys: String, CodingKey {
             case fileName = "FileName"
             case fileType = "FileType"
@@ -491,28 +491,28 @@ extension Tcaplusdb {
             case error = "Error"
         }
     }
-    
+
     /// ckafka地址信息
     public struct KafkaInfo: TCInputModel {
         /// kafaka address
         public let address: String
-        
+
         /// kafaka topic
         public let topic: String
-        
+
         /// kafka username
         public let user: String
-        
+
         /// kafka password
         public let password: String
-        
+
         /// ckafka实例
         public let instance: String
-        
+
         /// 是否走VPC
         public let isVpc: Int64
-        
-        public init (address: String, topic: String, user: String, password: String, instance: String, isVpc: Int64) {
+
+        public init(address: String, topic: String, user: String, password: String, instance: String, isVpc: Int64) {
             self.address = address
             self.topic = topic
             self.user = user
@@ -520,7 +520,7 @@ extension Tcaplusdb {
             self.instance = instance
             self.isVpc = isVpc
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case address = "Address"
             case topic = "Topic"
@@ -530,28 +530,28 @@ extension Tcaplusdb {
             case isVpc = "IsVpc"
         }
     }
-    
+
     /// 部分key导入快照数据时所需要的key文件
     public struct KeyFile: TCInputModel {
         /// key文件名称
         public let fileName: String
-        
+
         /// key文件扩展名
         public let fileExtType: String
-        
+
         /// key文件内容
         public let fileContent: String
-        
+
         /// key文件大小
         public let fileSize: Int64?
-        
-        public init (fileName: String, fileExtType: String, fileContent: String, fileSize: Int64? = nil) {
+
+        public init(fileName: String, fileExtType: String, fileContent: String, fileSize: Int64? = nil) {
             self.fileName = fileName
             self.fileExtType = fileExtType
             self.fileContent = fileContent
             self.fileSize = fileSize
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case fileName = "FileName"
             case fileExtType = "FileExtType"
@@ -559,43 +559,43 @@ extension Tcaplusdb {
             case fileSize = "FileSize"
         }
     }
-    
+
     /// 机器类型和数量
     public struct MachineInfo: TCInputModel {
         /// 机器类型
         public let machineType: String
-        
+
         /// 机器数量
         public let machineNum: Int64
-        
-        public init (machineType: String, machineNum: Int64) {
+
+        public init(machineType: String, machineNum: Int64) {
             self.machineType = machineType
             self.machineNum = machineNum
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case machineType = "MachineType"
             case machineNum = "MachineNum"
         }
     }
-    
+
     /// 合服结果
     public struct MergeTableResult: TCOutputModel {
         /// 任务Id
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let taskId: String?
-        
+
         /// 成功时此字段返回 null，表示取不到有效值。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let error: ErrorInfo?
-        
+
         /// 对比的表格信息
         public let table: CompareTablesInfo
-        
+
         /// 申请单Id
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let applicationId: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case taskId = "TaskId"
             case error = "Error"
@@ -603,100 +603,100 @@ extension Tcaplusdb {
             case applicationId = "ApplicationId"
         }
     }
-    
+
     /// 合服请求入参
     public struct MergeTablesInfo: TCInputModel {
         /// 合服的表格信息
         public let mergeTables: CompareTablesInfo
-        
+
         /// 是否检查索引
         public let checkIndex: Bool
-        
-        public init (mergeTables: CompareTablesInfo, checkIndex: Bool) {
+
+        public init(mergeTables: CompareTablesInfo, checkIndex: Bool) {
             self.mergeTables = mergeTables
             self.checkIndex = checkIndex
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case mergeTables = "MergeTables"
             case checkIndex = "CheckIndex"
         }
     }
-    
+
     /// 从IDL表描述文件中解析出来的表信息
     public struct ParsedTableInfoNew: TCOutputModel {
         /// 表格描述语言类型：`PROTO`或`TDR`
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tableIdlType: String?
-        
+
         /// 表格实例ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tableInstanceId: String?
-        
+
         /// 表格名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tableName: String?
-        
+
         /// 表格数据结构类型：`GENERIC`或`LIST`
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tableType: String?
-        
+
         /// 主键字段信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let keyFields: String?
-        
+
         /// 原主键字段信息，改表校验时有效
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let oldKeyFields: String?
-        
+
         /// 非主键字段信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let valueFields: String?
-        
+
         /// 原非主键字段信息，改表校验时有效
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let oldValueFields: String?
-        
+
         /// 所属表格组ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tableGroupId: String?
-        
+
         /// 主键字段总大小
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let sumKeyFieldSize: Int64?
-        
+
         /// 非主键字段总大小
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let sumValueFieldSize: Int64?
-        
+
         /// 索引键集合
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let indexKeySet: String?
-        
+
         /// 分表因子集合
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let shardingKeySet: String?
-        
+
         /// TDR版本号
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tdrVersion: Int64?
-        
+
         /// 错误信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let error: ErrorInfo?
-        
+
         /// LIST类型表格元素个数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let listElementNum: Int64?
-        
+
         /// SORTLIST类型表格排序字段个数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let sortFieldNum: Int64?
-        
+
         /// SORTLIST类型表格排序顺序
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let sortRule: Int64?
-        
+
         enum CodingKeys: String, CodingKey {
             case tableIdlType = "TableIdlType"
             case tableInstanceId = "TableInstanceId"
@@ -718,24 +718,24 @@ extension Tcaplusdb {
             case sortRule = "SortRule"
         }
     }
-    
+
     /// center资源池中的机器信息
     public struct PoolInfo: TCOutputModel {
         /// 唯一id
         public let poolUid: Int64
-        
+
         /// 是否支持ipv6
         public let ipv6Enable: Int64
-        
+
         /// 剩余可用app
         public let availableAppCount: Int64
-        
+
         /// svr机器列表
         public let serverList: [ServerMachineInfo]
-        
+
         /// proxy机器列表
         public let proxyList: [ProxyMachineInfo]
-        
+
         enum CodingKeys: String, CodingKey {
             case poolUid = "PoolUid"
             case ipv6Enable = "Ipv6Enable"
@@ -744,24 +744,24 @@ extension Tcaplusdb {
             case proxyList = "ProxyList"
         }
     }
-    
+
     /// 独占的proxy详细信息
     public struct ProxyDetailInfo: TCOutputModel {
         /// proxy的唯一id
         public let proxyUid: String
-        
+
         /// 机器类型
         public let machineType: String
-        
+
         /// 请求包速度
         public let processSpeed: Int64
-        
+
         /// 请求包时延
         public let averageProcessDelay: Int64
-        
+
         /// 慢处理包速度
         public let slowProcessSpeed: Int64
-        
+
         enum CodingKeys: String, CodingKey {
             case proxyUid = "ProxyUid"
             case machineType = "MachineType"
@@ -770,39 +770,39 @@ extension Tcaplusdb {
             case slowProcessSpeed = "SlowProcessSpeed"
         }
     }
-    
+
     /// proxy机器信息
     public struct ProxyMachineInfo: TCOutputModel {
         /// 唯一id
         public let proxyUid: String
-        
+
         /// 机器类型
         public let machineType: String
-        
+
         /// 可分配proxy资源数
         public let availableCount: Int64
-        
+
         enum CodingKeys: String, CodingKey {
             case proxyUid = "ProxyUid"
             case machineType = "MachineType"
             case availableCount = "AvailableCount"
         }
     }
-    
+
     /// TcaplusDB服务地域信息详情
     public struct RegionInfo: TCOutputModel {
         /// 地域Ap-Code
         public let regionName: String
-        
+
         /// 地域缩写
         public let regionAbbr: String
-        
+
         /// 地域ID
         public let regionId: UInt64
-        
+
         /// 是否支持ipv6，0:不支持，1:支持
         public let ipv6Enable: UInt64
-        
+
         enum CodingKeys: String, CodingKey {
             case regionName = "RegionName"
             case regionAbbr = "RegionAbbr"
@@ -810,52 +810,52 @@ extension Tcaplusdb {
             case ipv6Enable = "Ipv6Enable"
         }
     }
-    
+
     /// 被选中的表信息
     public struct SelectedTableInfoNew: TCInputModel {
         /// 表所属表格组ID
         public let tableGroupId: String
-        
+
         /// 表格名称
         public let tableName: String
-        
+
         /// 表实例ID
         public let tableInstanceId: String?
-        
+
         /// 表格描述语言类型：`PROTO`或`TDR`
         public let tableIdlType: String?
-        
+
         /// 表格数据结构类型：`GENERIC`或`LIST`
         public let tableType: String?
-        
+
         /// LIST表元素个数
         public let listElementNum: Int64?
-        
+
         /// 表格预留容量（GB）
         public let reservedVolume: Int64?
-        
+
         /// 表格预留读CU
         public let reservedReadQps: Int64?
-        
+
         /// 表格预留写CU
         public let reservedWriteQps: Int64?
-        
+
         /// 表格备注信息
         public let memo: String?
-        
+
         /// Key回档文件名，回档专用
         public let fileName: String?
-        
+
         /// Key回档文件扩展名，回档专用
         public let fileExtType: String?
-        
+
         /// Key回档文件大小，回档专用
         public let fileSize: Int64?
-        
+
         /// Key回档文件内容，回档专用
         public let fileContent: String?
-        
-        public init (tableGroupId: String, tableName: String, tableInstanceId: String? = nil, tableIdlType: String? = nil, tableType: String? = nil, listElementNum: Int64? = nil, reservedVolume: Int64? = nil, reservedReadQps: Int64? = nil, reservedWriteQps: Int64? = nil, memo: String? = nil, fileName: String? = nil, fileExtType: String? = nil, fileSize: Int64? = nil, fileContent: String? = nil) {
+
+        public init(tableGroupId: String, tableName: String, tableInstanceId: String? = nil, tableIdlType: String? = nil, tableType: String? = nil, listElementNum: Int64? = nil, reservedVolume: Int64? = nil, reservedReadQps: Int64? = nil, reservedWriteQps: Int64? = nil, memo: String? = nil, fileName: String? = nil, fileExtType: String? = nil, fileSize: Int64? = nil, fileContent: String? = nil) {
             self.tableGroupId = tableGroupId
             self.tableName = tableName
             self.tableInstanceId = tableInstanceId
@@ -871,7 +871,7 @@ extension Tcaplusdb {
             self.fileSize = fileSize
             self.fileContent = fileContent
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case tableGroupId = "TableGroupId"
             case tableName = "TableName"
@@ -889,34 +889,34 @@ extension Tcaplusdb {
             case fileContent = "FileContent"
         }
     }
-    
+
     /// 附带被选中字段信息的表格列表
     public struct SelectedTableWithField: TCInputModel {
         /// 表所属表格组ID
         public let tableGroupId: String
-        
+
         /// 表格名称
         public let tableName: String
-        
+
         /// 表实例ID
         public let tableInstanceId: String?
-        
+
         /// 表格描述语言类型：`PROTO`或`TDR`
         public let tableIdlType: String?
-        
+
         /// 表格数据结构类型：`GENERIC`或`LIST`
         public let tableType: String?
-        
+
         /// 待创建索引、缓写、数据订阅的字段列表
         public let selectedFields: [FieldInfo]?
-        
+
         /// 索引分片数
         public let shardNum: UInt64?
-        
+
         /// ckafka实例信息
         public let kafkaInfo: KafkaInfo?
-        
-        public init (tableGroupId: String, tableName: String, tableInstanceId: String? = nil, tableIdlType: String? = nil, tableType: String? = nil, selectedFields: [FieldInfo]? = nil, shardNum: UInt64? = nil, kafkaInfo: KafkaInfo? = nil) {
+
+        public init(tableGroupId: String, tableName: String, tableInstanceId: String? = nil, tableIdlType: String? = nil, tableType: String? = nil, selectedFields: [FieldInfo]? = nil, shardNum: UInt64? = nil, kafkaInfo: KafkaInfo? = nil) {
             self.tableGroupId = tableGroupId
             self.tableName = tableName
             self.tableInstanceId = tableInstanceId
@@ -926,7 +926,7 @@ extension Tcaplusdb {
             self.shardNum = shardNum
             self.kafkaInfo = kafkaInfo
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case tableGroupId = "TableGroupId"
             case tableName = "TableName"
@@ -938,27 +938,27 @@ extension Tcaplusdb {
             case kafkaInfo = "KafkaInfo"
         }
     }
-    
+
     /// server独占机器的详细信息
     public struct ServerDetailInfo: TCOutputModel {
         /// svr唯一id
         public let serverUid: String
-        
+
         /// 机器类型
         public let machineType: String
-        
+
         /// 内存占用量
         public let memoryRate: Int64
-        
+
         /// 磁盘占用量
         public let diskRate: Int64
-        
+
         /// 读次数
         public let readNum: Int64
-        
+
         /// 写次数
         public let writeNum: Int64
-        
+
         enum CodingKeys: String, CodingKey {
             case serverUid = "ServerUid"
             case machineType = "MachineType"
@@ -968,32 +968,32 @@ extension Tcaplusdb {
             case writeNum = "WriteNum"
         }
     }
-    
+
     /// svr的机器列表ServerList
     public struct ServerMachineInfo: TCOutputModel {
         /// 机器唯一id
         public let serverUid: String
-        
+
         /// 机器类型
         public let machineType: String
-        
+
         enum CodingKeys: String, CodingKey {
             case serverUid = "ServerUid"
             case machineType = "MachineType"
         }
     }
-    
+
     /// 快照列表
     public struct SnapshotInfo: TCInputModel, TCOutputModel {
         /// 所属表格组ID
         public let tableGroupId: String
-        
+
         /// 表名称
         public let tableName: String
-        
+
         /// 快照名称
         public let snapshotName: String
-        
+
         /// 快照时间点
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -1001,7 +1001,7 @@ extension Tcaplusdb {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var snapshotTime: Date
-        
+
         /// 快照过期时间点
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -1009,15 +1009,15 @@ extension Tcaplusdb {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var snapshotDeadTime: Date
-        
-        public init (tableGroupId: String, tableName: String, snapshotName: String, snapshotTime: Date, snapshotDeadTime: Date) {
+
+        public init(tableGroupId: String, tableName: String, snapshotName: String, snapshotTime: Date, snapshotDeadTime: Date) {
             self.tableGroupId = tableGroupId
             self.tableName = tableName
             self.snapshotName = snapshotName
             self.snapshotTime = snapshotTime
             self.snapshotDeadTime = snapshotDeadTime
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case tableGroupId = "TableGroupId"
             case tableName = "TableName"
@@ -1026,18 +1026,18 @@ extension Tcaplusdb {
             case snapshotDeadTime = "SnapshotDeadTime"
         }
     }
-    
+
     /// 新的快照过期时间
     public struct SnapshotInfoNew: TCInputModel {
         /// 所属表格组ID
         public let tableGroupId: String
-        
+
         /// 表名称
         public let tableName: String
-        
+
         /// 快照名称
         public let snapshotName: String
-        
+
         /// 快照过期时间点
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -1045,14 +1045,14 @@ extension Tcaplusdb {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var snapshotDeadTime: Date?
-        
-        public init (tableGroupId: String, tableName: String, snapshotName: String, snapshotDeadTime: Date? = nil) {
+
+        public init(tableGroupId: String, tableName: String, snapshotName: String, snapshotDeadTime: Date? = nil) {
             self.tableGroupId = tableGroupId
             self.tableName = tableName
             self.snapshotName = snapshotName
             self.snapshotDeadTime = snapshotDeadTime
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case tableGroupId = "TableGroupId"
             case tableName = "TableName"
@@ -1060,29 +1060,29 @@ extension Tcaplusdb {
             case snapshotDeadTime = "SnapshotDeadTime"
         }
     }
-    
+
     /// 创建快照结果
     public struct SnapshotResult: TCOutputModel {
         /// 表格所属表格组ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tableGroupId: String?
-        
+
         /// 表格名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tableName: String?
-        
+
         /// 任务ID，对于创建单任务的接口有效
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let taskId: String?
-        
+
         /// 错误信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let error: ErrorInfo?
-        
+
         /// 快照名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let snapshotName: String?
-        
+
         /// 快照的时间点
         /// 注意：此字段可能返回 null，表示取不到有效值。
         ///
@@ -1091,7 +1091,7 @@ extension Tcaplusdb {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var snapshotTime: Date?
-        
+
         /// 快照的过期时间点
         /// 注意：此字段可能返回 null，表示取不到有效值。
         ///
@@ -1100,7 +1100,7 @@ extension Tcaplusdb {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var snapshotDeadTime: Date?
-        
+
         /// 快照创建时间点
         /// 注意：此字段可能返回 null，表示取不到有效值。
         ///
@@ -1109,15 +1109,15 @@ extension Tcaplusdb {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var snapshotCreateTime: Date?
-        
+
         /// 快照大小
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let snapshotSize: UInt64?
-        
+
         /// 快照状态，0 生成中 1 正常 2 删除中 3 已失效 4 回档使用中
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let snapshotStatus: UInt64?
-        
+
         enum CodingKeys: String, CodingKey {
             case tableGroupId = "TableGroupId"
             case tableName = "TableName"
@@ -1131,61 +1131,61 @@ extension Tcaplusdb {
             case snapshotStatus = "SnapshotStatus"
         }
     }
-    
+
     /// 缓写表字段名称的映射
     public struct SyncTableField: TCInputModel, TCOutputModel {
         /// TcaplusDB表字段名称
         public let sourceName: String
-        
+
         /// 目标缓写表的字段名称
         public let targetName: String
-        
-        public init (sourceName: String, targetName: String) {
+
+        public init(sourceName: String, targetName: String) {
             self.sourceName = sourceName
             self.targetName = targetName
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case sourceName = "SourceName"
             case targetName = "TargetName"
         }
     }
-    
+
     /// TcaplusDB的缓写表信息
     public struct SyncTableInfo: TCOutputModel {
         /// 目标缓写表的分表数目
         public let targetTableSplitNum: UInt64
-        
+
         /// 目标缓写表名前缀
         public let targetTableNamePrefix: [String]
-        
+
         /// 缓写数据库实例ID
         public let targetSyncDBInstanceId: String
-        
+
         /// 缓写表所在数据库名称
         public let targetDatabaseName: String
-        
+
         /// 缓写状态，0：创建中，1：进行中，2：关闭，-1：被删除
         public let status: Int64
-        
+
         /// 表格所在集群ID
         public let clusterId: String
-        
+
         /// 表格所在表格组ID
         public let tableGroupId: UInt64
-        
+
         /// 表格名称
         public let tableName: String
-        
+
         /// 表格ID
         public let tableId: String
-        
+
         /// TcaplusDB表主键字段到目标缓写表字段的映射
         public let keyFieldMapping: [SyncTableField]
-        
+
         /// TcaplusDB表字段到目标缓写表字段的映射
         public let valueFieldMapping: [SyncTableField]
-        
+
         enum CodingKeys: String, CodingKey {
             case targetTableSplitNum = "TargetTableSplitNum"
             case targetTableNamePrefix = "TargetTableNamePrefix"
@@ -1200,15 +1200,15 @@ extension Tcaplusdb {
             case valueFieldMapping = "ValueFieldMapping"
         }
     }
-    
+
     /// 表格组详细信息
     public struct TableGroupInfo: TCOutputModel {
         /// 表格组ID
         public let tableGroupId: String
-        
+
         /// 表格组名称
         public let tableGroupName: String
-        
+
         /// 表格组创建时间
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -1216,13 +1216,13 @@ extension Tcaplusdb {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var createdTime: Date
-        
+
         /// 表格组包含的表格数量
         public let tableCount: UInt64
-        
+
         /// 表格组包含的表格存储总量（MB）
         public let totalSize: UInt64
-        
+
         enum CodingKeys: String, CodingKey {
             case tableGroupId = "TableGroupId"
             case tableGroupName = "TableGroupName"
@@ -1231,125 +1231,125 @@ extension Tcaplusdb {
             case totalSize = "TotalSize"
         }
     }
-    
+
     /// 表格详情信息
     public struct TableInfoNew: TCOutputModel {
         /// 表格名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tableName: String?
-        
+
         /// 表格实例ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tableInstanceId: String?
-        
+
         /// 表格数据结构类型，如：`GENERIC`或`LIST`
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tableType: String?
-        
+
         /// 表格数据描述语言（IDL）类型，如：`PROTO`或`TDR`
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tableIdlType: String?
-        
+
         /// 表格所属集群ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let clusterId: String?
-        
+
         /// 表格所属集群名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let clusterName: String?
-        
+
         /// 表格所属表格组ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tableGroupId: String?
-        
+
         /// 表格所属表格组名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tableGroupName: String?
-        
+
         /// 表格主键字段结构json字符串
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let keyStruct: String?
-        
+
         /// 表格非主键字段结构json字符串
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let valueStruct: String?
-        
+
         /// 表格分表因子集合，对PROTO类型表格有效
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let shardingKeySet: String?
-        
+
         /// 表格索引键字段集合，对PROTO类型表格有效
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let indexStruct: String?
-        
+
         /// LIST类型表格元素个数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let listElementNum: UInt64?
-        
+
         /// 表格所关联IDL文件信息列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let idlFiles: [IdlFileInfo]?
-        
+
         /// 表格预留容量（GB）
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let reservedVolume: Int64?
-        
+
         /// 表格预留读CU
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let reservedReadQps: Int64?
-        
+
         /// 表格预留写CU
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let reservedWriteQps: Int64?
-        
+
         /// 表格实际数据量大小（MB）
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tableSize: Int64?
-        
+
         /// 表格状态
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let status: String?
-        
+
         /// 表格创建时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let createdTime: String?
-        
+
         /// 表格最后一次修改时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let updatedTime: String?
-        
+
         /// 表格备注信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let memo: String?
-        
+
         /// 错误信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let error: ErrorInfo?
-        
+
         /// TcaplusDB SDK数据访问接入ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let apiAccessId: String?
-        
+
         /// SORTLIST类型表格排序字段个数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let sortFieldNum: Int64?
-        
+
         /// SORTLIST类型表格排序顺序
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let sortRule: Int64?
-        
+
         /// 表格分布式索引/缓写、kafka数据订阅信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let dbClusterInfoStruct: String?
-        
+
         /// 表格Txh备份文件多少天后过期删除
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let txhBackupExpireDay: UInt64?
-        
+
         /// 表格的缓写信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let syncTableInfo: SyncTableInfo?
-        
+
         enum CodingKeys: String, CodingKey {
             case tableName = "TableName"
             case tableInstanceId = "TableInstanceId"
@@ -1382,45 +1382,45 @@ extension Tcaplusdb {
             case syncTableInfo = "SyncTableInfo"
         }
     }
-    
+
     /// 表处理结果信息
     public struct TableResultNew: TCOutputModel {
         /// 表格实例ID，形如：tcaplus-3be64cbb
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tableInstanceId: String?
-        
+
         /// 任务ID，对于创建单任务的接口有效
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let taskId: String?
-        
+
         /// 表格名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tableName: String?
-        
+
         /// 表格数据结构类型，如：`GENERIC`或`LIST`
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tableType: String?
-        
+
         /// 表数据描述语言（IDL）类型，如：`PROTO`或`TDR`
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tableIdlType: String?
-        
+
         /// 表格所属表格组ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tableGroupId: String?
-        
+
         /// 错误信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let error: ErrorInfo?
-        
+
         /// 任务ID列表，对于创建多任务的接口有效
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let taskIds: [String]?
-        
+
         /// 腾讯云申请审核单Id
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let applicationId: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case tableInstanceId = "TableInstanceId"
             case taskId = "TaskId"
@@ -1433,53 +1433,53 @@ extension Tcaplusdb {
             case applicationId = "ApplicationId"
         }
     }
-    
+
     /// 表格回档结果信息
     public struct TableRollbackResultNew: TCOutputModel {
         /// 表格实例ID，形如：tcaplus-3be64cbb
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tableInstanceId: String?
-        
+
         /// 任务ID，对于创建单任务的接口有效
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let taskId: String?
-        
+
         /// 表格名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tableName: String?
-        
+
         /// 表格数据结构类型，如：`GENERIC`或`LIST`
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tableType: String?
-        
+
         /// 表格数据描述语言（IDL）类型，如：`PROTO`或`TDR`
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tableIdlType: String?
-        
+
         /// 表格所属表格组ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tableGroupId: String?
-        
+
         /// 错误信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let error: ErrorInfo?
-        
+
         /// 任务ID列表，对于创建多任务的接口有效
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let taskIds: [String]?
-        
+
         /// 上传的key文件ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let fileId: String?
-        
+
         /// 校验成功Key数量
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let succKeyNum: UInt64?
-        
+
         /// Key文件中包含总的Key数量
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let totalKeyNum: UInt64?
-        
+
         enum CodingKeys: String, CodingKey {
             case tableInstanceId = "TableInstanceId"
             case taskId = "TaskId"
@@ -1494,70 +1494,70 @@ extension Tcaplusdb {
             case totalKeyNum = "TotalKeyNum"
         }
     }
-    
+
     /// 标签信息单元
     public struct TagInfoUnit: TCInputModel, TCOutputModel {
         /// 标签键
         public let tagKey: String
-        
+
         /// 标签值
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tagValue: String?
-        
-        public init (tagKey: String, tagValue: String? = nil) {
+
+        public init(tagKey: String, tagValue: String? = nil) {
             self.tagKey = tagKey
             self.tagValue = tagValue
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case tagKey = "TagKey"
             case tagValue = "TagValue"
         }
     }
-    
+
     /// 集群的标签信息
     public struct TagsInfoOfCluster: TCOutputModel {
         /// 集群ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let clusterId: String?
-        
+
         /// 标签信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tags: [TagInfoUnit]?
-        
+
         /// 错误信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let error: ErrorInfo?
-        
+
         enum CodingKeys: String, CodingKey {
             case clusterId = "ClusterId"
             case tags = "Tags"
             case error = "Error"
         }
     }
-    
+
     /// 表格标签信息
     public struct TagsInfoOfTable: TCOutputModel {
         /// 表格实例ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tableInstanceId: String?
-        
+
         /// 表格名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tableName: String?
-        
+
         /// 表格组ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tableGroupId: String?
-        
+
         /// 标签信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tags: [TagInfoUnit]?
-        
+
         /// 错误信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let error: ErrorInfo?
-        
+
         enum CodingKeys: String, CodingKey {
             case tableInstanceId = "TableInstanceId"
             case tableName = "TableName"
@@ -1566,25 +1566,25 @@ extension Tcaplusdb {
             case error = "Error"
         }
     }
-    
+
     /// 表格组标签信息
     public struct TagsInfoOfTableGroup: TCOutputModel {
         /// 集群ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let clusterId: String?
-        
+
         /// 表格组ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tableGroupId: String?
-        
+
         /// 标签信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tags: [TagInfoUnit]?
-        
+
         /// 错误信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let error: ErrorInfo?
-        
+
         enum CodingKeys: String, CodingKey {
             case clusterId = "ClusterId"
             case tableGroupId = "TableGroupId"
@@ -1592,27 +1592,27 @@ extension Tcaplusdb {
             case error = "Error"
         }
     }
-    
+
     /// 任务信息详情
     public struct TaskInfoNew: TCOutputModel {
         /// 任务ID
         public let taskId: String
-        
+
         /// 任务类型
         public let taskType: String
-        
+
         /// 任务所关联的TcaplusDB内部事务ID
         public let transId: String
-        
+
         /// 任务所属集群ID
         public let clusterId: String
-        
+
         /// 任务所属集群名称
         public let clusterName: String
-        
+
         /// 任务进度
         public let progress: Int64
-        
+
         /// 任务创建时间
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -1620,7 +1620,7 @@ extension Tcaplusdb {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var startTime: Date
-        
+
         /// 任务最后更新时间
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -1628,13 +1628,13 @@ extension Tcaplusdb {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampEncoding public var updateTime: Date
-        
+
         /// 操作者
         public let `operator`: String
-        
+
         /// 任务详情
         public let content: String
-        
+
         enum CodingKeys: String, CodingKey {
             case taskId = "TaskId"
             case taskType = "TaskType"

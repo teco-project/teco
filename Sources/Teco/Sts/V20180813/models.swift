@@ -19,51 +19,51 @@ extension Sts {
     public struct ApiKey: TCOutputModel {
         /// 密钥ID
         public let secretId: String
-        
+
         /// 创建时间(时间戳)
         public let createTime: UInt64
-        
+
         /// 状态(2:有效, 3:禁用, 4:已删除)
         public let status: UInt64
-        
+
         enum CodingKeys: String, CodingKey {
             case secretId = "SecretId"
             case createTime = "CreateTime"
             case status = "Status"
         }
     }
-    
+
     /// 临时证书
     public struct Credentials: TCOutputModel {
         /// token。token长度和绑定的策略有关，最长不超过4096字节。
         public let token: String
-        
+
         /// 临时证书密钥ID。最长不超过1024字节。
         public let tmpSecretId: String
-        
+
         /// 临时证书密钥Key。最长不超过1024字节。
         public let tmpSecretKey: String
-        
+
         enum CodingKeys: String, CodingKey {
             case token = "Token"
             case tmpSecretId = "TmpSecretId"
             case tmpSecretKey = "TmpSecretKey"
         }
     }
-    
+
     /// 标签
     public struct Tag: TCInputModel {
         /// 标签键，最长128个字符，区分大小写。
         public let key: String
-        
+
         /// 标签值，最长256个字符，区分大小写。
         public let value: String
-        
-        public init (key: String, value: String) {
+
+        public init(key: String, value: String) {
             self.key = key
             self.value = value
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case key = "Key"
             case value = "Value"

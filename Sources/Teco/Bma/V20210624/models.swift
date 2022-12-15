@@ -19,25 +19,25 @@ extension Bma {
     public struct BrandData: TCOutputModel {
         /// 商标名称
         public let brandName: String
-        
+
         /// 商标证明
         public let brandCertificateName: String
-        
+
         /// 商标审核状态 1-审核中 2-审核未通过 3-审核通过
         public let brandStatus: Int64
-        
+
         /// 审核说明
         public let brandNote: String
-        
+
         /// 商标转让证明
         public let transferName: String
-        
+
         /// 商标转让证明审核状态
         public let transferStatus: Int64
-        
+
         /// 审核说明 1-审核中 2-审核未通过 3-审核通过
         public let transferNote: String
-        
+
         enum CodingKeys: String, CodingKey {
             case brandName = "BrandName"
             case brandCertificateName = "BrandCertificateName"
@@ -48,57 +48,57 @@ extension Bma {
             case transferNote = "TransferNote"
         }
     }
-    
+
     /// 仿冒网站信息
     public struct FakeURLInfo: TCOutputModel {
         /// 仿冒网址ID
         public let fakeURLId: Int64
-        
+
         /// 保护网站
         public let protectWeb: String
-        
+
         /// 检测时间
         public let detectTime: String
-        
+
         /// 仿冒网址
         public let fakeURL: String
-        
+
         /// 截图
         public let snapshot: String
-        
+
         /// IP地址
         public let ip: String
-        
+
         /// IP地理位置
         public let ipLoc: String
-        
+
         /// 热度
         public let heat: Int64
-        
+
         /// 网址状态
         public let status: Int64
-        
+
         /// 备注
         public let note: String
-        
+
         /// 仿冒网站所属单位
         public let fakeURLCompany: String
-        
+
         /// 仿冒网站性质
         public let fakeURLAttr: String
-        
+
         /// 仿冒网站名称
         public let fakeURLName: String
-        
+
         /// 仿冒网站备案号
         public let fakeURLICP: String
-        
+
         /// 仿冒网站创建时间
         public let fakeURLCreateTime: String
-        
+
         /// 仿冒网站过期时间
         public let fakeURLExpireTime: String
-        
+
         enum CodingKeys: String, CodingKey {
             case fakeURLId = "FakeURLId"
             case protectWeb = "ProtectWeb"
@@ -118,28 +118,28 @@ extension Bma {
             case fakeURLExpireTime = "FakeURLExpireTime"
         }
     }
-    
+
     /// 权属文件列表
     public struct File: TCInputModel {
         /// 文件下载地址
         public let fileUrl: String
-        
+
         /// 文件类型 1-委托书 2-授权书 5-存证证书 11-营业执照
         public let fileType: Int64
-        
+
         /// 文件有效开始日期
         public let validStartDate: String
-        
+
         /// 文件有效截止日期
         public let validEndDate: String
-        
-        public init (fileUrl: String, fileType: Int64, validStartDate: String, validEndDate: String) {
+
+        public init(fileUrl: String, fileType: Int64, validStartDate: String, validEndDate: String) {
             self.fileUrl = fileUrl
             self.fileType = fileType
             self.validStartDate = validStartDate
             self.validEndDate = validEndDate
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case fileUrl = "FileUrl"
             case fileType = "FileType"
@@ -147,57 +147,57 @@ extension Bma {
             case validEndDate = "ValidEndDate"
         }
     }
-    
+
     /// 过滤参数
     public struct Filter: TCInputModel {
-        public init () {
+        public init() {
         }
     }
-    
+
     /// 版权保护-监测结果
     public struct Monitor: TCOutputModel {
         /// 作品ID
         public let workId: Int64
-        
+
         /// 作品名称
         public let workName: String
-        
+
         /// 作品内容类型 01-视频 02-音频 03-文本 04-图片
         public let workType: String
-        
+
         /// 侵权平台数量
         public let tortPlatNum: Int64
-        
+
         /// 侵权链接数量
         public let tortURLNum: Int64
-        
+
         /// 监测时间
         public let monitorTime: String
-        
+
         /// 0-待监测 1-监测中 2-不监测 3-暂停监测
         public let monitorStatus: Int64
-        
+
         /// 作品类型
         public let workCategory: String
-        
+
         /// 新增时间
         public let insertTime: String
-        
+
         /// 监测状态说明
         public let monitorNote: String
-        
+
         /// 作品类型全部展示
         public let workCategoryAll: String
-        
+
         /// 存证状态
         public let evidenceStatus: Int64
-        
+
         /// 存证状态说明
         public let evidenceNote: String
-        
+
         /// 侵权站点数量
         public let tortSiteNum: Int64
-        
+
         enum CodingKeys: String, CodingKey {
             case workId = "WorkId"
             case workName = "WorkName"
@@ -215,87 +215,87 @@ extension Bma {
             case tortSiteNum = "TortSiteNum"
         }
     }
-    
+
     /// 监测侵权信息详情
     public struct MonitorTort: TCOutputModel {
         /// 侵权信息ID
         public let tortId: Int64
-        
+
         /// 侵权标题
         public let tortTitle: String
-        
+
         /// 侵权平台
         public let tortPlat: String
-        
+
         /// 侵权链接
         public let tortURL: String
-        
+
         /// 侵权链接发布时间
         public let pubTime: String
-        
+
         /// 作者
         public let author: String
-        
+
         /// 发现时间
         public let detectTime: String
-        
+
         /// 取证状态
         public let obtainStatus: Int64
-        
+
         /// 维权状态
         public let rightStatus: Int64
-        
+
         /// 拦截状态
         public let blockStatus: Int64
-        
+
         /// 侵权编号
         public let tortNum: String
-        
+
         /// 取证状态说明
         public let obtainNote: String
-        
+
         /// 作品标题
         public let workTitle: String
-        
+
         /// 侵权站点
         public let tortSite: String
-        
+
         /// ICP备案信息
         public let icp: String
-        
+
         /// 维权状态说明
         public let rightNote: String
-        
+
         /// 取证类型
         public let obtainType: Int64
-        
+
         /// 拦截状态说明
         public let blockNote: String
-        
+
         /// 作品ID
         public let workId: Int64
-        
+
         /// 作品名称
         public let workName: String
-        
+
         /// 授权书状态
         public let authStatus: Int64
-        
+
         /// 委托书状态
         public let commStatus: Int64
-        
+
         /// 存证证书状态
         public let evidenceStatus: Int64
-        
+
         /// 是否著作权人
         public let isProducer: Int64
-        
+
         /// 是否境外网址
         public let isOverseas: Int64
-        
+
         /// ip地理位置
         public let ipLoc: String
-        
+
         enum CodingKeys: String, CodingKey {
             case tortId = "TortId"
             case tortTitle = "TortTitle"
@@ -325,27 +325,27 @@ extension Bma {
             case ipLoc = "IPLoc"
         }
     }
-    
+
     /// 保护网站信息
     public struct ProtectURLInfo: TCOutputModel {
         /// 保护网站ID
         public let protectURLId: Int64
-        
+
         /// 保护网站
         public let protectURL: String
-        
+
         /// 保护网站名称
         public let protectWeb: String
-        
+
         /// 保护网站审核状态 1-审核中 2-审核不通过 3-审核通过
         public let protectURLStatus: Int64
-        
+
         /// 网站审核不通过原因
         public let protectURLNote: String
-        
+
         /// 创建时间
         public let createTime: String
-        
+
         enum CodingKeys: String, CodingKey {
             case protectURLId = "ProtectURLId"
             case protectURL = "ProtectURL"
@@ -355,63 +355,63 @@ extension Bma {
             case createTime = "CreateTime"
         }
     }
-    
+
     /// 举报网址信息
     public struct ReportFakeURLInfo: TCOutputModel {
         /// 仿冒网址ID
         public let fakeURLId: Int64
-        
+
         /// 检测时间
         public let detectTime: String
-        
+
         /// 保护网站
         public let protectURL: String
-        
+
         /// 保护网站名称
         public let protectWeb: String
-        
+
         /// 仿冒网址
         public let fakeURL: String
-        
+
         /// 截图
         public let snapshot: String
-        
+
         /// IP地址
         public let ip: String
-        
+
         /// IP地理位置
         public let ipLoc: String
-        
+
         /// 热度
         public let heat: Int64
-        
+
         /// 网站状态
         public let status: Int64
-        
+
         /// 网站不处理原因
         public let note: String
-        
+
         /// 仿冒网站的企业名称
         public let fakeURLCompany: String
-        
+
         /// 仿冒网站的网站性质
         public let fakeURLAttr: String
-        
+
         /// 仿冒网站的网站名称
         public let fakeURLName: String
-        
+
         /// 仿冒网站的备案
         public let fakeURLICP: String
-        
+
         /// 仿冒网站创建时间
         public let fakeURLCreateTime: String
-        
+
         /// 仿冒网站过期时间
         public let fakeURLExpireTime: String
-        
+
         /// 协查处置时间
         public let blockTime: String
-        
+
         enum CodingKeys: String, CodingKey {
             case fakeURLId = "FakeURLId"
             case detectTime = "DetectTime"

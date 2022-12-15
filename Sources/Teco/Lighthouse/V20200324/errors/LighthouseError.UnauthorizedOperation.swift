@@ -21,44 +21,44 @@ extension TCLighthouseError {
             case mfaNotFound = "UnauthorizedOperation.MFANotFound"
             case noPermission = "UnauthorizedOperation.NoPermission"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// MFA 已过期。
         public static var mfaExpired: UnauthorizedOperation {
             UnauthorizedOperation(.mfaExpired)
         }
-        
+
         /// MFA 不存在。
         public static var mfaNotFound: UnauthorizedOperation {
             UnauthorizedOperation(.mfaNotFound)
         }
-        
+
         /// 无权限。
         public static var noPermission: UnauthorizedOperation {
             UnauthorizedOperation(.noPermission)
         }
-        
+
         public func asLighthouseError() -> TCLighthouseError {
             let code: TCLighthouseError.Code
             switch self.error {

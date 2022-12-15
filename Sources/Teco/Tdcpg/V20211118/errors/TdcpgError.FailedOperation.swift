@@ -30,88 +30,88 @@ extension TCTdcpgError {
             case tradeAccessError = "FailedOperation.TradeAccessError"
             case other = "FailedOperation"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 元数据库访问失败，请稍后重试。如果持续不成功，请联系客服进行处理。
         public static var databaseAccessError: FailedOperation {
             FailedOperation(.databaseAccessError)
         }
-        
+
         /// 创建流程失败,请稍后重试。如果持续不成功，请联系客服进行处理。
         public static var flowError: FailedOperation {
             FailedOperation(.flowError)
         }
-        
+
         /// 获取VPC信息异常，请稍后重试。如果持续不成功，请联系客服进行处理。
         public static var getVpcFailed: FailedOperation {
             FailedOperation(.getVpcFailed)
         }
-        
+
         /// 内部服务访问失败，请稍后重试。如果持续不成功，请联系客服。
         public static var internalServiceAccessError: FailedOperation {
             FailedOperation(.internalServiceAccessError)
         }
-        
+
         /// 当前的付费模式不支持此操作。
         public static var payModeInvalid: FailedOperation {
             FailedOperation(.payModeInvalid)
         }
-        
+
         /// 规格没有变化，CPU/Memory至少升级一项。
         public static var specNotChange: FailedOperation {
             FailedOperation(.specNotChange)
         }
-        
+
         /// 对应规格的存储上限不够，无法满足当前集群的数据存储。
         public static var specStorageLack: FailedOperation {
             FailedOperation(.specStorageLack)
         }
-        
+
         /// 状态异常，不允许操作。
         public static var statusError: FailedOperation {
             FailedOperation(.statusError)
         }
-        
+
         public static var storagePayModeInvalid: FailedOperation {
             FailedOperation(.storagePayModeInvalid)
         }
-        
+
         /// 任务冲突，请稍后重试。如果持续不成功，请联系客服。
         public static var taskConflict: FailedOperation {
             FailedOperation(.taskConflict)
         }
-        
+
         /// 请求计费服务异常，请稍后重试。如果持续不成功，请联系客服进行处理。
         public static var tradeAccessError: FailedOperation {
             FailedOperation(.tradeAccessError)
         }
-        
+
         /// 操作失败。
         public static var other: FailedOperation {
             FailedOperation(.other)
         }
-        
+
         public func asTdcpgError() -> TCTdcpgError {
             let code: TCTdcpgError.Code
             switch self.error {

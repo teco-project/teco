@@ -19,26 +19,26 @@ extension Dts {
     public struct CreateCheckSyncJobRequest: TCRequestModel {
         /// 同步任务id
         public let jobId: String
-        
-        public init (jobId: String) {
+
+        public init(jobId: String) {
             self.jobId = jobId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case jobId = "JobId"
         }
     }
-    
+
     /// CreateCheckSyncJob返回参数结构体
     public struct CreateCheckSyncJobResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 校验同步任务
     ///
     /// 校验同步任务，检查必要参数和周边配置。
@@ -46,7 +46,7 @@ extension Dts {
     public func createCheckSyncJob(_ input: CreateCheckSyncJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateCheckSyncJobResponse > {
         self.client.execute(action: "CreateCheckSyncJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 校验同步任务
     ///
     /// 校验同步任务，检查必要参数和周边配置。
@@ -54,7 +54,7 @@ extension Dts {
     public func createCheckSyncJob(_ input: CreateCheckSyncJobRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> CreateCheckSyncJobResponse {
         try await self.client.execute(action: "CreateCheckSyncJob", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 校验同步任务
     ///
     /// 校验同步任务，检查必要参数和周边配置。
@@ -62,7 +62,7 @@ extension Dts {
     public func createCheckSyncJob(jobId: String, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < CreateCheckSyncJobResponse > {
         self.createCheckSyncJob(CreateCheckSyncJobRequest(jobId: jobId), logger: logger, on: eventLoop)
     }
-    
+
     /// 校验同步任务
     ///
     /// 校验同步任务，检查必要参数和周边配置。

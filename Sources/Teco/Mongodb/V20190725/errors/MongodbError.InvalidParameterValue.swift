@@ -60,239 +60,239 @@ extension TCMongodbError {
             case zoneError = "InvalidParameterValue.ZoneError"
             case other = "InvalidParameterValue"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 备份文件未找到。
         public static var backupFileNotFound: InvalidParameterValue {
             InvalidParameterValue(.backupFileNotFound)
         }
-        
+
         /// appId校验失败。
         public static var checkAppIdFailed: InvalidParameterValue {
             InvalidParameterValue(.checkAppIdFailed)
         }
-        
+
         /// 无效的实例类型。
         public static var clusterTypeError: InvalidParameterValue {
             InvalidParameterValue(.clusterTypeError)
         }
-        
+
         /// 非法的实例名。
         public static var illegalInstanceName: InvalidParameterValue {
             InvalidParameterValue(.illegalInstanceName)
         }
-        
+
         /// 非法的实例状态。
         public static var illegalInstanceStatus: InvalidParameterValue {
             InvalidParameterValue(.illegalInstanceStatus)
         }
-        
+
         /// 实例状态不允许进行下线，进行下线操作的实例状态必须为隔离状态。
         public static var illegalStatusToOffline: InvalidParameterValue {
             InvalidParameterValue(.illegalStatusToOffline)
         }
-        
+
         /// 实例已删除。
         public static var instanceHasBeenDeleted: InvalidParameterValue {
             InvalidParameterValue(.instanceHasBeenDeleted)
         }
-        
+
         /// 实例已隔离。
         public static var instanceHasBeenIsolated: InvalidParameterValue {
             InvalidParameterValue(.instanceHasBeenIsolated)
         }
-        
+
         /// 计费相关错误，不允许对当前实例进行对应的新购/续费/配置变更操作。
         public static var invalidTradeOperation: InvalidParameterValue {
             InvalidParameterValue(.invalidTradeOperation)
         }
-        
+
         /// 实例锁定失败。
         public static var lockFailed: InvalidParameterValue {
             InvalidParameterValue(.lockFailed)
         }
-        
+
         /// 错误的机型。
         public static var machineTypeError: InvalidParameterValue {
             InvalidParameterValue(.machineTypeError)
         }
-        
+
         /// 内存和磁盘必须同时升配或降配。
         public static var modifyModeError: InvalidParameterValue {
             InvalidParameterValue(.modifyModeError)
         }
-        
+
         /// 实例版本错误。
         public static var mongoVersionError: InvalidParameterValue {
             InvalidParameterValue(.mongoVersionError)
         }
-        
+
         /// 实例版本不支持查询客户端信息。
         public static var mongoVersionNotSupportQueryClient: InvalidParameterValue {
             InvalidParameterValue(.mongoVersionNotSupportQueryClient)
         }
-        
+
         /// 当前副本集/分片未找到该节点。
         public static var nodeNotFoundInReplica: InvalidParameterValue {
             InvalidParameterValue(.nodeNotFoundInReplica)
         }
-        
+
         /// 未找到实例。
         public static var notFoundInstance: InvalidParameterValue {
             InvalidParameterValue(.notFoundInstance)
         }
-        
+
         /// OplogSize参数设置错误，应介于磁盘容量的10%和90%之间。
         public static var oplogSizeOutOfRange: InvalidParameterValue {
             InvalidParameterValue(.oplogSizeOutOfRange)
         }
-        
+
         /// 密码不符合规范。
         public static var passwordRuleFailed: InvalidParameterValue {
             InvalidParameterValue(.passwordRuleFailed)
         }
-        
+
         /// 单个地域后付费实例数量超过限制。
         public static var postPaidInstanceBeyondLimit: InvalidParameterValue {
             InvalidParameterValue(.postPaidInstanceBeyondLimit)
         }
-        
+
         /// 预付费实例不支持销毁。
         public static var prePaidInstanceUnableToIsolate: InvalidParameterValue {
             InvalidParameterValue(.prePaidInstanceUnableToIsolate)
         }
-        
+
         /// 项目不存在。
         public static var projectNotFound: InvalidParameterValue {
             InvalidParameterValue(.projectNotFound)
         }
-        
+
         /// proxy版本不支持查询客户端信息，请联系工作人员进行升级。
         public static var proxyNotSupportQueryClient: InvalidParameterValue {
             InvalidParameterValue(.proxyNotSupportQueryClient)
         }
-        
+
         /// 查询offset超出范围。
         public static var queryOutOfRange: InvalidParameterValue {
             InvalidParameterValue(.queryOutOfRange)
         }
-        
+
         /// 只能查询7天内的慢日志。
         public static var queryTimeOutOfRange: InvalidParameterValue {
             InvalidParameterValue(.queryTimeOutOfRange)
         }
-        
+
         /// 只能查询7天内的慢日志。
         public static var queryTimeRangeBeyondLimit: InvalidParameterValue {
             InvalidParameterValue(.queryTimeRangeBeyondLimit)
         }
-        
+
         /// 无效的地域。
         public static var regionError: InvalidParameterValue {
             InvalidParameterValue(.regionError)
         }
-        
+
         /// 当前地域尚不支持该操作。
         public static var regionNotSupportOperation: InvalidParameterValue {
             InvalidParameterValue(.regionNotSupportOperation)
         }
-        
+
         /// 地域尚不支持查询客户端信息。
         public static var regionNotSupportQueryClient: InvalidParameterValue {
             InvalidParameterValue(.regionNotSupportQueryClient)
         }
-        
+
         /// 未找到副本集/分片。
         public static var replicaNotFound: InvalidParameterValue {
             InvalidParameterValue(.replicaNotFound)
         }
-        
+
         /// 副本集（分片）数量错误。
         public static var replicaSetNumError: InvalidParameterValue {
             InvalidParameterValue(.replicaSetNumError)
         }
-        
+
         /// 从节点数错误。
         public static var secondaryNumError: InvalidParameterValue {
             InvalidParameterValue(.secondaryNumError)
         }
-        
+
         /// 设置的磁盘大小不得低于已用磁盘的1.2倍。
         public static var setDiskLessThanUsed: InvalidParameterValue {
             InvalidParameterValue(.setDiskLessThanUsed)
         }
-        
+
         /// slowMS参数取值范围[100, 。
         public static var slowMSBelowLimit: InvalidParameterValue {
             InvalidParameterValue(.slowMSBelowLimit)
         }
-        
+
         /// 购买规格错误。
         public static var specNotOnSale: InvalidParameterValue {
             InvalidParameterValue(.specNotOnSale)
         }
-        
+
         /// 起始时间晚于结束时间。
         public static var startTimeNotBeforeThanEndTime: InvalidParameterValue {
             InvalidParameterValue(.startTimeNotBeforeThanEndTime)
         }
-        
+
         /// 实例处于不允许操作的状态。
         public static var statusAbnormal: InvalidParameterValue {
             InvalidParameterValue(.statusAbnormal)
         }
-        
+
         /// 未找到指定的标签。
         public static var tagNotFound: InvalidParameterValue {
             InvalidParameterValue(.tagNotFound)
         }
-        
+
         /// 用户账户不存在。
         public static var userNotFound: InvalidParameterValue {
             InvalidParameterValue(.userNotFound)
         }
-        
+
         /// 未找到虚拟网络（子网）。
         public static var vpcIdOrSubnetIdNotFound: InvalidParameterValue {
             InvalidParameterValue(.vpcIdOrSubnetIdNotFound)
         }
-        
+
         /// 可用区已关闭售卖。
         public static var zoneClosed: InvalidParameterValue {
             InvalidParameterValue(.zoneClosed)
         }
-        
+
         /// 无效的可用区。
         public static var zoneError: InvalidParameterValue {
             InvalidParameterValue(.zoneError)
         }
-        
+
         /// 参数取值错误。
         public static var other: InvalidParameterValue {
             InvalidParameterValue(.other)
         }
-        
+
         public func asMongodbError() -> TCMongodbError {
             let code: TCMongodbError.Code
             switch self.error {

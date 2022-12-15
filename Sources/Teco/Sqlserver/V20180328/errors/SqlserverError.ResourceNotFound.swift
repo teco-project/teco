@@ -28,79 +28,79 @@ extension TCSqlserverError {
             case vpcNotExist = "ResourceNotFound.VpcNotExist"
             case other = "ResourceNotFound"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 账号不存在。
         public static var accountNotExist: ResourceNotFound {
             ResourceNotFound(.accountNotExist)
         }
-        
+
         /// 备份不存在。
         public static var backupNotFound: ResourceNotFound {
             ResourceNotFound(.backupNotFound)
         }
-        
+
         /// 数据库不存在。
         public static var dbNotExit: ResourceNotFound {
             ResourceNotFound(.dbNotExit)
         }
-        
+
         /// 数据库不存在。
         public static var dbNotFound: ResourceNotFound {
             ResourceNotFound(.dbNotFound)
         }
-        
+
         /// 全量备份导入任务不存在。
         public static var fullBackupMigrationNotExist: ResourceNotFound {
             ResourceNotFound(.fullBackupMigrationNotExist)
         }
-        
+
         /// 增量备份导入任务不存在。
         public static var increBackupMigrationNotExist: ResourceNotFound {
             ResourceNotFound(.increBackupMigrationNotExist)
         }
-        
+
         /// 实例不存在。
         public static var instanceNotFound: ResourceNotFound {
             ResourceNotFound(.instanceNotFound)
         }
-        
+
         /// 参数未找到。
         public static var paramsNotFound: ResourceNotFound {
             ResourceNotFound(.paramsNotFound)
         }
-        
+
         /// VPC网络不存在。
         public static var vpcNotExist: ResourceNotFound {
             ResourceNotFound(.vpcNotExist)
         }
-        
+
         /// 资源不存在。
         public static var other: ResourceNotFound {
             ResourceNotFound(.other)
         }
-        
+
         public func asSqlserverError() -> TCSqlserverError {
             let code: TCSqlserverError.Code
             switch self.error {

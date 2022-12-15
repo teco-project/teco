@@ -59,232 +59,232 @@ extension TCDcdbError {
             case wanServiceFailed = "InternalError.WanServiceFailed"
             case other = "InternalError"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// CAM鉴权请求失败。
         public static var camAuthFailed: InternalError {
             InternalError(.camAuthFailed)
         }
-        
+
         /// 校验VIP状态失败。
         public static var checkVipStatusFailed: InternalError {
             InternalError(.checkVipStatusFailed)
         }
-        
+
         /// COS地址配置错误。
         public static var cosConfiguration: InternalError {
             InternalError(.cosConfiguration)
         }
-        
+
         /// 备份文件签名失败。
         public static var cosSignUrl: InternalError {
             InternalError(.cosSignUrl)
         }
-        
+
         public static var createFlowFailed: InternalError {
             InternalError(.createFlowFailed)
         }
-        
+
         /// 查询数据库失败。
         public static var dbOperationFailed: InternalError {
             InternalError(.dbOperationFailed)
         }
-        
+
         /// DB影响行数为0错误。
         public static var dbRowsAffectedError: InternalError {
             InternalError(.dbRowsAffectedError)
         }
-        
+
         /// 查询独享集群信息失败。
         public static var fenceError: InternalError {
             InternalError(.fenceError)
         }
-        
+
         /// 获取数据库实例参数失败。
         public static var getDbConfigFailed: InternalError {
             InternalError(.getDbConfigFailed)
         }
-        
+
         /// 获取数据库列表失败。
         public static var getDbListFailed: InternalError {
             InternalError(.getDbListFailed)
         }
-        
+
         /// 获取数据库对象失败。
         public static var getDbObjectFailed: InternalError {
             InternalError(.getDbObjectFailed)
         }
-        
+
         /// 获取实例详情失败。
         public static var getInstanceDetailFailed: InternalError {
             InternalError(.getInstanceDetailFailed)
         }
-        
+
         /// 获取实例信息失败。
         public static var getInstanceInfoFailed: InternalError {
             InternalError(.getInstanceInfoFailed)
         }
-        
+
         /// 获取账号当前权限失败。
         public static var getRightFailed: InternalError {
             InternalError(.getRightFailed)
         }
-        
+
         /// 拉圈安全组详情失败。
         public static var getSecurityGroupDetailFailed: InternalError {
             InternalError(.getSecurityGroupDetailFailed)
         }
-        
+
         /// 查询慢日志DB失败。
         public static var getSlowLogFailed: InternalError {
             InternalError(.getSlowLogFailed)
         }
-        
+
         /// 查询虚拟私有网络子网信息失败。
         public static var getSubnetFailed: InternalError {
             InternalError(.getSubnetFailed)
         }
-        
+
         /// 获取表信息失败。
         public static var getTableInfoFailed: InternalError {
             InternalError(.getTableInfoFailed)
         }
-        
+
         /// 获取账号列表失败。
         public static var getUserListFailed: InternalError {
             InternalError(.getUserListFailed)
         }
-        
+
         public static var getUserSGCountFailed: InternalError {
             InternalError(.getUserSGCountFailed)
         }
-        
+
         /// 获取用户安全组配额失败。
         public static var getUsgQuotaError: InternalError {
             InternalError(.getUsgQuotaError)
         }
-        
+
         /// 查询虚拟私有网络信息失败。
         public static var getVpcFailed: InternalError {
             InternalError(.getVpcFailed)
         }
-        
+
         /// 内部系统错误。
         public static var innerSystemError: InternalError {
             InternalError(.innerSystemError)
         }
-        
+
         /// 数据库插入失败。
         public static var insertFail: InternalError {
             InternalError(.insertFail)
         }
-        
+
         /// 用户对当前实例无操作权限。
         public static var instanceOperatePermissionError: InternalError {
             InternalError(.instanceOperatePermissionError)
         }
-        
+
         /// 单实例绑定安全组数量超限。
         public static var instanceSGOverLimitError: InternalError {
             InternalError(.instanceSGOverLimitError)
         }
-        
+
         /// 查询实例时返回的资源数量与请求不匹配。
         public static var listInstanceRespResourceCountNotMatchError: InternalError {
             InternalError(.listInstanceRespResourceCountNotMatchError)
         }
-        
+
         /// 查询实例错误。
         public static var listInstancesError: InternalError {
             InternalError(.listInstancesError)
         }
-        
+
         /// 拉取项目列表失败。
         public static var listProjectFailed: InternalError {
             InternalError(.listProjectFailed)
         }
-        
+
         /// 数据库操作失败。
         public static var operateDatabaseFailed: InternalError {
             InternalError(.operateDatabaseFailed)
         }
-        
+
         /// 操作读DB数据错误。
         public static var queryDatabaseFailed: InternalError {
             InternalError(.queryDatabaseFailed)
         }
-        
+
         /// 查询订单信息失败。
         public static var queryOrderFailed: InternalError {
             InternalError(.queryOrderFailed)
         }
-        
+
         /// 查询价格失败。
         public static var queryPriceFailed: InternalError {
             InternalError(.queryPriceFailed)
         }
-        
+
         /// 操作读DB数据错误。
         public static var readDatabaseFailed: InternalError {
             InternalError(.readDatabaseFailed)
         }
-        
+
         /// 回档的时间不合法。
         public static var retreateTime: InternalError {
             InternalError(.retreateTime)
         }
-        
+
         /// 路由未发现。
         public static var routeNotFound: InternalError {
             InternalError(.routeNotFound)
         }
-        
+
         /// 资源安全组策略下发错误。
         public static var setSvcLocationFailed: InternalError {
             InternalError(.setSvcLocationFailed)
         }
-        
+
         /// 数据库更新失败。
         public static var updateDatabaseFailed: InternalError {
             InternalError(.updateDatabaseFailed)
         }
-        
+
         /// VPC操作失败。
         public static var vpcOperationFailed: InternalError {
             InternalError(.vpcOperationFailed)
         }
-        
+
         /// 外网操作失败。
         public static var wanServiceFailed: InternalError {
             InternalError(.wanServiceFailed)
         }
-        
+
         /// 内部错误。
         public static var other: InternalError {
             InternalError(.other)
         }
-        
+
         public func asDcdbError() -> TCDcdbError {
             let code: TCDcdbError.Code
             switch self.error {

@@ -31,89 +31,89 @@ extension TCTemError {
             case tcrEntInstanceNameNull = "MissingParameter.TcrEntInstanceNameNull"
             case vpcServiceSubnetNull = "MissingParameter.VpcServiceSubnetNull"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         public static var autoScalerNameNull: MissingParameter {
             MissingParameter(.autoScalerNameNull)
         }
-        
+
         public static var deployModeNull: MissingParameter {
             MissingParameter(.deployModeNull)
         }
-        
+
         /// 部署版本不能为空。
         public static var deployVersionNull: MissingParameter {
             MissingParameter(.deployVersionNull)
         }
-        
+
         public static var environmentNameNull: MissingParameter {
             MissingParameter(.environmentNameNull)
         }
-        
+
         public static var logsetOrTopicNull: MissingParameter {
             MissingParameter(.logsetOrTopicNull)
         }
-        
+
         public static var minMaxNumNull: MissingParameter {
             MissingParameter(.minMaxNumNull)
         }
-        
+
         /// 环境ID不能为空。
         public static var namespaceIdNull: MissingParameter {
             MissingParameter(.namespaceIdNull)
         }
-        
+
         /// 包名不能为空。
         public static var pkgNameNull: MissingParameter {
             MissingParameter(.pkgNameNull)
         }
-        
+
         public static var scalerIdNull: MissingParameter {
             MissingParameter(.scalerIdNull)
         }
-        
+
         /// 服务ID不能为空。
         public static var serviceIdNull: MissingParameter {
             MissingParameter(.serviceIdNull)
         }
-        
+
         /// 镜像仓库还未就绪。
         ///
         /// 请等待镜像仓库就绪
         public static var svcRepoNotReady: MissingParameter {
             MissingParameter(.svcRepoNotReady)
         }
-        
+
         public static var tcrEntInstanceNameNull: MissingParameter {
             MissingParameter(.tcrEntInstanceNameNull)
         }
-        
+
         /// vpc内访问类型子网ID不能为空。
         public static var vpcServiceSubnetNull: MissingParameter {
             MissingParameter(.vpcServiceSubnetNull)
         }
-        
+
         public func asTemError() -> TCTemError {
             let code: TCTemError.Code
             switch self.error {

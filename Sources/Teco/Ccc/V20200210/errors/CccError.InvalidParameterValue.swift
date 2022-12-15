@@ -25,64 +25,64 @@ extension TCCccError {
             case skillGroupExist = "InvalidParameterValue.SkillGroupExist"
             case other = "InvalidParameterValue"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 账号不存在。
         public static var accountNotExist: InvalidParameterValue {
             InvalidParameterValue(.accountNotExist)
         }
-        
+
         /// 实例不存在。
         public static var instanceNotExist: InvalidParameterValue {
             InvalidParameterValue(.instanceNotExist)
         }
-        
+
         /// 请确认手机号是否有误
         public static var phoneNumIsBoundOtherAccount: InvalidParameterValue {
             InvalidParameterValue(.phoneNumIsBoundOtherAccount)
         }
-        
+
         /// 查询记录不存在。
         ///
         /// 确认查询条件是否正确
         public static var recordNotExist: InvalidParameterValue {
             InvalidParameterValue(.recordNotExist)
         }
-        
+
         public static var skillGroupError: InvalidParameterValue {
             InvalidParameterValue(.skillGroupError)
         }
-        
+
         public static var skillGroupExist: InvalidParameterValue {
             InvalidParameterValue(.skillGroupExist)
         }
-        
+
         /// 参数取值错误。
         public static var other: InvalidParameterValue {
             InvalidParameterValue(.other)
         }
-        
+
         public func asCccError() -> TCCccError {
             let code: TCCccError.Code
             switch self.error {

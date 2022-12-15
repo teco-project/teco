@@ -29,84 +29,84 @@ extension TCTrtcError {
             case userNotExist = "InternalError.UserNotExist"
             case other = "InternalError"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 云端录制内部服务错误。
         public static var crInternalError: InternalError {
             InternalError(.crInternalError)
         }
-        
+
         /// 数据库查询异常。
         public static var dbError: InternalError {
             InternalError(.dbError)
         }
-        
+
         /// ES查询异常。
         public static var esQueryError: InternalError {
             InternalError(.esQueryError)
         }
-        
+
         /// 查询房间失败。
         public static var getRoomCacheIpError: InternalError {
             InternalError(.getRoomCacheIpError)
         }
-        
+
         /// 获取房间信息失败。
         public static var getRoomFromCacheError: InternalError {
             InternalError(.getRoomFromCacheError)
         }
-        
+
         /// http请求解析失败。
         public static var httpParaseFalied: InternalError {
             InternalError(.httpParaseFalied)
         }
-        
+
         /// 接口错误。
         public static var interfaceErr: InternalError {
             InternalError(.interfaceErr)
         }
-        
+
         /// 内部错误，请重试。
         public static var internalError: InternalError {
             InternalError(.internalError)
         }
-        
+
         /// 不支持的方法。
         public static var methodErr: InternalError {
             InternalError(.methodErr)
         }
-        
+
         /// 用户不在房间中。
         public static var userNotExist: InternalError {
             InternalError(.userNotExist)
         }
-        
+
         /// 内部错误。
         public static var other: InternalError {
             InternalError(.other)
         }
-        
+
         public func asTrtcError() -> TCTrtcError {
             let code: TCTrtcError.Code
             switch self.error {

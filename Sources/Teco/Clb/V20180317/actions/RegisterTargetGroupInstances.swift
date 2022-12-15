@@ -19,31 +19,31 @@ extension Clb {
     public struct RegisterTargetGroupInstancesRequest: TCRequestModel {
         /// 目标组ID
         public let targetGroupId: String
-        
+
         /// 服务器实例数组
         public let targetGroupInstances: [TargetGroupInstance]
-        
-        public init (targetGroupId: String, targetGroupInstances: [TargetGroupInstance]) {
+
+        public init(targetGroupId: String, targetGroupInstances: [TargetGroupInstance]) {
             self.targetGroupId = targetGroupId
             self.targetGroupInstances = targetGroupInstances
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case targetGroupId = "TargetGroupId"
             case targetGroupInstances = "TargetGroupInstances"
         }
     }
-    
+
     /// RegisterTargetGroupInstances返回参数结构体
     public struct RegisterTargetGroupInstancesResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 注册服务器到目标组
     ///
     /// 注册服务器到目标组。
@@ -52,7 +52,7 @@ extension Clb {
     public func registerTargetGroupInstances(_ input: RegisterTargetGroupInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RegisterTargetGroupInstancesResponse > {
         self.client.execute(action: "RegisterTargetGroupInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 注册服务器到目标组
     ///
     /// 注册服务器到目标组。
@@ -61,7 +61,7 @@ extension Clb {
     public func registerTargetGroupInstances(_ input: RegisterTargetGroupInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> RegisterTargetGroupInstancesResponse {
         try await self.client.execute(action: "RegisterTargetGroupInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 注册服务器到目标组
     ///
     /// 注册服务器到目标组。
@@ -70,7 +70,7 @@ extension Clb {
     public func registerTargetGroupInstances(targetGroupId: String, targetGroupInstances: [TargetGroupInstance], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < RegisterTargetGroupInstancesResponse > {
         self.registerTargetGroupInstances(RegisterTargetGroupInstancesRequest(targetGroupId: targetGroupId, targetGroupInstances: targetGroupInstances), logger: logger, on: eventLoop)
     }
-    
+
     /// 注册服务器到目标组
     ///
     /// 注册服务器到目标组。

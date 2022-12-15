@@ -19,19 +19,19 @@ extension Iai {
     public struct VerifyPersonRequest: TCRequestModel {
         /// 待验证的人员ID。人员ID具体信息请参考人员库管理相关接口。
         public let personId: String
-        
+
         /// 图片 base64 数据。
         /// 若图片中包含多张人脸，只选取其中人脸面积最大的人脸。
         /// 支持PNG、JPG、JPEG、BMP，不支持 GIF 图片。
         public let image: String?
-        
+
         /// 图片的 Url 。 图片的 Url、Image必须提供一个，如果都提供，只使用 Url。 
         /// 图片存储于腾讯云的Url可保障更高下载速度和稳定性，建议图片存储于腾讯云。 
         /// 非腾讯云存储的Url速度和稳定性可能受一定影响。
         /// 若图片中包含多张人脸，只选取其中人脸面积最大的人脸。
         /// 支持PNG、JPG、JPEG、BMP，不支持 GIF 图片。
         public let url: String?
-        
+
         /// 图片质量控制。 
         /// 0: 不进行控制； 
         /// 1:较低的质量要求，图像存在非常模糊，眼睛鼻子嘴巴遮挡至少其中一种或多种的情况； 
@@ -41,18 +41,18 @@ extension Iai {
         /// 默认 0。 
         /// 若图片质量不满足要求，则返回结果中会提示图片质量检测不符要求。
         public let qualityControl: UInt64?
-        
+
         /// 是否开启图片旋转识别支持。0为不开启，1为开启。默认为0。本参数的作用为，当图片中的人脸被旋转且图片没有exif信息时，如果不开启图片旋转识别支持则无法正确检测、识别图片中的人脸。若您确认图片包含exif信息或者您确认输入图中人脸不会出现被旋转情况，请不要开启本参数。开启后，整体耗时将可能增加数百毫秒。
         public let needRotateDetection: UInt64?
-        
-        public init (personId: String, image: String? = nil, url: String? = nil, qualityControl: UInt64? = nil, needRotateDetection: UInt64? = nil) {
+
+        public init(personId: String, image: String? = nil, url: String? = nil, qualityControl: UInt64? = nil, needRotateDetection: UInt64? = nil) {
             self.personId = personId
             self.image = image
             self.url = url
             self.qualityControl = qualityControl
             self.needRotateDetection = needRotateDetection
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case personId = "PersonId"
             case image = "Image"
@@ -61,21 +61,21 @@ extension Iai {
             case needRotateDetection = "NeedRotateDetection"
         }
     }
-    
+
     /// VerifyPerson返回参数结构体
     public struct VerifyPersonResponse: TCResponseModel {
         /// 给定的人脸照片与 PersonId 对应的相似度。若 PersonId 下有多张人脸（Face），会融合多张人脸信息进行验证。
         public let score: Float
-        
+
         /// 是否为同一人的判断。
         public let isMatch: Bool
-        
+
         /// 人脸识别所用的算法模型版本。
         public let faceModelVersion: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case score = "Score"
             case isMatch = "IsMatch"
@@ -83,7 +83,7 @@ extension Iai {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 人员验证
     ///
     /// 给定一张人脸图片和一个 PersonId，判断图片中的人和 PersonId 对应的人是否为同一人。PersonId 请参考[人员库管理相关接口](https://cloud.tencent.com/document/product/867/32794)。
@@ -96,7 +96,7 @@ extension Iai {
     public func verifyPerson(_ input: VerifyPersonRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < VerifyPersonResponse > {
         self.client.execute(action: "VerifyPerson", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 人员验证
     ///
     /// 给定一张人脸图片和一个 PersonId，判断图片中的人和 PersonId 对应的人是否为同一人。PersonId 请参考[人员库管理相关接口](https://cloud.tencent.com/document/product/867/32794)。
@@ -109,7 +109,7 @@ extension Iai {
     public func verifyPerson(_ input: VerifyPersonRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> VerifyPersonResponse {
         try await self.client.execute(action: "VerifyPerson", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 人员验证
     ///
     /// 给定一张人脸图片和一个 PersonId，判断图片中的人和 PersonId 对应的人是否为同一人。PersonId 请参考[人员库管理相关接口](https://cloud.tencent.com/document/product/867/32794)。
@@ -122,7 +122,7 @@ extension Iai {
     public func verifyPerson(personId: String, image: String? = nil, url: String? = nil, qualityControl: UInt64? = nil, needRotateDetection: UInt64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < VerifyPersonResponse > {
         self.verifyPerson(VerifyPersonRequest(personId: personId, image: image, url: url, qualityControl: qualityControl, needRotateDetection: needRotateDetection), logger: logger, on: eventLoop)
     }
-    
+
     /// 人员验证
     ///
     /// 给定一张人脸图片和一个 PersonId，判断图片中的人和 PersonId 对应的人是否为同一人。PersonId 请参考[人员库管理相关接口](https://cloud.tencent.com/document/product/867/32794)。

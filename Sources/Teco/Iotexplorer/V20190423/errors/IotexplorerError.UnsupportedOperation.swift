@@ -47,172 +47,172 @@ extension TCIotexplorerError {
             case vpnDupKeyExist = "UnsupportedOperation.VPNDupKeyExist"
             case other = "UnsupportedOperation"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// 围栏下还存在绑定的设备。
         public static var bindsExistUnderFence: UnsupportedOperation {
             UnsupportedOperation(.bindsExistUnderFence)
         }
-        
+
         /// 创建的设备已经存在。
         public static var deviceDupKeyExist: UnsupportedOperation {
             UnsupportedOperation(.deviceDupKeyExist)
         }
-        
+
         /// 设备数量超出实例限制。
         public static var deviceExceedLimit: UnsupportedOperation {
             UnsupportedOperation(.deviceExceedLimit)
         }
-        
+
         /// 设备ota升级中。
         public static var deviceOtaTaskInProgress: UnsupportedOperation {
             UnsupportedOperation(.deviceOtaTaskInProgress)
         }
-        
+
         /// 设备类型错误。
         public static var deviceType: UnsupportedOperation {
             UnsupportedOperation(.deviceType)
         }
-        
+
         /// 产品下还存在未删除的设备。
         public static var devicesExistUnderProduct: UnsupportedOperation {
             UnsupportedOperation(.devicesExistUnderProduct)
         }
-        
+
         /// 该项目下存在物联使能SaaS服务。
         public static var enableSaasServiceExistUnderProject: UnsupportedOperation {
             UnsupportedOperation(.enableSaasServiceExistUnderProject)
         }
-        
+
         /// 网关产品下存在设备绑定了子设备。
         public static var existBindedDevicesUnderGatewayProduct: UnsupportedOperation {
             UnsupportedOperation(.existBindedDevicesUnderGatewayProduct)
         }
-        
+
         /// 存在重复围栏。
         public static var fenceDupKeyExist: UnsupportedOperation {
             UnsupportedOperation(.fenceDupKeyExist)
         }
-        
+
         /// 位置空间下还存在未删除的围栏。
         public static var fenceExistUnderSpace: UnsupportedOperation {
             UnsupportedOperation(.fenceExistUnderSpace)
         }
-        
+
         /// 网关产品还绑定子产品，无法删除。
         public static var gatewayProductHasBindedProduct: UnsupportedOperation {
             UnsupportedOperation(.gatewayProductHasBindedProduct)
         }
-        
+
         /// 由于实例到期已被禁用，请续费后使用。
         public static var instanceIsolated: UnsupportedOperation {
             UnsupportedOperation(.instanceIsolated)
         }
-        
+
         /// 存在重复LoRa频点。
         public static var loRaFreqDupKeyExist: UnsupportedOperation {
             UnsupportedOperation(.loRaFreqDupKeyExist)
         }
-        
+
         /// LoRa设备未上报数据。
         public static var loRaNoUpLink: UnsupportedOperation {
             UnsupportedOperation(.loRaNoUpLink)
         }
-        
+
         /// Lora设备没有激活。
         public static var loRaNotActivate: UnsupportedOperation {
             UnsupportedOperation(.loRaNotActivate)
         }
-        
+
         /// VPN下还存在未删除的设备。
         public static var nodesExistUnderVPN: UnsupportedOperation {
             UnsupportedOperation(.nodesExistUnderVPN)
         }
-        
+
         /// 该项目下还存在人员库，需删除人员库后才允许删除项目。
         public static var poolExistUnderProject: UnsupportedOperation {
             UnsupportedOperation(.poolExistUnderProject)
         }
-        
+
         /// 存在重复产品。
         public static var productDupKeyExist: UnsupportedOperation {
             UnsupportedOperation(.productDupKeyExist)
         }
-        
+
         /// 项目下有产品。
         public static var productExistUnderProject: UnsupportedOperation {
             UnsupportedOperation(.productExistUnderProject)
         }
-        
+
         /// 产品被绑定到网关产品。
         public static var productHasBindedGateWayProduct: UnsupportedOperation {
             UnsupportedOperation(.productHasBindedGateWayProduct)
         }
-        
+
         /// 存在重复项目。
         public static var projectDupKeyExist: UnsupportedOperation {
             UnsupportedOperation(.projectDupKeyExist)
         }
-        
+
         /// 存在重复位置空间。
         public static var spaceDupKeyExist: UnsupportedOperation {
             UnsupportedOperation(.spaceDupKeyExist)
         }
-        
+
         /// 人员库名称已存在。
         public static var staffPoolDupNameExist: UnsupportedOperation {
             UnsupportedOperation(.staffPoolDupNameExist)
         }
-        
+
         /// LoRa频点还被节点或网关使用。
         public static var studioLoRaFreqInUsed: UnsupportedOperation {
             UnsupportedOperation(.studioLoRaFreqInUsed)
         }
-        
+
         /// 账户有未支付订单。
         public static var unpaidOrder: UnsupportedOperation {
             UnsupportedOperation(.unpaidOrder)
         }
-        
+
         public static var videoAccountNotExist: UnsupportedOperation {
             UnsupportedOperation(.videoAccountNotExist)
         }
-        
+
         public static var videoInsufficientLicenses: UnsupportedOperation {
             UnsupportedOperation(.videoInsufficientLicenses)
         }
-        
+
         /// 存在重复VPN。
         public static var vpnDupKeyExist: UnsupportedOperation {
             UnsupportedOperation(.vpnDupKeyExist)
         }
-        
+
         /// 操作不支持。
         public static var other: UnsupportedOperation {
             UnsupportedOperation(.other)
         }
-        
+
         public func asIotexplorerError() -> TCIotexplorerError {
             let code: TCIotexplorerError.Code
             switch self.error {

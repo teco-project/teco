@@ -21,12 +21,12 @@ extension Iai {
         /// 默认值为1（仅检测图片中面积最大的那张人脸），最大值为120。 
         /// 此参数用于控制处理待检测图片中的人脸个数，值越小，处理速度越快。
         public let maxFaceNum: UInt64?
-        
+
         /// 图片 base64 数据，base64 编码后大小不可超过5M。 
         /// jpg格式长边像素不可超过4000，其他格式图片长边像素不可超2000。
         /// 支持PNG、JPG、JPEG、BMP，不支持 GIF 图片。
         public let image: String?
-        
+
         /// 图片的 Url 。 
         /// 对应图片 base64 编码后大小不可超过5M。
         /// jpg格式长边像素不可超过4000，其他格式图片长边像素不可超2000。 
@@ -35,7 +35,7 @@ extension Iai {
         /// 非腾讯云存储的Url速度和稳定性可能受一定影响。 
         /// 支持PNG、JPG、JPEG、BMP，不支持 GIF 图片。
         public let url: String?
-        
+
         /// 是否返回年龄、性别、情绪等属性。 
         /// 合法值为（大小写不敏感）：None、Age、Beauty、Emotion、Eye、Eyebrow、 
         /// Gender、Hair、Hat、Headpose、Mask、Mouth、Moustache、Nose、Shape、Skin、Smile。 
@@ -44,14 +44,14 @@ extension Iai {
         /// 关于各属性的详细描述，参见下文出参。 
         /// 最多返回面积最大的 5 张人脸属性信息，超过 5 张人脸（第 6 张及以后的人脸）的 AttributesInfo 不具备参考意义。
         public let faceAttributesType: String?
-        
+
         /// 是否开启图片旋转识别支持。0为不开启，1为开启。默认为0。本参数的作用为，当图片中的人脸被旋转且图片没有exif信息时，如果不开启图片旋转识别支持则无法正确检测、识别图片中的人脸。若您确认图片包含exif信息或者您确认输入图中人脸不会出现被旋转情况，请不要开启本参数。开启后，整体耗时将可能增加数百毫秒。
         public let needRotateDetection: UInt64?
-        
+
         /// 人脸识别服务所用的算法模型版本。本接口仅支持“3.0”输入
         public let faceModelVersion: String?
-        
-        public init (maxFaceNum: UInt64? = nil, image: String? = nil, url: String? = nil, faceAttributesType: String? = nil, needRotateDetection: UInt64? = nil, faceModelVersion: String? = nil) {
+
+        public init(maxFaceNum: UInt64? = nil, image: String? = nil, url: String? = nil, faceAttributesType: String? = nil, needRotateDetection: UInt64? = nil, faceModelVersion: String? = nil) {
             self.maxFaceNum = maxFaceNum
             self.image = image
             self.url = url
@@ -59,7 +59,7 @@ extension Iai {
             self.needRotateDetection = needRotateDetection
             self.faceModelVersion = faceModelVersion
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case maxFaceNum = "MaxFaceNum"
             case image = "Image"
@@ -69,24 +69,24 @@ extension Iai {
             case faceModelVersion = "FaceModelVersion"
         }
     }
-    
+
     /// DetectFaceAttributes返回参数结构体
     public struct DetectFaceAttributesResponse: TCResponseModel {
         /// 请求的图片宽度。
         public let imageWidth: UInt64
-        
+
         /// 请求的图片高度。
         public let imageHeight: UInt64
-        
+
         /// 人脸信息列表。
         public let faceDetailInfos: [FaceDetailInfo]
-        
+
         /// 人脸识别所用的算法模型版本。
         public let faceModelVersion: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case imageWidth = "ImageWidth"
             case imageHeight = "ImageHeight"
@@ -95,7 +95,7 @@ extension Iai {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 人脸检测与属性分析
     ///
     /// 检测给定图片中的人脸（Face）的位置、相应的面部属性和人脸质量信息，位置包括 (x，y，w，h)，面部属性包括性别（gender）、年龄（age）、表情（expression）、魅力（beauty）、眼镜（glass）、发型（hair）、口罩（mask）和姿态 (pitch，roll，yaw)，人脸质量信息包括整体质量分（score）、模糊分（sharpness）、光照分（brightness）和五官遮挡分（completeness）。
@@ -115,7 +115,7 @@ extension Iai {
     public func detectFaceAttributes(_ input: DetectFaceAttributesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DetectFaceAttributesResponse > {
         self.client.execute(action: "DetectFaceAttributes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 人脸检测与属性分析
     ///
     /// 检测给定图片中的人脸（Face）的位置、相应的面部属性和人脸质量信息，位置包括 (x，y，w，h)，面部属性包括性别（gender）、年龄（age）、表情（expression）、魅力（beauty）、眼镜（glass）、发型（hair）、口罩（mask）和姿态 (pitch，roll，yaw)，人脸质量信息包括整体质量分（score）、模糊分（sharpness）、光照分（brightness）和五官遮挡分（completeness）。
@@ -135,7 +135,7 @@ extension Iai {
     public func detectFaceAttributes(_ input: DetectFaceAttributesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DetectFaceAttributesResponse {
         try await self.client.execute(action: "DetectFaceAttributes", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 人脸检测与属性分析
     ///
     /// 检测给定图片中的人脸（Face）的位置、相应的面部属性和人脸质量信息，位置包括 (x，y，w，h)，面部属性包括性别（gender）、年龄（age）、表情（expression）、魅力（beauty）、眼镜（glass）、发型（hair）、口罩（mask）和姿态 (pitch，roll，yaw)，人脸质量信息包括整体质量分（score）、模糊分（sharpness）、光照分（brightness）和五官遮挡分（completeness）。
@@ -155,7 +155,7 @@ extension Iai {
     public func detectFaceAttributes(maxFaceNum: UInt64? = nil, image: String? = nil, url: String? = nil, faceAttributesType: String? = nil, needRotateDetection: UInt64? = nil, faceModelVersion: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DetectFaceAttributesResponse > {
         self.detectFaceAttributes(DetectFaceAttributesRequest(maxFaceNum: maxFaceNum, image: image, url: url, faceAttributesType: faceAttributesType, needRotateDetection: needRotateDetection, faceModelVersion: faceModelVersion), logger: logger, on: eventLoop)
     }
-    
+
     /// 人脸检测与属性分析
     ///
     /// 检测给定图片中的人脸（Face）的位置、相应的面部属性和人脸质量信息，位置包括 (x，y，w，h)，面部属性包括性别（gender）、年龄（age）、表情（expression）、魅力（beauty）、眼镜（glass）、发型（hair）、口罩（mask）和姿态 (pitch，roll，yaw)，人脸质量信息包括整体质量分（score）、模糊分（sharpness）、光照分（brightness）和五官遮挡分（completeness）。

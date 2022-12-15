@@ -19,33 +19,33 @@ extension Iecp {
     public struct ApplicationBasicConfig: TCInputModel, TCOutputModel {
         /// 名称
         public let name: String
-        
+
         /// 命名空间
         public let namespace: String
-        
+
         /// 工作负载类型
         public let workflowKind: String
-        
+
         /// 标签信息
         public let labels: [Label]?
-        
+
         /// Grid唯一Key
         public let gridUniqKey: String?
-        
+
         /// NodeSelector标签
         public let nodeSelector: [Label]?
-        
+
         /// 实例数
         public let replicas: Int64?
-        
+
         /// 可用实例数
         public let availableReplicas: Int64?
-        
+
         /// 是否开启service环境变量注入pod
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let enableServiceLinks: Bool?
-        
-        public init (name: String, namespace: String, workflowKind: String, labels: [Label]? = nil, gridUniqKey: String? = nil, nodeSelector: [Label]? = nil, replicas: Int64? = nil, availableReplicas: Int64? = nil, enableServiceLinks: Bool? = nil) {
+
+        public init(name: String, namespace: String, workflowKind: String, labels: [Label]? = nil, gridUniqKey: String? = nil, nodeSelector: [Label]? = nil, replicas: Int64? = nil, availableReplicas: Int64? = nil, enableServiceLinks: Bool? = nil) {
             self.name = name
             self.namespace = namespace
             self.workflowKind = workflowKind
@@ -56,7 +56,7 @@ extension Iecp {
             self.availableReplicas = availableReplicas
             self.enableServiceLinks = enableServiceLinks
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case name = "Name"
             case namespace = "Namespace"
@@ -69,33 +69,33 @@ extension Iecp {
             case enableServiceLinks = "EnableServiceLinks"
         }
     }
-    
+
     /// 应用基本信息
     public struct ApplicationBasicInfo: TCInputModel, TCOutputModel {
         /// 名称
         public let name: String
-        
+
         /// 管理URL地址
         public let manageUrl: String?
-        
+
         /// 描述信息
         public let description: String?
-        
+
         /// 创建时间
         public let createTime: String?
-        
+
         /// 是否允许可视化修改
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let allowVisualModify: Bool?
-        
-        public init (name: String, manageUrl: String? = nil, description: String? = nil, createTime: String? = nil, allowVisualModify: Bool? = nil) {
+
+        public init(name: String, manageUrl: String? = nil, description: String? = nil, createTime: String? = nil, allowVisualModify: Bool? = nil) {
             self.name = name
             self.manageUrl = manageUrl
             self.description = description
             self.createTime = createTime
             self.allowVisualModify = allowVisualModify
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case name = "Name"
             case manageUrl = "ManageUrl"
@@ -104,68 +104,68 @@ extension Iecp {
             case allowVisualModify = "AllowVisualModify"
         }
     }
-    
+
     /// 应用部署模式
     public struct ApplicationDeployMode: TCOutputModel {
         /// 1:指定节点部署 2:单元部署
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let type: UInt64?
-        
+
         /// 资源ID
         public let resourceID: UInt64
-        
+
         /// 资源名
         public let resourceName: String
-        
+
         enum CodingKeys: String, CodingKey {
             case type = "Type"
             case resourceID = "ResourceID"
             case resourceName = "ResourceName"
         }
     }
-    
+
     /// 应用状态
     public struct ApplicationStatusInfo: TCOutputModel {
         /// 应用ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let id: UInt64?
-        
+
         /// 应用名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let name: String?
-        
+
         /// 应用版本
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let version: String?
-        
+
         /// 应用状态(1:待部署 2:部署中 3:运行中 4:待更新 5:更新中 6:待删除 7:删除中 8:已删除
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let status: String?
-        
+
         /// 开始时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let startTime: String?
-        
+
         /// 管理地址
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let manageUrl: String?
-        
+
         /// 负载类型
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let workloadKind: String?
-        
+
         /// 应用部署模式
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let deployMode: ApplicationDeployMode?
-        
+
         /// 期望Pod数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let replicas: Int64?
-        
+
         /// 运行Pod数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let availableReplicas: Int64?
-        
+
         enum CodingKeys: String, CodingKey {
             case id = "Id"
             case name = "Name"
@@ -179,33 +179,33 @@ extension Iecp {
             case availableReplicas = "AvailableReplicas"
         }
     }
-    
+
     /// 应用模板列表详情
     public struct ApplicationTemplate: TCOutputModel {
         /// 模板ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let id: UInt64?
-        
+
         /// 模板名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let name: String?
-        
+
         /// 来源。1 自定义应用模板 ;  2 官方应用模板
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let source: UInt64?
-        
+
         /// 应用类型
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let workloadKind: String?
-        
+
         /// 管理地址
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let manageUrl: String?
-        
+
         /// 发布时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let distributeTime: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case id = "Id"
             case name = "Name"
@@ -215,86 +215,86 @@ extension Iecp {
             case distributeTime = "DistributeTime"
         }
     }
-    
+
     /// ConfigMap基本信息
     public struct ConfigMapBasicInfo: TCOutputModel {
         /// 名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let name: String?
-        
+
         /// 命名空间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let namespace: String?
-        
+
         /// 创建时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let createTime: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case name = "Name"
             case namespace = "Namespace"
             case createTime = "CreateTime"
         }
     }
-    
+
     /// 容器配置信息
     public struct Container: TCInputModel, TCOutputModel {
         /// 名称
         public let name: String
-        
+
         /// 镜像名
         public let imageName: String
-        
+
         /// 镜像版本
         public let imageVersion: String
-        
+
         /// 镜像拉取策略(Always|Never|IfNotPresent)
         public let imagePullPolicy: String
-        
+
         /// 卷挂载配置
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let volumeMounts: [VolumeMount]?
-        
+
         /// cpu最低配置
         public let cpuRequest: String
-        
+
         /// cpu最高限制
         public let cpuLimit: String
-        
+
         /// 内存最低要求
         public let memoryRequest: String
-        
+
         /// 内存最高要求
         public let memoryLimit: String
-        
+
         /// 内存单位
         public let memoryUnit: String
-        
+
         /// gpu最高限制
         public let gpuLimit: String?
-        
+
         /// 资源配置
         public let resourceMapCloud: [KeyValueObj]?
-        
+
         /// 环境配置
         public let envs: [Env]?
-        
+
         /// 工作目录
         public let workingDir: String?
-        
+
         /// 命令
         public let commands: [String]?
-        
+
         /// 参数
         public let args: [String]?
-        
+
         /// 安全配置
         public let securityContext: SecurityContext?
-        
+
         /// 就绪探针配置
         public let readinessProbe: Probe?
-        
-        public init (name: String, imageName: String, imageVersion: String, imagePullPolicy: String, volumeMounts: [VolumeMount], cpuRequest: String, cpuLimit: String, memoryRequest: String, memoryLimit: String, memoryUnit: String, gpuLimit: String? = nil, resourceMapCloud: [KeyValueObj]? = nil, envs: [Env]? = nil, workingDir: String? = nil, commands: [String]? = nil, args: [String]? = nil, securityContext: SecurityContext? = nil, readinessProbe: Probe? = nil) {
+
+        public init(name: String, imageName: String, imageVersion: String, imagePullPolicy: String, volumeMounts: [VolumeMount], cpuRequest: String, cpuLimit: String, memoryRequest: String, memoryLimit: String, memoryUnit: String, gpuLimit: String? = nil, resourceMapCloud: [KeyValueObj]? = nil, envs: [Env]? = nil, workingDir: String? = nil, commands: [String]? = nil, args: [String]? = nil, securityContext: SecurityContext? = nil, readinessProbe: Probe? = nil) {
             self.name = name
             self.imageName = imageName
             self.imageVersion = imageVersion
@@ -314,7 +314,7 @@ extension Iecp {
             self.securityContext = securityContext
             self.readinessProbe = readinessProbe
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case name = "Name"
             case imageName = "ImageName"
@@ -336,28 +336,28 @@ extension Iecp {
             case readinessProbe = "ReadinessProbe"
         }
     }
-    
+
     /// 容器状态
     public struct ContainerStatus: TCOutputModel {
         /// 容器名
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let name: String?
-        
+
         /// 容器ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let id: String?
-        
+
         /// 镜像
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let image: String?
-        
+
         /// 重启次数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let restartCount: Int64?
-        
+
         /// 状态
         public let status: String
-        
+
         enum CodingKeys: String, CodingKey {
             case name = "Name"
             case id = "ID"
@@ -366,28 +366,28 @@ extension Iecp {
             case status = "Status"
         }
     }
-    
+
     /// CronJob配置
     public struct CronJob: TCInputModel, TCOutputModel {
         /// 调度配置
         public let schedule: String
-        
+
         /// 运行时间
         public let startingDeadlineSeconds: Int64
-        
+
         /// job并行策略(Allow|Forbid|Replace)
         public let concurrencyPolicy: String
-        
+
         /// Job配置
         public let job: Job
-        
-        public init (schedule: String, startingDeadlineSeconds: Int64, concurrencyPolicy: String, job: Job) {
+
+        public init(schedule: String, startingDeadlineSeconds: Int64, concurrencyPolicy: String, job: Job) {
             self.schedule = schedule
             self.startingDeadlineSeconds = startingDeadlineSeconds
             self.concurrencyPolicy = concurrencyPolicy
             self.job = job
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case schedule = "Schedule"
             case startingDeadlineSeconds = "StartingDeadlineSeconds"
@@ -395,129 +395,129 @@ extension Iecp {
             case job = "Job"
         }
     }
-    
+
     /// 从单元批量解绑设备
     public struct DeleteEdgeUnitDevicesDevice: TCInputModel {
         /// 无
         public let productId: String
-        
+
         /// 无
         public let deviceName: String
-        
-        public init (productId: String, deviceName: String) {
+
+        public init(productId: String, deviceName: String) {
             self.productId = productId
             self.deviceName = deviceName
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case productId = "ProductId"
             case deviceName = "DeviceName"
         }
     }
-    
+
     /// docker配置
     public struct DockerConfig: TCInputModel, TCOutputModel {
         /// 镜像仓库地址
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let registryDomain: String?
-        
+
         /// 用户名
         public let userName: String
-        
+
         /// 密码
         public let password: String
-        
-        public init (registryDomain: String, userName: String, password: String) {
+
+        public init(registryDomain: String, userName: String, password: String) {
             self.registryDomain = registryDomain
             self.userName = userName
             self.password = password
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case registryDomain = "RegistryDomain"
             case userName = "UserName"
             case password = "Password"
         }
     }
-    
+
     /// Draco 设备预录入信息
     public struct DracoNodeInfo: TCInputModel {
         /// 设备SN。SN仅支持大写字母、数字，长度限制为1~32个字符
         public let sn: String
-        
+
         /// 节点名称。长度限制为1~63个字符，节点名称只支持小写英文、数字、中横线、英文句号
         public let name: String
-        
+
         /// 节点备注
         public let remark: String?
-        
-        public init (sn: String, name: String, remark: String? = nil) {
+
+        public init(sn: String, name: String, remark: String? = nil) {
             self.sn = sn
             self.name = name
             self.remark = remark
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case sn = "SN"
             case name = "Name"
             case remark = "Remark"
         }
     }
-    
+
     /// 获取边缘集群列表
     public struct EdgeCloudCluster: TCOutputModel {
         /// IECP侧边缘集群ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let edgeId: UInt64?
-        
+
         /// 边缘集群ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let clusterId: String?
-        
+
         /// 区域
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let region: String?
-        
+
         /// 集群名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let clusterName: String?
-        
+
         /// 集群版本
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let k8sVersion: String?
-        
+
         /// 私有网络ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let vpcId: String?
-        
+
         /// 描述
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let clusterDesc: String?
-        
+
         /// 集群状态
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let status: String?
-        
+
         /// 创建时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let createTime: String?
-        
+
         /// pod cidr
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let podCIDR: String?
-        
+
         /// service cidr
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let serviceCIDR: String?
-        
+
         /// 边缘版本类型
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let edgeClusterVersion: String?
-        
+
         /// 用户ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let uid: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case edgeId = "EdgeId"
             case clusterId = "ClusterId"
@@ -534,27 +534,27 @@ extension Iecp {
             case uid = "UID"
         }
     }
-    
+
     /// 预注册节点的信息
     public struct EdgeDracoNodeInfo: TCOutputModel {
         /// 节点ID
         public let id: UInt64
-        
+
         /// 节点名称
         public let name: String
-        
+
         /// 是否已激活
         public let isUsed: Bool
-        
+
         /// 创建时间
         public let createTime: String
-        
+
         /// 备注信息，如批次
         public let remark: String
-        
+
         /// SN 设备号
         public let sn: String
-        
+
         enum CodingKeys: String, CodingKey {
             case id = "Id"
             case name = "Name"
@@ -564,42 +564,42 @@ extension Iecp {
             case sn = "SN"
         }
     }
-    
+
     /// 边缘节点信息
     public struct EdgeNodeInfo: TCOutputModel {
         /// IECP边缘节点ID
         public let id: UInt64
-        
+
         /// 节点名称
         public let name: String
-        
+
         /// 节点状态 （1健康｜2异常｜3离线｜4未激活）
         public let status: UInt64
-        
+
         /// 创建时间
         public let createTime: String
-        
+
         /// 节点资源信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let resource: EdgeNodeResourceInfo?
-        
+
         /// CPU体系结构
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let cpuArchitecture: String?
-        
+
         /// IP地址
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let ip: String?
-        
+
         /// 操作系统
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let operatingSystem: String?
-        
+
         /// 节点所属的NodeUnit
         /// key：NodeUnit模版ID，Value：NodeUnit模版名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let nodeUnits: KeyValueObj?
-        
+
         enum CodingKeys: String, CodingKey {
             case id = "Id"
             case name = "Name"
@@ -612,86 +612,86 @@ extension Iecp {
             case nodeUnits = "NodeUnits"
         }
     }
-    
+
     /// 节点在线安装信息
     public struct EdgeNodeInstallerOnline: TCOutputModel {
         /// 节点安装脚本名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let scriptName: String?
-        
+
         /// 节点安装脚本下载链接
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let scriptDownloadUrl: String?
-        
+
         /// 节点安装命令
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let guide: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case scriptName = "ScriptName"
             case scriptDownloadUrl = "ScriptDownloadUrl"
             case guide = "Guide"
         }
     }
-    
+
     /// 边缘节点标签
     public struct EdgeNodeLabel: TCOutputModel {
         /// 标签名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let key: String?
-        
+
         /// 标签值
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let value: String?
-        
+
         /// 是否受保护
         public let protected: Bool
-        
+
         enum CodingKeys: String, CodingKey {
             case key = "Key"
             case value = "Value"
             case protected = "Protected"
         }
     }
-    
+
     /// 边缘节点Pod容器信息
     public struct EdgeNodePodContainerInfo: TCOutputModel {
         /// Pod名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let name: String?
-        
+
         /// 容器ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let id: String?
-        
+
         /// 镜像（含版本号）
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let image: String?
-        
+
         /// CPU Request
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let cpuRequest: String?
-        
+
         /// CPU Limit
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let cpuLimit: String?
-        
+
         /// Memory Request
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let memoryRequest: String?
-        
+
         /// Memory Limit
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let memoryLimit: String?
-        
+
         /// 重启次数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let restartCount: UInt64?
-        
+
         /// 容器状态
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let status: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case name = "Name"
             case id = "Id"
@@ -704,56 +704,56 @@ extension Iecp {
             case status = "Status"
         }
     }
-    
+
     /// 边缘节点Pod信息
     public struct EdgeNodePodInfo: TCOutputModel {
         /// Pod名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let name: String?
-        
+
         /// Pod状态
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let status: String?
-        
+
         /// 所在节点IP
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let nodeIp: String?
-        
+
         /// 实例IP
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let ip: String?
-        
+
         /// CPU Request
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let cpuRequest: String?
-        
+
         /// Memory Request
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let memoryRequest: String?
-        
+
         /// 命名空间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let namespace: String?
-        
+
         /// 工作负载类型
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let workloadType: String?
-        
+
         /// 工作负载名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let workloadName: String?
-        
+
         /// 创建时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let startTime: String?
-        
+
         /// 重启次数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let restartCount: UInt64?
-        
+
         /// 集群ID
         public let clusterID: String
-        
+
         enum CodingKeys: String, CodingKey {
             case name = "Name"
             case status = "Status"
@@ -769,45 +769,45 @@ extension Iecp {
             case clusterID = "ClusterID"
         }
     }
-    
+
     /// 边缘节点资源信息
     public struct EdgeNodeResourceInfo: TCOutputModel {
         /// 可使用的CPU 单位: m核
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let allocatedCPU: String?
-        
+
         /// CPU总量 单位:m核
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let totalCPU: String?
-        
+
         /// 已分配的内存 单位G
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let allocatedMemory: String?
-        
+
         /// 内存总量 单位G
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let totalMemory: String?
-        
+
         /// 已分配的GPU资源
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let allocatedGPU: String?
-        
+
         /// GPU总量
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let totalGPU: String?
-        
+
         /// 可使用的CPU 单位: m核
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let availableCPU: String?
-        
+
         /// 可使用的内存 单位: G
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let availableMemory: String?
-        
+
         /// 可使用的GPU资源
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let availableGPU: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case allocatedCPU = "AllocatedCPU"
             case totalCPU = "TotalCPU"
@@ -820,29 +820,29 @@ extension Iecp {
             case availableGPU = "AvailableGPU"
         }
     }
-    
+
     /// 单元内的统计信息
     public struct EdgeUnitStatisticItem: TCOutputModel {
         /// 总数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let total: UInt64?
-        
+
         /// 在线数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let online: UInt64?
-        
+
         /// 异常数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let abnormal: UInt64?
-        
+
         /// 离线数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let offline: UInt64?
-        
+
         /// 未激活
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let notActive: UInt64?
-        
+
         enum CodingKeys: String, CodingKey {
             case total = "Total"
             case online = "Online"
@@ -851,88 +851,88 @@ extension Iecp {
             case notActive = "NotActive"
         }
     }
-    
+
     /// 环境变量
     public struct Env: TCInputModel, TCOutputModel {
         /// 名称
         public let name: String
-        
+
         /// 值
         public let value: String
-        
+
         /// 值引用
         public let valueFrom: EnvValueSelector
-        
-        public init (name: String, value: String, valueFrom: EnvValueSelector) {
+
+        public init(name: String, value: String, valueFrom: EnvValueSelector) {
             self.name = name
             self.value = value
             self.valueFrom = valueFrom
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case name = "Name"
             case value = "Value"
             case valueFrom = "ValueFrom"
         }
     }
-    
+
     /// 环境变量选择
     public struct EnvValueSelector: TCInputModel, TCOutputModel {
         /// 健名
         public let key: String
-        
+
         /// 对象名
         public let objectName: String
-        
+
         /// 对象值
         public let objectType: String
-        
-        public init (key: String, objectName: String, objectType: String) {
+
+        public init(key: String, objectName: String, objectType: String) {
             self.key = key
             self.objectName = objectName
             self.objectType = objectType
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case key = "Key"
             case objectName = "ObjectName"
             case objectType = "ObjectType"
         }
     }
-    
+
     /// 事件信息
     public struct Event: TCOutputModel {
         /// 第一次出现时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let firstTime: String?
-        
+
         /// 最后一次出现时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let lastTime: String?
-        
+
         /// 事件关联对象类型
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let involvedObjectKind: String?
-        
+
         /// 事件关联对象名
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let involvedObjectName: String?
-        
+
         /// 事件类型(Normal|Warning)
         public let type: String
-        
+
         /// 原因
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let reason: String?
-        
+
         /// 内容
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let message: String?
-        
+
         /// 出现次数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let count: UInt64?
-        
+
         enum CodingKeys: String, CodingKey {
             case firstTime = "FirstTime"
             case lastTime = "LastTime"
@@ -944,73 +944,73 @@ extension Iecp {
             case count = "Count"
         }
     }
-    
+
     /// 字段排序
     public struct FieldSort: TCInputModel {
         /// 字段名
         public let field: String?
-        
+
         /// 排序(ASC:升序 DESC:降序
         public let order: String?
-        
-        public init (field: String? = nil, order: String? = nil) {
+
+        public init(field: String? = nil, order: String? = nil) {
             self.field = field
             self.order = order
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case field = "Field"
             case order = "Order"
         }
     }
-    
+
     /// ServiceGroup中Grid信息
     public struct GridDetail: TCOutputModel {
         /// Grid名称
         public let name: String
-        
+
         /// GridID
         public let id: UInt64
-        
+
         enum CodingKeys: String, CodingKey {
             case name = "Name"
             case id = "Id"
         }
     }
-    
+
     /// Grid事件信息
     public struct GridEventInfo: TCOutputModel {
         /// 首次出现时间
         public let firstTime: String
-        
+
         /// 最后出现时间
         public let lastTime: String
-        
+
         /// 对象类型
         public let involvedObjectKind: String
-        
+
         /// 对象名称
         public let involvedObjectName: String
-        
+
         /// 事件类型(Normal,Warning)
         public let type: String
-        
+
         /// 事件原因
         public let reason: String
-        
+
         /// 事件内容
         public let message: String
-        
+
         /// 次数
         public let count: Int64
-        
+
         /// 节点名（Pod事件类型时有值）
         public let nodeName: String
-        
+
         /// 节点内部IP（Pod事件类型时有值）
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let ip: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case firstTime = "FirstTime"
             case lastTime = "LastTime"
@@ -1024,37 +1024,37 @@ extension Iecp {
             case ip = "IP"
         }
     }
-    
+
     /// Grid信息
     public struct GridInfo: TCOutputModel {
         /// DeployGridId
         public let id: Int64
-        
+
         /// 名称
         public let name: String
-        
+
         /// Key
         public let gridUniqKey: String
-        
+
         /// 描述
         public let description: String
-        
+
         /// 工作负载类型
         public let workloadKind: String
-        
+
         /// 启动时间
         public let startTime: String
-        
+
         /// 副本数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let replicas: Int64?
-        
+
         /// 创建人
         public let publisher: String
-        
+
         /// 版本信息
         public let version: String
-        
+
         enum CodingKeys: String, CodingKey {
             case id = "Id"
             case name = "Name"
@@ -1067,25 +1067,25 @@ extension Iecp {
             case version = "Version"
         }
     }
-    
+
     /// Grid部署应用信息
     public struct GridItemInfo: TCOutputModel {
         /// 名称
         public let name: String
-        
+
         /// 期望副本数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let replicas: Int64?
-        
+
         /// 可用副本数
         public let availableReplicas: Int64
-        
+
         /// 启动时间
         public let startTime: String
-        
+
         /// 工作负载类型
         public let workloadKind: String
-        
+
         enum CodingKeys: String, CodingKey {
             case name = "Name"
             case replicas = "Replicas"
@@ -1094,42 +1094,42 @@ extension Iecp {
             case workloadKind = "WorkloadKind"
         }
     }
-    
+
     /// GridPod信息
     public struct GridPodInfo: TCOutputModel {
         /// Pod名称
         public let name: String
-        
+
         /// 命名空间
         public let nameSpace: String
-        
+
         /// 状态(Pending｜Running｜Succeeded｜Failed｜Unknown)
         public let status: String
-        
+
         /// 节点名
         public let nodeName: String
-        
+
         /// 节点IP
         public let nodeIP: String
-        
+
         /// Pod的IP
         public let podIP: String
-        
+
         /// 启动时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let startTime: String?
-        
+
         /// 运行时长（秒）
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let runSec: Int64?
-        
+
         /// 重启次数
         public let restartCount: Int64
-        
+
         /// 集群名称ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let clusterID: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case name = "Name"
             case nameSpace = "NameSpace"
@@ -1143,32 +1143,32 @@ extension Iecp {
             case clusterID = "ClusterID"
         }
     }
-    
+
     /// pod水平伸缩配置
     public struct HorizontalPodAutoscaler: TCInputModel, TCOutputModel {
         /// 名称
         public let name: String
-        
+
         /// 命名空间
         public let namespace: String
-        
+
         /// 最小实例数
         public let minReplicas: Int64
-        
+
         /// 最大实例数
         public let maxReplicas: Int64
-        
+
         /// 资源目标指标
         public let resourceMetricTarget: [ResourceMetricTarget]
-        
-        public init (name: String, namespace: String, minReplicas: Int64, maxReplicas: Int64, resourceMetricTarget: [ResourceMetricTarget]) {
+
+        public init(name: String, namespace: String, minReplicas: Int64, maxReplicas: Int64, resourceMetricTarget: [ResourceMetricTarget]) {
             self.name = name
             self.namespace = namespace
             self.minReplicas = minReplicas
             self.maxReplicas = maxReplicas
             self.resourceMetricTarget = resourceMetricTarget
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case name = "Name"
             case namespace = "Namespace"
@@ -1177,58 +1177,58 @@ extension Iecp {
             case resourceMetricTarget = "ResourceMetricTarget"
         }
     }
-    
+
     /// Http探测头
     public struct HttpHeader: TCInputModel, TCOutputModel {
         /// HTTP头的名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let name: String?
-        
+
         /// HTTP头的值
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let value: String?
-        
-        public init (name: String, value: String) {
+
+        public init(name: String, value: String) {
             self.name = name
             self.value = value
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case name = "Name"
             case value = "Value"
         }
     }
-    
+
     /// HTTP探测配置
     public struct HttpProbe: TCInputModel, TCOutputModel {
         /// 请求路径
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let path: String?
-        
+
         /// 请求端口
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let port: Int64?
-        
+
         /// 请求地址，默认Pod的IP
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let host: String?
-        
+
         /// 请求模式  HTTP|HTTPS，默认HTTP
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let scheme: String?
-        
+
         /// HTTP的请求头
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let headers: [HttpHeader]?
-        
-        public init (path: String, port: Int64, host: String? = nil, scheme: String? = nil, headers: [HttpHeader]? = nil) {
+
+        public init(path: String, port: Int64, host: String? = nil, scheme: String? = nil, headers: [HttpHeader]? = nil) {
             self.path = path
             self.port = port
             self.host = host
             self.scheme = scheme
             self.headers = headers
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case path = "Path"
             case port = "Port"
@@ -1237,45 +1237,45 @@ extension Iecp {
             case headers = "Headers"
         }
     }
-    
+
     /// 子设备列表信息
     public struct IotDevicesInfo: TCOutputModel {
         /// 设备id
         public let id: Int64
-        
+
         /// 设备名称
         public let name: String
-        
+
         /// 设备状态
         public let status: Int64
-        
+
         /// 设备打开状态
         public let disabled: Bool
-        
+
         /// 描述
         public let description: String
-        
+
         /// 设备创建时间
         public let createTime: String
-        
+
         /// 最后在线时间
         public let lastOnlineTime: String
-        
+
         /// 设备是否绑定到节点
         public let isBound: Bool
-        
+
         /// 设备版本
         public let version: String
-        
+
         /// 无
         public let region: String
-        
+
         /// 无
         public let unitID: Int64
-        
+
         /// 无
         public let unitName: String
-        
+
         enum CodingKeys: String, CodingKey {
             case id = "Id"
             case name = "Name"
@@ -1291,28 +1291,28 @@ extension Iecp {
             case unitName = "UnitName"
         }
     }
-    
+
     /// Job配置
     public struct Job: TCInputModel, TCOutputModel {
         /// 并发数
         public let parallelism: Int64
-        
+
         /// 完成数
         public let completion: Int64
-        
+
         /// 最大运行时间
         public let activeDeadlineSeconds: Int64
-        
+
         /// 失败前重试次数
         public let backOffLimit: Int64
-        
-        public init (parallelism: Int64, completion: Int64, activeDeadlineSeconds: Int64, backOffLimit: Int64) {
+
+        public init(parallelism: Int64, completion: Int64, activeDeadlineSeconds: Int64, backOffLimit: Int64) {
             self.parallelism = parallelism
             self.completion = completion
             self.activeDeadlineSeconds = activeDeadlineSeconds
             self.backOffLimit = backOffLimit
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case parallelism = "Parallelism"
             case completion = "Completion"
@@ -1320,81 +1320,81 @@ extension Iecp {
             case backOffLimit = "BackOffLimit"
         }
     }
-    
+
     /// KeyValue对象
     public struct KeyValueObj: TCInputModel, TCOutputModel {
         /// Key值
         public let key: String
-        
+
         /// Value值
         public let value: String
-        
-        public init (key: String, value: String) {
+
+        public init(key: String, value: String) {
             self.key = key
             self.value = value
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case key = "Key"
             case value = "Value"
         }
     }
-    
+
     /// 标签信息
     public struct Label: TCInputModel, TCOutputModel {
         /// 健名
         public let key: String
-        
+
         /// 健值
         public let value: String
-        
-        public init (key: String, value: String) {
+
+        public init(key: String, value: String) {
             self.key = key
             self.value = value
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case key = "Key"
             case value = "Value"
         }
     }
-    
+
     /// 组件市场的组件描述
     public struct MarketComponentInfo: TCInputModel, TCOutputModel {
         /// 组件ID
         public let id: Int64
-        
+
         /// 组件名称
         public let appName: String
-        
+
         /// 发布者
         public let author: String?
-        
+
         /// 发布时间
         public let releaseTime: String?
-        
+
         /// 组件简介
         public let outline: String?
-        
+
         /// 指向详细描述的url
         public let detail: String?
-        
+
         /// 图标链接
         public let icon: String?
-        
+
         /// 组件版本
         public let version: String?
-        
+
         /// 组件可视化信息
         public let workloadVisualConfig: String?
-        
+
         /// 无
         public let detailUrl: String?
-        
+
         /// 无
         public let installed: Bool?
-        
-        public init (id: Int64, appName: String, author: String? = nil, releaseTime: String? = nil, outline: String? = nil, detail: String? = nil, icon: String? = nil, version: String? = nil, workloadVisualConfig: String? = nil, detailUrl: String? = nil, installed: Bool? = nil) {
+
+        public init(id: Int64, appName: String, author: String? = nil, releaseTime: String? = nil, outline: String? = nil, detail: String? = nil, icon: String? = nil, version: String? = nil, workloadVisualConfig: String? = nil, detailUrl: String? = nil, installed: Bool? = nil) {
             self.id = id
             self.appName = appName
             self.author = author
@@ -1407,7 +1407,7 @@ extension Iecp {
             self.detailUrl = detailUrl
             self.installed = installed
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case id = "ID"
             case appName = "AppName"
@@ -1422,32 +1422,32 @@ extension Iecp {
             case installed = "Installed"
         }
     }
-    
+
     /// 监控数据列
     public struct MonitorMetricsColumn: TCOutputModel {
         /// 数据名称
         public let columnName: String
-        
+
         /// 数据内容
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let columnData: [String]?
-        
+
         /// 数据所属，查询Workload类型时有值
         public let columnBelong: String
-        
+
         /// 最大值
         public let maxValue: Float
-        
+
         /// 最小值
         public let minValue: Float
-        
+
         /// 平均值
         public let avgValue: Float
-        
+
         /// 时间戳数组
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let columnTime: Int64?
-        
+
         enum CodingKeys: String, CodingKey {
             case columnName = "ColumnName"
             case columnData = "ColumnData"
@@ -1458,33 +1458,33 @@ extension Iecp {
             case columnTime = "ColumnTime"
         }
     }
-    
+
     /// 命名空间信息
     public struct NamespaceInfo: TCOutputModel {
         /// 命名空间名
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let namespace: String?
-        
+
         /// 状态(Active|Terminating)
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let status: String?
-        
+
         /// 描述信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let description: String?
-        
+
         /// 创建时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let createTime: String?
-        
+
         /// 是否保护(不允许删除)
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let protected: Bool?
-        
+
         /// 对应的Yaml配置
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let yaml: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case namespace = "Namespace"
             case status = "Status"
@@ -1494,51 +1494,51 @@ extension Iecp {
             case yaml = "Yaml"
         }
     }
-    
+
     /// 命名空间下资源描述
     public struct NamespaceResource: TCOutputModel {
         /// 类型(workload|grid|configmap|secret)
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let type: String?
-        
+
         /// 总数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let count: UInt64?
-        
+
         /// 名称(最多返回5个）
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let names: [String]?
-        
+
         enum CodingKeys: String, CodingKey {
             case type = "Type"
             case count = "Count"
             case names = "Names"
         }
     }
-    
+
     /// NodeGroup信息
     public struct NodeGroupInfo: TCOutputModel {
         /// 描述
         public let description: String
-        
+
         /// 创建时间
         public let createTime: String
-        
+
         /// NodeGroup名称
         public let nodeGroupName: String
-        
+
         /// DeploymentGrid数组
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let deploymentGridList: [GridDetail]?
-        
+
         /// StatefulSetGrid数组
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let statefulSetGridList: [GridDetail]?
-        
+
         /// 是否平台保护
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let protect: Bool?
-        
+
         enum CodingKeys: String, CodingKey {
             case description = "Description"
             case createTime = "CreateTime"
@@ -1548,33 +1548,33 @@ extension Iecp {
             case protect = "Protect"
         }
     }
-    
+
     /// 指定NodeGroup中查询NodeUnit模版
     public struct NodeGroupNodeUnitTemplateInfo: TCOutputModel {
         /// 模版ID
         public let id: UInt64
-        
+
         /// 名称
         public let name: String
-        
+
         /// 命名空间
         public let namespace: String
-        
+
         /// 描述
         public let description: String
-        
+
         /// 包含节点列表
         public let nodeList: [NodeSimpleInfo]
-        
+
         /// 更新时间
         public let updateTime: String
-        
+
         /// 创建时间
         public let createTime: String
-        
+
         /// 是否关联
         public let relation: Bool
-        
+
         enum CodingKeys: String, CodingKey {
             case id = "ID"
             case name = "Name"
@@ -1586,54 +1586,54 @@ extension Iecp {
             case relation = "Relation"
         }
     }
-    
+
     /// 节点基础信息
     public struct NodeSimpleInfo: TCOutputModel {
         /// 节点ID
         public let id: UInt64
-        
+
         /// 节点名称
         public let nodeName: String
-        
+
         enum CodingKeys: String, CodingKey {
             case id = "ID"
             case nodeName = "NodeName"
         }
     }
-    
+
     /// NodeUnit信息
     public struct NodeUnitInfo: TCOutputModel {
         /// NodeUnitId
         public let id: UInt64
-        
+
         /// NodeUnit名称
         public let nodeUnitName: String
-        
+
         /// 包含节点列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let nodeList: [NodeUnitNodeInfo]?
-        
+
         enum CodingKeys: String, CodingKey {
             case id = "Id"
             case nodeUnitName = "NodeUnitName"
             case nodeList = "NodeList"
         }
     }
-    
+
     /// NodeUnit中边缘节点信息
     public struct NodeUnitNodeInfo: TCOutputModel {
         /// 节点ID
         public let id: UInt64
-        
+
         /// 节点状态  NodeStatusHealthy (健康)/NodeStatusAbnormal (异常)/NodeStatusOffline (下线)/NodeStatusNotActivated (未激活
         public let status: String
-        
+
         /// 节点名称
         public let nodeName: String
-        
+
         /// 内网节点IP
         public let internalIP: String
-        
+
         enum CodingKeys: String, CodingKey {
             case id = "Id"
             case status = "Status"
@@ -1641,35 +1641,35 @@ extension Iecp {
             case internalIP = "InternalIP"
         }
     }
-    
+
     /// NodeUnit模版信息
     public struct NodeUnitTemplate: TCOutputModel {
         /// NodeUnit模版ID
         public let id: UInt64
-        
+
         /// NodeUnit模版名称
         public let name: String
-        
+
         /// 命名空间
         public let namespace: String
-        
+
         /// 描述
         public let description: String
-        
+
         /// 包含节点列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let nodeList: [NodeSimpleInfo]?
-        
+
         /// NodeGroup列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let nodeGroups: [String]?
-        
+
         /// 更新时间
         public let updateTime: String
-        
+
         /// 创建时间
         public let createTime: String
-        
+
         enum CodingKeys: String, CodingKey {
             case id = "ID"
             case name = "Name"
@@ -1681,34 +1681,34 @@ extension Iecp {
             case createTime = "CreateTime"
         }
     }
-    
+
     /// 操作日志
     public struct OperationLog: TCOutputModel {
         /// 操作时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let operateTime: String?
-        
+
         /// 模块名
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let module: String?
-        
+
         /// 操作信息
         public let description: String
-        
+
         /// 用户ID
         public let userId: String
-        
+
         /// 状态: 1:成功 2:失败
         public let status: Int64
-        
+
         /// 操作用户ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let operatorUserID: String?
-        
+
         /// 操作动作
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let action: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case operateTime = "OperateTime"
             case module = "Module"
@@ -1719,52 +1719,52 @@ extension Iecp {
             case action = "Action"
         }
     }
-    
+
     /// 操作日志状态查询条件
     public struct OperationLogsCondition: TCInputModel, TCOutputModel {
         /// 状态列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let status: [Int64]?
-        
-        public init (status: [Int64]? = nil) {
+
+        public init(status: [Int64]? = nil) {
             self.status = status
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case status = "Status"
         }
     }
-    
+
     /// Pod状态信息
     public struct PodStatus: TCOutputModel {
         /// 名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let name: String?
-        
+
         /// 命名空间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let nameSpace: String?
-        
+
         /// 状态
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let status: String?
-        
+
         /// IP地址
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let ip: String?
-        
+
         /// 启动时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let startTime: String?
-        
+
         /// 运行时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let runSec: Int64?
-        
+
         /// 重启次数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let restartCount: Int64?
-        
+
         enum CodingKeys: String, CodingKey {
             case name = "Name"
             case nameSpace = "NameSpace"
@@ -1775,28 +1775,28 @@ extension Iecp {
             case restartCount = "RestartCount"
         }
     }
-    
+
     /// 端口配置
     public struct PortConfig: TCInputModel, TCOutputModel {
         /// 协议类型(tcp|udp)
         public let `protocol`: String
-        
+
         /// 源端口
         public let port: Int64
-        
+
         /// 目标端口
         public let targetPort: Int64
-        
+
         /// 节点端口
         public let nodePort: Int64
-        
-        public init (protocol: String, port: Int64, targetPort: Int64, nodePort: Int64) {
+
+        public init(protocol: String, port: Int64, targetPort: Int64, nodePort: Int64) {
             self.`protocol` = `protocol`
             self.port = port
             self.targetPort = targetPort
             self.nodePort = nodePort
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case `protocol` = "Protocol"
             case port = "Port"
@@ -1804,38 +1804,38 @@ extension Iecp {
             case nodePort = "NodePort"
         }
     }
-    
+
     /// 探针配置
     public struct Probe: TCInputModel, TCOutputModel {
         /// 启动后，延迟探测时间 单位:秒
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let initialDelaySeconds: Int64?
-        
+
         /// 探测间隔，单位：秒
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let periodSeconds: Int64?
-        
+
         /// 探测超时时间 单位：秒
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let timeoutSeconds: Int64?
-        
+
         /// 失败后检查成功的最小连续成功次数。默认为1.活跃度必须为1。最小值为1
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let successThreshold: Int64?
-        
+
         /// 当Pod成功启动且检查失败时，放弃之前尝试次数。默认为3.最小值为1
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let failureThreshold: Int64?
-        
+
         /// HTTP探测配置
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let httpProbe: HttpProbe?
-        
+
         /// TCP探测配置
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tcpProbe: TcpProbe?
-        
-        public init (initialDelaySeconds: Int64? = nil, periodSeconds: Int64? = nil, timeoutSeconds: Int64? = nil, successThreshold: Int64? = nil, failureThreshold: Int64? = nil, httpProbe: HttpProbe? = nil, tcpProbe: TcpProbe? = nil) {
+
+        public init(initialDelaySeconds: Int64? = nil, periodSeconds: Int64? = nil, timeoutSeconds: Int64? = nil, successThreshold: Int64? = nil, failureThreshold: Int64? = nil, httpProbe: HttpProbe? = nil, tcpProbe: TcpProbe? = nil) {
             self.initialDelaySeconds = initialDelaySeconds
             self.periodSeconds = periodSeconds
             self.timeoutSeconds = timeoutSeconds
@@ -1844,7 +1844,7 @@ extension Iecp {
             self.httpProbe = httpProbe
             self.tcpProbe = tcpProbe
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case initialDelaySeconds = "InitialDelaySeconds"
             case periodSeconds = "PeriodSeconds"
@@ -1855,28 +1855,28 @@ extension Iecp {
             case tcpProbe = "TcpProbe"
         }
     }
-    
+
     /// 资源目标指标
     public struct ResourceMetricTarget: TCInputModel, TCOutputModel {
         /// 类型(cpu|memory)
         public let type: String
-        
+
         /// 平均值
         public let averageValue: Int64
-        
+
         /// 单位
         public let scale: String
-        
+
         /// 平均值
         public let averageUtilization: Int64
-        
-        public init (type: String, averageValue: Int64, scale: String, averageUtilization: Int64) {
+
+        public init(type: String, averageValue: Int64, scale: String, averageUtilization: Int64) {
             self.type = type
             self.averageValue = averageValue
             self.scale = scale
             self.averageUtilization = averageUtilization
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case type = "Type"
             case averageValue = "AverageValue"
@@ -1884,57 +1884,57 @@ extension Iecp {
             case averageUtilization = "AverageUtilization"
         }
     }
-    
+
     /// 消息路由
     public struct RouteInfo: TCOutputModel {
         /// 无
         public let routeID: Int64
-        
+
         /// 无
         public let routeName: String
-        
+
         /// 无
         public let sourceProductID: String
-        
+
         /// 无
         public let topicFilter: String
-        
+
         /// 无
         public let mode: String
-        
+
         /// 无
         public let targetOptions: String
-        
+
         /// 无
         public let createTime: String
-        
+
         /// 无
         public let descript: String
-        
+
         /// 无
         public let healthy: String
-        
+
         /// 无
         public let status: String
-        
+
         /// 无
         public let messageCount: Int64
-        
+
         /// 无
         public let messageLastTime: String
-        
+
         /// 无
         public let sourceProductName: String
-        
+
         /// 无
         public let sourceUnitIDList: [String]
-        
+
         /// 无
         public let sourceUnitNameList: [String]
-        
+
         /// 无
         public let sourceDeviceNameList: [String]
-        
+
         enum CodingKeys: String, CodingKey {
             case routeID = "RouteID"
             case routeName = "RouteName"
@@ -1954,25 +1954,25 @@ extension Iecp {
             case sourceDeviceNameList = "SourceDeviceNameList"
         }
     }
-    
+
     /// Secret信息
     public struct SecretItem: TCOutputModel {
         /// Secret名
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let name: String?
-        
+
         /// 命名空间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let namespace: String?
-        
+
         /// 创建时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let createTime: String?
-        
+
         /// Secret类型
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let secretType: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case name = "Name"
             case namespace = "Namespace"
@@ -1980,73 +1980,73 @@ extension Iecp {
             case secretType = "SecretType"
         }
     }
-    
+
     /// 安全能力
     public struct SecurityCapabilities: TCInputModel, TCOutputModel {
         /// 允许操作列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let add: [String]?
-        
+
         /// 禁止操作列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let drop: [String]?
-        
-        public init (add: [String]? = nil, drop: [String]? = nil) {
+
+        public init(add: [String]? = nil, drop: [String]? = nil) {
             self.add = add
             self.drop = drop
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case add = "Add"
             case drop = "Drop"
         }
     }
-    
+
     /// 安全上下文
     public struct SecurityContext: TCInputModel, TCOutputModel {
         /// 是否开启特权模式
         public let privilege: Bool
-        
+
         /// 目录/Proc挂载方式
         public let procMount: String
-        
+
         /// 安全配置
         public let capabilities: SecurityCapabilities?
-        
-        public init (privilege: Bool, procMount: String, capabilities: SecurityCapabilities? = nil) {
+
+        public init(privilege: Bool, procMount: String, capabilities: SecurityCapabilities? = nil) {
             self.privilege = privilege
             self.procMount = procMount
             self.capabilities = capabilities
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case privilege = "Privilege"
             case procMount = "ProcMount"
             case capabilities = "Capabilities"
         }
     }
-    
+
     /// 服务配置
     public struct Service: TCInputModel, TCOutputModel {
         /// 名称
         public let name: String
-        
+
         /// 类型 (ClusterIP|NodePort)
         public let type: String
-        
+
         /// 端口配置
         public let ports: [PortConfig]
-        
+
         /// 标签
         public let labels: [Label]
-        
+
         /// 命名空间默认default
         public let namespace: String?
-        
+
         /// 服务IP
         public let clusterIP: String?
-        
-        public init (name: String, type: String, ports: [PortConfig], labels: [Label], namespace: String? = nil, clusterIP: String? = nil) {
+
+        public init(name: String, type: String, ports: [PortConfig], labels: [Label], namespace: String? = nil, clusterIP: String? = nil) {
             self.name = name
             self.type = type
             self.ports = ports
@@ -2054,7 +2054,7 @@ extension Iecp {
             self.namespace = namespace
             self.clusterIP = clusterIP
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case name = "Name"
             case type = "Type"
@@ -2064,66 +2064,66 @@ extension Iecp {
             case clusterIP = "ClusterIP"
         }
     }
-    
+
     /// 查询结果排序条件
     public struct Sort: TCInputModel {
         /// 排序字段
         public let field: String?
-        
+
         /// 排序方式，升序ASC / 降序DESC
         public let order: String?
-        
-        public init (field: String? = nil, order: String? = nil) {
+
+        public init(field: String? = nil, order: String? = nil) {
             self.field = field
             self.order = order
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case field = "Field"
             case order = "Order"
         }
     }
-    
+
     /// TCP探测配置
     public struct TcpProbe: TCInputModel, TCOutputModel {
         /// 连接端口
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let port: Int64?
-        
-        public init (port: Int64) {
+
+        public init(port: Int64) {
             self.port = port
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case port = "Port"
         }
     }
-    
+
     /// 卷
     public struct Volume: TCInputModel, TCOutputModel {
         /// 来源(emptyDir|hostPath|configMap|secret|nfs)
         public let source: String
-        
+
         /// 名称
         public let name: String
-        
+
         /// Host挂载配置
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let hostPath: VolumeHostPath?
-        
+
         /// ConfigMap挂载配置
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let configMap: VolumeConfigMap?
-        
+
         /// Secret挂载配置
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let secret: VolumeConfigMap?
-        
+
         /// NFS挂载配置
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let nfs: VolumeNFS?
-        
-        public init (source: String, name: String, hostPath: VolumeHostPath? = nil, configMap: VolumeConfigMap? = nil, secret: VolumeConfigMap? = nil, nfs: VolumeNFS? = nil) {
+
+        public init(source: String, name: String, hostPath: VolumeHostPath? = nil, configMap: VolumeConfigMap? = nil, secret: VolumeConfigMap? = nil, nfs: VolumeNFS? = nil) {
             self.source = source
             self.name = name
             self.hostPath = hostPath
@@ -2131,7 +2131,7 @@ extension Iecp {
             self.secret = secret
             self.nfs = nfs
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case source = "Source"
             case name = "Name"
@@ -2141,92 +2141,92 @@ extension Iecp {
             case nfs = "NFS"
         }
     }
-    
+
     /// ConfigMap挂载卷
     public struct VolumeConfigMap: TCInputModel, TCOutputModel {
         /// 名称
         public let name: String
-        
+
         /// Key列表配置
         public let items: [VolumeConfigMapKeyToPath]
-        
-        public init (name: String, items: [VolumeConfigMapKeyToPath]) {
+
+        public init(name: String, items: [VolumeConfigMapKeyToPath]) {
             self.name = name
             self.items = items
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case name = "Name"
             case items = "Items"
         }
     }
-    
+
     /// ConfigMap的key挂载到路径
     public struct VolumeConfigMapKeyToPath: TCInputModel, TCOutputModel {
         /// 健名
         public let key: String
-        
+
         /// 对应本地路径
         public let path: String
-        
+
         /// 对应权限模式
         public let mode: String
-        
-        public init (key: String, path: String, mode: String) {
+
+        public init(key: String, path: String, mode: String) {
             self.key = key
             self.path = path
             self.mode = mode
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case key = "Key"
             case path = "Path"
             case mode = "Mode"
         }
     }
-    
+
     /// 数据卷主机路径，取值参考: https://kubernetes.io/docs/concepts/storage/volumes#hostpath
     public struct VolumeHostPath: TCInputModel, TCOutputModel {
         /// 类型
         public let type: String
-        
+
         /// 路径
         public let path: String
-        
-        public init (type: String, path: String) {
+
+        public init(type: String, path: String) {
             self.type = type
             self.path = path
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case type = "Type"
             case path = "Path"
         }
     }
-    
+
     /// 数据挂载
     public struct VolumeMount: TCInputModel, TCOutputModel {
         /// 名称
         public let name: String
-        
+
         /// 挂载路径
         public let mountPath: String
-        
+
         /// 子路径
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let subPath: String?
-        
+
         /// 是否只读
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let readOnly: Bool?
-        
-        public init (name: String, mountPath: String, subPath: String? = nil, readOnly: Bool? = nil) {
+
+        public init(name: String, mountPath: String, subPath: String? = nil, readOnly: Bool? = nil) {
             self.name = name
             self.mountPath = mountPath
             self.subPath = subPath
             self.readOnly = readOnly
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case name = "Name"
             case mountPath = "MountPath"
@@ -2234,24 +2234,24 @@ extension Iecp {
             case readOnly = "ReadOnly"
         }
     }
-    
+
     /// NFS挂载卷
     public struct VolumeNFS: TCInputModel, TCOutputModel {
         /// 服务地址
         public let server: String
-        
+
         /// 对应服务器路径
         public let serverPath: String
-        
+
         /// 对应本地路径
         public let path: String
-        
-        public init (server: String, serverPath: String, path: String) {
+
+        public init(server: String, serverPath: String, path: String) {
             self.server = server
             self.serverPath = serverPath
             self.path = path
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case server = "Server"
             case serverPath = "ServerPath"

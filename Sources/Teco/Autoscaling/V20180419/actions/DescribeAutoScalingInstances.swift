@@ -19,26 +19,26 @@ extension As {
     public struct DescribeAutoScalingInstancesRequest: TCRequestModel {
         /// 待查询云服务器（CVM）的实例ID。每次请求的上限为100。参数不支持同时指定InstanceIds和Filters。
         public let instanceIds: [String]?
-        
+
         /// 过滤条件。
         /// <li> instance-id - String - 是否必填：否 -（过滤条件）按照实例ID过滤。</li>
         /// <li> auto-scaling-group-id - String - 是否必填：否 -（过滤条件）按照伸缩组ID过滤。</li>
         /// 每次请求的`Filters`的上限为10，`Filter.Values`的上限为5。参数不支持同时指定`InstanceIds`和`Filters`。
         public let filters: [Filter]?
-        
+
         /// 偏移量，默认为0。关于`Offset`的更进一步介绍请参考 API [简介](https://cloud.tencent.com/document/api/213/15688)中的相关小节。
         public let offset: Int64?
-        
+
         /// 返回数量，默认为20，最大值为100。关于`Limit`的更进一步介绍请参考 API [简介](https://cloud.tencent.com/document/api/213/15688)中的相关小节。
         public let limit: Int64?
-        
-        public init (instanceIds: [String]? = nil, filters: [Filter]? = nil, offset: Int64? = nil, limit: Int64? = nil) {
+
+        public init(instanceIds: [String]? = nil, filters: [Filter]? = nil, offset: Int64? = nil, limit: Int64? = nil) {
             self.instanceIds = instanceIds
             self.filters = filters
             self.offset = offset
             self.limit = limit
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceIds = "InstanceIds"
             case filters = "Filters"
@@ -46,25 +46,25 @@ extension As {
             case limit = "Limit"
         }
     }
-    
+
     /// DescribeAutoScalingInstances返回参数结构体
     public struct DescribeAutoScalingInstancesResponse: TCResponseModel {
         /// 实例详细信息列表。
         public let autoScalingInstanceSet: [Instance]
-        
+
         /// 符合条件的实例数量。
         public let totalCount: UInt64
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case autoScalingInstanceSet = "AutoScalingInstanceSet"
             case totalCount = "TotalCount"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 查询实例
     ///
     /// 本接口（DescribeAutoScalingInstances）用于查询弹性伸缩关联实例的信息。
@@ -74,7 +74,7 @@ extension As {
     public func describeAutoScalingInstances(_ input: DescribeAutoScalingInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAutoScalingInstancesResponse > {
         self.client.execute(action: "DescribeAutoScalingInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 查询实例
     ///
     /// 本接口（DescribeAutoScalingInstances）用于查询弹性伸缩关联实例的信息。
@@ -84,7 +84,7 @@ extension As {
     public func describeAutoScalingInstances(_ input: DescribeAutoScalingInstancesRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DescribeAutoScalingInstancesResponse {
         try await self.client.execute(action: "DescribeAutoScalingInstances", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 查询实例
     ///
     /// 本接口（DescribeAutoScalingInstances）用于查询弹性伸缩关联实例的信息。
@@ -94,7 +94,7 @@ extension As {
     public func describeAutoScalingInstances(instanceIds: [String]? = nil, filters: [Filter]? = nil, offset: Int64? = nil, limit: Int64? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DescribeAutoScalingInstancesResponse > {
         self.describeAutoScalingInstances(DescribeAutoScalingInstancesRequest(instanceIds: instanceIds, filters: filters, offset: offset, limit: limit), logger: logger, on: eventLoop)
     }
-    
+
     /// 查询实例
     ///
     /// 本接口（DescribeAutoScalingInstances）用于查询弹性伸缩关联实例的信息。

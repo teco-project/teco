@@ -19,30 +19,30 @@ extension Cls {
     public struct ModifyAlarmNoticeRequest: TCRequestModel {
         /// 通知渠道组ID。
         public let alarmNoticeId: String
-        
+
         /// 通知渠道组名称。
         public let name: String?
-        
+
         /// 通知类型。可选值：
         /// <li> Trigger - 告警触发
         /// <li> Recovery - 告警恢复
         /// <li> All - 告警触发和告警恢复
         public let type: String?
-        
+
         /// 通知接收对象。
         public let noticeReceivers: [NoticeReceiver]?
-        
+
         /// 接口回调信息（包括企业微信）。
         public let webCallbacks: [WebCallback]?
-        
-        public init (alarmNoticeId: String, name: String? = nil, type: String? = nil, noticeReceivers: [NoticeReceiver]? = nil, webCallbacks: [WebCallback]? = nil) {
+
+        public init(alarmNoticeId: String, name: String? = nil, type: String? = nil, noticeReceivers: [NoticeReceiver]? = nil, webCallbacks: [WebCallback]? = nil) {
             self.alarmNoticeId = alarmNoticeId
             self.name = name
             self.type = type
             self.noticeReceivers = noticeReceivers
             self.webCallbacks = webCallbacks
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case alarmNoticeId = "AlarmNoticeId"
             case name = "Name"
@@ -51,17 +51,17 @@ extension Cls {
             case webCallbacks = "WebCallbacks"
         }
     }
-    
+
     /// ModifyAlarmNotice返回参数结构体
     public struct ModifyAlarmNoticeResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 修改通知渠道组
     ///
     /// 该接口用于修改通知渠道组
@@ -69,7 +69,7 @@ extension Cls {
     public func modifyAlarmNotice(_ input: ModifyAlarmNoticeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyAlarmNoticeResponse > {
         self.client.execute(action: "ModifyAlarmNotice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 修改通知渠道组
     ///
     /// 该接口用于修改通知渠道组
@@ -77,7 +77,7 @@ extension Cls {
     public func modifyAlarmNotice(_ input: ModifyAlarmNoticeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyAlarmNoticeResponse {
         try await self.client.execute(action: "ModifyAlarmNotice", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 修改通知渠道组
     ///
     /// 该接口用于修改通知渠道组
@@ -85,7 +85,7 @@ extension Cls {
     public func modifyAlarmNotice(alarmNoticeId: String, name: String? = nil, type: String? = nil, noticeReceivers: [NoticeReceiver]? = nil, webCallbacks: [WebCallback]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyAlarmNoticeResponse > {
         self.modifyAlarmNotice(ModifyAlarmNoticeRequest(alarmNoticeId: alarmNoticeId, name: name, type: type, noticeReceivers: noticeReceivers, webCallbacks: webCallbacks), logger: logger, on: eventLoop)
     }
-    
+
     /// 修改通知渠道组
     ///
     /// 该接口用于修改通知渠道组

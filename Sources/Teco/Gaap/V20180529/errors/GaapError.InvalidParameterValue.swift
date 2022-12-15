@@ -43,153 +43,153 @@ extension TCGaapError {
             case unknownDestRegion = "InvalidParameterValue.UnknownDestRegion"
             case other = "InvalidParameterValue"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         public static var certificateContentNotMatchKey: InvalidParameterValue {
             InvalidParameterValue(.certificateContentNotMatchKey)
         }
-        
+
         /// Https证书与域名不匹配。
         public static var certificateNotMatchDomain: InvalidParameterValue {
             InvalidParameterValue(.certificateNotMatchDomain)
         }
-        
+
         /// 域名在ICP黑名单内。
         public static var domainInIcpBlacklist: InvalidParameterValue {
             InvalidParameterValue(.domainInIcpBlacklist)
         }
-        
+
         /// 域名未备案。
         public static var domainNotRegister: InvalidParameterValue {
             InvalidParameterValue(.domainNotRegister)
         }
-        
+
         /// RealServer已存在。
         public static var duplicateRS: InvalidParameterValue {
             InvalidParameterValue(.duplicateRS)
         }
-        
+
         /// 监听器端口已存在。
         public static var duplicatedListenerPort: InvalidParameterValue {
             InvalidParameterValue(.duplicatedListenerPort)
         }
-        
+
         /// 无法同时开启所设置的特性。
         public static var featureConflict: InvalidParameterValue {
             InvalidParameterValue(.featureConflict)
         }
-        
+
         /// 该默认入口被封禁，无法添加。
         public static var globalDomainHitBanBlacklist: InvalidParameterValue {
             InvalidParameterValue(.globalDomainHitBanBlacklist)
         }
-        
+
         /// 资源已被录入封禁黑名单。
         public static var hitBanBlacklist: InvalidParameterValue {
             InvalidParameterValue(.hitBanBlacklist)
         }
-        
+
         /// header黑名单限制。
         public static var hitBlacklist: InvalidParameterValue {
             InvalidParameterValue(.hitBlacklist)
         }
-        
+
         /// 带宽值不在可选范围内。
         public static var invalidBandwidth: InvalidParameterValue {
             InvalidParameterValue(.invalidBandwidth)
         }
-        
+
         /// 解析失败，请检查证书内容格式。
         public static var invalidCertificateContent: InvalidParameterValue {
             InvalidParameterValue(.invalidCertificateContent)
         }
-        
+
         /// 证书不可用。
         public static var invalidCertificateId: InvalidParameterValue {
             InvalidParameterValue(.invalidCertificateId)
         }
-        
+
         /// 解析失败，请检查证书密钥格式。
         public static var invalidCertificateKey: InvalidParameterValue {
             InvalidParameterValue(.invalidCertificateKey)
         }
-        
+
         /// 并发量值不在可选范围内。
         public static var invalidConcurrency: InvalidParameterValue {
             InvalidParameterValue(.invalidConcurrency)
         }
-        
+
         /// 该监听器端口不可用。
         public static var invalidListenerPort: InvalidParameterValue {
             InvalidParameterValue(.invalidListenerPort)
         }
-        
+
         /// 未找到或无权限访问该标签
         public static var invalidTags: InvalidParameterValue {
             InvalidParameterValue(.invalidTags)
         }
-        
+
         /// 该域名被封禁，无法添加。
         public static var l7DomainHitBanBlacklist: InvalidParameterValue {
             InvalidParameterValue(.l7DomainHitBanBlacklist)
         }
-        
+
         /// 项目不属于该用户。
         public static var projectIdNotBelong: InvalidParameterValue {
             InvalidParameterValue(.projectIdNotBelong)
         }
-        
+
         /// 该通道组下无法支持该通道所需的特性。
         public static var proxyAndGroupFeatureConflict: InvalidParameterValue {
             InvalidParameterValue(.proxyAndGroupFeatureConflict)
         }
-        
+
         /// 该地区不支持通道所设置的特性。
         public static var proxyAndRegionFeatureConflict: InvalidParameterValue {
             InvalidParameterValue(.proxyAndRegionFeatureConflict)
         }
-        
+
         /// 源站不属于该用户。
         public static var realServerNotBelong: InvalidParameterValue {
             InvalidParameterValue(.realServerNotBelong)
         }
-        
+
         /// 未找到或无权限访问的加速区域。
         public static var unknownAccessRegion: InvalidParameterValue {
             InvalidParameterValue(.unknownAccessRegion)
         }
-        
+
         /// 未找到或无权限访问的源站区域。
         public static var unknownDestRegion: InvalidParameterValue {
             InvalidParameterValue(.unknownDestRegion)
         }
-        
+
         /// 参数取值错误。
         public static var other: InvalidParameterValue {
             InvalidParameterValue(.other)
         }
-        
+
         public func asGaapError() -> TCGaapError {
             let code: TCGaapError.Code
             switch self.error {

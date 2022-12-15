@@ -19,26 +19,26 @@ extension Cws {
     public struct ModifyConfigAttributeRequest: TCRequestModel {
         /// 漏洞告警通知等级，4位分别代表：高危、中危、低危、提示
         public let noticeLevel: String?
-        
-        public init (noticeLevel: String? = nil) {
+
+        public init(noticeLevel: String? = nil) {
             self.noticeLevel = noticeLevel
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case noticeLevel = "NoticeLevel"
         }
     }
-    
+
     /// ModifyConfigAttribute返回参数结构体
     public struct ModifyConfigAttributeResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 修改用户配置的属性
     ///
     /// 本接口 (ModifyConfigAttribute) 用于修改用户配置的属性。
@@ -46,7 +46,7 @@ extension Cws {
     public func modifyConfigAttribute(_ input: ModifyConfigAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyConfigAttributeResponse > {
         self.client.execute(action: "ModifyConfigAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 修改用户配置的属性
     ///
     /// 本接口 (ModifyConfigAttribute) 用于修改用户配置的属性。
@@ -54,7 +54,7 @@ extension Cws {
     public func modifyConfigAttribute(_ input: ModifyConfigAttributeRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> ModifyConfigAttributeResponse {
         try await self.client.execute(action: "ModifyConfigAttribute", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 修改用户配置的属性
     ///
     /// 本接口 (ModifyConfigAttribute) 用于修改用户配置的属性。
@@ -62,7 +62,7 @@ extension Cws {
     public func modifyConfigAttribute(noticeLevel: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < ModifyConfigAttributeResponse > {
         self.modifyConfigAttribute(ModifyConfigAttributeRequest(noticeLevel: noticeLevel), logger: logger, on: eventLoop)
     }
-    
+
     /// 修改用户配置的属性
     ///
     /// 本接口 (ModifyConfigAttribute) 用于修改用户配置的属性。

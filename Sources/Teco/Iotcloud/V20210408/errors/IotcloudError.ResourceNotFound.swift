@@ -35,114 +35,114 @@ extension TCIotcloudError {
             case topicPolicyNotExist = "ResourceNotFound.TopicPolicyNotExist"
             case topicRuleNotExist = "ResourceNotFound.TopicRuleNotExist"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// CA证书不存在。
         public static var caCertNotExist: ResourceNotFound {
             ResourceNotFound(.caCertNotExist)
         }
-        
+
         /// 批量创建设备任务不存在。
         public static var createMultiDeviceTaskNotExist: ResourceNotFound {
             ResourceNotFound(.createMultiDeviceTaskNotExist)
         }
-        
+
         /// 设备固件升级任务不存在。
         public static var deviceFirmwareTaskNotExist: ResourceNotFound {
             ResourceNotFound(.deviceFirmwareTaskNotExist)
         }
-        
+
         /// 设备无固件版本。
         public static var deviceHasNoFirmware: ResourceNotFound {
             ResourceNotFound(.deviceHasNoFirmware)
         }
-        
+
         /// 设备不存在。
         public static var deviceNotExist: ResourceNotFound {
             ResourceNotFound(.deviceNotExist)
         }
-        
+
         /// 设备资源不存在。
         public static var deviceResourceNotExist: ResourceNotFound {
             ResourceNotFound(.deviceResourceNotExist)
         }
-        
+
         /// 设备影子不存在。
         public static var deviceShadowNotExist: ResourceNotFound {
             ResourceNotFound(.deviceShadowNotExist)
         }
-        
+
         /// 固件不存在。
         public static var firmwareNotExist: ResourceNotFound {
             ResourceNotFound(.firmwareNotExist)
         }
-        
+
         /// 固件升级任务不存在。
         public static var firmwareTaskNotExist: ResourceNotFound {
             ResourceNotFound(.firmwareTaskNotExist)
         }
-        
+
         /// 产品不存在。
         public static var productNotExist: ResourceNotFound {
             ResourceNotFound(.productNotExist)
         }
-        
+
         /// 用户不存在此产品或设备。
         public static var productOrDeviceNotExist: ResourceNotFound {
             ResourceNotFound(.productOrDeviceNotExist)
         }
-        
+
         /// 产品资源不存在。
         public static var productResourceNotExist: ResourceNotFound {
             ResourceNotFound(.productResourceNotExist)
         }
-        
+
         /// 资源文件不存在。
         public static var resourceFileNotExist: ResourceNotFound {
             ResourceNotFound(.resourceFileNotExist)
         }
-        
+
         /// 任务不存在。
         public static var taskNotExist: ResourceNotFound {
             ResourceNotFound(.taskNotExist)
         }
-        
+
         /// 物模型不存在。
         public static var thingModelNotExist: ResourceNotFound {
             ResourceNotFound(.thingModelNotExist)
         }
-        
+
         /// Topic不存在。
         public static var topicPolicyNotExist: ResourceNotFound {
             ResourceNotFound(.topicPolicyNotExist)
         }
-        
+
         /// 规则不存在。
         public static var topicRuleNotExist: ResourceNotFound {
             ResourceNotFound(.topicRuleNotExist)
         }
-        
+
         public func asIotcloudError() -> TCIotcloudError {
             let code: TCIotcloudError.Code
             switch self.error {

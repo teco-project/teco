@@ -19,26 +19,26 @@ extension Yunjing {
     public struct IgnoreImpactedHostsRequest: TCRequestModel {
         /// 漏洞ID数组。
         public let ids: [UInt64]
-        
-        public init (ids: [UInt64]) {
+
+        public init(ids: [UInt64]) {
             self.ids = ids
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case ids = "Ids"
         }
     }
-    
+
     /// IgnoreImpactedHosts返回参数结构体
     public struct IgnoreImpactedHostsResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 忽略漏洞
     ///
     /// 本接口 (IgnoreImpactedHosts) 用于忽略漏洞。
@@ -46,7 +46,7 @@ extension Yunjing {
     public func ignoreImpactedHosts(_ input: IgnoreImpactedHostsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < IgnoreImpactedHostsResponse > {
         self.client.execute(action: "IgnoreImpactedHosts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 忽略漏洞
     ///
     /// 本接口 (IgnoreImpactedHosts) 用于忽略漏洞。
@@ -54,7 +54,7 @@ extension Yunjing {
     public func ignoreImpactedHosts(_ input: IgnoreImpactedHostsRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> IgnoreImpactedHostsResponse {
         try await self.client.execute(action: "IgnoreImpactedHosts", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 忽略漏洞
     ///
     /// 本接口 (IgnoreImpactedHosts) 用于忽略漏洞。
@@ -62,7 +62,7 @@ extension Yunjing {
     public func ignoreImpactedHosts(ids: [UInt64], logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < IgnoreImpactedHostsResponse > {
         self.ignoreImpactedHosts(IgnoreImpactedHostsRequest(ids: ids), logger: logger, on: eventLoop)
     }
-    
+
     /// 忽略漏洞
     ///
     /// 本接口 (IgnoreImpactedHosts) 用于忽略漏洞。

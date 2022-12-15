@@ -22,80 +22,80 @@ extension Pts {
     public struct AggregationLegend: TCOutputModel {
         /// 指标支持的聚合函数
         public let aggregation: String
-        
+
         /// 聚合函数作用于指标后对应的描述
         public let legend: String
-        
+
         /// 聚合之后的指标单位
         public let unit: String
-        
+
         enum CodingKeys: String, CodingKey {
             case aggregation = "Aggregation"
             case legend = "Legend"
             case unit = "Unit"
         }
     }
-    
+
     /// 告警通知渠道
     public struct AlertChannel: TCInputModel, TCOutputModel {
         /// 通知模板ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let noticeId: String?
-        
+
         /// AMP consumer ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let ampConsumerId: String?
-        
-        public init (noticeId: String? = nil, ampConsumerId: String? = nil) {
+
+        public init(noticeId: String? = nil, ampConsumerId: String? = nil) {
             self.noticeId = noticeId
             self.ampConsumerId = ampConsumerId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case noticeId = "NoticeId"
             case ampConsumerId = "AMPConsumerId"
         }
     }
-    
+
     /// 告警通知接收组
     public struct AlertChannelRecord: TCInputModel, TCOutputModel {
         /// Notice ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let noticeId: String?
-        
+
         /// Consumer ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let ampConsumerId: String?
-        
+
         /// 项目 ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let projectId: String?
-        
+
         /// 状态
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let status: UInt64?
-        
+
         /// 创建时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let createdAt: String?
-        
+
         /// 更新时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let updatedAt: String?
-        
+
         /// App ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let appId: Int64?
-        
+
         /// 主账号
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let uin: String?
-        
+
         /// 子账号
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let subAccountUin: String?
-        
-        public init (noticeId: String? = nil, ampConsumerId: String? = nil, projectId: String? = nil, status: UInt64? = nil, createdAt: String? = nil, updatedAt: String? = nil, appId: Int64? = nil, uin: String? = nil, subAccountUin: String? = nil) {
+
+        public init(noticeId: String? = nil, ampConsumerId: String? = nil, projectId: String? = nil, status: UInt64? = nil, createdAt: String? = nil, updatedAt: String? = nil, appId: Int64? = nil, uin: String? = nil, subAccountUin: String? = nil) {
             self.noticeId = noticeId
             self.ampConsumerId = ampConsumerId
             self.projectId = projectId
@@ -106,7 +106,7 @@ extension Pts {
             self.uin = uin
             self.subAccountUin = subAccountUin
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case noticeId = "NoticeId"
             case ampConsumerId = "AMPConsumerId"
@@ -119,66 +119,66 @@ extension Pts {
             case subAccountUin = "SubAccountUin"
         }
     }
-    
+
     /// 告警历史记录项
     public struct AlertRecord: TCInputModel, TCOutputModel {
         /// 告警历史记录项 ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let alertRecordId: String?
-        
+
         /// 项目 ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let projectId: String?
-        
+
         /// 场景 ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let scenarioId: String?
-        
+
         /// 状态
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let status: AlertRecordStatus?
-        
+
         /// 创建时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let createdAt: String?
-        
+
         /// 修改时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let updatedAt: String?
-        
+
         /// 任务 ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let jobId: String?
-        
+
         /// App ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let appId: Int64?
-        
+
         /// 主账号
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let uin: String?
-        
+
         /// 子账号
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let subAccountUin: String?
-        
+
         /// 场景名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let scenarioName: String?
-        
+
         /// 告警对象
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let target: String?
-        
+
         /// 告警规则 ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let jobSLAId: String?
-        
+
         /// 告警规则描述
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let jobSLADescription: String?
-        
-        public init (alertRecordId: String? = nil, projectId: String? = nil, scenarioId: String? = nil, status: AlertRecordStatus? = nil, createdAt: String? = nil, updatedAt: String? = nil, jobId: String? = nil, appId: Int64? = nil, uin: String? = nil, subAccountUin: String? = nil, scenarioName: String? = nil, target: String? = nil, jobSLAId: String? = nil, jobSLADescription: String? = nil) {
+
+        public init(alertRecordId: String? = nil, projectId: String? = nil, scenarioId: String? = nil, status: AlertRecordStatus? = nil, createdAt: String? = nil, updatedAt: String? = nil, jobId: String? = nil, appId: Int64? = nil, uin: String? = nil, subAccountUin: String? = nil, scenarioName: String? = nil, target: String? = nil, jobSLAId: String? = nil, jobSLADescription: String? = nil) {
             self.alertRecordId = alertRecordId
             self.projectId = projectId
             self.scenarioId = scenarioId
@@ -194,7 +194,7 @@ extension Pts {
             self.jobSLAId = jobSLAId
             self.jobSLADescription = jobSLADescription
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case alertRecordId = "AlertRecordId"
             case projectId = "ProjectId"
@@ -212,50 +212,50 @@ extension Pts {
             case jobSLADescription = "JobSLADescription"
         }
     }
-    
+
     /// 告警历史项的状态
     public struct AlertRecordStatus: TCInputModel, TCOutputModel {
         /// 停止压测任务成功与否
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let abortJob: UInt64?
-        
+
         /// 发送告警通知成功与否
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let sendNotice: UInt64?
-        
-        public init (abortJob: UInt64? = nil, sendNotice: UInt64? = nil) {
+
+        public init(abortJob: UInt64? = nil, sendNotice: UInt64? = nil) {
             self.abortJob = abortJob
             self.sendNotice = sendNotice
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case abortJob = "AbortJob"
             case sendNotice = "SendNotice"
         }
     }
-    
+
     /// 采样日志附带属性
     public struct Attributes: TCOutputModel {
         /// 采用请求返回码
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let status: String?
-        
+
         /// 采样请求结果码
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let result: String?
-        
+
         /// 采样请求API
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let service: String?
-        
+
         /// 采样请求调用方法
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let method: String?
-        
+
         /// 采样请求延时时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let duration: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case status = "Status"
             case result = "Result"
@@ -264,24 +264,24 @@ extension Pts {
             case duration = "Duration"
         }
     }
-    
+
     /// 检查点汇总结果
     public struct CheckSummary: TCOutputModel {
         /// 检查点名字
         public let name: String
-        
+
         /// 检查点所在步骤名字
         public let step: String
-        
+
         /// 检查点成功次数
         public let successCount: Int64
-        
+
         /// 检查失败次数
         public let failCount: Int64
-        
+
         /// 错误比例
         public let errorRate: Float
-        
+
         enum CodingKeys: String, CodingKey {
             case name = "Name"
             case step = "Step"
@@ -290,32 +290,32 @@ extension Pts {
             case errorRate = "ErrorRate"
         }
     }
-    
+
     /// 并发模式的施压配置
     public struct Concurrency: TCInputModel, TCOutputModel {
         /// 多阶段配置数组
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let stages: [Stage]?
-        
+
         /// 运行次数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let iterationCount: Int64?
-        
+
         /// 最大RPS
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let maxRequestsPerSecond: Int64?
-        
+
         /// 优雅终止任务的等待时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let gracefulStopSeconds: Int64?
-        
-        public init (stages: [Stage]? = nil, iterationCount: Int64? = nil, maxRequestsPerSecond: Int64? = nil, gracefulStopSeconds: Int64? = nil) {
+
+        public init(stages: [Stage]? = nil, iterationCount: Int64? = nil, maxRequestsPerSecond: Int64? = nil, gracefulStopSeconds: Int64? = nil) {
             self.stages = stages
             self.iterationCount = iterationCount
             self.maxRequestsPerSecond = maxRequestsPerSecond
             self.gracefulStopSeconds = gracefulStopSeconds
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case stages = "Stages"
             case iterationCount = "IterationCount"
@@ -323,51 +323,51 @@ extension Pts {
             case gracefulStopSeconds = "GracefulStopSeconds"
         }
     }
-    
+
     /// COS临时凭证
     public struct Credentials: TCOutputModel {
         /// 临时secret ID
         public let tmpSecretId: String
-        
+
         /// 临时secret key
         public let tmpSecretKey: String
-        
+
         /// 临时token
         public let token: String
-        
+
         enum CodingKeys: String, CodingKey {
             case tmpSecretId = "TmpSecretId"
             case tmpSecretKey = "TmpSecretKey"
             case token = "Token"
         }
     }
-    
+
     /// 定时任务
     public struct CronJob: TCOutputModel {
         /// 定时任务ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let cronJobId: String?
-        
+
         /// 定时任务名字
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let name: String?
-        
+
         /// 项目ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let projectId: String?
-        
+
         /// 场景ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let scenarioId: String?
-        
+
         /// 场景名称
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let scenarioName: String?
-        
+
         /// cron 表达式
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let cronExpression: String?
-        
+
         /// 结束时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         ///
@@ -376,19 +376,19 @@ extension Pts {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampISO8601Encoding public var endTime: Date?
-        
+
         /// 中止原因
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let abortReason: Int64?
-        
+
         /// 定时任务状态
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let status: Int64?
-        
+
         /// Notice ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let noticeId: String?
-        
+
         /// 创建时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         ///
@@ -397,7 +397,7 @@ extension Pts {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampISO8601Encoding public var createdAt: Date?
-        
+
         /// 更新时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         ///
@@ -406,31 +406,31 @@ extension Pts {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampISO8601Encoding public var updatedAt: Date?
-        
+
         /// 执行频率类型
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let frequencyType: Int64?
-        
+
         /// 备注
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let note: String?
-        
+
         /// tom
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let jobOwner: String?
-        
+
         /// App ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let appId: Int64?
-        
+
         /// 主账号
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let uin: String?
-        
+
         /// 子账号
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let subAccountUin: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case cronJobId = "CronJobId"
             case name = "Name"
@@ -452,33 +452,33 @@ extension Pts {
             case subAccountUin = "SubAccountUin"
         }
     }
-    
+
     /// sample附带原始查询语句中的metric, aggregation
     public struct CustomSample: TCOutputModel {
         /// 指标名
         public let metric: String
-        
+
         /// 聚合条件
         public let aggregation: String
-        
+
         /// 过滤条件
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let labels: [Label]?
-        
+
         /// 查询值
         public let value: Float
-        
+
         /// Time is the number of milliseconds since the epoch
         /// // (1970-01-01 00:00 UTC) excluding leap seconds.
         public let timestamp: Int64
-        
+
         /// 指标对应的单位，当前单位有：s,bytes,bytes/s,reqs,reqs/s,checks,checks/s,iters,iters/s,VUs, %
         public let unit: String
-        
+
         /// 指标序列名字
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let name: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case metric = "Metric"
             case aggregation = "Aggregation"
@@ -489,23 +489,23 @@ extension Pts {
             case name = "Name"
         }
     }
-    
+
     /// 指标矩阵，可包含多条指标序列
     public struct CustomSampleMatrix: TCOutputModel {
         /// 指标名字
         public let metric: String
-        
+
         /// 聚合函数
         public let aggregation: String
-        
+
         /// 指标单位
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let unit: String?
-        
+
         /// 指标序列数组
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let streams: [SampleStream]?
-        
+
         enum CodingKeys: String, CodingKey {
             case metric = "Metric"
             case aggregation = "Aggregation"
@@ -513,60 +513,60 @@ extension Pts {
             case streams = "Streams"
         }
     }
-    
+
     /// 施压机 DNS 配置
     public struct DNSConfig: TCInputModel, TCOutputModel {
         /// DNS IP 列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let nameservers: [String]?
-        
-        public init (nameservers: [String]? = nil) {
+
+        public init(nameservers: [String]? = nil) {
             self.nameservers = nameservers
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case nameservers = "Nameservers"
         }
     }
-    
+
     /// 施压机的域名解析相关配置
     public struct DomainNameConfig: TCInputModel, TCOutputModel {
         /// 域名绑定配置
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let hostAliases: [HostAlias]?
-        
+
         /// DNS 配置
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let dnsConfig: DNSConfig?
-        
-        public init (hostAliases: [HostAlias]? = nil, dnsConfig: DNSConfig? = nil) {
+
+        public init(hostAliases: [HostAlias]? = nil, dnsConfig: DNSConfig? = nil) {
             self.hostAliases = hostAliases
             self.dnsConfig = dnsConfig
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case hostAliases = "HostAliases"
             case dnsConfig = "DNSConfig"
         }
     }
-    
+
     /// 文件列表
     public struct File: TCOutputModel {
         /// 文件 ID
         public let fileId: String
-        
+
         /// 文件种类，参数文件-1，协议文件-2，请求文件-3
         public let kind: Int64
-        
+
         /// 文件名
         public let name: String
-        
+
         /// 文件字节数
         public let size: Int64
-        
+
         /// 文件类型
         public let type: String
-        
+
         /// 更新时间
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -574,39 +574,39 @@ extension Pts {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampISO8601Encoding public var updatedAt: Date
-        
+
         /// 文件行数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let lineCount: Int64?
-        
+
         /// 头部数据行
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let headLines: [String]?
-        
+
         /// 尾部数据行
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tailLines: [String]?
-        
+
         /// 首行是否为参数名
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let headerInFile: Bool?
-        
+
         /// 参数名数组
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let headerColumns: [String]?
-        
+
         /// 文件夹中的文件
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let fileInfos: [FileInfo]?
-        
+
         /// 关联场景
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let scenarioSet: [Scenario]?
-        
+
         /// 文件状态
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let status: Int64?
-        
+
         /// 创建时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         ///
@@ -615,27 +615,27 @@ extension Pts {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampISO8601Encoding public var createdAt: Date?
-        
+
         /// 项目 ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let projectId: String?
-        
+
         /// 此字段不再使用
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let appID: Int64?
-        
+
         /// 用户主账号
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let uin: String?
-        
+
         /// 用户子账号
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let subAccountUin: String?
-        
+
         /// 用户账号的 App ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let appId: Int64?
-        
+
         enum CodingKeys: String, CodingKey {
             case fileId = "FileId"
             case kind = "Kind"
@@ -659,21 +659,21 @@ extension Pts {
             case appId = "AppId"
         }
     }
-    
+
     /// 文件基本信息
     public struct FileInfo: TCInputModel, TCOutputModel {
         /// 文件名
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let name: String?
-        
+
         /// 文件大小
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let size: Int64?
-        
+
         /// 文件类型
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let type: String?
-        
+
         /// 更新时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         ///
@@ -682,19 +682,19 @@ extension Pts {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampISO8601Encoding public var updatedAt: Date?
-        
+
         /// 文件 ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let fileId: String?
-        
-        public init (name: String? = nil, size: Int64? = nil, type: String? = nil, updatedAt: Date? = nil, fileId: String? = nil) {
+
+        public init(name: String? = nil, size: Int64? = nil, type: String? = nil, updatedAt: Date? = nil, fileId: String? = nil) {
             self.name = name
             self.size = size
             self.type = type
             self.updatedAt = updatedAt
             self.fileId = fileId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case name = "Name"
             case size = "Size"
@@ -703,101 +703,101 @@ extension Pts {
             case fileId = "FileId"
         }
     }
-    
+
     /// 指标查询过滤
     public struct Filter: TCInputModel {
         /// 等于：0，不等于：1
         public let `operator`: Int64
-        
+
         /// 指标名
         public let labelName: String
-        
+
         /// 指标值
         public let labelValue: String
-        
-        public init (operator: Int64, labelName: String, labelValue: String) {
+
+        public init(operator: Int64, labelName: String, labelValue: String) {
             self.`operator` = `operator`
             self.labelName = labelName
             self.labelValue = labelValue
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case `operator` = "Operator"
             case labelName = "LabelName"
             case labelValue = "LabelValue"
         }
     }
-    
+
     /// 压力分布配置
     public struct GeoRegionsLoadItem: TCInputModel, TCOutputModel {
         /// 地域ID
         public let regionId: Int64
-        
+
         /// 地域
         public let region: String?
-        
+
         /// 百分比
         public let percentage: Int64?
-        
-        public init (regionId: Int64, region: String? = nil, percentage: Int64? = nil) {
+
+        public init(regionId: Int64, region: String? = nil, percentage: Int64? = nil) {
             self.regionId = regionId
             self.region = region
             self.percentage = percentage
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case regionId = "RegionId"
             case region = "Region"
             case percentage = "Percentage"
         }
     }
-    
+
     /// 施压机域名绑定配置
     public struct HostAlias: TCInputModel, TCOutputModel {
         /// 需绑定的域名列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let hostNames: [String]?
-        
+
         /// 需绑定的 IP 地址
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let ip: String?
-        
-        public init (hostNames: [String]? = nil, ip: String? = nil) {
+
+        public init(hostNames: [String]? = nil, ip: String? = nil) {
             self.hostNames = hostNames
             self.ip = ip
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case hostNames = "HostNames"
             case ip = "IP"
         }
     }
-    
+
     /// 查询结构封装
     public struct InternalMetricQuery: TCInputModel {
         /// 指标名
         public let metric: String
-        
+
         /// 聚合函数
         public let aggregation: String
-        
+
         /// deprecated, 请使用Filters
         public let labels: [Label]?
-        
+
         /// 指标过滤
         public let filters: [Filter]?
-        
+
         /// 指标分组
         public let groupBy: [String]?
-        
-        public init (metric: String, aggregation: String, labels: [Label]? = nil, filters: [Filter]? = nil, groupBy: [String]? = nil) {
+
+        public init(metric: String, aggregation: String, labels: [Label]? = nil, filters: [Filter]? = nil, groupBy: [String]? = nil) {
             self.metric = metric
             self.aggregation = aggregation
             self.labels = labels
             self.filters = filters
             self.groupBy = groupBy
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case metric = "Metric"
             case aggregation = "Aggregation"
@@ -806,39 +806,39 @@ extension Pts {
             case groupBy = "GroupBy"
         }
     }
-    
+
     /// 任务
     public struct Job: TCInputModel, TCOutputModel {
         /// 任务的JobID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let jobId: String?
-        
+
         /// 任务的场景ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let scenarioId: String?
-        
+
         /// 任务的施压配置
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let load: Load?
-        
+
         /// 此字段不再使用
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let configs: [String]?
-        
+
         /// 任务的数据集文件
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let datasets: [TestData]?
-        
+
         /// 此字段不再使用
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let extensions: [String]?
-        
+
         /// 任务的运行状态, JobUnknown: 0,JobCreated:1,JobPending:2, JobPreparing:3,JobSelectClustering:4,JobCreateTasking:5,JobSyncTasking:6
         /// JobRunning:11,JobFinished:12,JobPrepareException:13,JobFinishException:14,JobAborting:15,JobAborted:16,JobAbortException:17,JobDeleted:18,
         /// JobSelectClusterException:19,JobCreateTaskException:20,JobSyncTaskException:21
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let status: Int64?
-        
+
         /// 任务的开始时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         ///
@@ -847,7 +847,7 @@ extension Pts {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampISO8601Encoding public var startTime: Date?
-        
+
         /// 任务的结束时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         ///
@@ -856,111 +856,111 @@ extension Pts {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampISO8601Encoding public var endTime: Date?
-        
+
         /// 任务的最大VU数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let maxVirtualUserCount: Int64?
-        
+
         /// 任务的备注信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let note: String?
-        
+
         /// 错误率百分比
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let errorRate: Float?
-        
+
         /// 任务发起人
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let jobOwner: String?
-        
+
         /// 此字段不再使用
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let loadSources: LoadSource?
-        
+
         /// 任务时长
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let duration: Int64?
-        
+
         /// 最大每秒请求数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let maxRequestsPerSecond: Int64?
-        
+
         /// 总请求数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let requestTotal: Float?
-        
+
         /// 平均每秒请求数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let requestsPerSecond: Float?
-        
+
         /// 平均响应时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let responseTimeAverage: Float?
-        
+
         /// 响应时间第99百分位
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let responseTimeP99: Float?
-        
+
         /// 响应时间第95百分位
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let responseTimeP95: Float?
-        
+
         /// 响应时间第90百分位
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let responseTimeP90: Float?
-        
+
         /// 此字段不再使用
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let scripts: [String]?
-        
+
         /// 最大响应时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let responseTimeMax: Float?
-        
+
         /// 最小响应时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let responseTimeMin: Float?
-        
+
         /// 发压host信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let loadSourceInfos: [LoadSource]?
-        
+
         /// 测试脚本信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let testScripts: [ScriptInfo]?
-        
+
         /// 协议脚本信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let protocols: [ProtocolInfo]?
-        
+
         /// 请求文件信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let requestFiles: [FileInfo]?
-        
+
         /// 拓展包文件信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let plugins: [FileInfo]?
-        
+
         /// 定时任务ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let cronId: String?
-        
+
         /// 场景类型
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let type: String?
-        
+
         /// 域名绑定配置
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let domainNameConfig: DomainNameConfig?
-        
+
         /// false
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let debug: Bool?
-        
+
         /// 中断原因
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let abortReason: Int64?
-        
+
         /// 任务的创建时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         ///
@@ -969,28 +969,28 @@ extension Pts {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampISO8601Encoding public var createdAt: Date?
-        
+
         /// 项目ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let projectId: String?
-        
+
         /// 通知事件回调
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let notificationHooks: [NotificationHook]?
-        
+
         /// 每秒接收字节数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let networkReceiveRate: Float?
-        
+
         /// 每秒发送字节数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let networkSendRate: Float?
-        
+
         /// 任务状态描述
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let message: String?
-        
-        public init (jobId: String? = nil, scenarioId: String? = nil, load: Load? = nil, configs: [String]? = nil, datasets: [TestData]? = nil, extensions: [String]? = nil, status: Int64? = nil, startTime: Date? = nil, endTime: Date? = nil, maxVirtualUserCount: Int64? = nil, note: String? = nil, errorRate: Float? = nil, jobOwner: String? = nil, loadSources: LoadSource? = nil, duration: Int64? = nil, maxRequestsPerSecond: Int64? = nil, requestTotal: Float? = nil, requestsPerSecond: Float? = nil, responseTimeAverage: Float? = nil, responseTimeP99: Float? = nil, responseTimeP95: Float? = nil, responseTimeP90: Float? = nil, scripts: [String]? = nil, responseTimeMax: Float? = nil, responseTimeMin: Float? = nil, loadSourceInfos: [LoadSource]? = nil, testScripts: [ScriptInfo]? = nil, protocols: [ProtocolInfo]? = nil, requestFiles: [FileInfo]? = nil, plugins: [FileInfo]? = nil, cronId: String? = nil, type: String? = nil, domainNameConfig: DomainNameConfig? = nil, debug: Bool? = nil, abortReason: Int64? = nil, createdAt: Date? = nil, projectId: String? = nil, notificationHooks: [NotificationHook]? = nil, networkReceiveRate: Float? = nil, networkSendRate: Float? = nil, message: String? = nil) {
+
+        public init(jobId: String? = nil, scenarioId: String? = nil, load: Load? = nil, configs: [String]? = nil, datasets: [TestData]? = nil, extensions: [String]? = nil, status: Int64? = nil, startTime: Date? = nil, endTime: Date? = nil, maxVirtualUserCount: Int64? = nil, note: String? = nil, errorRate: Float? = nil, jobOwner: String? = nil, loadSources: LoadSource? = nil, duration: Int64? = nil, maxRequestsPerSecond: Int64? = nil, requestTotal: Float? = nil, requestsPerSecond: Float? = nil, responseTimeAverage: Float? = nil, responseTimeP99: Float? = nil, responseTimeP95: Float? = nil, responseTimeP90: Float? = nil, scripts: [String]? = nil, responseTimeMax: Float? = nil, responseTimeMin: Float? = nil, loadSourceInfos: [LoadSource]? = nil, testScripts: [ScriptInfo]? = nil, protocols: [ProtocolInfo]? = nil, requestFiles: [FileInfo]? = nil, plugins: [FileInfo]? = nil, cronId: String? = nil, type: String? = nil, domainNameConfig: DomainNameConfig? = nil, debug: Bool? = nil, abortReason: Int64? = nil, createdAt: Date? = nil, projectId: String? = nil, notificationHooks: [NotificationHook]? = nil, networkReceiveRate: Float? = nil, networkSendRate: Float? = nil, message: String? = nil) {
             self.jobId = jobId
             self.scenarioId = scenarioId
             self.load = load
@@ -1033,7 +1033,7 @@ extension Pts {
             self.networkSendRate = networkSendRate
             self.message = message
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case jobId = "JobId"
             case scenarioId = "ScenarioId"
@@ -1078,140 +1078,140 @@ extension Pts {
             case message = "Message"
         }
     }
-    
+
     /// 包含labelName 和labelValue
     public struct Label: TCOutputModel {
         /// label名字
         public let labelName: String
-        
+
         /// label值
         public let labelValue: String
-        
+
         enum CodingKeys: String, CodingKey {
             case labelName = "LabelName"
             case labelValue = "LabelValue"
         }
     }
-    
+
     /// 标签及对应的值
     public struct LabelWithValues: TCOutputModel {
         /// 标签名称
         public let labelName: String
-        
+
         /// 标签值
         public let labelValues: [String]
-        
+
         enum CodingKeys: String, CodingKey {
             case labelName = "LabelName"
             case labelValues = "LabelValues"
         }
     }
-    
+
     /// 施压配置
     public struct Load: TCInputModel, TCOutputModel {
         /// 施压配置
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let loadSpec: LoadSpec?
-        
+
         /// 压力来源
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let vpcLoadDistribution: VpcLoadDistribution?
-        
+
         /// 压力分布
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let geoRegionsLoadDistribution: [GeoRegionsLoadItem]?
-        
-        public init (loadSpec: LoadSpec? = nil, vpcLoadDistribution: VpcLoadDistribution? = nil, geoRegionsLoadDistribution: [GeoRegionsLoadItem]? = nil) {
+
+        public init(loadSpec: LoadSpec? = nil, vpcLoadDistribution: VpcLoadDistribution? = nil, geoRegionsLoadDistribution: [GeoRegionsLoadItem]? = nil) {
             self.loadSpec = loadSpec
             self.vpcLoadDistribution = vpcLoadDistribution
             self.geoRegionsLoadDistribution = geoRegionsLoadDistribution
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case loadSpec = "LoadSpec"
             case vpcLoadDistribution = "VpcLoadDistribution"
             case geoRegionsLoadDistribution = "GeoRegionsLoadDistribution"
         }
     }
-    
+
     /// 发压host来源
     public struct LoadSource: TCInputModel, TCOutputModel {
         /// 发压host的IP
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let ip: String?
-        
+
         /// 发压host所在的pod
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let podName: String?
-        
+
         /// 所属地域
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let region: String?
-        
-        public init (ip: String? = nil, podName: String? = nil, region: String? = nil) {
+
+        public init(ip: String? = nil, podName: String? = nil, region: String? = nil) {
             self.ip = ip
             self.podName = podName
             self.region = region
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case ip = "IP"
             case podName = "PodName"
             case region = "Region"
         }
     }
-    
+
     /// 施压配置
     public struct LoadSpec: TCInputModel, TCOutputModel {
         /// 并发施压模式的配置
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let concurrency: Concurrency?
-        
+
         /// RPS施压模式的配置
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let requestsPerSecond: RequestsPerSecond?
-        
+
         /// 脚本内置压力模式
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let scriptOrigin: ScriptOrigin?
-        
-        public init (concurrency: Concurrency? = nil, requestsPerSecond: RequestsPerSecond? = nil, scriptOrigin: ScriptOrigin? = nil) {
+
+        public init(concurrency: Concurrency? = nil, requestsPerSecond: RequestsPerSecond? = nil, scriptOrigin: ScriptOrigin? = nil) {
             self.concurrency = concurrency
             self.requestsPerSecond = requestsPerSecond
             self.scriptOrigin = scriptOrigin
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case concurrency = "Concurrency"
             case requestsPerSecond = "RequestsPerSecond"
             case scriptOrigin = "ScriptOrigin"
         }
     }
-    
+
     /// 指标结构
     public struct MetricInfo: TCOutputModel {
         /// 后台指标
         public let metric: String
-        
+
         /// 前台展示指标名称
         public let alias: String
-        
+
         /// 指标描述
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let description: String?
-        
+
         /// 指标类型
         public let metricType: String
-        
+
         /// 默认指标单位
         public let unit: String
-        
+
         /// 指标支持的聚合函数
         public let aggregations: [AggregationLegend]
-        
+
         /// 是否内部指标，内部指标不可在前台提供用户自由选择
         public let innerMetric: Bool
-        
+
         enum CodingKeys: String, CodingKey {
             case metric = "Metric"
             case alias = "Alias"
@@ -1222,101 +1222,101 @@ extension Pts {
             case innerMetric = "InnerMetric"
         }
     }
-    
+
     /// PTS提供的指标名，指标对应的labels及values
     public struct MetricLabelWithValues: TCOutputModel {
         /// metric 名字
         public let metricName: String
-        
+
         /// label及values 数组
         public let labelValuesSet: [LabelWithValues]
-        
+
         enum CodingKeys: String, CodingKey {
             case metricName = "MetricName"
             case labelValuesSet = "LabelValuesSet"
         }
     }
-    
+
     /// 通用日志
     public struct NormalLog: TCOutputModel {
         /// 毫秒时间戳
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let timestamp: String?
-        
+
         /// 日志级别
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let severityText: String?
-        
+
         /// 日志输出内容
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let body: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case timestamp = "Timestamp"
             case severityText = "SeverityText"
             case body = "Body"
         }
     }
-    
+
     /// 测试启动前后的消息通知
     public struct Notification: TCInputModel {
         /// 发生事件
         public let events: [String]?
-        
+
         /// webhook的网址
         public let url: String?
-        
-        public init (events: [String]? = nil, url: String? = nil) {
+
+        public init(events: [String]? = nil, url: String? = nil) {
             self.events = events
             self.url = url
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case events = "Events"
             case url = "URL"
         }
     }
-    
+
     /// 事件通知回调
     public struct NotificationHook: TCInputModel, TCOutputModel {
         /// 通知事件
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let events: [String]?
-        
+
         /// 回调 URL
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let url: String?
-        
-        public init (events: [String]? = nil, url: String? = nil) {
+
+        public init(events: [String]? = nil, url: String? = nil) {
             self.events = events
             self.url = url
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case events = "Events"
             case url = "URL"
         }
     }
-    
+
     /// 项目
     public struct Project: TCOutputModel {
         /// 项目ID
         public let projectId: String?
-        
+
         /// 项目名
         public let name: String?
-        
+
         /// 项目描述
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let description: String?
-        
+
         /// 标签数组
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tags: [TagSpec]?
-        
+
         /// 项目状态
         public let status: Int64?
-        
+
         /// 创建时间
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -1324,7 +1324,7 @@ extension Pts {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampISO8601Encoding public var createdAt: Date?
-        
+
         /// 修改时间
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -1332,16 +1332,16 @@ extension Pts {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampISO8601Encoding public var updatedAt: Date?
-        
+
         /// App ID
         public let appId: Int64
-        
+
         /// 用户ID
         public let uin: String
-        
+
         /// 子用户ID
         public let subAccountUin: String
-        
+
         enum CodingKeys: String, CodingKey {
             case projectId = "ProjectId"
             case name = "Name"
@@ -1355,21 +1355,21 @@ extension Pts {
             case subAccountUin = "SubAccountUin"
         }
     }
-    
+
     /// 协议文件详情
     public struct ProtocolInfo: TCInputModel, TCOutputModel {
         /// 协议详情
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let name: String?
-        
+
         /// 文件大小
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let size: Int64?
-        
+
         /// 文件类型
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let type: String?
-        
+
         /// 更新时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         ///
@@ -1378,19 +1378,19 @@ extension Pts {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampISO8601Encoding public var updatedAt: Date?
-        
+
         /// 文件 ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let fileId: String?
-        
-        public init (name: String? = nil, size: Int64? = nil, type: String? = nil, updatedAt: Date? = nil, fileId: String? = nil) {
+
+        public init(name: String? = nil, size: Int64? = nil, type: String? = nil, updatedAt: Date? = nil, fileId: String? = nil) {
             self.name = name
             self.size = size
             self.type = type
             self.updatedAt = updatedAt
             self.fileId = fileId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case name = "Name"
             case size = "Size"
@@ -1399,46 +1399,46 @@ extension Pts {
             case fileId = "FileId"
         }
     }
-    
+
     /// 采用日志响应时间RT范围
     public struct ReactionTimeRange: TCInputModel {
         /// 最小响应时间，单位ms
         public let min: String?
-        
+
         /// 最大响应时间，单位ms
         public let max: String?
-        
-        public init (min: String? = nil, max: String? = nil) {
+
+        public init(min: String? = nil, max: String? = nil) {
             self.min = min
             self.max = max
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case min = "Min"
             case max = "Max"
         }
     }
-    
+
     /// 地域
     public struct RegionDetail: TCInputModel, TCOutputModel {
         /// 地域代码
         public let region: String
-        
+
         /// 地域ID
         public let regionId: Int64
-        
+
         /// 地域所在的地区
         public let area: String?
-        
+
         /// 地域名称
         public let regionName: String?
-        
+
         /// 地域状态
         public let regionState: Int64?
-        
+
         /// 地域简称
         public let regionShortName: String?
-        
+
         /// 创建时间
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -1446,7 +1446,7 @@ extension Pts {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampISO8601Encoding public var createdAt: Date?
-        
+
         /// 更新时间
         ///
         /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
@@ -1454,8 +1454,8 @@ extension Pts {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampISO8601Encoding public var updatedAt: Date?
-        
-        public init (region: String, regionId: Int64, area: String? = nil, regionName: String? = nil, regionState: Int64? = nil, regionShortName: String? = nil, createdAt: Date? = nil, updatedAt: Date? = nil) {
+
+        public init(region: String, regionId: Int64, area: String? = nil, regionName: String? = nil, regionState: Int64? = nil, regionShortName: String? = nil, createdAt: Date? = nil, updatedAt: Date? = nil) {
             self.region = region
             self.regionId = regionId
             self.area = area
@@ -1465,7 +1465,7 @@ extension Pts {
             self.createdAt = createdAt
             self.updatedAt = updatedAt
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case region = "Region"
             case regionId = "RegionId"
@@ -1477,45 +1477,45 @@ extension Pts {
             case updatedAt = "UpdatedAt"
         }
     }
-    
+
     /// 压测请求明细
     public struct RequestSummary: TCOutputModel {
         /// 请求URL
         public let service: String
-        
+
         /// 请求方法
         public let method: String
-        
+
         /// 请求次数
         public let count: Int64
-        
+
         /// 请求响应平均耗时，单位秒
         public let average: Float
-        
+
         /// 请求p90耗时，单位秒
         public let p90: Float
-        
+
         /// 请求p95耗时，单位秒
         public let p95: Float
-        
+
         /// 请求最小耗时，单位秒
         public let min: Float
-        
+
         /// 请求最大耗时，单位秒
         public let max: Float
-        
+
         /// 请求错误率
         public let errorPercentage: Float
-        
+
         /// 请求p99耗时，单位秒
         public let p99: Float
-        
+
         /// 响应状态码
         public let status: String
-        
+
         /// 响应详情
         public let result: String
-        
+
         enum CodingKeys: String, CodingKey {
             case service = "Service"
             case method = "Method"
@@ -1531,38 +1531,38 @@ extension Pts {
             case result = "Result"
         }
     }
-    
+
     /// RPS模式的施压配置
     public struct RequestsPerSecond: TCInputModel, TCOutputModel {
         /// 最大RPS
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let maxRequestsPerSecond: Int64?
-        
+
         /// 施压时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let durationSeconds: Int64?
-        
+
         /// deprecated
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let targetVirtualUsers: Int64?
-        
+
         /// 资源数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let resources: Int64?
-        
+
         /// 起始RPS
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let startRequestsPerSecond: Int64?
-        
+
         /// 目标RPS，入参无效
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let targetRequestsPerSecond: Int64?
-        
+
         /// 优雅关停的等待时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let gracefulStopSeconds: Int64?
-        
-        public init (maxRequestsPerSecond: Int64? = nil, durationSeconds: Int64? = nil, targetVirtualUsers: Int64? = nil, resources: Int64? = nil, startRequestsPerSecond: Int64? = nil, targetRequestsPerSecond: Int64? = nil, gracefulStopSeconds: Int64? = nil) {
+
+        public init(maxRequestsPerSecond: Int64? = nil, durationSeconds: Int64? = nil, targetVirtualUsers: Int64? = nil, resources: Int64? = nil, startRequestsPerSecond: Int64? = nil, targetRequestsPerSecond: Int64? = nil, gracefulStopSeconds: Int64? = nil) {
             self.maxRequestsPerSecond = maxRequestsPerSecond
             self.durationSeconds = durationSeconds
             self.targetVirtualUsers = targetVirtualUsers
@@ -1571,7 +1571,7 @@ extension Pts {
             self.targetRequestsPerSecond = targetRequestsPerSecond
             self.gracefulStopSeconds = gracefulStopSeconds
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case maxRequestsPerSecond = "MaxRequestsPerSecond"
             case durationSeconds = "DurationSeconds"
@@ -1582,80 +1582,80 @@ extension Pts {
             case gracefulStopSeconds = "GracefulStopSeconds"
         }
     }
-    
+
     /// SLA 标签
     public struct SLALabel: TCInputModel, TCOutputModel {
         /// 标签名
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let labelName: String?
-        
+
         /// 标签值
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let labelValue: String?
-        
-        public init (labelName: String? = nil, labelValue: String? = nil) {
+
+        public init(labelName: String? = nil, labelValue: String? = nil) {
             self.labelName = labelName
             self.labelValue = labelValue
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case labelName = "LabelName"
             case labelValue = "LabelValue"
         }
     }
-    
+
     /// SLA 策略
     public struct SLAPolicy: TCInputModel, TCOutputModel {
         /// SLA 规则
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let slaRules: [SLARule]?
-        
+
         /// 告警通知渠道
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let alertChannel: AlertChannel?
-        
-        public init (slaRules: [SLARule]? = nil, alertChannel: AlertChannel? = nil) {
+
+        public init(slaRules: [SLARule]? = nil, alertChannel: AlertChannel? = nil) {
             self.slaRules = slaRules
             self.alertChannel = alertChannel
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case slaRules = "SLARules"
             case alertChannel = "AlertChannel"
         }
     }
-    
+
     /// SLA 规则
     public struct SLARule: TCInputModel, TCOutputModel {
         /// 压测指标
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let metric: String?
-        
+
         /// 压测指标聚合方法
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let aggregation: String?
-        
+
         /// 压测指标条件判断符号
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let condition: String?
-        
+
         /// 阈值
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let value: Float?
-        
+
         /// 标签
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let labelFilter: [SLALabel]?
-        
+
         /// 是否停止压测任务
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let abortFlag: Bool?
-        
+
         /// 持续时长
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let `for`: String?
-        
-        public init (metric: String? = nil, aggregation: String? = nil, condition: String? = nil, value: Float? = nil, labelFilter: [SLALabel]? = nil, abortFlag: Bool? = nil, for: String? = nil) {
+
+        public init(metric: String? = nil, aggregation: String? = nil, condition: String? = nil, value: Float? = nil, labelFilter: [SLALabel]? = nil, abortFlag: Bool? = nil, for: String? = nil) {
             self.metric = metric
             self.aggregation = aggregation
             self.condition = condition
@@ -1664,7 +1664,7 @@ extension Pts {
             self.abortFlag = abortFlag
             self.`for` = `for`
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case metric = "Metric"
             case aggregation = "Aggregation"
@@ -1675,160 +1675,160 @@ extension Pts {
             case `for` = "For"
         }
     }
-    
+
     /// 采样日志
     public struct SampleLog: TCOutputModel {
         /// 日志毫秒时间戳
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let timestamp: String?
-        
+
         /// 采样日志属性
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let attributes: Attributes?
-        
+
         /// har格式的采样请求
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let body: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case timestamp = "Timestamp"
             case attributes = "Attributes"
             case body = "Body"
         }
     }
-    
+
     /// sample采样值
     public struct SamplePair: TCOutputModel {
         /// is the number of milliseconds since the epoch (1970-01-01 00:00 UTC) excluding leap seconds.
         public let timestamp: Int64
-        
+
         /// is a representation of a value for a given sample at a given time.
         public let value: Float
-        
+
         enum CodingKeys: String, CodingKey {
             case timestamp = "Timestamp"
             case value = "Value"
         }
     }
-    
+
     /// 连续指标采样内容
     public struct SampleStream: TCOutputModel {
         /// labels描述
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let labels: [Label]?
-        
+
         /// 指标采样数组
         public let values: [SamplePair]
-        
+
         /// 指标序列名字
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let name: String?
-        
+
         enum CodingKeys: String, CodingKey {
             case labels = "Labels"
             case values = "Values"
             case name = "Name"
         }
     }
-    
+
     /// 场景列表
     public struct Scenario: TCOutputModel {
         /// 场景ID
         public let scenarioId: String?
-        
+
         /// 场景名
         public let name: String
-        
+
         /// 场景描述
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let description: String?
-        
+
         /// 场景类型，如pts-http, pts-js, pts-trpc, pts-jmeter
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let type: String?
-        
+
         /// 场景状态
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let status: Int64?
-        
+
         /// 施压配置
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let load: Load?
-        
+
         /// deprecated
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let encodedScripts: String?
-        
+
         /// deprecated
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let configs: [String]?
-        
+
         /// deprecated
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let extensions: [String]?
-        
+
         /// 测试数据集
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let datasets: [TestData]?
-        
+
         /// SLA规则的ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let slaId: String?
-        
+
         /// Cron Job规则的ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let cronId: String?
-        
+
         /// 场景创建时间
         public let createdAt: String?
-        
+
         /// 场景修改时间
         public let updatedAt: String?
-        
+
         /// 项目ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let projectId: String?
-        
+
         /// App ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let appId: Int64?
-        
+
         /// 用户ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let uin: String?
-        
+
         /// 子用户ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let subAccountUin: String?
-        
+
         /// 测试脚本信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let testScripts: [ScriptInfo]?
-        
+
         /// 协议文件信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let protocols: [ProtocolInfo]?
-        
+
         /// 请求文件信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let requestFiles: [FileInfo]?
-        
+
         /// SLA 策略
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let slaPolicy: SLAPolicy?
-        
+
         /// 扩展包信息
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let plugins: [FileInfo]?
-        
+
         /// 域名解析配置
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let domainNameConfig: DomainNameConfig?
-        
+
         /// 通知事件回调
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let notificationHooks: [NotificationHook]?
-        
+
         enum CodingKeys: String, CodingKey {
             case scenarioId = "ScenarioId"
             case name = "Name"
@@ -1857,28 +1857,28 @@ extension Pts {
             case notificationHooks = "NotificationHooks"
         }
     }
-    
+
     /// 查询与特定scenario关联的job的参数
     public struct ScenarioRelatedJobsParams: TCInputModel {
         /// job偏移量
         public let offset: Int64?
-        
+
         /// 限制最多查询的job数
         public let limit: Int64?
-        
+
         /// 排序字段
         public let orderBy: String?
-        
+
         /// 是否升序
         public let ascend: Bool?
-        
-        public init (offset: Int64? = nil, limit: Int64? = nil, orderBy: String? = nil, ascend: Bool? = nil) {
+
+        public init(offset: Int64? = nil, limit: Int64? = nil, orderBy: String? = nil, ascend: Bool? = nil) {
             self.offset = offset
             self.limit = limit
             self.orderBy = orderBy
             self.ascend = ascend
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case offset = "Offset"
             case limit = "Limit"
@@ -1886,37 +1886,37 @@ extension Pts {
             case ascend = "Ascend"
         }
     }
-    
+
     /// 带已执行任务的scenario
     public struct ScenarioWithJobs: TCOutputModel {
         /// scecario结果
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let scenario: Scenario?
-        
+
         /// job结果
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let jobs: [Job]?
-        
+
         enum CodingKeys: String, CodingKey {
             case scenario = "Scenario"
             case jobs = "Jobs"
         }
     }
-    
+
     /// 脚本信息
     public struct ScriptInfo: TCInputModel, TCOutputModel {
         /// 文件名
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let name: String?
-        
+
         /// 文件大小
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let size: Int64?
-        
+
         /// 文件类型
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let type: String?
-        
+
         /// 更新时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         ///
@@ -1925,24 +1925,24 @@ extension Pts {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampISO8601Encoding public var updatedAt: Date?
-        
+
         /// base64编码后的文件内容
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let encodedContent: String?
-        
+
         /// base64编码后的har结构体
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let encodedHttpArchive: String?
-        
+
         /// 脚本权重，范围 1-100
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let loadWeight: Int64?
-        
+
         /// 文件 ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let fileId: String?
-        
-        public init (name: String? = nil, size: Int64? = nil, type: String? = nil, updatedAt: Date? = nil, encodedContent: String? = nil, encodedHttpArchive: String? = nil, loadWeight: Int64? = nil, fileId: String? = nil) {
+
+        public init(name: String? = nil, size: Int64? = nil, type: String? = nil, updatedAt: Date? = nil, encodedContent: String? = nil, encodedHttpArchive: String? = nil, loadWeight: Int64? = nil, fileId: String? = nil) {
             self.name = name
             self.size = size
             self.type = type
@@ -1952,7 +1952,7 @@ extension Pts {
             self.loadWeight = loadWeight
             self.fileId = fileId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case name = "Name"
             case size = "Size"
@@ -1964,95 +1964,95 @@ extension Pts {
             case fileId = "FileId"
         }
     }
-    
+
     /// 脚本内置压力模型
     public struct ScriptOrigin: TCInputModel, TCOutputModel {
         /// 机器数量
         public let machineNumber: Int64
-        
+
         /// 机器规格
         public let machineSpecification: String
-        
+
         /// 压测时长
         public let durationSeconds: Int64
-        
-        public init (machineNumber: Int64, machineSpecification: String, durationSeconds: Int64) {
+
+        public init(machineNumber: Int64, machineSpecification: String, durationSeconds: Int64) {
             self.machineNumber = machineNumber
             self.machineSpecification = machineSpecification
             self.durationSeconds = durationSeconds
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case machineNumber = "MachineNumber"
             case machineSpecification = "MachineSpecification"
             case durationSeconds = "DurationSeconds"
         }
     }
-    
+
     /// 分阶段施压时，对单个阶段的配置
     public struct Stage: TCInputModel, TCOutputModel {
         /// 施压时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let durationSeconds: Int64?
-        
+
         /// 虚拟用户数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let targetVirtualUsers: Int64?
-        
-        public init (durationSeconds: Int64? = nil, targetVirtualUsers: Int64? = nil) {
+
+        public init(durationSeconds: Int64? = nil, targetVirtualUsers: Int64? = nil) {
             self.durationSeconds = durationSeconds
             self.targetVirtualUsers = targetVirtualUsers
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case durationSeconds = "DurationSeconds"
             case targetVirtualUsers = "TargetVirtualUsers"
         }
     }
-    
+
     /// 标签
     public struct TagSpec: TCInputModel, TCOutputModel {
         /// 标签键
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tagKey: String?
-        
+
         /// 标签值
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tagValue: String?
-        
-        public init (tagKey: String? = nil, tagValue: String? = nil) {
+
+        public init(tagKey: String? = nil, tagValue: String? = nil) {
             self.tagKey = tagKey
             self.tagValue = tagValue
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case tagKey = "TagKey"
             case tagValue = "TagValue"
         }
     }
-    
+
     /// 测试数据集
     public struct TestData: TCInputModel, TCOutputModel {
         /// 测试数据集所在的文件名
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let name: String?
-        
+
         /// 测试数据集是否分片
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let split: Bool?
-        
+
         /// 首行是否为参数名
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let headerInFile: Bool?
-        
+
         /// 参数名数组
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let headerColumns: [String]?
-        
+
         /// 文件行数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let lineCount: Int64?
-        
+
         /// 更新时间
         /// 注意：此字段可能返回 null，表示取不到有效值。
         ///
@@ -2061,28 +2061,28 @@ extension Pts {
         ///
         /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
         @TCTimestampISO8601Encoding public var updatedAt: Date?
-        
+
         /// 文件字节数
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let size: Int64?
-        
+
         /// 头部数据行
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let headLines: [String]?
-        
+
         /// 尾部数据行
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let tailLines: [String]?
-        
+
         /// 文件类型
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let type: String?
-        
+
         /// 文件 ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let fileId: String?
-        
-        public init (name: String, split: Bool, headerInFile: Bool, headerColumns: [String]? = nil, lineCount: Int64? = nil, updatedAt: Date? = nil, size: Int64? = nil, headLines: [String]? = nil, tailLines: [String]? = nil, type: String? = nil, fileId: String? = nil) {
+
+        public init(name: String, split: Bool, headerInFile: Bool, headerColumns: [String]? = nil, lineCount: Int64? = nil, updatedAt: Date? = nil, size: Int64? = nil, headLines: [String]? = nil, tailLines: [String]? = nil, type: String? = nil, fileId: String? = nil) {
             self.name = name
             self.split = split
             self.headerInFile = headerInFile
@@ -2095,7 +2095,7 @@ extension Pts {
             self.type = type
             self.fileId = fileId
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case name = "Name"
             case split = "Split"
@@ -2110,30 +2110,30 @@ extension Pts {
             case fileId = "FileId"
         }
     }
-    
+
     /// 压力来源配置
     public struct VpcLoadDistribution: TCInputModel, TCOutputModel {
         /// 地域ID
         public let regionId: Int64
-        
+
         /// 地域
         public let region: String?
-        
+
         /// VPC ID
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let vpcId: String?
-        
+
         /// 子网ID列表
         /// 注意：此字段可能返回 null，表示取不到有效值。
         public let subnetIds: [String]?
-        
-        public init (regionId: Int64, region: String? = nil, vpcId: String? = nil, subnetIds: [String]? = nil) {
+
+        public init(regionId: Int64, region: String? = nil, vpcId: String? = nil, subnetIds: [String]? = nil) {
             self.regionId = regionId
             self.region = region
             self.vpcId = vpcId
             self.subnetIds = subnetIds
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case regionId = "RegionId"
             case region = "Region"

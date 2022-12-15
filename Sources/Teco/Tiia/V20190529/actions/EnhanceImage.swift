@@ -26,36 +26,36 @@ extension Tiia {
         /// • 长宽比：长边：短边<5。 
         /// 接口响应时间会受到图片下载时间的影响，建议使用更可靠的存储服务，推荐将图片存储在腾讯云COS。
         public let imageUrl: String?
-        
+
         /// 支持PNG、JPG、JPEG、BMP，不支持 GIF 图片。图片经过Base64编码的内容。最大不超过4M。与ImageUrl同时存在时优先使用ImageUrl字段。
         /// 注意：图片需要Base64编码，并且要去掉编码头部。
         public let imageBase64: String?
-        
-        public init (imageUrl: String? = nil, imageBase64: String? = nil) {
+
+        public init(imageUrl: String? = nil, imageBase64: String? = nil) {
             self.imageUrl = imageUrl
             self.imageBase64 = imageBase64
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case imageUrl = "ImageUrl"
             case imageBase64 = "ImageBase64"
         }
     }
-    
+
     /// EnhanceImage返回参数结构体
     public struct EnhanceImageResponse: TCResponseModel {
         /// 增强后图片的base64编码。
         public let enhancedImage: String
-        
+
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case enhancedImage = "EnhancedImage"
             case requestId = "RequestId"
         }
     }
-    
+
     /// 图像清晰度增强
     ///
     /// 传入一张图片，输出清晰度提升后的图片。
@@ -67,7 +67,7 @@ extension Tiia {
     public func enhanceImage(_ input: EnhanceImageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < EnhanceImageResponse > {
         self.client.execute(action: "EnhanceImage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 图像清晰度增强
     ///
     /// 传入一张图片，输出清晰度提升后的图片。
@@ -79,7 +79,7 @@ extension Tiia {
     public func enhanceImage(_ input: EnhanceImageRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> EnhanceImageResponse {
         try await self.client.execute(action: "EnhanceImage", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 图像清晰度增强
     ///
     /// 传入一张图片，输出清晰度提升后的图片。
@@ -91,7 +91,7 @@ extension Tiia {
     public func enhanceImage(imageUrl: String? = nil, imageBase64: String? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < EnhanceImageResponse > {
         self.enhanceImage(EnhanceImageRequest(imageUrl: imageUrl, imageBase64: imageBase64), logger: logger, on: eventLoop)
     }
-    
+
     /// 图像清晰度增强
     ///
     /// 传入一张图片，输出清晰度提升后的图片。

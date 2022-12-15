@@ -38,129 +38,129 @@ extension TCAsrError {
             case toState = "InvalidParameterValue.ToState"
             case other = "InvalidParameterValue"
         }
-        
+
         private let error: Code
-        
+
         public let context: TCErrorContext?
-        
+
         public var errorCode: String {
             self.error.rawValue
         }
-        
+
         /// Initializer used by ``TCClient`` to match an error of this type.
-        public init ?(errorCode: String, context: TCErrorContext) {
+        public init?(errorCode: String, context: TCErrorContext) {
             guard let error = Code(rawValue: errorCode) else {
                 return nil
             }
             self.error = error
             self.context = context
         }
-        
-        internal init (_ error: Code, context: TCErrorContext? = nil) {
+
+        internal init(_ error: Code, context: TCErrorContext? = nil) {
             self.error = error
             self.context = context
         }
-        
+
         /// AppId无效。
         public static var errorInvalidAppid: InvalidParameterValue {
             InvalidParameterValue(.errorInvalidAppid)
         }
-        
+
         /// ClientIp无效。
         public static var errorInvalidClientip: InvalidParameterValue {
             InvalidParameterValue(.errorInvalidClientip)
         }
-        
+
         /// EngSerViceType无效。
         public static var errorInvalidEngservice: InvalidParameterValue {
             InvalidParameterValue(.errorInvalidEngservice)
         }
-        
+
         /// ProjectId无效。
         public static var errorInvalidProjectid: InvalidParameterValue {
             InvalidParameterValue(.errorInvalidProjectid)
         }
-        
+
         /// RequestId无效。
         public static var errorInvalidRequestid: InvalidParameterValue {
             InvalidParameterValue(.errorInvalidRequestid)
         }
-        
+
         /// SourceType无效。
         public static var errorInvalidSourcetype: InvalidParameterValue {
             InvalidParameterValue(.errorInvalidSourcetype)
         }
-        
+
         /// SubserviceType无效。
         public static var errorInvalidSubservicetype: InvalidParameterValue {
             InvalidParameterValue(.errorInvalidSubservicetype)
         }
-        
+
         /// Url无效。
         public static var errorInvalidUrl: InvalidParameterValue {
             InvalidParameterValue(.errorInvalidUrl)
         }
-        
+
         /// UsrAudioKey无效。
         public static var errorInvalidUseraudiokey: InvalidParameterValue {
             InvalidParameterValue(.errorInvalidUseraudiokey)
         }
-        
+
         /// 音频编码格式不支持。
         public static var errorInvalidVoiceFormat: InvalidParameterValue {
             InvalidParameterValue(.errorInvalidVoiceFormat)
         }
-        
+
         /// 音频数据无效。
         public static var errorInvalidVoicedata: InvalidParameterValue {
             InvalidParameterValue(.errorInvalidVoicedata)
         }
-        
+
         /// 音频时长超过限制。
         public static var errorVoicedataTooLong: InvalidParameterValue {
             InvalidParameterValue(.errorVoicedataTooLong)
         }
-        
+
         /// 非法的参数长度。
         public static var invalidParameterLength: InvalidParameterValue {
             InvalidParameterValue(.invalidParameterLength)
         }
-        
+
         /// 非法的VocabId。
         public static var invalidVocabId: InvalidParameterValue {
             InvalidParameterValue(.invalidVocabId)
         }
-        
+
         /// 非法的词表状态。
         public static var invalidVocabState: InvalidParameterValue {
             InvalidParameterValue(.invalidVocabState)
         }
-        
+
         /// 词权重不合法。
         public static var invalidWordWeight: InvalidParameterValue {
             InvalidParameterValue(.invalidWordWeight)
         }
-        
+
         /// 非法的WordWeightStr。
         public static var invalidWordWeightStr: InvalidParameterValue {
             InvalidParameterValue(.invalidWordWeightStr)
         }
-        
+
         /// 模型不存在。
         public static var modelId: InvalidParameterValue {
             InvalidParameterValue(.modelId)
         }
-        
+
         /// 非法的模型状态。
         public static var toState: InvalidParameterValue {
             InvalidParameterValue(.toState)
         }
-        
+
         /// 参数取值错误。
         public static var other: InvalidParameterValue {
             InvalidParameterValue(.other)
         }
-        
+
         public func asAsrError() -> TCAsrError {
             let code: TCAsrError.Code
             switch self.error {

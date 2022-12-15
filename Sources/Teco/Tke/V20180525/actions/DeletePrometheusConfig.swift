@@ -19,23 +19,23 @@ extension Tke {
     public struct DeletePrometheusConfigRequest: TCRequestModel {
         /// 实例id
         public let instanceId: String
-        
+
         /// 集群类型
         public let clusterType: String
-        
+
         /// 集群id
         public let clusterId: String
-        
+
         /// 要删除的ServiceMonitor名字列表
         public let serviceMonitors: [String]?
-        
+
         /// 要删除的PodMonitor名字列表
         public let podMonitors: [String]?
-        
+
         /// 要删除的RawJobs名字列表
         public let rawJobs: [String]?
-        
-        public init (instanceId: String, clusterType: String, clusterId: String, serviceMonitors: [String]? = nil, podMonitors: [String]? = nil, rawJobs: [String]? = nil) {
+
+        public init(instanceId: String, clusterType: String, clusterId: String, serviceMonitors: [String]? = nil, podMonitors: [String]? = nil, rawJobs: [String]? = nil) {
             self.instanceId = instanceId
             self.clusterType = clusterType
             self.clusterId = clusterId
@@ -43,7 +43,7 @@ extension Tke {
             self.podMonitors = podMonitors
             self.rawJobs = rawJobs
         }
-        
+
         enum CodingKeys: String, CodingKey {
             case instanceId = "InstanceId"
             case clusterType = "ClusterType"
@@ -53,17 +53,17 @@ extension Tke {
             case rawJobs = "RawJobs"
         }
     }
-    
+
     /// DeletePrometheusConfig返回参数结构体
     public struct DeletePrometheusConfigResponse: TCResponseModel {
         /// 唯一请求 ID，每次请求都会返回。定位问题时需要提供该次请求的 RequestId。
         public let requestId: String
-        
+
         enum CodingKeys: String, CodingKey {
             case requestId = "RequestId"
         }
     }
-    
+
     /// 删除Prometheus配置
     ///
     /// 删除Prometheus配置，如果目标不存在，将返回成功
@@ -71,7 +71,7 @@ extension Tke {
     public func deletePrometheusConfig(_ input: DeletePrometheusConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeletePrometheusConfigResponse > {
         self.client.execute(action: "DeletePrometheusConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
     }
-    
+
     /// 删除Prometheus配置
     ///
     /// 删除Prometheus配置，如果目标不存在，将返回成功
@@ -79,7 +79,7 @@ extension Tke {
     public func deletePrometheusConfig(_ input: DeletePrometheusConfigRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> DeletePrometheusConfigResponse {
         try await self.client.execute(action: "DeletePrometheusConfig", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
     }
-    
+
     /// 删除Prometheus配置
     ///
     /// 删除Prometheus配置，如果目标不存在，将返回成功
@@ -87,7 +87,7 @@ extension Tke {
     public func deletePrometheusConfig(instanceId: String, clusterType: String, clusterId: String, serviceMonitors: [String]? = nil, podMonitors: [String]? = nil, rawJobs: [String]? = nil, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture < DeletePrometheusConfigResponse > {
         self.deletePrometheusConfig(DeletePrometheusConfigRequest(instanceId: instanceId, clusterType: clusterType, clusterId: clusterId, serviceMonitors: serviceMonitors, podMonitors: podMonitors, rawJobs: rawJobs), logger: logger, on: eventLoop)
     }
-    
+
     /// 删除Prometheus配置
     ///
     /// 删除Prometheus配置，如果目标不存在，将返回成功
