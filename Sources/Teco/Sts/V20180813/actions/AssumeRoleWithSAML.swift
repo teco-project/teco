@@ -76,7 +76,7 @@ extension Sts {
     /// 本接口（AssumeRoleWithSAML）用于根据 SAML 断言申请角色临时凭证。
     @inlinable
     public func assumeRoleWithSAML(_ input: AssumeRoleWithSAMLRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AssumeRoleWithSAMLResponse> {
-        self.client.execute(action: "AssumeRoleWithSAML", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.client.execute(action: "AssumeRoleWithSAML", serviceConfig: self.config, skipAuthorization: true, input: input, logger: logger, on: eventLoop)
     }
 
     /// 根据 SAML 断言申请角色临时凭证
@@ -84,7 +84,7 @@ extension Sts {
     /// 本接口（AssumeRoleWithSAML）用于根据 SAML 断言申请角色临时凭证。
     @inlinable
     public func assumeRoleWithSAML(_ input: AssumeRoleWithSAMLRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AssumeRoleWithSAMLResponse {
-        try await self.client.execute(action: "AssumeRoleWithSAML", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.client.execute(action: "AssumeRoleWithSAML", serviceConfig: self.config, skipAuthorization: true, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 根据 SAML 断言申请角色临时凭证

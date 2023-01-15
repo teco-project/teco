@@ -74,13 +74,13 @@ extension Sts {
     /// 申请OIDC角色临时密钥
     @inlinable
     public func assumeRoleWithWebIdentity(_ input: AssumeRoleWithWebIdentityRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) -> EventLoopFuture<AssumeRoleWithWebIdentityResponse> {
-        self.client.execute(action: "AssumeRoleWithWebIdentity", serviceConfig: self.config, input: input, logger: logger, on: eventLoop)
+        self.client.execute(action: "AssumeRoleWithWebIdentity", serviceConfig: self.config, skipAuthorization: true, input: input, logger: logger, on: eventLoop)
     }
 
     /// 申请OIDC角色临时密钥
     @inlinable
     public func assumeRoleWithWebIdentity(_ input: AssumeRoleWithWebIdentityRequest, logger: Logger = TCClient.loggingDisabled, on eventLoop: EventLoop? = nil) async throws -> AssumeRoleWithWebIdentityResponse {
-        try await self.client.execute(action: "AssumeRoleWithWebIdentity", serviceConfig: self.config, input: input, logger: logger, on: eventLoop).get()
+        try await self.client.execute(action: "AssumeRoleWithWebIdentity", serviceConfig: self.config, skipAuthorization: true, input: input, logger: logger, on: eventLoop).get()
     }
 
     /// 申请OIDC角色临时密钥

@@ -269,7 +269,7 @@ let package = Package(
         .library(name: "TecoZjV20190121", targets: ["TecoZjV20190121"]),
     ],
     dependencies: [
-        .package(url: "https://github.com/teco-project/teco-core.git", .upToNextMinor(from: "0.3.2"))
+        .package(url: "https://github.com/teco-project/teco-core.git", .upToNextMinor(from: "0.3.3"))
     ],
     targets: [
         .target(name: "TecoAaV20200224", dependencies: [.product(name: "TecoCore", package: "teco-core")], path: "./Sources/Teco/Aa/V20200224"),
