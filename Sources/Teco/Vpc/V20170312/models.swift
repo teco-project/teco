@@ -77,10 +77,8 @@ extension Vpc {
 
         /// 创建时间。按照`ISO8601`标准表示，并且使用`UTC`时间。格式为：`YYYY-MM-DDThh:mm:ssZ`。
         ///
-        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
-        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
-        ///
-        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        /// While the wrapped date value is immutable just like other fields, you can customize the projected
+        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
         @TCTimestampISO8601Encoding public var createdTime: Date?
 
         /// 绑定的弹性网卡ID
@@ -335,10 +333,8 @@ extension Vpc {
 
         /// 带宽包创建时间。按照`ISO8601`标准表示，并且使用`UTC`时间。格式为：`YYYY-MM-DDThh:mm:ssZ`。
         ///
-        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
-        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
-        ///
-        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        /// While the wrapped date value is immutable just like other fields, you can customize the projected
+        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
         @TCTimestampISO8601Encoding public var createdTime: Date
 
         /// 带宽包状态，包括'CREATING','CREATED','DELETING','DELETED'
@@ -388,10 +384,8 @@ extension Vpc {
 
         /// 创建时间
         ///
-        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
-        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
-        ///
-        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        /// While the wrapped date value is immutable just like other fields, you can customize the projected
+        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var createTime: Date
 
         /// 实例状态， 'ISOLATED': 隔离中（欠费停服），'AVAILABLE'：运行中。
@@ -479,10 +473,8 @@ extension Vpc {
 
         /// 关联时间。
         ///
-        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
-        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
-        ///
-        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        /// While the wrapped date value is immutable just like other fields, you can customize the projected
+        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var attachedTime: Date
 
         /// 云联网所属UIN（根账号）。
@@ -657,10 +649,8 @@ extension Vpc {
 
         /// 更新时间
         ///
-        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
-        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
-        ///
-        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        /// While the wrapped date value is immutable just like other fields, you can customize the projected
+        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var updateTime: Date
 
         /// 路由是否启用
@@ -818,18 +808,14 @@ extension Vpc {
 
         /// 服务开始时间。
         ///
-        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
-        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
-        ///
-        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        /// While the wrapped date value is immutable just like other fields, you can customize the projected
+        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
         @TCDateEncoding public var serviceStartDate: Date
 
         /// 服务截止时间。
         ///
-        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
-        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
-        ///
-        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        /// While the wrapped date value is immutable just like other fields, you can customize the projected
+        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
         @TCDateEncoding public var serviceEndDate: Date
 
         /// 状态。待审批：`PENDING`，已通过：`APPROVED`，已拒绝：`DENY`。
@@ -837,10 +823,8 @@ extension Vpc {
 
         /// 审批单创建时间。
         ///
-        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
-        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
-        ///
-        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        /// While the wrapped date value is immutable just like other fields, you can customize the projected
+        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var createdTime: Date
 
         enum CodingKeys: String, CodingKey {
@@ -1068,10 +1052,8 @@ extension Vpc {
 
         /// 创建时间。
         ///
-        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
-        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
-        ///
-        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        /// While the wrapped date value is immutable just like other fields, you can customize the projected
+        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var createdTime: Date
 
         enum CodingKeys: String, CodingKey {
@@ -1117,10 +1099,8 @@ extension Vpc {
 
         /// 创建时间。
         ///
-        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
-        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
-        ///
-        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        /// While the wrapped date value is immutable just like other fields, you can customize the projected
+        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var createTime: Date
 
         /// 专线网关IP。
@@ -1568,10 +1548,8 @@ extension Vpc {
 
         /// 创建时间。
         ///
-        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
-        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
-        ///
-        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        /// While the wrapped date value is immutable just like other fields, you can customize the projected
+        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var createdTime: Date
 
         /// 使用havip的业务标识。
@@ -1756,10 +1734,8 @@ extension Vpc {
 
         /// 转换规则创建时间
         ///
-        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
-        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
-        ///
-        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        /// While the wrapped date value is immutable just like other fields, you can customize the projected
+        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
         @TCTimestampISO8601Encoding public var createdTime: Date
 
         enum CodingKeys: String, CodingKey {
@@ -1823,10 +1799,8 @@ extension Vpc {
 
         /// IPV6转换实例创建时间
         ///
-        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
-        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
-        ///
-        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        /// While the wrapped date value is immutable just like other fields, you can customize the projected
+        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
         @TCTimestampISO8601Encoding public var createdTime: Date
 
         /// 绑定的IPV6转换规则数量
@@ -2094,18 +2068,14 @@ extension Vpc {
 
         /// 路由的创建时间
         ///
-        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
-        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
-        ///
-        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        /// While the wrapped date value is immutable just like other fields, you can customize the projected
+        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var createTime: Date
 
         /// 路由的更新时间
         ///
-        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
-        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
-        ///
-        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        /// While the wrapped date value is immutable just like other fields, you can customize the projected
+        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var updateTime: Date
 
         enum CodingKeys: String, CodingKey {
@@ -2326,10 +2296,8 @@ extension Vpc {
         /// 创建时间。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         ///
-        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
-        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
-        ///
-        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        /// While the wrapped date value is immutable just like other fields, you can customize the projected
+        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var createTime: Date?
 
         enum CodingKeys: String, CodingKey {
@@ -3093,10 +3061,8 @@ extension Vpc {
 
         /// 路由策略创建时间
         ///
-        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
-        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
-        ///
-        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        /// While the wrapped date value is immutable just like other fields, you can customize the projected
+        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var createdTime: Date?
 
         public init(destinationCidrBlock: String, gatewayType: String, gatewayId: String, routeId: UInt64? = nil, routeDescription: String? = nil, enabled: Bool? = nil, routeType: String? = nil, routeTableId: String? = nil, destinationIpv6CidrBlock: String? = nil, routeItemId: String? = nil, publishedToVbc: Bool? = nil, createdTime: Date? = nil) {
@@ -3111,7 +3077,7 @@ extension Vpc {
             self.destinationIpv6CidrBlock = destinationIpv6CidrBlock
             self.routeItemId = routeItemId
             self.publishedToVbc = publishedToVbc
-            self.createdTime = createdTime
+            self._createdTime = .init(wrappedValue: createdTime)
         }
 
         enum CodingKeys: String, CodingKey {
@@ -3903,18 +3869,14 @@ extension Vpc {
 
         /// 流量包创建时间
         ///
-        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
-        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
-        ///
-        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        /// While the wrapped date value is immutable just like other fields, you can customize the projected
+        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
         @TCTimestampISO8601Encoding public var createdTime: Date
 
         /// 流量包截止时间
         ///
-        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
-        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
-        ///
-        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        /// While the wrapped date value is immutable just like other fields, you can customize the projected
+        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
         @TCTimestampISO8601Encoding public var deadline: Date
 
         /// 已使用的流量，单位GB
@@ -4075,10 +4037,8 @@ extension Vpc {
 
         /// `IP`申请时间。
         ///
-        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
-        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
-        ///
-        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        /// While the wrapped date value is immutable just like other fields, you can customize the projected
+        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var createdTime: Date
 
         enum CodingKeys: String, CodingKey {
@@ -4120,10 +4080,8 @@ extension Vpc {
 
         /// 创建时间。
         ///
-        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
-        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
-        ///
-        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        /// While the wrapped date value is immutable just like other fields, you can customize the projected
+        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var createdTime: Date
 
         /// 通道的生产状态，PENDING：生产中，AVAILABLE：运行中，DELETING：删除中。
@@ -4231,18 +4189,14 @@ extension Vpc {
 
         /// 创建时间。
         ///
-        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
-        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
-        ///
-        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        /// While the wrapped date value is immutable just like other fields, you can customize the projected
+        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var createdTime: Date
 
         /// 预付费网关过期时间。
         ///
-        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
-        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
-        ///
-        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        /// While the wrapped date value is immutable just like other fields, you can customize the projected
+        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var expiredTime: Date
 
         /// 公网IP是否被封堵。
@@ -4339,18 +4293,14 @@ extension Vpc {
 
         /// 创建时间
         ///
-        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
-        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
-        ///
-        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        /// While the wrapped date value is immutable just like other fields, you can customize the projected
+        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var createTime: Date?
 
         /// 更新时间
         ///
-        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
-        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
-        ///
-        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        /// While the wrapped date value is immutable just like other fields, you can customize the projected
+        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var updateTime: Date?
 
         public init(destinationCidrBlock: String, instanceType: String, instanceId: String, priority: Int64, status: String, routeId: String? = nil, type: String? = nil, createTime: Date? = nil, updateTime: Date? = nil) {
@@ -4361,8 +4311,8 @@ extension Vpc {
             self.status = status
             self.routeId = routeId
             self.type = type
-            self.createTime = createTime
-            self.updateTime = updateTime
+            self._createTime = .init(wrappedValue: createTime)
+            self._updateTime = .init(wrappedValue: updateTime)
         }
 
         enum CodingKeys: String, CodingKey {

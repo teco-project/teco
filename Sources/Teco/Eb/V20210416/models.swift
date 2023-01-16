@@ -101,10 +101,8 @@ extension Eb {
 
         /// 更新时间
         ///
-        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
-        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
-        ///
-        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        /// While the wrapped date value is immutable just like other fields, you can customize the projected
+        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
         @TCTimestampISO8601Encoding public var modTime: Date
 
         /// 使能开关
@@ -115,10 +113,8 @@ extension Eb {
 
         /// 创建时间
         ///
-        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
-        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
-        ///
-        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        /// While the wrapped date value is immutable just like other fields, you can customize the projected
+        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
         @TCTimestampISO8601Encoding public var addTime: Date
 
         /// 连接器ID
@@ -288,10 +284,8 @@ extension Eb {
     public struct EventBus: TCOutputModel {
         /// 更新时间
         ///
-        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
-        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
-        ///
-        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        /// While the wrapped date value is immutable just like other fields, you can customize the projected
+        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
         @TCTimestampISO8601Encoding public var modTime: Date
 
         /// 事件集描述，不限字符类型，200字符描述以内
@@ -299,10 +293,8 @@ extension Eb {
 
         /// 创建时间
         ///
-        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
-        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
-        ///
-        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        /// While the wrapped date value is immutable just like other fields, you can customize the projected
+        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
         @TCTimestampISO8601Encoding public var addTime: Date
 
         /// 事件集名称，只能包含字母、数字、下划线、连字符，以字母开头，以数字或字母结尾，2~60个字符
@@ -420,10 +412,8 @@ extension Eb {
 
         /// 修改时间
         ///
-        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
-        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
-        ///
-        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        /// While the wrapped date value is immutable just like other fields, you can customize the projected
+        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
         @TCTimestampISO8601Encoding public var modTime: Date
 
         /// 使能开关
@@ -437,10 +427,8 @@ extension Eb {
 
         /// 创建时间
         ///
-        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
-        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
-        ///
-        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        /// While the wrapped date value is immutable just like other fields, you can customize the projected
+        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
         @TCTimestampISO8601Encoding public var addTime: Date
 
         /// 事件集ID

@@ -31,10 +31,8 @@ extension Dcdb {
 
         /// 查询的起始时间，形如2016-07-23 14:55:20
         ///
-        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
-        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
-        ///
-        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        /// While the wrapped date value is immutable just like other fields, you can customize the projected
+        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var startTime: Date
 
         /// 实例的分片ID，形如shard-53ima8ln
@@ -42,10 +40,8 @@ extension Dcdb {
 
         /// 查询的结束时间，形如2016-08-22 14:55:20。如果不填，那么查询结束时间就是当前时间
         ///
-        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
-        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
-        ///
-        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        /// While the wrapped date value is immutable just like other fields, you can customize the projected
+        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var endTime: Date?
 
         /// 要查询的具体数据库名称
@@ -64,9 +60,9 @@ extension Dcdb {
             self.instanceId = instanceId
             self.offset = offset
             self.limit = limit
-            self.startTime = startTime
+            self._startTime = .init(wrappedValue: startTime)
             self.shardId = shardId
-            self.endTime = endTime
+            self._endTime = .init(wrappedValue: endTime)
             self.db = db
             self.orderBy = orderBy
             self.orderByType = orderByType

@@ -37,19 +37,15 @@ extension Cr {
         /// 黑名单生效截止日期，格式为YYYY-MM-DD，不填默认为永久。
         /// 注意：此字段可能返回 null，表示取不到有效值。
         ///
-        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
-        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
-        ///
-        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        /// While the wrapped date value is immutable just like other fields, you can customize the projected
+        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
         @TCDateEncoding public var blackValidDate: Date?
 
         /// 黑名单加入日期
         /// 注意：此字段可能返回 null，表示取不到有效值。
         ///
-        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
-        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
-        ///
-        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        /// While the wrapped date value is immutable just like other fields, you can customize the projected
+        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
         @TCDateEncoding public var blackAddDate: Date?
 
         /// 0-生效 1-失效
@@ -60,8 +56,8 @@ extension Cr {
             self.operType = operType
             self.blackValue = blackValue
             self.blackDescription = blackDescription
-            self.blackValidDate = blackValidDate
-            self.blackAddDate = blackAddDate
+            self._blackValidDate = .init(wrappedValue: blackValidDate)
+            self._blackAddDate = .init(wrappedValue: blackAddDate)
             self.blackStatus = blackStatus
         }
 
@@ -130,10 +126,8 @@ extension Cr {
     public struct CallInfo: TCOutputModel {
         /// 业务日期
         ///
-        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
-        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
-        ///
-        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        /// While the wrapped date value is immutable just like other fields, you can customize the projected
+        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
         @TCDateEncoding public var bizDate: Date
 
         /// 状态 WAIT：待执行；DOING：执行中；ERROR：执行错误；DONE：已完成；
@@ -278,10 +272,8 @@ extension Cr {
 
         /// 任务日期
         ///
-        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
-        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
-        ///
-        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        /// While the wrapped date value is immutable just like other fields, you can customize the projected
+        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
         @TCDateEncoding public var bizDate: Date
 
         /// 被叫号码
@@ -289,10 +281,8 @@ extension Cr {
 
         /// 开始通话时间
         ///
-        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
-        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
-        ///
-        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        /// While the wrapped date value is immutable just like other fields, you can customize the projected
+        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var callStartTime: Date
 
         /// 通话时长
@@ -336,10 +326,8 @@ extension Cr {
 
         /// 黑名单生效截止日期，格式为YYYY-MM-DD，不填默认为永久。
         ///
-        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
-        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
-        ///
-        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        /// While the wrapped date value is immutable just like other fields, you can customize the projected
+        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
         @TCDateEncoding public var blackValidDate: Date?
 
         public init(blackType: String, operationType: String, blackValue: String, blackDescription: String, blackValidDate: Date? = nil) {
@@ -347,7 +335,7 @@ extension Cr {
             self.operationType = operationType
             self.blackValue = blackValue
             self.blackDescription = blackDescription
-            self.blackValidDate = blackValidDate
+            self._blackValidDate = .init(wrappedValue: blackValidDate)
         }
 
         enum CodingKeys: String, CodingKey {
@@ -366,18 +354,14 @@ extension Cr {
 
         /// 外呼日期。
         ///
-        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
-        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
-        ///
-        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        /// While the wrapped date value is immutable just like other fields, you can customize the projected
+        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
         @TCDateEncoding public var bizDate: Date
 
         /// 开始呼叫时间。
         ///
-        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
-        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
-        ///
-        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        /// While the wrapped date value is immutable just like other fields, you can customize the projected
+        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var callStartTime: Date
 
         /// 主叫号码。

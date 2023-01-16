@@ -28,18 +28,14 @@ extension Bm {
 
         /// 时间过滤下限
         ///
-        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
-        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
-        ///
-        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        /// While the wrapped date value is immutable just like other fields, you can customize the projected
+        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
         @TCDateEncoding public var startDate: Date?
 
         /// 时间过滤上限
         ///
-        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
-        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
-        ///
-        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        /// While the wrapped date value is immutable just like other fields, you can customize the projected
+        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
         @TCDateEncoding public var endDate: Date?
 
         /// 任务状态ID过滤
@@ -66,8 +62,8 @@ extension Bm {
         public init(offset: UInt64, limit: UInt64, startDate: Date? = nil, endDate: Date? = nil, taskStatus: [UInt64]? = nil, orderField: String? = nil, order: UInt64? = nil, taskIds: [String]? = nil, instanceIds: [String]? = nil, aliases: [String]? = nil, taskTypeIds: [UInt64]? = nil) {
             self.offset = offset
             self.limit = limit
-            self.startDate = startDate
-            self.endDate = endDate
+            self._startDate = .init(wrappedValue: startDate)
+            self._endDate = .init(wrappedValue: endDate)
             self.taskStatus = taskStatus
             self.orderField = orderField
             self.order = order

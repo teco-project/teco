@@ -24,9 +24,5 @@ jobs:
           swift-version: ${{ matrix.swift }}
       - name: Checkout
         uses: actions/checkout@v3
-      - name: Set up private repository access
-        env:
-          TECO_CI_TOKEN: ${{ secrets.TECO_CI_TOKEN }}
-        run: git config --global url."https://x-access-token:${TECO_CI_TOKEN}@github.com/${GITHUB_REPOSITORY_OWNER}/".insteadOf "https://github.com/${GITHUB_REPOSITORY_OWNER}/"
       - name: Build
         run: swift build

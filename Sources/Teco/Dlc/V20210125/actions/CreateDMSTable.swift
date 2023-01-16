@@ -40,26 +40,20 @@ extension Dlc {
 
         /// 数据更新时间
         ///
-        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
-        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
-        ///
-        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        /// While the wrapped date value is immutable just like other fields, you can customize the projected
+        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
         @TCTimestampISO8601Encoding public var dataUpdateTime: Date?
 
         /// 结构更新时间
         ///
-        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
-        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
-        ///
-        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        /// While the wrapped date value is immutable just like other fields, you can customize the projected
+        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
         @TCTimestampISO8601Encoding public var structUpdateTime: Date?
 
         /// 最后访问时间
         ///
-        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
-        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
-        ///
-        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        /// While the wrapped date value is immutable just like other fields, you can customize the projected
+        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
         @TCTimestampISO8601Encoding public var lastAccessTime: Date?
 
         /// 存储对象
@@ -90,9 +84,9 @@ extension Dlc {
             self.storageSize = storageSize
             self.recordCount = recordCount
             self.lifeTime = lifeTime
-            self.dataUpdateTime = dataUpdateTime
-            self.structUpdateTime = structUpdateTime
-            self.lastAccessTime = lastAccessTime
+            self._dataUpdateTime = .init(wrappedValue: dataUpdateTime)
+            self._structUpdateTime = .init(wrappedValue: structUpdateTime)
+            self._lastAccessTime = .init(wrappedValue: lastAccessTime)
             self.sds = sds
             self.columns = columns
             self.partitionKeys = partitionKeys

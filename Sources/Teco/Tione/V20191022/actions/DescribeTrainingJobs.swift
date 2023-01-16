@@ -28,18 +28,14 @@ extension Tione {
 
         /// 创建时间晚于
         ///
-        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
-        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
-        ///
-        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        /// While the wrapped date value is immutable just like other fields, you can customize the projected
+        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var creationTimeAfter: Date?
 
         /// 创建时间早于
         ///
-        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
-        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
-        ///
-        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        /// While the wrapped date value is immutable just like other fields, you can customize the projected
+        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var creationTimeBefore: Date?
 
         /// 根据名称过滤
@@ -56,8 +52,8 @@ extension Tione {
         public init(offset: UInt64? = nil, limit: UInt64? = nil, creationTimeAfter: Date? = nil, creationTimeBefore: Date? = nil, nameContains: String? = nil, statusEquals: String? = nil, filters: [Filter]? = nil) {
             self.offset = offset
             self.limit = limit
-            self.creationTimeAfter = creationTimeAfter
-            self.creationTimeBefore = creationTimeBefore
+            self._creationTimeAfter = .init(wrappedValue: creationTimeAfter)
+            self._creationTimeBefore = .init(wrappedValue: creationTimeBefore)
             self.nameContains = nameContains
             self.statusEquals = statusEquals
             self.filters = filters

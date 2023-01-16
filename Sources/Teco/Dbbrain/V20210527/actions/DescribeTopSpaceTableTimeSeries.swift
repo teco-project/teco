@@ -31,18 +31,14 @@ extension Dbbrain {
 
         /// 开始日期，如“2021-01-01”，最早为当日的前第29天，默认为截止日期的前第6天。
         ///
-        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
-        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
-        ///
-        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        /// While the wrapped date value is immutable just like other fields, you can customize the projected
+        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
         @TCDateEncoding public var startDate: Date?
 
         /// 截止日期，如“2021-01-01”，最早为当日的前第29天，默认为当日。
         ///
-        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
-        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
-        ///
-        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        /// While the wrapped date value is immutable just like other fields, you can customize the projected
+        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
         @TCDateEncoding public var endDate: Date?
 
         /// 服务产品类型，支持值包括： "mysql" - 云数据库 MySQL， "cynosdb" - 云数据库 CynosDB  for MySQL，默认为"mysql"。
@@ -52,8 +48,8 @@ extension Dbbrain {
             self.instanceId = instanceId
             self.limit = limit
             self.sortBy = sortBy
-            self.startDate = startDate
-            self.endDate = endDate
+            self._startDate = .init(wrappedValue: startDate)
+            self._endDate = .init(wrappedValue: endDate)
             self.product = product
         }
 

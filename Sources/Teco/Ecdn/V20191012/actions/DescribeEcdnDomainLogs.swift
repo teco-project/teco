@@ -25,18 +25,14 @@ extension Ecdn {
 
         /// 日志起始时间。如：2019-10-01 00:00:00
         ///
-        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
-        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
-        ///
-        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        /// While the wrapped date value is immutable just like other fields, you can customize the projected
+        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var startTime: Date
 
         /// 日志结束时间，只支持最近30天内日志查询。2019-10-02 00:00:00
         ///
-        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
-        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
-        ///
-        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        /// While the wrapped date value is immutable just like other fields, you can customize the projected
+        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var endTime: Date
 
         /// 日志链接列表分页起始地址，默认0。
@@ -47,8 +43,8 @@ extension Ecdn {
 
         public init(domain: String, startTime: Date, endTime: Date, offset: Int64? = nil, limit: Int64? = nil) {
             self.domain = domain
-            self.startTime = startTime
-            self.endTime = endTime
+            self._startTime = .init(wrappedValue: startTime)
+            self._endTime = .init(wrappedValue: endTime)
             self.offset = offset
             self.limit = limit
         }

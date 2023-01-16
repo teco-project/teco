@@ -22,10 +22,8 @@ extension Vpc {
     public struct DescribeGatewayFlowMonitorDetailRequest: TCRequestModel {
         /// 时间点。表示要查询这分钟内的明细。如：`2019-02-28 18:15:20`，将查询 `18:15` 这一分钟内的明细。
         ///
-        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
-        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
-        ///
-        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        /// While the wrapped date value is immutable just like other fields, you can customize the projected
+        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var timePoint: Date
 
         /// VPN网关实例ID，形如：`vpn-ltjahce6`。
@@ -53,7 +51,7 @@ extension Vpc {
         public let orderDirection: String?
 
         public init(timePoint: Date, vpnId: String? = nil, directConnectGatewayId: String? = nil, peeringConnectionId: String? = nil, natId: String? = nil, offset: UInt64? = nil, limit: UInt64? = nil, orderField: String? = nil, orderDirection: String? = nil) {
-            self.timePoint = timePoint
+            self._timePoint = .init(wrappedValue: timePoint)
             self.vpnId = vpnId
             self.directConnectGatewayId = directConnectGatewayId
             self.peeringConnectionId = peeringConnectionId

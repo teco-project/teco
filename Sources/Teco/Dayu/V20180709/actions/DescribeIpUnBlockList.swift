@@ -22,18 +22,14 @@ extension Dayu {
     public struct DescribeIpUnBlockListRequest: TCRequestModel {
         /// 开始时间
         ///
-        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
-        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
-        ///
-        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        /// While the wrapped date value is immutable just like other fields, you can customize the projected
+        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var beginTime: Date
 
         /// 结束时间
         ///
-        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
-        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
-        ///
-        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        /// While the wrapped date value is immutable just like other fields, you can customize the projected
+        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var endTime: Date
 
         /// IP（不为空时，进行IP过滤）
@@ -49,8 +45,8 @@ extension Dayu {
         public let offset: UInt64?
 
         public init(beginTime: Date, endTime: Date, ip: String? = nil, paging: Paging? = nil, limit: UInt64? = nil, offset: UInt64? = nil) {
-            self.beginTime = beginTime
-            self.endTime = endTime
+            self._beginTime = .init(wrappedValue: beginTime)
+            self._endTime = .init(wrappedValue: endTime)
             self.ip = ip
             self.paging = paging
             self.limit = limit

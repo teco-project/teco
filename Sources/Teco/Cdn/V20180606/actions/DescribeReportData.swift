@@ -25,10 +25,8 @@ extension Cdn {
         /// 当报表类型为weekly，起始时间须为周一，结束时间须为同一周的周日
         /// 当报表类型为monthly，起始时间须为自然月第一天，即1号，结束时间须为该自然月最后一天
         ///
-        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
-        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
-        ///
-        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        /// While the wrapped date value is immutable just like other fields, you can customize the projected
+        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
         @TCDateEncoding public var startTime: Date
 
         /// 查询结束时间：yyyy-MM-dd
@@ -36,10 +34,8 @@ extension Cdn {
         /// 当报表类型为weekly，起始时间须为周一，结束时间须为同一周的周日
         /// 当报表类型为monthly，起始时间须为自然月第一天，即1号，结束时间须为该自然月最后一天
         ///
-        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
-        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
-        ///
-        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        /// While the wrapped date value is immutable just like other fields, you can customize the projected
+        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
         @TCDateEncoding public var endTime: Date
 
         /// 报表类型
@@ -63,8 +59,8 @@ extension Cdn {
         public let project: Int64?
 
         public init(startTime: Date, endTime: Date, reportType: String, area: String, offset: Int64? = nil, limit: Int64? = nil, project: Int64? = nil) {
-            self.startTime = startTime
-            self.endTime = endTime
+            self._startTime = .init(wrappedValue: startTime)
+            self._endTime = .init(wrappedValue: endTime)
             self.reportType = reportType
             self.area = area
             self.offset = offset

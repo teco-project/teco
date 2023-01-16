@@ -28,18 +28,14 @@ extension Wedata {
 
         /// 统计周期的开始日期，格式为 yyyy-MM-dd
         ///
-        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
-        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
-        ///
-        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        /// While the wrapped date value is immutable just like other fields, you can customize the projected
+        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
         @TCDateEncoding public var beginDate: Date
 
         /// 统计周期的结束日期，格式为 yyyy-MM-dd
         ///
-        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
-        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
-        ///
-        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        /// While the wrapped date value is immutable just like other fields, you can customize the projected
+        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
         @TCDateEncoding public var endDate: Date
 
         /// 任务状态，多个状态用逗号连接
@@ -60,8 +56,8 @@ extension Wedata {
         public init(projectId: String, taskId: String, beginDate: Date, endDate: Date, stateList: String? = nil, sortItem: String? = nil, sortType: String? = nil, pageIndex: UInt64? = nil, pageSize: UInt64? = nil) {
             self.projectId = projectId
             self.taskId = taskId
-            self.beginDate = beginDate
-            self.endDate = endDate
+            self._beginDate = .init(wrappedValue: beginDate)
+            self._endDate = .init(wrappedValue: endDate)
             self.stateList = stateList
             self.sortItem = sortItem
             self.sortType = sortType

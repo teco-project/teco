@@ -26,19 +26,15 @@ extension Cdn {
         /// 查询起始时间，如：2018-09-04 10:40:00，返回结果大于等于指定时间
         /// 支持近 60 天内的数据查询，每次查询时间区间为 3 小时
         ///
-        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
-        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
-        ///
-        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        /// While the wrapped date value is immutable just like other fields, you can customize the projected
+        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var startTime: Date
 
         /// 查询结束时间，如：2018-09-04 10:40:00，返回结果小于等于指定时间
         /// 结束时间与起始时间区间最大为 3 小时
         ///
-        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
-        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
-        ///
-        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        /// While the wrapped date value is immutable just like other fields, you can customize the projected
+        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var endTime: Date
 
         /// 指定查询指标，支持:
@@ -74,8 +70,8 @@ extension Cdn {
 
         public init(domains: [String], startTime: Date, endTime: Date, metric: String, districts: [Int64]? = nil, isps: [Int64]? = nil, protocol: String? = nil, ipProtocol: String? = nil, interval: String? = nil) {
             self.domains = domains
-            self.startTime = startTime
-            self.endTime = endTime
+            self._startTime = .init(wrappedValue: startTime)
+            self._endTime = .init(wrappedValue: endTime)
             self.metric = metric
             self.districts = districts
             self.isps = isps

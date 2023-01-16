@@ -25,18 +25,14 @@ extension Tbm {
 
         /// 查询开始时间
         ///
-        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
-        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
-        ///
-        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        /// While the wrapped date value is immutable just like other fields, you can customize the projected
+        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
         @TCDateEncoding public var startDate: Date
 
         /// 查询结束时间
         ///
-        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
-        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
-        ///
-        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        /// While the wrapped date value is immutable just like other fields, you can customize the projected
+        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
         @TCDateEncoding public var endDate: Date
 
         /// 是否显示列表，若为 true，则返回文章列表
@@ -50,8 +46,8 @@ extension Tbm {
 
         public init(industryId: String, startDate: Date, endDate: Date, showList: Bool? = nil, offset: Int64? = nil, limit: Int64? = nil) {
             self.industryId = industryId
-            self.startDate = startDate
-            self.endDate = endDate
+            self._startDate = .init(wrappedValue: startDate)
+            self._endDate = .init(wrappedValue: endDate)
             self.showList = showList
             self.offset = offset
             self.limit = limit

@@ -28,10 +28,8 @@ extension Cr {
 
         /// 业务日期。YYYY-MM-DD
         ///
-        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
-        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
-        ///
-        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        /// While the wrapped date value is immutable just like other fields, you can customize the projected
+        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
         @TCDateEncoding public var bizDate: Date
 
         /// 任务ID，二者必填一个
@@ -43,7 +41,7 @@ extension Cr {
         public init(module: String, operation: String, bizDate: Date, botId: String? = nil, botName: String? = nil) {
             self.module = module
             self.operation = operation
-            self.bizDate = bizDate
+            self._bizDate = .init(wrappedValue: bizDate)
             self.botId = botId
             self.botName = botName
         }

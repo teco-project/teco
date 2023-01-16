@@ -28,18 +28,14 @@ extension Youmall {
 
         /// 开始日期，格式：yyyy-MM-dd
         ///
-        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
-        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
-        ///
-        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        /// While the wrapped date value is immutable just like other fields, you can customize the projected
+        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
         @TCDateEncoding public var startDate: Date
 
         /// 结束日期，格式：yyyy-MM-dd
         ///
-        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
-        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
-        ///
-        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        /// While the wrapped date value is immutable just like other fields, you can customize the projected
+        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
         @TCDateEncoding public var endDate: Date
 
         /// 偏移量：分页控制参数，第一页传0，第n页Offset=(n-1)*Limit
@@ -51,8 +47,8 @@ extension Youmall {
         public init(companyId: String, shopId: UInt64, startDate: Date, endDate: Date, offset: UInt64, limit: UInt64) {
             self.companyId = companyId
             self.shopId = shopId
-            self.startDate = startDate
-            self.endDate = endDate
+            self._startDate = .init(wrappedValue: startDate)
+            self._endDate = .init(wrappedValue: endDate)
             self.offset = offset
             self.limit = limit
         }

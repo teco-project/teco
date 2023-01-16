@@ -37,10 +37,8 @@ extension Cws {
 
         /// 首次扫描开始时间
         ///
-        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
-        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
-        ///
-        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        /// While the wrapped date value is immutable just like other fields, you can customize the projected
+        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var firstScanStartTime: Date
 
         public init(urls: [String], name: String, scannerType: String, crontab: UInt64, rateLimit: UInt64, firstScanStartTime: Date) {
@@ -49,7 +47,7 @@ extension Cws {
             self.scannerType = scannerType
             self.crontab = crontab
             self.rateLimit = rateLimit
-            self.firstScanStartTime = firstScanStartTime
+            self._firstScanStartTime = .init(wrappedValue: firstScanStartTime)
         }
 
         enum CodingKeys: String, CodingKey {

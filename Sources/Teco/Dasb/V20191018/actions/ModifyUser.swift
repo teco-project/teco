@@ -35,19 +35,15 @@ extension Dasb {
         /// 用户生效时间，如:"2021-09-22T00:00:00+00:00"
         /// 生效、失效时间不填则用户长期有效
         ///
-        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
-        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
-        ///
-        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        /// While the wrapped date value is immutable just like other fields, you can customize the projected
+        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
         @TCTimestampISO8601Encoding public var validateFrom: Date?
 
         /// 用户失效时间，如:"2021-09-23T00:00:00+00:00"
         /// 生效、失效时间不填则用户长期有效
         ///
-        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
-        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
-        ///
-        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        /// While the wrapped date value is immutable just like other fields, you can customize the projected
+        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
         @TCTimestampISO8601Encoding public var validateTo: Date?
 
         /// 所属用户组ID集合
@@ -67,8 +63,8 @@ extension Dasb {
             self.realName = realName
             self.phone = phone
             self.email = email
-            self.validateFrom = validateFrom
-            self.validateTo = validateTo
+            self._validateFrom = .init(wrappedValue: validateFrom)
+            self._validateTo = .init(wrappedValue: validateTo)
             self.groupIdSet = groupIdSet
             self.authType = authType
             self.validateTime = validateTime

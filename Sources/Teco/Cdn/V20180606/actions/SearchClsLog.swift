@@ -28,18 +28,14 @@ extension Cdn {
 
         /// 需要查询的日志的起始时间，格式 YYYY-mm-dd HH:MM:SS
         ///
-        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
-        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
-        ///
-        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        /// While the wrapped date value is immutable just like other fields, you can customize the projected
+        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var startTime: Date
 
         /// 需要查询的日志的结束时间，格式 YYYY-mm-dd HH:MM:SS
         ///
-        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
-        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
-        ///
-        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        /// While the wrapped date value is immutable just like other fields, you can customize the projected
+        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var endTime: Date
 
         /// 单次要返回的日志条数，单次返回的最大条数为100
@@ -60,8 +56,8 @@ extension Cdn {
         public init(logsetId: String, topicIds: String, startTime: Date, endTime: Date, limit: Int64, channel: String? = nil, query: String? = nil, context: String? = nil, sort: String? = nil) {
             self.logsetId = logsetId
             self.topicIds = topicIds
-            self.startTime = startTime
-            self.endTime = endTime
+            self._startTime = .init(wrappedValue: startTime)
+            self._endTime = .init(wrappedValue: endTime)
             self.limit = limit
             self.channel = channel
             self.query = query

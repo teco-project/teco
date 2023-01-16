@@ -28,10 +28,8 @@ extension Cbs {
 
         /// 快照的到期时间，到期后该快照将会自动删除,需要传入UTC时间下的ISO-8601标准时间格式,例如:2022-01-08T09:47:55+00:00
         ///
-        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
-        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
-        ///
-        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        /// While the wrapped date value is immutable just like other fields, you can customize the projected
+        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
         @TCTimestampISO8601Encoding public var deadline: Date?
 
         /// 云硬盘备份点ID。传入此参数时，将通过备份点创建快照。
@@ -43,7 +41,7 @@ extension Cbs {
         public init(diskId: String, snapshotName: String? = nil, deadline: Date? = nil, diskBackupId: String? = nil, tags: [Tag]? = nil) {
             self.diskId = diskId
             self.snapshotName = snapshotName
-            self.deadline = deadline
+            self._deadline = .init(wrappedValue: deadline)
             self.diskBackupId = diskBackupId
             self.tags = tags
         }

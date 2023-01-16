@@ -1073,10 +1073,8 @@ extension Tci {
     public struct Library: TCInputModel {
         /// 人员库创建时间
         ///
-        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
-        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
-        ///
-        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        /// While the wrapped date value is immutable just like other fields, you can customize the projected
+        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
         @TCTimestampISO8601Encoding public var createTime: Date
 
         /// 人员库唯一标识符
@@ -1090,18 +1088,16 @@ extension Tci {
 
         /// 人员库修改时间
         ///
-        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
-        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
-        ///
-        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        /// While the wrapped date value is immutable just like other fields, you can customize the projected
+        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
         @TCTimestampISO8601Encoding public var updateTime: Date?
 
         public init(createTime: Date, libraryId: String, libraryName: String, personCount: Int64? = nil, updateTime: Date? = nil) {
-            self.createTime = createTime
+            self._createTime = .init(wrappedValue: createTime)
             self.libraryId = libraryId
             self.libraryName = libraryName
             self.personCount = personCount
-            self.updateTime = updateTime
+            self._updateTime = .init(wrappedValue: updateTime)
         }
 
         enum CodingKeys: String, CodingKey {
@@ -1245,10 +1241,8 @@ extension Tci {
 
         /// 创建时间
         ///
-        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
-        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
-        ///
-        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        /// While the wrapped date value is immutable just like other fields, you can customize the projected
+        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
         @TCTimestampISO8601Encoding public var createTime: Date?
 
         /// 工作号码
@@ -1268,23 +1262,21 @@ extension Tci {
 
         /// 修改时间
         ///
-        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
-        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
-        ///
-        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        /// While the wrapped date value is immutable just like other fields, you can customize the projected
+        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
         @TCTimestampISO8601Encoding public var updateTime: Date?
 
         public init(libraryId: String, personId: String, personName: String, createTime: Date? = nil, jobNumber: String? = nil, mail: String? = nil, male: Int64? = nil, phoneNumber: String? = nil, studentNumber: String? = nil, updateTime: Date? = nil) {
             self.libraryId = libraryId
             self.personId = personId
             self.personName = personName
-            self.createTime = createTime
+            self._createTime = .init(wrappedValue: createTime)
             self.jobNumber = jobNumber
             self.mail = mail
             self.male = male
             self.phoneNumber = phoneNumber
             self.studentNumber = studentNumber
-            self.updateTime = updateTime
+            self._updateTime = .init(wrappedValue: updateTime)
         }
 
         enum CodingKeys: String, CodingKey {

@@ -26,24 +26,20 @@ extension Cbs {
 
         /// 要查询的操作日志的起始时间，例如：“2019-11-22 00:00:00"
         ///
-        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
-        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
-        ///
-        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        /// While the wrapped date value is immutable just like other fields, you can customize the projected
+        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
         @TCDateEncoding public var beginTime: Date?
 
         /// 要查询的操作日志的截止时间，例如：“2019-11-22 23:59:59"
         ///
-        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
-        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
-        ///
-        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        /// While the wrapped date value is immutable just like other fields, you can customize the projected
+        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
         @TCDateEncoding public var endTime: Date?
 
         public init(filters: [Filter], beginTime: Date? = nil, endTime: Date? = nil) {
             self.filters = filters
-            self.beginTime = beginTime
-            self.endTime = endTime
+            self._beginTime = .init(wrappedValue: beginTime)
+            self._endTime = .init(wrappedValue: endTime)
         }
 
         enum CodingKeys: String, CodingKey {

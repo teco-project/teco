@@ -43,18 +43,14 @@ extension Tsf {
 
         /// 开始时间：年月日 时分秒2020-05-12 14:43:12
         ///
-        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
-        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
-        ///
-        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        /// While the wrapped date value is immutable just like other fields, you can customize the projected
+        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var endTime: Date?
 
         /// 开始时间：年月日 时分秒2020-05-12 14:43:12
         ///
-        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
-        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
-        ///
-        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        /// While the wrapped date value is immutable just like other fields, you can customize the projected
+        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var startTime: Date?
 
         /// 服务名称
@@ -83,8 +79,8 @@ extension Tsf {
             self.namespaceId = namespaceId
             self.orderBy = orderBy
             self.orderType = orderType
-            self.endTime = endTime
-            self.startTime = startTime
+            self._endTime = .init(wrappedValue: endTime)
+            self._startTime = .init(wrappedValue: startTime)
             self.serviceName = serviceName
             self.searchWord = searchWord
             self.metricDimensionValues = metricDimensionValues

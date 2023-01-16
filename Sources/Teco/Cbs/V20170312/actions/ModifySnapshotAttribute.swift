@@ -31,17 +31,15 @@ extension Cbs {
 
         /// 快照的到期时间；设置好快照将会被同时设置为非永久保留方式；超过到期时间后快照将会被自动删除。
         ///
-        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
-        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
-        ///
-        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        /// While the wrapped date value is immutable just like other fields, you can customize the projected
+        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
         @TCTimestampISO8601Encoding public var deadline: Date?
 
         public init(snapshotId: String, snapshotName: String? = nil, isPermanent: Bool? = nil, deadline: Date? = nil) {
             self.snapshotId = snapshotId
             self.snapshotName = snapshotName
             self.isPermanent = isPermanent
-            self.deadline = deadline
+            self._deadline = .init(wrappedValue: deadline)
         }
 
         enum CodingKeys: String, CodingKey {

@@ -22,10 +22,8 @@ extension Ses {
     public struct GetSendEmailStatusRequest: TCRequestModel {
         /// 发送的日期，必填。仅支持查询某个日期，不支持范围查询。
         ///
-        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
-        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
-        ///
-        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        /// While the wrapped date value is immutable just like other fields, you can customize the projected
+        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
         @TCDateEncoding public var requestDate: Date
 
         /// 偏移量。默认为0
@@ -41,7 +39,7 @@ extension Ses {
         public let toEmailAddress: String?
 
         public init(requestDate: Date, offset: UInt64, limit: UInt64, messageId: String? = nil, toEmailAddress: String? = nil) {
-            self.requestDate = requestDate
+            self._requestDate = .init(wrappedValue: requestDate)
             self.offset = offset
             self.limit = limit
             self.messageId = messageId

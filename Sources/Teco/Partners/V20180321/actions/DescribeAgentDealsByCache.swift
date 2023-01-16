@@ -28,18 +28,14 @@ extension Partners {
 
         /// 下单时间范围起始点【请保持时间范围最大90天】
         ///
-        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
-        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
-        ///
-        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        /// While the wrapped date value is immutable just like other fields, you can customize the projected
+        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var creatTimeRangeStart: Date?
 
         /// 下单时间范围终止点【请保持时间范围最大90天】
         ///
-        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
-        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
-        ///
-        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        /// While the wrapped date value is immutable just like other fields, you can customize the projected
+        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var creatTimeRangeEnd: Date?
 
         /// 0:下单时间降序；其他：下单时间升序
@@ -63,8 +59,8 @@ extension Partners {
         public init(offset: UInt64, limit: UInt64, creatTimeRangeStart: Date? = nil, creatTimeRangeEnd: Date? = nil, order: UInt64? = nil, status: UInt64? = nil, ownerUins: [String]? = nil, dealNames: [String]? = nil, bigDealIds: [String]? = nil, payerMode: UInt64? = nil) {
             self.offset = offset
             self.limit = limit
-            self.creatTimeRangeStart = creatTimeRangeStart
-            self.creatTimeRangeEnd = creatTimeRangeEnd
+            self._creatTimeRangeStart = .init(wrappedValue: creatTimeRangeStart)
+            self._creatTimeRangeEnd = .init(wrappedValue: creatTimeRangeEnd)
             self.order = order
             self.status = status
             self.ownerUins = ownerUins

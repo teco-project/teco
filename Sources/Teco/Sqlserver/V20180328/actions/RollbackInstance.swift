@@ -31,10 +31,8 @@ extension Sqlserver {
 
         /// 回档目标时间点
         ///
-        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
-        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
-        ///
-        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        /// While the wrapped date value is immutable just like other fields, you can customize the projected
+        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var time: Date
 
         /// 备份恢复到的同一个APPID下的实例ID，不填则恢复到原实例ID
@@ -47,7 +45,7 @@ extension Sqlserver {
             self.instanceId = instanceId
             self.type = type
             self.dBs = dBs
-            self.time = time
+            self._time = .init(wrappedValue: time)
             self.targetInstanceId = targetInstanceId
             self.renameRestore = renameRestore
         }

@@ -22,18 +22,14 @@ extension Memcached {
     public struct InstanceListInfo: TCInputModel {
         /// 实例修改时间
         ///
-        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
-        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
-        ///
-        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        /// While the wrapped date value is immutable just like other fields, you can customize the projected
+        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var modTimeStamp: Date?
 
         /// 实例隔离时间
         ///
-        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
-        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
-        ///
-        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        /// While the wrapped date value is immutable just like other fields, you can customize the projected
+        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var isolateTimeStamp: Date?
 
         /// 实例是否设置自动续费标识，1：设置自动续费；0：未设置自动续费
@@ -72,10 +68,8 @@ extension Memcached {
 
         /// 实例创建时间
         ///
-        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
-        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
-        ///
-        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        /// While the wrapped date value is immutable just like other fields, you can customize the projected
+        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var addTimeStamp: Date?
 
         /// 区域ID
@@ -92,10 +86,8 @@ extension Memcached {
 
         /// 实例截止时间
         ///
-        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
-        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
-        ///
-        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        /// While the wrapped date value is immutable just like other fields, you can customize the projected
+        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var deadlineTimeStamp: Date?
 
         /// vpc网络id 如：vpc-fk33jsf43kgv
@@ -114,8 +106,8 @@ extension Memcached {
         public let vport: Int64?
 
         public init(modTimeStamp: Date? = nil, isolateTimeStamp: Date? = nil, autoRenewFlag: Int64? = nil, setId: Int64? = nil, status: Int64? = nil, cmemId: Int64? = nil, tags: [TagInfo]? = nil, instanceId: String? = nil, regionId: Int64? = nil, instanceDesc: String? = nil, expire: Int64? = nil, subnetId: Int64? = nil, projectId: Int64? = nil, addTimeStamp: Date? = nil, zoneId: Int64? = nil, payMode: Int64? = nil, vpcId: Int64? = nil, instanceName: String? = nil, deadlineTimeStamp: Date? = nil, uniqVpcId: String? = nil, vip: String? = nil, uniqSubnetId: String? = nil, appId: Int64? = nil, vport: Int64? = nil) {
-            self.modTimeStamp = modTimeStamp
-            self.isolateTimeStamp = isolateTimeStamp
+            self._modTimeStamp = .init(wrappedValue: modTimeStamp)
+            self._isolateTimeStamp = .init(wrappedValue: isolateTimeStamp)
             self.autoRenewFlag = autoRenewFlag
             self.setId = setId
             self.status = status
@@ -127,12 +119,12 @@ extension Memcached {
             self.expire = expire
             self.subnetId = subnetId
             self.projectId = projectId
-            self.addTimeStamp = addTimeStamp
+            self._addTimeStamp = .init(wrappedValue: addTimeStamp)
             self.zoneId = zoneId
             self.payMode = payMode
             self.vpcId = vpcId
             self.instanceName = instanceName
-            self.deadlineTimeStamp = deadlineTimeStamp
+            self._deadlineTimeStamp = .init(wrappedValue: deadlineTimeStamp)
             self.uniqVpcId = uniqVpcId
             self.vip = vip
             self.uniqSubnetId = uniqSubnetId

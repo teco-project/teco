@@ -28,18 +28,14 @@ extension Ape {
 
         /// 开始时间晚于指定时间
         ///
-        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
-        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
-        ///
-        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        /// While the wrapped date value is immutable just like other fields, you can customize the projected
+        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
         @TCTimestampISO8601Encoding public var beginTime: Date?
 
         /// 结束时间早于指定时间
         ///
-        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
-        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
-        ///
-        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        /// While the wrapped date value is immutable just like other fields, you can customize the projected
+        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
         @TCTimestampISO8601Encoding public var endTime: Date?
 
         /// 无效值，过滤结果为空
@@ -48,8 +44,8 @@ extension Ape {
         public init(limit: Int64? = nil, offset: Int64? = nil, beginTime: Date? = nil, endTime: Date? = nil, imageIds: [Int64]? = nil) {
             self.limit = limit
             self.offset = offset
-            self.beginTime = beginTime
-            self.endTime = endTime
+            self._beginTime = .init(wrappedValue: beginTime)
+            self._endTime = .init(wrappedValue: endTime)
             self.imageIds = imageIds
         }
 

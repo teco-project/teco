@@ -25,10 +25,8 @@ extension Dbbrain {
 
         /// 查询日期，如2021-05-27，最早为30天前的日期。
         ///
-        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
-        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
-        ///
-        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        /// While the wrapped date value is immutable just like other fields, you can customize the projected
+        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
         @TCDateEncoding public var date: Date
 
         /// 查询数目，默认为20，最大为100。
@@ -42,7 +40,7 @@ extension Dbbrain {
 
         public init(instanceId: String, date: Date, limit: Int64? = nil, offset: Int64? = nil, product: String? = nil) {
             self.instanceId = instanceId
-            self.date = date
+            self._date = .init(wrappedValue: date)
             self.limit = limit
             self.offset = offset
             self.product = product

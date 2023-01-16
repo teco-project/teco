@@ -34,18 +34,14 @@ extension Partners {
 
         /// 解绑申请时间范围起始点
         ///
-        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
-        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
-        ///
-        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        /// While the wrapped date value is immutable just like other fields, you can customize the projected
+        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
         @TCDateEncoding public var applyTimeStart: Date?
 
         /// 解绑申请时间范围终止点
         ///
-        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
-        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
-        ///
-        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        /// While the wrapped date value is immutable just like other fields, you can customize the projected
+        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
         @TCDateEncoding public var applyTimeEnd: Date?
 
         /// 对申请时间的升序降序，值：asc，desc
@@ -56,8 +52,8 @@ extension Partners {
             self.offset = offset
             self.limit = limit
             self.unbindUin = unbindUin
-            self.applyTimeStart = applyTimeStart
-            self.applyTimeEnd = applyTimeEnd
+            self._applyTimeStart = .init(wrappedValue: applyTimeStart)
+            self._applyTimeEnd = .init(wrappedValue: applyTimeEnd)
             self.orderDirection = orderDirection
         }
 

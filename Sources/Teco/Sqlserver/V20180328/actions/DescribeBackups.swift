@@ -22,18 +22,14 @@ extension Sqlserver {
     public struct DescribeBackupsRequest: TCRequestModel {
         /// 开始时间(yyyy-MM-dd HH:mm:ss)
         ///
-        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
-        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
-        ///
-        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        /// While the wrapped date value is immutable just like other fields, you can customize the projected
+        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var startTime: Date
 
         /// 结束时间(yyyy-MM-dd HH:mm:ss)
         ///
-        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
-        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
-        ///
-        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        /// While the wrapped date value is immutable just like other fields, you can customize the projected
+        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var endTime: Date
 
         /// 实例ID，形如mssql-njj2mtpl
@@ -70,8 +66,8 @@ extension Sqlserver {
         public let backupFormat: String?
 
         public init(startTime: Date, endTime: Date, instanceId: String, limit: Int64? = nil, offset: Int64? = nil, backupName: String? = nil, strategy: Int64? = nil, backupWay: Int64? = nil, backupId: UInt64? = nil, databaseName: String? = nil, group: Int64? = nil, type: Int64? = nil, backupFormat: String? = nil) {
-            self.startTime = startTime
-            self.endTime = endTime
+            self._startTime = .init(wrappedValue: startTime)
+            self._endTime = .init(wrappedValue: endTime)
             self.instanceId = instanceId
             self.limit = limit
             self.offset = offset

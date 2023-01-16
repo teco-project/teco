@@ -726,10 +726,8 @@ extension Bmlb {
 
         /// 创建时间戳。
         ///
-        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
-        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
-        ///
-        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        /// While the wrapped date value is immutable just like other fields, you can customize the projected
+        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var addTimestamp: Date?
 
         /// 转发后端服务器调度类型。
@@ -755,7 +753,7 @@ extension Bmlb {
             self.healthResponse = healthResponse
             self.toaFlag = toaFlag
             self.status = status
-            self.addTimestamp = addTimestamp
+            self._addTimestamp = .init(wrappedValue: addTimestamp)
             self.balanceMode = balanceMode
         }
 
@@ -827,10 +825,8 @@ extension Bmlb {
 
         /// 创建时间戳。
         ///
-        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
-        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
-        ///
-        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        /// While the wrapped date value is immutable just like other fields, you can customize the projected
+        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var addTimestamp: Date?
 
         /// 是否开启自定义健康检查：1（开启）、0（关闭）。默认值0，表示关闭。（该字段在健康检查开启的情况下才生效）
@@ -868,7 +864,7 @@ extension Bmlb {
             self.healthNum = healthNum
             self.unhealthNum = unhealthNum
             self.status = status
-            self.addTimestamp = addTimestamp
+            self._addTimestamp = .init(wrappedValue: addTimestamp)
             self.customHealthSwitch = customHealthSwitch
             self.inputType = inputType
             self.lineSeparatorType = lineSeparatorType
@@ -991,10 +987,8 @@ extension Bmlb {
 
         /// 添加时间。
         ///
-        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
-        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
-        ///
-        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        /// While the wrapped date value is immutable just like other fields, you can customize the projected
+        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var addTimestamp: Date
 
         /// 负载均衡名ID。
@@ -1078,10 +1072,8 @@ extension Bmlb {
 
         /// 创建时间戳。
         ///
-        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
-        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
-        ///
-        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        /// While the wrapped date value is immutable just like other fields, you can customize the projected
+        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var addTimestamp: Date?
 
         /// https转发类型。0：https。1：spdy。2：http2。3：spdy+http2。
@@ -1098,7 +1090,7 @@ extension Bmlb {
             self.certId = certId
             self.certCaId = certCaId
             self.status = status
-            self.addTimestamp = addTimestamp
+            self._addTimestamp = .init(wrappedValue: addTimestamp)
             self.forwardProtocol = forwardProtocol
         }
 
@@ -1152,10 +1144,8 @@ extension Bmlb {
 
         /// 创建时间戳。
         ///
-        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
-        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
-        ///
-        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        /// While the wrapped date value is immutable just like other fields, you can customize the projected
+        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var addTimestamp: Date?
 
         /// 返回的转发规则列表。
@@ -1175,7 +1165,7 @@ extension Bmlb {
             self.certId = certId
             self.certCaId = certCaId
             self.status = status
-            self.addTimestamp = addTimestamp
+            self._addTimestamp = .init(wrappedValue: addTimestamp)
             self.ruleSet = ruleSet
             self.forwardProtocol = forwardProtocol
         }
@@ -1281,10 +1271,8 @@ extension Bmlb {
 
         /// 创建时间戳。
         ///
-        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
-        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
-        ///
-        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        /// While the wrapped date value is immutable just like other fields, you can customize the projected
+        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var addTimestamp: Date?
 
         /// 该转发路径所绑定的主机列表。
@@ -1303,7 +1291,7 @@ extension Bmlb {
             self.httpCodes = httpCodes
             self.balanceMode = balanceMode
             self.status = status
-            self.addTimestamp = addTimestamp
+            self._addTimestamp = .init(wrappedValue: addTimestamp)
             self.backendSet = backendSet
         }
 
@@ -1338,10 +1326,8 @@ extension Bmlb {
 
         /// 创建时间戳。
         ///
-        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
-        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
-        ///
-        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        /// While the wrapped date value is immutable just like other fields, you can customize the projected
+        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var addTimestamp: Date?
 
         /// 该转发域名下面的转发路径列表。
@@ -1351,7 +1337,7 @@ extension Bmlb {
             self.domain = domain
             self.domainId = domainId
             self.status = status
-            self.addTimestamp = addTimestamp
+            self._addTimestamp = .init(wrappedValue: addTimestamp)
             self.locationSet = locationSet
         }
 
@@ -1377,10 +1363,8 @@ extension Bmlb {
 
         /// 创建时间戳。
         ///
-        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
-        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
-        ///
-        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        /// While the wrapped date value is immutable just like other fields, you can customize the projected
+        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var addTimestamp: Date?
 
         /// 该转发域名下面的转发路径列表。
@@ -1390,7 +1374,7 @@ extension Bmlb {
             self.domain = domain
             self.domainId = domainId
             self.status = status
-            self.addTimestamp = addTimestamp
+            self._addTimestamp = .init(wrappedValue: addTimestamp)
             self.locationSet = locationSet
         }
 
@@ -1443,10 +1427,8 @@ extension Bmlb {
 
         /// 创建时间戳。
         ///
-        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
-        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
-        ///
-        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        /// While the wrapped date value is immutable just like other fields, you can customize the projected
+        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var addTimestamp: Date?
 
         public init(url: String? = nil, locationId: String? = nil, sessionExpire: Int64? = nil, healthSwitch: Int64? = nil, httpCheckPath: String? = nil, httpCheckDomain: String? = nil, intervalTime: Int64? = nil, healthNum: Int64? = nil, unhealthNum: Int64? = nil, httpCodes: [UInt64]? = nil, balanceMode: String? = nil, status: Int64? = nil, addTimestamp: Date? = nil) {
@@ -1462,7 +1444,7 @@ extension Bmlb {
             self.httpCodes = httpCodes
             self.balanceMode = balanceMode
             self.status = status
-            self.addTimestamp = addTimestamp
+            self._addTimestamp = .init(wrappedValue: addTimestamp)
         }
 
         enum CodingKeys: String, CodingKey {
@@ -1522,18 +1504,14 @@ extension Bmlb {
 
         /// 无
         ///
-        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
-        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
-        ///
-        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        /// While the wrapped date value is immutable just like other fields, you can customize the projected
+        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var createTime: Date?
 
         /// 无
         ///
-        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
-        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
-        ///
-        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        /// While the wrapped date value is immutable just like other fields, you can customize the projected
+        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var statusTime: Date?
 
         /// 私有网络名称。
@@ -1592,8 +1570,8 @@ extension Bmlb {
             self.status = status
             self.payMode = payMode
             self.latestPayMode = latestPayMode
-            self.createTime = createTime
-            self.statusTime = statusTime
+            self._createTime = .init(wrappedValue: createTime)
+            self._statusTime = .init(wrappedValue: statusTime)
             self.vpcName = vpcName
             self.vpcCidrBlock = vpcCidrBlock
             self.loadBalancerVips = loadBalancerVips
@@ -1811,10 +1789,8 @@ extension Bmlb {
 
         /// 创建时间。
         ///
-        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
-        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
-        ///
-        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        /// While the wrapped date value is immutable just like other fields, you can customize the projected
+        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var createTime: Date?
 
         /// 流量镜像所在私有网络的Cidr。
@@ -1835,7 +1811,7 @@ extension Bmlb {
             self.httpCheckDomain = httpCheckDomain
             self.httpCheckPath = httpCheckPath
             self.httpCodes = httpCodes
-            self.createTime = createTime
+            self._createTime = .init(wrappedValue: createTime)
             self.vpcCidrBlock = vpcCidrBlock
             self.vpcName = vpcName
         }
@@ -1892,10 +1868,8 @@ extension Bmlb {
 
         /// 添加时间。
         ///
-        /// **Important:** This has to be a `var` due to a property wrapper restriction, which is about to be removed in the future.
-        /// For discussions, see [Allow Property Wrappers on Let Declarations](https://forums.swift.org/t/pitch-allow-property-wrappers-on-let-declarations/61750).
-        ///
-        /// Although mutating this property is possible for now, it may become a `let` variable at any time. Please don't rely on such behavior.
+        /// While the wrapped date value is immutable just like other fields, you can customize the projected
+        /// string value (through `$`-prefix) in case the synthesized encoding is incorrect.
         @TCTimestampEncoding public var addTimestamp: Date
 
         /// 负载均衡ID。
